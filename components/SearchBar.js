@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
 export default class App extends React.Component {
@@ -15,6 +16,7 @@ export default class App extends React.Component {
 
     return (
       <SearchBar
+        fontColor="#c6c6c6"
         placeholder={this.props.search}
         onChangeText={this.updateSearch}
         value={search}
@@ -22,3 +24,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+
+});
