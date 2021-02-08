@@ -17,7 +17,7 @@ const SignupScreen = props => {
                 
 
                 <Button title="Sign Up" onPress={() => {
-                props.navigation.navigate('Screen1');
+                props.navigation.replace('Screen1');
             }}/>
 
             <View style={styles.screenBottom}>

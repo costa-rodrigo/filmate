@@ -18,7 +18,7 @@ const LoginScreen = props => {
                 }}/>
 
             <Button title="Sign In" onPress={() => {
-                props.navigation.navigate('Screen1');
+                props.navigation.replace('Screen1');
             }}/>
 
             <View style={styles.screenBottom}>

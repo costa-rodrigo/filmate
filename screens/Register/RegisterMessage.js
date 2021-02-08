@@ -17,7 +17,7 @@ const RegisterMessage = props => {
                     onChangeText={text => onChangeUsername(text)}
                     value={usernameValue} />
                 <TextInput 
-                    style={styles.input} 
+                    style={styles.input}
                     onChangeText={text => onChangePassword(text)}
                     value={passwordValue} />
             </View>
@@ -59,9 +59,8 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     inputFields: {
+        justifyContent: 'space-between',
         marginTop: 20,
-        // marginBottom: 400
-
     },
     input: {
         height: 40,
@@ -69,8 +68,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         fontSize: 20,
         textAlign: 'left',
-        width: 300,
-        color: 'gray'
+        width: 400,
+        color: 'gray',
+        marginBottom: 20
     },
     forgotButton: {
         textAlign: 'right',

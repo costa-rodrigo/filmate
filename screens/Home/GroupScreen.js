@@ -13,7 +13,12 @@ const GroupScreen = props => {
         <View style={styles.newGroup}>
             <Text style={styles.title}>Your groups will appear here!</Text>
             <Text style={styles.description}>Start by inviting your friends and adding new groups</Text>
-            <Button title="New Group" />
+            <Button 
+                title="New Group"
+                onPress={() => {
+                    props.navigation.navigate('NewGroupFilter')
+                }}
+                     />
         </View>
         </View>
     )

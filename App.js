@@ -8,8 +8,10 @@ import ForgotPasswordScreen_Reset from './screens/Register/ForgotPasswordScreen_
 import OnboardingScreen1 from './screens/Onboarding/OnboardingScreen1';
 import OnboardingScreen2 from './screens/Onboarding/OnboardingScreen2';
 import OnboardingScreen3 from './screens/Onboarding/OnboardingScreen3';
-// import HomeScreen from './screens/Home/HomeScreen';
 import GroupScreen from './screens/Home/GroupScreen';
+import NewGroupFilter from './screens/Home/NewGroupFilter';
+import NewGroupName from './screens/Home/NewGroupName';
+import NewGroupAddMember from './screens/Home/NewGroupAddMember';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
@@ -98,6 +100,30 @@ function App() {
         component={HomeNavigator} 
         options={{
           headerTitle: 'Home',
+          headerBackTitle: 'Back'
+        }}/> 
+
+        <Stack.Screen 
+        name="NewGroupFilter" 
+        component={NewGroupFilter} 
+        options={{
+          headerTitle: 'New Group',
+          headerBackTitle: 'Back'
+        }}/> 
+
+        <Stack.Screen 
+        name="NewGroupName" 
+        component={NewGroupName} 
+        options={{
+          headerTitle: 'New Group',
+          headerBackTitle: 'Back'
+        }}/> 
+
+        <Stack.Screen 
+        name="NewGroupAddMember" 
+        component={NewGroupAddMember} 
+        options={{
+          headerTitle: 'New Group',
           headerBackTitle: 'Back'
         }}/> 
       </Stack.Navigator>
