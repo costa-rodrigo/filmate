@@ -9,9 +9,12 @@ import OnboardingScreen1 from './screens/Onboarding/OnboardingScreen1';
 import OnboardingScreen2 from './screens/Onboarding/OnboardingScreen2';
 import OnboardingScreen3 from './screens/Onboarding/OnboardingScreen3';
 import GroupScreen from './screens/Home/GroupScreen';
+import FriendScreen from './screens/Home/FriendScreen';
 import NewGroupFilter from './screens/Home/NewGroupFilter';
 import NewGroupName from './screens/Home/NewGroupName';
 import NewGroupAddMember from './screens/Home/NewGroupAddMember';
+import AddFriends from './screens/Home/AddFriends';
+import FriendsInvited from './screens/Home/FriendsInvited';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
@@ -20,7 +23,7 @@ const HomeNavigator = props => {
     return (
     <Tab.Navigator>
         <Tab.Screen name="Groups" component={GroupScreen} />
-        <Tab.Screen name="Friends" component={OnboardingScreen2} />
+        <Tab.Screen name="Friends" component={FriendScreen} />
     </Tab.Navigator> 
     )
 }
@@ -42,88 +45,69 @@ function App() {
           fontWeight: 'bold',
         },
       }}>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
+        <Stack.Screen name="Login" component={LoginScreen}
           options={{
             headerTitle: 'Login'
           }}
         />
-        <Stack.Screen 
-        name="Signup" 
-        component={SignupScreen} 
+        <Stack.Screen name="Signup" component={SignupScreen} 
         options={{
           headerTitle: 'Sign Up',
           headerBackTitle: 'Back'
         }}/>
-        <Stack.Screen 
-        name="ForgotPassword" 
-        component={ForgotPasswordScreen} 
+        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} 
         options={{
           headerTitle: 'Forgot Password',
           headerBackTitle: 'Back'
         }}/>
-
-        <Stack.Screen 
-        name="ForgotPassword_Reset" 
-        component={ForgotPasswordScreen_Reset} 
+        <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} 
         options={{
           headerTitle: 'Forgot Password',
           headerBackTitle: 'Back'
         }}/>
-
-        <Stack.Screen 
-        name="Screen1" 
-        component={OnboardingScreen1} 
+        <Stack.Screen name="Screen1" component={OnboardingScreen1} 
         options={{
           headerTitle: 'Create Group',
           headerBackTitle: 'Back'
         }}/>  
-
-        <Stack.Screen 
-        name="Screen2" 
-        component={OnboardingScreen2} 
+        <Stack.Screen name="Screen2" component={OnboardingScreen2} 
         options={{
           headerTitle: 'Filter Mood',
           headerBackTitle: 'Back'
         }}/> 
-
-        <Stack.Screen 
-        name="Screen3" 
-        component={OnboardingScreen3} 
+        <Stack.Screen name="Screen3" component={OnboardingScreen3} 
         options={{
           headerTitle: 'Swipe Match',
           headerBackTitle: 'Back'
         }}/> 
-        <Stack.Screen 
-        name="Home" 
-        component={HomeNavigator} 
+        <Stack.Screen name="Home" component={HomeNavigator} 
         options={{
           headerTitle: 'Home',
           headerBackTitle: 'Back'
         }}/> 
-
-        <Stack.Screen 
-        name="NewGroupFilter" 
-        component={NewGroupFilter} 
+        <Stack.Screen name="NewGroupFilter" component={NewGroupFilter} 
         options={{
           headerTitle: 'New Group',
           headerBackTitle: 'Back'
         }}/> 
-
-        <Stack.Screen 
-        name="NewGroupName" 
-        component={NewGroupName} 
+        <Stack.Screen name="NewGroupName" component={NewGroupName} 
         options={{
           headerTitle: 'New Group',
           headerBackTitle: 'Back'
         }}/> 
-
-        <Stack.Screen 
-        name="NewGroupAddMember" 
-        component={NewGroupAddMember} 
+        <Stack.Screen name="NewGroupAddMember" component={NewGroupAddMember} 
         options={{
           headerTitle: 'New Group',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="AddFriends" component={AddFriends} 
+        options={{
+          headerTitle: 'Add Friends',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="FriendsInvited" component={FriendsInvited} 
+        options={{
+          headerTitle: 'Friends Invited',
           headerBackTitle: 'Back'
         }}/> 
       </Stack.Navigator>

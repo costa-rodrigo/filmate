@@ -2,19 +2,18 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import SearchBar from '../../components/SearchBar';
 
-
-const GroupScreen = props => {
+const FriendScreen = props => {
     return (
         <View style={styles.screen}>
-            <SearchBar style={styles.search} search="Search Groups"/>
+            <SearchBar style={styles.search} search="Search Friends"/>
         
-        <View style={styles.newGroup}>
-            <Text style={styles.title}>Your groups will appear here!</Text>
+        <View style={styles.newFriend}>
+            <Text style={styles.title}>No Friends Yet</Text>
             <Text style={styles.description}>Start by inviting your friends and adding new groups</Text>
             <Button 
-                title="New Group"
+                title="Add Friends"
                 onPress={() => {
-                    props.navigation.navigate('NewGroupFilter')
+                    props.navigation.navigate('AddFriends')
                 }}
             />
         </View>
@@ -23,7 +22,7 @@ const GroupScreen = props => {
 }
 
 const styles = StyleSheet.create({
-    newGroup: {
+    newFriend: {
         marginVertical: 100,
         textAlign: 'center',
         borderWidth: 1,
@@ -42,4 +41,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default GroupScreen;
+export default FriendScreen;
