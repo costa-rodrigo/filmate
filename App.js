@@ -2,34 +2,12 @@ import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Login Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
-
-
-function DetailsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
-
+// import HomeScreen from './components/HomeScreen';
+import DetailsScreen from './components/DetailsScreen';
+import LoginScreen from './screens/Register/LoginScreen';
+import SignupScreen from './screens/Register/SignupScreen';
+import ForgotPasswordScreen from './screens/Register/ForgotPasswordScreen';
+import ForgotPasswordScreen_Reset from './screens/Register/ForgotPasswordScreen_Reset';
 const Stack = createStackNavigator();
 
 function App() {
@@ -47,10 +25,10 @@ function App() {
         },
       }}>
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
+          name="Login"
+          component={LoginScreen}
           options={{
-            headerTitle: 'My home',
+            headerTitle: 'Login',
             headerRight: () => (
               <Button
                 onPress={() => alert('This is a button!')}
@@ -60,6 +38,26 @@ function App() {
             ),
           }}
         />
+        <Stack.Screen 
+        name="Signup" 
+        component={SignupScreen} 
+        options={{
+          headerBackTitle: 'Back'
+        }}/>
+        <Stack.Screen 
+        name="ForgotPassword" 
+        component={ForgotPasswordScreen} 
+        options={{
+          headerBackTitle: 'Back'
+        }}/>
+
+        <Stack.Screen 
+        name="ForgotPassword_Reset" 
+        component={ForgotPasswordScreen_Reset} 
+        options={{
+          headerBackTitle: 'Back'
+        }}/>
+
         <Stack.Screen 
         name="Details" 
         component={DetailsScreen} 
