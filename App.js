@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-// import HomeScreen from './components/HomeScreen';
-import DetailsScreen from './components/DetailsScreen';
 import LoginScreen from './screens/Register/LoginScreen';
 import SignupScreen from './screens/Register/SignupScreen';
 import ForgotPasswordScreen from './screens/Register/ForgotPasswordScreen';
@@ -11,6 +8,21 @@ import ForgotPasswordScreen_Reset from './screens/Register/ForgotPasswordScreen_
 import OnboardingScreen1 from './screens/Onboarding/OnboardingScreen1';
 import OnboardingScreen2 from './screens/Onboarding/OnboardingScreen2';
 import OnboardingScreen3 from './screens/Onboarding/OnboardingScreen3';
+// import HomeScreen from './screens/Home/HomeScreen';
+import GroupScreen from './screens/Home/GroupScreen';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+const Tab = createMaterialTopTabNavigator();
+
+const HomeNavigator = props => {
+    return (
+    <Tab.Navigator>
+        <Tab.Screen name="Groups" component={GroupScreen} />
+        <Tab.Screen name="Friends" component={OnboardingScreen2} />
+    </Tab.Navigator> 
+    )
+}
+
 
 const Stack = createStackNavigator();
 
@@ -62,7 +74,7 @@ function App() {
         name="Screen1" 
         component={OnboardingScreen1} 
         options={{
-          headerTitle: 'Forgot Password',
+          headerTitle: 'Create Group',
           headerBackTitle: 'Back'
         }}/>  
 
@@ -70,7 +82,7 @@ function App() {
         name="Screen2" 
         component={OnboardingScreen2} 
         options={{
-          headerTitle: 'Forgot Password',
+          headerTitle: 'Filter Mood',
           headerBackTitle: 'Back'
         }}/> 
 
@@ -78,7 +90,14 @@ function App() {
         name="Screen3" 
         component={OnboardingScreen3} 
         options={{
-          headerTitle: 'Forgot Password',
+          headerTitle: 'Swipe Match',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen 
+        name="Home" 
+        component={HomeNavigator} 
+        options={{
+          headerTitle: 'Home',
           headerBackTitle: 'Back'
         }}/> 
       </Stack.Navigator>

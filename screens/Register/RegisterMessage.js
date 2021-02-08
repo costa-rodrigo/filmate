@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 
 const RegisterMessage = props => {
+    const [usernameValue, onChangeUsername] = React.useState(props.userInput1);
+    const [passwordValue, onChangePassword] = React.useState(props.userInput2);
 
 
     return (
@@ -10,9 +12,14 @@ const RegisterMessage = props => {
             <Text style={styles.title}>{props.title}</Text>
             <Text style={styles.description}>{props.description}</Text>
             <View style={styles.inputFields}>
-                <TextInput style={styles.input} value={props.userInput1} />
-                <TextInput style={styles.input} value={props.userInput2} />
-                <TextInput style={styles.input} value={props.userInput3} />
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={text => onChangeUsername(text)}
+                    value={usernameValue} />
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={text => onChangePassword(text)}
+                    value={passwordValue} />
             </View>
             
             {/* <Button style={styles.forgotButton} title={props.forgotButton} onPress={() => {
@@ -57,11 +64,13 @@ const styles = StyleSheet.create({
 
     },
     input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
         fontSize: 20,
         textAlign: 'left',
-        borderColor: 'black',
-        borderWidth: 1,
-        width: 300
+        width: 300,
+        color: 'gray'
     },
     forgotButton: {
         textAlign: 'right',
