@@ -5,8 +5,8 @@ export default class NewGroupAddMember extends React.Component {
 
   render() {
     return (
-     <View>
-         <Text>Add participant to group 'Group Name'</Text>
+     <View style={styles.screen}>
+         <Text style={styles.title}>Add participant to group 'Group Name'</Text>
          <Button title="Add Participant" />
      </View>
     );
@@ -14,5 +14,14 @@ export default class NewGroupAddMember extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    screen: {
+        paddingHorizontal: 20,
+        paddingTop: 50
+    },
+    title: {
+        fontSize: 20,
+        textAlign: 'center',
+        marginBottom: 60
+    }
 
 });

@@ -5,8 +5,8 @@ export default class NewGroupName extends React.Component {
 
   render() {
     return (
-     <View>
-         <Text>What's the name of this group?</Text>
+     <View style={styles.screen}>
+         <Text style={styles.title}>What's the name of this group?</Text>
          <Button 
             title="Next"
             onPress={() => {
@@ -18,5 +18,14 @@ export default class NewGroupName extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    screen: {
+        paddingHorizontal: 20,
+        paddingTop: 50
+    },
+    title: {
+        fontSize: 20,
+        textAlign: 'center',
+        marginBottom: 60
+    }
 
 });
