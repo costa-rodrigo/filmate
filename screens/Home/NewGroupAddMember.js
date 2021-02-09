@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import AddParticipant from './AddParticipant';
 
 export default class NewGroupAddMember extends React.Component {
 
@@ -7,6 +8,10 @@ export default class NewGroupAddMember extends React.Component {
     return (
      <View style={styles.screen}>
          <Text style={styles.title}>Add participant to group 'Group Name'</Text>
+         <AddParticipant />
+         <AddParticipant />
+         <AddParticipant />
+         <AddParticipant />
          <Button title="Add Participant" />
      </View>
     );

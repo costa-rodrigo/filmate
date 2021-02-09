@@ -1,18 +1,107 @@
-import React from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import React, {useState, createRef} from 'react';
+import { 
+    View, 
+    Button, 
+    Text, 
+    StyleSheet,
+    TextInput
+} from 'react-native';
 import RegisterMessage from './RegisterMessage';
 import { RegisterData } from './RegisterData';
 
 
 const LoginScreen = props => {
+    // state variables : username, userPassword, loading, errorText
+    const [username, setUsername] = useState('');
+    const [userPassword, setUserPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [errorText, setErrorText] = useState('')
+    // console.log('username', username);
+    // console.log('password', userPassword);
+
+    const handleSubmit = () => {
+        setErrorText('');
+        if (!username) {
+            alert('Oops, please provide a username!');
+            return;
+        }
+        if (!userPassword) {
+            alert('Oops, please provide a password!');
+            return;
+        }
+        // I think we will use something similar to below to connect backend auth:
+
+
+        // setLoading(true);
+        // let sendData = {username: username, password: userPassword};
+        // let formBody = [];
+        // for (let key in sendData) {
+        //     let encodedKey = encodeURIComponent(key);
+        //     let encodedValue = encodeURIComponent(dataToSend[key]);
+        //     formBody.push(encodedKey + '=' + encodedValue);
+        // }
+        // formBody = formBody.join('&');
+    
+        // fetch('http://localhost:3000/api/user/login', {
+        //   method: 'POST',
+        //   body: formBody,
+        //   headers: {
+        //     //Header Defination
+        //     'Content-Type':
+        //     'application/x-www-form-urlencoded;charset=UTF-8',
+        //   },
+        // })
+        //   .then((response) => response.json())
+        //   .then((responseJson) => {
+        //     //Hide Loader
+        //     setLoading(false);
+        //     console.log(responseJson);
+        //     // If server response message same as Data Matched
+        //     if (responseJson.status === 'success') {
+        //       AsyncStorage.setItem('user_id', responseJson.data.email);
+        //       console.log(responseJson.data.email);
+        //       navigation.replace('DrawerNavigationRoutes');
+        //     } else {
+        //       setErrortext(responseJson.msg);
+        //       console.log('Please check your username or password');
+        //     }
+        //   })
+        //   .catch((error) => {
+        //     //Hide Loader
+        //     setLoading(false);
+        //     console.error(error);
+        //   });
+    }
     return (
         <View>
-            <RegisterMessage 
+             <RegisterMessage 
                 logoLink={RegisterData[0].logoLink} 
                 title={RegisterData[0].title} 
                 userInput1={RegisterData[0].userInput1}
                 userInput2={RegisterData[0].userInput2}
             />
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={(UserName) => 
+                        setUsername(UserName)}
+                    placeholder="Username"
+                    value={username}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="next"
+                    />
+                    
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Password"
+                    value={userPassword}
+                    onChangeText={(UserPassword) =>
+                       setUserPassword(UserPassword)}
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="go"
+                    />
             <Button title="Forgot Password?" onPress={() => {
                     props.navigation.navigate('ForgotPassword')
                 }}/>
@@ -26,7 +115,9 @@ const LoginScreen = props => {
                 <Button title="Sign Up" onPress={() => {
                     props.navigation.navigate('Signup')
                 }} />
+              
             </View>
+            <Button title="HANDLE_SUBMIT" onPress={handleSubmit}/>
         </View>
     )
 }

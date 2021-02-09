@@ -1,10 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
+import { 
+    View, 
+    Text, StyleSheet, Image, TextInput } from 'react-native';
 
 const RegisterMessage = props => {
     const [usernameValue, onChangeUsername] = React.useState(props.userInput1);
     const [passwordValue, onChangePassword] = React.useState(props.userInput2);
 
+    
 
     return (
         <View style={styles.screen}>
@@ -12,14 +15,27 @@ const RegisterMessage = props => {
             <Text style={styles.title}>{props.title}</Text>
             <Text style={styles.description}>{props.description}</Text>
             <View style={styles.inputFields}>
-                <TextInput 
+                {/* <TextInput 
                     style={styles.input} 
                     onChangeText={text => onChangeUsername(text)}
-                    value={usernameValue} />
+                    placeholder={usernameValue}
+                    // value={usernameValue}
+                    name={usernameValue} 
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="next"
+                    />
+                    
                 <TextInput 
                     style={styles.input}
                     onChangeText={text => onChangePassword(text)}
-                    value={passwordValue} />
+                    placeholder={passwordValue} 
+                    value={passwordValue}
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="go"
+                    /> */}
             </View>
             
             {/* <Button style={styles.forgotButton} title={props.forgotButton} onPress={() => {
