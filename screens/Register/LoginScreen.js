@@ -1,4 +1,4 @@
-import React, {useState, createRef} from 'react';
+import React, { useState } from 'react';
 import { 
     View, 
     Button, 
@@ -11,17 +11,17 @@ import { RegisterData } from './RegisterData';
 
 
 const LoginScreen = props => {
-    // state variables : username, userPassword, loading, errorText
-    const [username, setUsername] = useState('');
+    // state variables : userUsername, userPassword, loading, errorText
+    const [userUsername, setUsername] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [errorText, setErrorText] = useState('')
-    // console.log('username', username);
+    // console.log('username', userUsername);
     // console.log('password', userPassword);
 
     const handleSubmit = () => {
         setErrorText('');
-        if (!username) {
+        if (!userUsername) {
             alert('Oops, please provide a username!');
             return;
         }
@@ -33,11 +33,11 @@ const LoginScreen = props => {
 
 
         // setLoading(true);
-        // let sendData = {username: username, password: userPassword};
+        // let sendData = {username: userUsername, password: userPassword};
         // let formBody = [];
         // for (let key in sendData) {
         //     let encodedKey = encodeURIComponent(key);
-        //     let encodedValue = encodeURIComponent(dataToSend[key]);
+        //     let encodedValue = encodeURIComponent(sendData[key]);
         //     formBody.push(encodedKey + '=' + encodedValue);
         // }
         // formBody = formBody.join('&');
@@ -77,15 +77,13 @@ const LoginScreen = props => {
              <RegisterMessage 
                 logoLink={RegisterData[0].logoLink} 
                 title={RegisterData[0].title} 
-                userInput1={RegisterData[0].userInput1}
-                userInput2={RegisterData[0].userInput2}
             />
                 <TextInput 
                     style={styles.input} 
-                    onChangeText={(UserName) => 
-                        setUsername(UserName)}
+                    onChangeText={(Username) => 
+                        setUsername(Username)}
                     placeholder="Username"
-                    value={username}
+                    value={userUsername}
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
