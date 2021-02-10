@@ -11,12 +11,16 @@ const SignupScreen = props => {
     const [errorText, setErrorText] = useState('');
     // const [isRegistrationSuccessful] = useState(false);
     // do we want a pop up when registration is succesful? refer to example
-    console.log(userName)
-    console.log(userEmail)
-    console.log(userPassword)
+    // console.log(userName)
+    // console.log(userEmail)
+    // console.log(userPassword)
 
     const handleSubmit = () => {
         setErrorText('');
+        console.log(userName);
+        console.log(userEmail);
+        console.log(userPassword);
+
         if (!userName) {
             alert('Please provide a name');
             return;
@@ -32,46 +36,46 @@ const SignupScreen = props => {
         
         // I think we will do something similar to this to connect to the backend??
         // show loading
-        setLoading(true);
-        let sendData = {name: userName, email: userEmail, password: userPassword};
+        // setLoading(true);
+        // let sendData = {name: userName, email: userEmail, password: userPassword};
 
-        var formBody = [];
-        for (var key in sendData) {
-        var encodedKey = encodeURIComponent(key);
-        var encodedValue = encodeURIComponent(sendData[key]);
-        formBody.push(encodedKey + '=' + encodedValue);
-        }
-        formBody = formBody.join('&');
+        // var formBody = [];
+        // for (var key in sendData) {
+        // var encodedKey = encodeURIComponent(key);
+        // var encodedValue = encodeURIComponent(sendData[key]);
+        // formBody.push(encodedKey + '=' + encodedValue);
+        // }
+        // formBody = formBody.join('&');
 
-        fetch('http://localhost:3000/api/user/register', {
-        method: 'POST',
-        body: formBody,
-        headers: {
-            //Header Defination
-            'Content-Type':
-            'application/x-www-form-urlencoded;charset=UTF-8',
-        },
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            //Hide Loader
-            setLoading(false);
-            console.log(responseJson);
-            // If server response message same as Data Matched
-            if (responseJson.status === 'success') {
-            setIsRegistraionSuccess(true);
-            console.log(
-                'Registration Successful. Please Login to proceed'
-            );
-            } else {
-            setErrortext(responseJson.msg);
-            }
-        })
-        .catch((error) => {
-            //Hide Loader
-            setLoading(false);
-            console.error(error);
-        });
+        // fetch('http://localhost:3000/api/user/register', {
+        // method: 'POST',
+        // body: formBody,
+        // headers: {
+        //     //Header Defination
+        //     'Content-Type':
+        //     'application/x-www-form-urlencoded;charset=UTF-8',
+        // },
+        // })
+        // .then((response) => response.json())
+        // .then((responseJson) => {
+        //     //Hide Loader
+        //     setLoading(false);
+        //     console.log(responseJson);
+        //     // If server response message same as Data Matched
+        //     if (responseJson.status === 'success') {
+        //     setIsRegistraionSuccess(true);
+        //     console.log(
+        //         'Registration Successful. Please Login to proceed'
+        //     );
+        //     } else {
+        //     setErrortext(responseJson.msg);
+        //     }
+        // })
+        // .catch((error) => {
+        //     //Hide Loader
+        //     setLoading(false);
+        //     console.error(error);
+        // });
     }
 
     return (
