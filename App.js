@@ -9,13 +9,13 @@ import ForgotPasswordScreen_Reset from './screens/Register/ForgotPasswordScreen_
 import OnboardingScreen1 from './screens/Onboarding/OnboardingScreen1';
 import OnboardingScreen2 from './screens/Onboarding/OnboardingScreen2';
 import OnboardingScreen3 from './screens/Onboarding/OnboardingScreen3';
-import GroupScreen from './screens/Home/GroupScreen';
-import FriendScreen from './screens/Home/FriendScreen';
-import NewGroupFilter from './screens/Home/NewGroupFilter';
-import NewGroupName from './screens/Home/NewGroupName';
-import NewGroupAddMember from './screens/Home/NewGroupAddMember';
-import AddFriends from './screens/Home/AddFriends';
-import FriendsInvited from './screens/Home/FriendsInvited';
+import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
+import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
+import NewGroupFilter from './screens/Home/GroupScreens/NewGroupFilter';
+import NewGroupName from './screens/Home/GroupScreens/NewGroupName';
+import NewGroupAddMember from './screens/Home/GroupScreens/NewGroupAddMember';
+import AddFriends from './screens/Home/FriendScreens/AddFriends';
+import FriendsInvited from './screens/Home/FriendScreens/FriendsInvited';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();

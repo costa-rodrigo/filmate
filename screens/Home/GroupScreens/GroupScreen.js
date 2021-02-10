@@ -1,9 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../../../components/SearchBar';
 
 
 const GroupScreen = props => {
+
+    const { navigate } = props.navigation;
+    
+    const onLogout = () => {
+        console.log('logged out')
+
+    }
+
     return (
         <View style={styles.screen}>
             <SearchBar style={styles.search} search="Search Groups"/>
@@ -17,6 +25,7 @@ const GroupScreen = props => {
                     props.navigation.navigate('NewGroupFilter')
                 }}
             />
+            <Button title="logout" onPress={onLogout}/>
         </View>
         </View>
     )
