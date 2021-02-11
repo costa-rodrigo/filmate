@@ -34,7 +34,7 @@ const SignupScreen = props => {
             return;
         }
         
-        // I think we will do something similar to this to connect to the backend??
+        // I think we will do something similar to this to connect to the backend?? - using fetch or axios?
         // show loading
         // setLoading(true);
         // let sendData = {name: userName, email: userEmail, password: userPassword};
