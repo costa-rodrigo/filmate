@@ -1,15 +1,31 @@
-import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Button, StyleSheet, TextInput } from 'react-native';
 import RegisterMessage from './RegisterMessage';
 import { RegisterData } from './RegisterData';
 
 
 const ForgotPasswordScreen = props => {
+    const [userEmail, setUserEmail] = useState('');
+
     return (
         <View>
             <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} />
             <View style={styles.screenBottom}>
-                <Button title="Next" onPress={() => {
+              
+
+
+            <TextInput 
+                style={styles.input} 
+                onChangeText={(Email) => 
+                    setEmail(Email)}
+                placeholder="Email"
+                value={userEmail}
+                autoCapitalize="none"
+                autoCorrect={false}
+                // returnKeyType="next"
+                    />
+
+            <Button title="Next" onPress={() => {
                     props.navigation.navigate('ForgotPassword_Reset')
                 }} />
             </View>
