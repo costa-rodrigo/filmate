@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../../../components/SearchBar';
 
 const Tab = createMaterialTopTabNavigator();
 
