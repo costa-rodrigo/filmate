@@ -7,7 +7,7 @@ import {
     TextInput
 } from 'react-native';
 import RegisterMessage from './RegisterMessage';
-import { RegisterData } from './RegisterData';
+import { RegisterData } from './data/RegisterData';
 
 
 const LoginScreen = props => {

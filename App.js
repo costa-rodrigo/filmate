@@ -44,6 +44,7 @@ function App() {
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
+          // color: 'black'
         },
       }}>
         <Stack.Screen name="Login" component={LoginScreen}

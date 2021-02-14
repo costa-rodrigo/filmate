@@ -26,6 +26,7 @@ const GroupScreen = props => {
                 }}
             />
             <Button title="logout" onPress={onLogout}/>
+            <Button title="start session"/>
         </View>
         </View>
     )
