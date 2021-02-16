@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Button, Text, StyleSheet, TextInput } from 'react-native';
 import RegisterMessage from './RegisterMessage';
 import { RegisterData } from './data/RegisterData';
+import axios from 'axios';
+import deviceStorage from '../services/deviceStorage';
 
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');
@@ -15,26 +17,31 @@ const SignupScreen = props => {
     // console.log(userEmail)
     // console.log(userPassword)
 
-    const handleSubmit = () => {
-        setErrorText('');
-        console.log(userName);
-        console.log(userEmail);
-        console.log(userPassword);
+    // const registerUser = () => {
+    //     // do i need this??
+    //     const { userName, userEmail, userPassword } = this.state;
+    // }
 
-        if (!userName) {
-            alert('Please provide a name');
-            return;
-        }
-        if (!userEmail) {
-            alert('Please provide an email');
-            return;
-        }
-        if (!userPassword) {
-            alert('Please provide a password');
-            return;
-        }
-        
-        // I think we will do something similar to this to connect to the backend?? - using fetch or axios?
+    // axios.post(`http://localhost:8080/register`, {
+    //     user: {
+    //         name: userName,
+    //         email: userEmail,
+    //         password: userPassword
+    //     }
+    // },)
+    // .then((response) => {
+    //     // handle JWT response here
+    //     // check the respose here
+    //     // where is .jwt located?
+    //     // jwt.js?
+    //     console.log(response)
+    //     // deviceStorage.saveKey("id_token", response.data.jwt)
+    // })
+    // .catch((error) => {
+    //     // handle returned errors here
+    // })
+
+            // I think we will do something similar to this to connect to the backend?? - using fetch or axios?
         // show loading
         // setLoading(true);
         // let sendData = {name: userName, email: userEmail, password: userPassword};
@@ -76,6 +83,25 @@ const SignupScreen = props => {
         //     setLoading(false);
         //     console.error(error);
         // });
+
+    const handleSubmit = () => {
+        setErrorText('');
+        console.log(userName);
+        console.log(userEmail);
+        console.log(userPassword);
+
+        if (!userName) {
+            alert('Please provide a name');
+            return;
+        }
+        if (!userEmail) {
+            alert('Please provide an email');
+            return;
+        }
+        if (!userPassword) {
+            alert('Please provide a password');
+            return;
+        }
     }
 
     return (
