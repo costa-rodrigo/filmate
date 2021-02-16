@@ -20,6 +20,7 @@ import ProfileScreen from './screens/Profile/ProfileScreen';
 import EditProfile from './screens/Profile/EditProfile';
 import RequestScreen from './screens/Profile/RequestScreen';
 import TellFriendScreen from './screens/Profile/TellFriendScreen';
+import GenreFilterScreen from './screens/MovieFilters/GenreFilterScreen';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 
@@ -139,6 +140,11 @@ function App() {
         <Stack.Screen name="TellFriendScreen" component={TellFriendScreen} 
         options={{
           headerTitle: 'Tell Friends Screen',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="GenreFilterScreen" component={GenreFilterScreen} 
+        options={{
+          headerTitle: 'Genre Filter',
           headerBackTitle: 'Back'
         }}/> 
       </Stack.Navigator>
