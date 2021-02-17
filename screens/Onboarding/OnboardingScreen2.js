@@ -8,7 +8,7 @@ const OnboardingScreen2 = props => {
         <View>
             <Onboarding imageLink={OnboardingData[1].imageLink} title={OnboardingData[1].title} description={OnboardingData[1].description} />
             <Button title="Next" onPress={() => {
-                props.navigation.navigate('Screen3')
+                props.navigation.replace('Screen3')
             }} />
         </View>
     )

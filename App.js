@@ -27,6 +27,8 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
 
+
+
 const Tab = createMaterialTopTabNavigator();
 
 const HomeNavigator = props => {
@@ -41,7 +43,10 @@ const HomeNavigator = props => {
 
 const Stack = createStackNavigator();
 
+
 function App() {
+  // newJWT = mewJWT.bind(this);
+
   return (
     <NavigationContainer>
       <Stack.Navigator 
