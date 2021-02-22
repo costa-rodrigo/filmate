@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 
 
 const FriendsInvited= props => {
+
     return (
         <View style={styles.screen}>
             <Text style={styles.title}>Friends Invited!</Text>

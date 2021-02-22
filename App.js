@@ -16,7 +16,18 @@ import NewGroupName from './screens/Home/GroupScreens/NewGroupName';
 import NewGroupAddMember from './screens/Home/GroupScreens/NewGroupAddMember';
 import AddFriends from './screens/Home/FriendScreens/AddFriends';
 import FriendsInvited from './screens/Home/FriendScreens/FriendsInvited';
+import ProfileScreen from './screens/Profile/ProfileScreen';
+import EditProfile from './screens/Profile/EditProfile';
+import RequestScreen from './screens/Profile/RequestScreen';
+import TellFriendScreen from './screens/Profile/TellFriendScreen';
+import GenreFilterScreen from './screens/MovieFilters/GenreFilterScreen';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+
+// https://docs.expo.io/versions/latest/sdk/splash-screen/
+// ADD splash screen
+
+
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -32,18 +43,23 @@ const HomeNavigator = props => {
 
 const Stack = createStackNavigator();
 
+
 function App() {
+  // newJWT = mewJWT.bind(this);
+
   return (
     <NavigationContainer>
       <Stack.Navigator 
       initialRouteName="Login"
       screenOptions={{
+        // headerShown: false,
         headerStyle: {
-          backgroundColor: 'red',
+          backgroundColor: 'white',
         },
-        headerTintColor: '#fff',
+        // headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
+          // color: 'black'
         },
       }}>
         <Stack.Screen name="Login" component={LoginScreen}
@@ -68,22 +84,22 @@ function App() {
         }}/>
         <Stack.Screen name="Screen1" component={OnboardingScreen1} 
         options={{
-          headerTitle: 'Create Group',
+          headerTitle: '',
           headerBackTitle: 'Back'
         }}/>  
         <Stack.Screen name="Screen2" component={OnboardingScreen2} 
         options={{
-          headerTitle: 'Filter Mood',
+          headerTitle: '',
           headerBackTitle: 'Back'
         }}/> 
         <Stack.Screen name="Screen3" component={OnboardingScreen3} 
         options={{
-          headerTitle: 'Swipe Match',
+          headerTitle: '',
           headerBackTitle: 'Back'
         }}/> 
         <Stack.Screen name="Home" component={HomeNavigator} 
         options={{
-          headerTitle: 'Home',
+          headerTitle: 'Filmate',
           headerBackTitle: 'Back'
         }}/> 
         <Stack.Screen name="NewGroupFilter" component={NewGroupFilter} 
@@ -109,6 +125,31 @@ function App() {
         <Stack.Screen name="FriendsInvited" component={FriendsInvited} 
         options={{
           headerTitle: 'Friends Invited',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} 
+        options={{
+          headerTitle: 'Profile Screen',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="EditProfile" component={EditProfile} 
+        options={{
+          headerTitle: 'Edit Profile',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="RequestScreen" component={RequestScreen} 
+        options={{
+          headerTitle: 'Request Screen',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="TellFriendScreen" component={TellFriendScreen} 
+        options={{
+          headerTitle: 'Tell Friends Screen',
+          headerBackTitle: 'Back'
+        }}/> 
+        <Stack.Screen name="GenreFilterScreen" component={GenreFilterScreen} 
+        options={{
+          headerTitle: 'Genre Filter',
           headerBackTitle: 'Back'
         }}/> 
       </Stack.Navigator>

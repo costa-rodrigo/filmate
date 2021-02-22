@@ -25,7 +25,13 @@ const GroupScreen = props => {
                     props.navigation.navigate('NewGroupFilter')
                 }}
             />
-            <Button title="logout" onPress={onLogout}/>
+            <Button title="start session" onPress={() => {
+                props.navigation.navigate('GenreFilterScreen')
+            }}/>
+
+            <Button title="Profile" onPress={() => {
+                    props.navigation.navigate('ProfileScreen')
+                }} />
         </View>
         </View>
     )

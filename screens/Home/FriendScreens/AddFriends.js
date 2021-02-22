@@ -1,19 +1,41 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 
 
 const AddFriends = props => {
+    const [friendEmail, setFriendEmail] = useState('');
+    const [errorText, setErrorText] = useState('')
+
+
+    const { navigate } = props.navigation;
+ 
+    const handleSubmit = () => {
+        setErrorText('');
+        if (!friendEmail) {
+            alert('Please provide an email!');
+            return;
+        } else {
+            navigate('FriendsInvited')
+        }
+       }
     return (
         <View style={styles.screen}>
         
         <View style={styles.screen}>
             <Text style={styles.title}>Invite your friend to filmate and join you at *Group Name*</Text>
-            <Text style={styles.description}>Email Address</Text>
+           
+            <TextInput 
+                    onChangeText={(FriendEmail) => 
+                        setFriendEmail(FriendEmail)}
+                    placeholder="Email Address"
+                    value={friendEmail}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    // returnKeyType="next"
+             />
             <Button 
                 title="Invite Friend"
-                onPress={() => {
-                    props.navigation.replace('FriendsInvited')
-                }}
+                onPress={handleSubmit}
             />
         </View>
         </View>
