@@ -10,7 +10,7 @@ const SignupScreen = props => {
     const [loading, setLoading] = useState(false);
     const [errorText, setErrorText] = useState('');
     // const [isRegistrationSuccessful] = useState(false);
-    // do we want a pop up when registration is succesful? refer to example
+    // do we want a pop up when registration is succesful?
     // console.log(userName)
     // console.log(userEmail)
     // console.log(userPassword)
