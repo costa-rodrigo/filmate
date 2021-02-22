@@ -9,22 +9,11 @@ const SignupScreen = props => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [loading, setLoading] = useState(false);
     const [errorText, setErrorText] = useState('');
     const [isRegistrationSuccessful, setIsRegistrationSuccessful] = useState(false);
-    // do we want a pop up when registration is succesful? refer to example
-    // console.log(userName)
-    // console.log(userEmail)
-    // console.log(userPassword)
-
-    // REVIEW REFS!!!!
-    // const emailInputRef = createRef();
-    // const passwordInputRef = createRef();
-
 
     const handleSubmit = () => {
         setErrorText('');
-        // console.log(userName);
         if (!userName) {
             alert('Please provide a name');
             return;
@@ -37,15 +26,13 @@ const SignupScreen = props => {
             alert('Please provide a password');
             return;
         }
-        // show loader
-        setLoading(true);
-        axios.post(`http://localhost:3000/register`, {
+       
+        axios.post('http://localhost:3000/register', {
             name: userName,
             password: userPassword
         })
         .then((response) => {
             console.log(response)
-            setLoading(false)
             // NEED to add an if statement here - eg. if message = success - let us know registration was successful. 
             // within IF set registration to success
             setIsRegistrationSuccessful(true);
@@ -61,8 +48,6 @@ const SignupScreen = props => {
       //       }
         })
         .catch((error) => {
-            // handle returned errors here
-            setLoading(false)
             console.error(error)
         })
     }

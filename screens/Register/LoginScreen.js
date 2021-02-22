@@ -9,20 +9,15 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 const LoginScreen = (props) => {
-
-    
-
     // state variables : userUsername, userPassword, loading, errorText
     const [userUsername, setUsername] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    // const [loading, setLoading] = useState(false);
     const [errorText, setErrorText] = useState('')
     const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
  
     const handleSubmit = () => {
         setErrorText('');
         // console.log(userUsername)
-        // console.log(userPassword)
         if (!userUsername) {
             alert('Please provide a username!');
             return;
@@ -31,30 +26,29 @@ const LoginScreen = (props) => {
             alert('Please provide a password!');
             return;
         }
-        // setLoading(true)
-        axios.post(`http://localhost:3000/login`, {
+
+        axios.post('http://localhost:3000/login', {
             name: userUsername,
             password: userPassword
         })
         .then((response) => {
             const { navigate } = props.navigation;
             const token = response.data.token;
-            // setLoading(false)
-            // console.log(response)
-            console.log("token:", token)
+            console.log(response)
             if(response.status === 200) {
                 AsyncStorage.setItem("id_token", token);
+                console.log("token:", token)
                 // console.log(response.data.token)
-                // setIsLoginSuccessful(true);
                 props.navigation.replace('Screen1')
             } else {
-                // else statements wont work??
+                //  console.log('please check username and password')
+                // need else? but not working... skips straight to catch
             }
+           
                    
         })
         .catch((error) => {
-            // setLoading(false);
-            console.log("Please check your username and password! :) ")
+            console.log("Please check your username and password.")
             Alert.alert('Incorrect username or password!')
             // console.error(error)
             
@@ -66,7 +60,7 @@ const LoginScreen = (props) => {
              <RegisterMessage 
                 logoLink={RegisterData[0].logoLink} 
                 title={RegisterData[0].title} 
-            />
+             />
                 <TextInput 
                     style={styles.input} 
                     onChangeText={(Username) => 
@@ -94,10 +88,6 @@ const LoginScreen = (props) => {
                     props.navigation.navigate('ForgotPassword')
                 }}/>
              <Button title="Sign In" onPress={handleSubmit}/>
-
-            {/* <Button title="Sign In" onPress={() => {
-                props.navigation.replace('Screen1');
-            }}/> */}
 
             <View style={styles.screenBottom}>
                 <Text style={styles.question}>Don't have an account?</Text>
