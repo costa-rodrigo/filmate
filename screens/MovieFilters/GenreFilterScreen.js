@@ -1,25 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Button, ActionSheetIOS, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Button, Dimensions, TouchableHighlight, TouchableOpacity } from 'react-native';
 // import GenreFilter from './components/GenreFilter';
 // import MovieSelection from './components/MovieSlections';
-
-
 // https://snack.expo.io/@shrutigarg/touchableopacity-background-change-onclick
 
 import axios from 'axios';
-export default class GenreFilterScreen extends React.Component {
-  state = {
-    moviePosters: [],
-    genres: [],
-    genreArray: [],
-    genrePressed: false,
-    // values: [],
-    genreId: '',
-    buttonColor: 'white',
-    backgroundColor: 'pink'
+
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Dimensions.get('window').width;
+
+export default class GenreFilterScreen extends React.Component {  
+  constructor(props) {
+    super(props);
+    this.state = {
+      moviePosters: [],
+      genres: [],
+      genreArray: [],
+      genrePressed: false,
+      // values: [],
+      genreId: ''
+    };
+    this.populateSelectedGenres = this.populateSelectedGenres.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.onSubmitForm = this.onSubmitForm.bind(this);
   }
 
+  // state = {
+  //   moviePosters: [],
+  //   genres: [],
+  //   genreArray: [],
+  //   genrePressed: false,
+  //   // values: [],
+  //   genreId: '',
+  //   buttonColor: 'white',
+  //   backgroundColor: 'pink'
+  // }
+  
   componentDidMount() {
     axios.get(`http://localhost:8080/genres`)
     .then(res => {
@@ -40,43 +56,31 @@ export default class GenreFilterScreen extends React.Component {
     })
   }
 
-handleSubmit() {
-  console.log('submit handled!')
-}
-
-populateMovies = (genreId) => {
-  axios.get(`http://localhost:8080/movies`)
-  .then(res => {
-    const moviePosters = res.data;
-    this.setState({ moviePosters })
-  })
-}
-
 populateSelectedGenres = () => {
   axios.get(`http://localhost:8080/movies`)
   .then(res => {
     const moviePosters = res.data;
     this.setState({ moviePosters })
-    // console.log(moviePosters)
-    // console.log('populate genre movies working')
+  })
+}
+
+handleSubmit(genreId, posters) {
+  axios.post(`http://localhost:8080/movies`, genreId)
+  .then(res => {
+    this.setState({genreId})
+    // this.populateSelectedGenres()
+    console.log("id from handleSubmit: ", genreId)
+    console.log("posters:", posters)
+    const { navigate } = this.props.navigation;
+    this.props.navigation.navigate('ShowMovies', { genreId: genreId, posters: posters})
+
+    
   })
 }
 
 genrePressed = (genre) => {
-  // get the value of button when clicked Eg. Action
-  // console.log("genre: ", genre[0] + " genre id: ", genre[1]);
-//   this.setState({ buttonColor: 'pink', color: 'white' })
   let genrePressed = true;
   this.setState({genrePressed})
-
-//   if(genrePressed == true) {
-//       this.setState ({ pressed: true, backgroundColor: 'pink'})
-//       console.log(genrePressed)
-//   } else {
-//       this.setState ({ pressed: false, backgroundColor: 'yellow'})
-//       console.log('else')
-//   }
-
   let genreId = [genre[1]];
   console.log('genre id:',genreId)
   this.setState({ genreId })
@@ -91,23 +95,23 @@ genrePressed = (genre) => {
 
 
 render() {
-  const posters = this.state.moviePosters.map((poster) => {
+  const posters = this.state.moviePosters.map((poster, index) => {
     return (
-      <Image source={{uri: poster}} alt='movie'
-      style={{width: 400, height: 400}}/>
+      <Image key={index} source={{uri: poster}} alt='movie'
+      style={{  width: 400, height: 800, resizeMode: 'cover', borderRadius: 25 }}/>
+      // <Image key={index} source={{uri: poster}} alt='movie poster'
+      // style={{  flex: 1, width: 400, height: 600, resizeMode: 'cover', borderRadius: 25, position: 'absolute' }}/>
     )
   })
+  console.log("posters, ", posters);
   const genres = this.state.genreArray.map((genre, index) => {
     return (
       <View>
         <TouchableOpacity 
             style={styles.filterButton} 
             backgroundColor={this.state.BackgroundColor}
-            onPress={() => this.genrePressed(genre)}
-            >
-         
+            onPress={() => this.genrePressed(genre)}>
             <Text style={styles.buttonText}>{genre[0]}</Text>
-          
         </TouchableOpacity>
       </View>
     )
@@ -115,29 +119,18 @@ render() {
 
   const genreId = this.state.genreId;
 
-  // const genreId = this.state.genre_id.map((genre, index) => {
-  //   return (
-  //     <View>
-  //       <Text>{genreId}</Text>
-  //     </View>
-  //   )
-  // })
-
-  
-
   return (
     <View style={styles.container}>
       <ScrollView>
-        {/* <GenreFilter /> */}
-        {/* <MovieSelection /> */}
         <Text>Filmate</Text>
         <View style={styles.genre}>
           <Text>{genres}</Text>
         </View>
-        <Button title="Submit" onPress={this.handleSubmit}/>
+        {/* <Button title="Next" onPress={this.handleSubmit}/> */}
+        <Button title="Next" onPress={() => this.handleSubmit(genreId, posters)}/>
+
         <Text style={styles.color}>genre:{genreId}</Text>
-        <View>{posters}</View>
-        
+        {/* <View>{posters}</View> */}
       </ScrollView>
     </View>
   );

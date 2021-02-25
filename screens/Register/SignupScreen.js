@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Button, Text, StyleSheet, TextInput } from 'react-native';
 import RegisterMessage from './RegisterMessage';
 import { RegisterData } from './data/RegisterData';
+import MainButton from '../../components/MainButton';
 import axios from 'axios';
 // import deviceStorage from './deviceStorage';
 
@@ -32,7 +33,7 @@ const SignupScreen = props => {
             password: userPassword
         })
         .then((response) => {
-            console.log(response)
+            // console.log(response)
             // NEED to add an if statement here - eg. if message = success - let us know registration was successful. 
             // within IF set registration to success
             setIsRegistrationSuccessful(true);
@@ -61,10 +62,7 @@ const SignupScreen = props => {
     }
     return (
         <View>
-            <RegisterMessage 
-                logoLink={RegisterData[0].logoLink} 
-                title={RegisterData[1].title} 
-            />
+            <RegisterMessage logoLink={RegisterData[0].logoLink} />
 
             <TextInput 
                 style={styles.input} 
@@ -98,10 +96,10 @@ const SignupScreen = props => {
                 autoCorrect={false}
                 returnKeyType="go"
             />
-                
-            <Button title="Sign Up" onPress={() => {
-                props.navigation.replace('Screen1');
-            }}/>
+
+            {/* <Button title="Sign Up" onPress={handleSubmit}/> */}
+            <MainButton title="Sign Up" onPress={handleSubmit} />
+
 
             <View style={styles.screenBottom}>
                 <Text style={styles.question}>Have an account?</Text>
@@ -109,7 +107,6 @@ const SignupScreen = props => {
                     props.navigation.pop()
                 }} />
             </View>
-            <Button title="HANDLE_SUBMIT" onPress={handleSubmit}/>
         </View>
     )
 }
