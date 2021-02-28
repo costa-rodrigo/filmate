@@ -1,10 +1,12 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useRef } from 'react';
 import SearchBar from '../../../components/SearchBar';
+import { View, Text, StyleSheet, Button, Image, ScrollView } from 'react-native';
+import RBSheet from "react-native-raw-bottom-sheet";
 
 const FriendScreen = props => {
+    const refRBSheet = useRef();
     return (
-        <View style={styles.screen}>
+        <ScrollView style={styles.screen}>
             <SearchBar style={styles.search} search="Search Friends"/>
         
         <View style={styles.newFriend}>
@@ -17,7 +19,37 @@ const FriendScreen = props => {
                 }}
             />
         </View>
-        </View>
+
+        <View
+            style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "white",
+                marginBottom: 80
+            }}
+            >
+            <Button title="Friend Options" onPress={() => refRBSheet.current.open()} />
+            <RBSheet
+                ref={refRBSheet}
+                closeOnDragDown={true}
+                closeOnPressMask={false}
+                customStyles={{
+                wrapper: {
+                    backgroundColor: "transparent"
+                },
+                draggableIcon: {
+                    backgroundColor: "#000"
+                }
+                }}
+            >
+                {/* <YourOwnComponent /> */}
+                <Text>Friend Options</Text>
+                <Text>Remove Friend</Text>
+            
+            </RBSheet>
+    </View>
+        </ScrollView>
     )
 }
 

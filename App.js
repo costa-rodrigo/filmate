@@ -62,7 +62,6 @@ function App() {
         <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: 'Show Movies', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: 'Group Created', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: 'navigation', headerBackTitle: 'Back' }}/> 
-        {/* <Stack.screen name="friends" component={FriendScreensNavigator} /> */}
         <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: 'Add Friends', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: 'Friends Invited', headerBackTitle: 'Back' }}/> 
       </Stack.Navigator>
