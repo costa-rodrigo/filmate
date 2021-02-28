@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Image } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
 
 
 const GroupScreen = props => {
 
     const { navigate } = props.navigation;
+
+   
+    // const { otherParam } = route.params;
     
     const onLogout = () => {
         console.log('logged out')
@@ -14,8 +17,19 @@ const GroupScreen = props => {
 
     return (
         <View style={styles.screen}>
+            {/* <Text>otherParam: {otherParam}</Text> */}
             <SearchBar style={styles.search} search="Search Groups"/>
-        
+            <View style={styles.user_info}>
+                <Image style={styles.image} source={require('../../Onboarding/images/moodImage.jpg')} />
+                <Text>Kristen</Text>
+            </View>
+            <View style={styles.button}>
+            <Button  title="View profile" onPress={() => {
+                    props.navigation.navigate('ProfileScreen')
+                }} />
+
+            </View>
+           
         <View style={styles.newGroup}>
             <Text style={styles.title}>Your groups will appear here!</Text>
             <Text style={styles.description}>Start by inviting your friends and adding new groups</Text>
@@ -26,12 +40,15 @@ const GroupScreen = props => {
                 }}
             />
             <Button title="start session" onPress={() => {
-                props.navigation.navigate('GenreFilterScreen')
+                props.navigation.navigate('navigation')
             }}/>
+            {/* <Button title="start session" onPress={() => {
+                props.navigation.navigate('GenreMoodNav')
+            }}/> */}
 
-            <Button title="Profile" onPress={() => {
+            {/* <Button title="Profile" onPress={() => {
                     props.navigation.navigate('ProfileScreen')
-                }} />
+                }} /> */}
         </View>
         </View>
     )
@@ -53,8 +70,13 @@ const styles = StyleSheet.create({
     description: {
         textAlign: 'center',
         marginBottom: 30
+    },
+    image: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        margin: 5
     }
-
 });
 
 export default GroupScreen;

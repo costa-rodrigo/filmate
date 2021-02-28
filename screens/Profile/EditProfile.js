@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Button, Image } from 'react-native';
 
 const EditProfile = props => {
     // const [userPassword, setUserPassword] = useState('');
@@ -9,17 +9,24 @@ const EditProfile = props => {
         <View>
             {/* <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} /> */}
             <View>
-              <Text>Edit Profile Screen</Text>
+            <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} />
+                <Text style={styles.text}>Change profile picture</Text>
             </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-
-    question: {
-        fontSize: 20,
-        marginTop: 7
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        margin: 30,
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    text: {
+        textAlign: 'center'
     }
 
 });

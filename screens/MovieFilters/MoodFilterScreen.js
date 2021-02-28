@@ -1,47 +1,46 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default class NewGroupFilter extends React.Component {
+export default class MoodFilter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            platformArray: ['netflix', 'prime', 'crave', 'hulu', 'hbo', 'disney plus']
+            moodArray: ['Happy', 'Date Night', 'Adrenaline Rush', 'Artsy', 'Hi Tech', 'Inspiring', 'For The Kids', 'Curious Mysteries']
         }
 
     }
    
-    platformPressed = (platform) => {
+    moodPressed = (mood) => {
         // let platformPressed = true;
-        let platformName = platform;
-        console.log('platform', platformName)
-        this.setState({ platformName })
+        let moodName = mood;
+        console.log('mood', moodName)
+        this.setState({ moodName })
     }
 
   render() {
-      const platforms = this.state.platformArray.map((platform, index) => {
+      const moods = this.state.moodArray.map((mood, index) => {
           return (
             <View>
-            <TouchableOpacity 
-                key={index}
-                style={styles.platformButton} 
-                onPress={() => this.platformPressed(platform)}>
-                <Text style={styles.buttonText}>{platform}</Text>
+            <TouchableOpacity
+                key={index} 
+                style={styles.moodButton} 
+                onPress={() => this.moodPressed(mood)}>
+                <Text style={styles.buttonText}>{mood}</Text>
             </TouchableOpacity>
           </View>
           )
       })
 
-      const platformName = this.state.platformName;
+      const moodName = this.state.moodName;
     return (
      <View style={styles.screen}>
-         <Text style={styles.title}>Filter streaming platform for the group</Text>
-        <Text>{platforms}</Text>
+        <Text>{moods}</Text>
          <Button 
-            title="Filter"
+            title="Next"
             onPress={() => {
-                this.props.navigation.navigate('NewGroupName')
+                this.props.navigation.navigate('')
             }} /> 
-            <Text>Chosen Platform: {platformName}</Text>
+            <Text>Chosen Mood: {moodName}</Text>
      </View>
     );
   }
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
-      platformButton: {
+      moodButton: {
         width: 200,
         borderWidth: 1,
         borderRadius: 20,

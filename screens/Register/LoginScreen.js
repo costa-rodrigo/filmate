@@ -41,7 +41,15 @@ const LoginScreen = (props) => {
                 AsyncStorage.setItem("id_token", token);
                 console.log("token:", token)
                 // console.log(response.data.token)
-                props.navigation.replace('Screen1')
+                // props.navigation.replace('Screen1')
+                props.navigation.replace('Onboarding')
+
+
+            // this.props.navigation.navigate("MyDrawer",
+            // username = result.user.givenName,
+            // lastname = result.user.familyName,
+            // email = result.user.email,
+            // photoUrl = result.user.photoUrl);
             } else if (error){
             //      console.log('please check username and password')
                  Alert.alert('401-Incorrect username or password!')
@@ -84,6 +92,7 @@ const LoginScreen = (props) => {
                     returnKeyType="go"
                     />
            
+          
             <Button title="Forgot Password?" onPress={() => {
                     props.navigation.navigate('ForgotPassword')
                 }}/>

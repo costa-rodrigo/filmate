@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Button, Image } from 'react-native';
 
 const ProfileScreen = props => {
     // const [userPassword, setUserPassword] = useState('');
@@ -9,21 +9,15 @@ const ProfileScreen = props => {
         <View>
             {/* <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} /> */}
             <View>
-                <Text>Profile Screen!</Text>
-                <Text>Kristen Ingelman</Text>
-                <Text>kristeningelman@hotmail.com</Text>
-                <Button title="Profile" onPress={() => {
+            <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} />
+                <Text style={styles.text}>Kristen Ingelman</Text>
+                <Text style={styles.text}>kristeningelman@hotmail.com</Text>
+                <Button title="Edit profile" onPress={() => {
                     props.navigation.navigate('EditProfile')
                 }} />
                  <Button title="Requests" onPress={() => {
                     props.navigation.navigate('RequestScreen')
                 }} />
-                 <Button title="Tell Your Friends" onPress={() => {
-                    props.navigation.navigate('TellFriendScreen')
-                }} />
-
-                
-
             </View>
         </View>
     )
@@ -31,9 +25,23 @@ const ProfileScreen = props => {
 
 const styles = StyleSheet.create({
 
-    question: {
-        fontSize: 20,
-        marginTop: 7
+    // question: {
+    //     fontSize: 20,
+    //     marginTop: 7
+    // },
+    profile: {
+        justifyContent: 'center'
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        margin: 30,
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    text: {
+        textAlign: 'center'
     }
 
 });

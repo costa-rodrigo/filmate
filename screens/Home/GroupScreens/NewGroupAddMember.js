@@ -4,44 +4,92 @@ import { View, Text, Button, StyleSheet, Image } from 'react-native';
 import { CheckBox } from 'react-native-elements'
 
 export default class NewGroupAddMember extends React.Component {
-      state = {
-        checked: false,
-        checkedId: -1,
-        checkboxes: [{id: 'kristen', title: 'Kristen'}, {id: 'mat', title: 'Mat'}, {id: 'rodrigo', title: 'Rodrigo'}]
-      //  create an array of ids to map through to have multiple checkboxes
+  constructor(props) {
+    super(props);
+    this.state={
+      selectedLang1:false,
+      selectedLang2:false,
+      selectedLang3:false,
+      selectedLang4:false,
+  
+    }
+  }
+      // state = {
+      //   checked: false,
+      //   checkedId: -1,
+      //   checkboxes: [{id: 'kristen', title: 'Kristen'}, {id: 'mat', title: 'Mat'}, {id: 'rodrigo', title: 'Rodrigo'}]
+      // //  create an array of ids to map through to have multiple checkboxes
         
-      }
+      // }
       
-      handleCheck = (checkedId) => {
-        this.setState({checkedId})
-        // this.setState({checked: !this.state.checked})
+      // handleCheck = (checkedId) => {
+      //   this.setState({checkedId})
+      //   console.log(checkedId)
+      //   // this.setState({checked: !this.state.checked})
         
-      }
+      // }
 
         render() {
-          const {checkboxes, checkedId } = this.state
+          // const {checkboxes, checkedId } = this.state
+          const { selectedLang1, selectedLang2, selectedLang3, selectedLang4 } = this.state;
           return (
-            <View style={styles.screen}>
-                <Text style={styles.title}>Add participant to group</Text>    
-                {checkboxes.map(checkbox => (
-                  <CheckBox
-                  // title='John Doe'
-                  key={checkbox.id}
-                  title={checkbox.title}
-                  max={2}
-                  checked={checkbox.id == checkedId}
-                  checkedIcon={<Image style={styles.checkmark} source={require('./checked.png')} />}
-                  //  uncheckedIcon={<Image source={require('../unchecked.png')} />}
-                  // checked={this.state.checked}
-                  // onPress={() => this.setState({checked: !this.state.checked})}
-                  onPress={() => this.handleCheck(checkbox.id)}
-                  />
+            <View>
+                 <Text style={styles.title}>Add participant to group</Text>    
+               <View style={styles.item} >
+            <CheckBox checked={selectedLang1} color="#fc5185" onPress={()=>this.setState({selectedLang1:!selectedLang1} )} />
+            <Text style={
+              {...styles.checkBoxTxt,
+                color:this.state.selectedLang1?"#fc5185":"gray",
+                fontWeight:this.state.selectedLang1? "bold" :"normal"
+              }}
+              >Kristen</Text>
+          </View>
+                  <View style={styles.item} >
+                  <CheckBox checked={selectedLang2} color="#fc5185" onPress={()=>this.setState({selectedLang2:!selectedLang2})}/>
+                  <Text style={
+                    {...styles.checkBoxTxt,
+                      color:this.state.selectedLang2?"#fc5185":"gray",
+                      fontWeight:this.state.selectedLang2? "bold" :"normal"
+                    }}
+                    >Rod</Text>
+                </View>
+                <View style={styles.item} >
+                  <CheckBox checked={selectedLang3} color="#fc5185" onPress={()=>this.setState({selectedLang3:!selectedLang3})}/>
+                  <Text style={
+                    {...styles.checkBoxTxt,
+                      color:this.state.selectedLang3?"#fc5185":"gray",
+                      fontWeight:this.state.selectedLang3? "bold" :"normal"
+                    }}
+                    >Mat</Text>
+                </View>
+                {/* <Button title="Add Participant" /> */}
+                <Button  title="Add Participant" onPress={() => {
+                    this.props.navigation.navigate('GroupCreated')
+                }} />
+
+            </View>
+         
+            // <View style={styles.screen}>
+            //     <Text style={styles.title}>Add participant to group</Text>    
+            //     {checkboxes.map(checkbox => (
+            //       <CheckBox
+            //       // title='John Doe'
+            //       key={checkbox.id}
+            //       title={checkbox.title}
+            //       max={2}
+            //       checked={checkbox.id == checkedId}
+            //       checkedIcon={<Image style={styles.checkmark} source={require('./checked.png')} />}
+            //       //  uncheckedIcon={<Image source={require('../unchecked.png')} />}
+            //       // checked={this.state.checked}
+            //       // onPress={() => this.setState({checked: !this.state.checked})}
+            //       onPress={() => this.handleCheck(checkbox.id)}
+            //       />
                 
 
-                ))}
+            //     ))}
                 
-                <Button title="Add Participant" />
-            </View>
+            //     <Button title="Add Participant" />
+            // </View>
            );
 
         }
