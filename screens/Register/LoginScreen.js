@@ -28,12 +28,13 @@ const LoginScreen = (props) => {
             return;
         }
 
-        axios.post('http://localhost:3000/login', {
+        axios.post('http://192.168.0.20:3000/login', {
+        // axios.post('http://localhost:3000/login', {
             name: userUsername,
             password: userPassword
         })
         .then((response) => {
-            const { navigate } = props.navigation;
+            // const { navigate } = props.navigation;
             const token = response.data.token;
             console.log(response)
             if(response.status === 200) {
@@ -41,16 +42,19 @@ const LoginScreen = (props) => {
                 console.log("token:", token)
                 // console.log(response.data.token)
                 props.navigation.replace('Screen1')
-            } else {
-                 console.log('please check username and password')
+            } else if (error){
+            //      console.log('please check username and password')
+                 Alert.alert('401-Incorrect username or password!')
                 // need else? but not working... skips straight to catch
-            }      
+            }  else {
+                console.log('else')
+            }    
         })
-        .catch((error) => {
-            console.log("Please check your username and password.")
+        .catch((error, response) => {
+            console.log("Please check your username and password -  CATCH.")
             Alert.alert('Incorrect username or password!')
-            // console.error(error)
-            
+            console.log(response.status)
+            console.log(error)
             // handle returned errors here
         })
     }
@@ -93,7 +97,7 @@ const LoginScreen = (props) => {
                 }} />
             </View>
 
-            <Button title="Sign Up" onPress={() => {
+            <Button title="Sign In" onPress={() => {
                     props.navigation.navigate('Home')
                 }} />
         </View>

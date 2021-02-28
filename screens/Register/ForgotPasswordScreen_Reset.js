@@ -12,35 +12,32 @@ const ForgotPasswordScreen_Reset = props => {
         <View>
             <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} />
             <View style={styles.screenBottom}>
-
-            <TextInput 
-                style={styles.input} 
-                onChangeText={(Password) => 
-                    setUserPassword(Password)}
-                placeholder="Password"
-                value={userPassword}
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={true}
-                // returnKeyType="next"
-            />
-
-            <TextInput 
-                style={styles.input} 
-                onChangeText={(PasswordConfirm) => 
-                    setUserPasswordConfirm(PasswordConfirm)}
-                placeholder="Confirm Password"
-                value={userPasswordConfirm}
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={true}
-                // returnKeyType="next"
-            />
-                <Button title="Reset" onPress={() => {
-                    props.navigation.navigate('')
-                }} />
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={(Password) => 
+                        setUserPassword(Password)}
+                    placeholder="Password"
+                    value={userPassword}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={true}
+                    // returnKeyType="next"
+                />
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={(PasswordConfirm) => 
+                        setUserPasswordConfirm(PasswordConfirm)}
+                    placeholder="Confirm Password"
+                    value={userPasswordConfirm}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={true}
+                    // returnKeyType="next"
+                />
+                    <Button title="Reset" onPress={() => {
+                        props.navigation.navigate('')
+                    }} />
             </View>
-           
         </View>
     )
 }

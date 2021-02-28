@@ -11,25 +11,21 @@ const ForgotPasswordScreen = props => {
         <View>
             <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} />
             <View style={styles.screenBottom}>
-              
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={(Email) => 
+                        setEmail(Email)}
+                    placeholder="Email"
+                    value={userEmail}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    // returnKeyType="next"
+                />
 
-
-            <TextInput 
-                style={styles.input} 
-                onChangeText={(Email) => 
-                    setEmail(Email)}
-                placeholder="Email"
-                value={userEmail}
-                autoCapitalize="none"
-                autoCorrect={false}
-                // returnKeyType="next"
-            />
-
-            <Button title="Next" onPress={() => {
-                    props.navigation.navigate('ForgotPassword_Reset')
-                }} />
+                <Button title="Next" onPress={() => {
+                        props.navigation.navigate('ForgotPassword_Reset')
+                    }} />
             </View>
-           
         </View>
     )
 }

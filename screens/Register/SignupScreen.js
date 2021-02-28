@@ -27,8 +27,9 @@ const SignupScreen = props => {
             alert('Please provide a password');
             return;
         }
-       
-        axios.post('http://localhost:3000/register', {
+        
+        axios.post('http://192.168.0.20:3000/register', {
+        // axios.post('http://localhost:3000/register', {
             name: userName,
             password: userPassword
         })

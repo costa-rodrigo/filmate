@@ -1,12 +1,5 @@
-// // import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Dimensions, Animated, PanResponder } from 'react-native';
-// // // import GenreFilter from './components/GenreFilter';
-// // // import MovieSelection from './components/MovieSlections';
-// // // https://snack.expo.io/@shrutigarg/touchableopacity-background-change-onclick
-// // import GenreFilterScreen from './GenreFilterScreen';
-
-import axios from 'axios';
+import { Text, View, Dimensions, Animated, PanResponder } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -139,17 +132,7 @@ export default class ShowMovies extends React.Component {
     renderPosters = () => {
         // const { moviePosters } = this.state; 
         const { posters } = this.state;
-        const { moviePosters}  = this.state;
-        // const allPosters = [ posters[0], posters[1], posters[2]
-        //     { poster: posters[0] },
-        //     { poster: posters[1] },
-        //     { poster: posters[2] },
-        //     { poster: posters[3] },
-        //     { poster: posters[4] },
-        // ]
-
-        // const allPosters = posters.map(poster);
-        // console.log(allPosters)
+        // const { moviePosters}  = this.state;
 
             return posters.map((poster, index) => {
                 if (index < this.state.currentIndex) {
@@ -195,113 +178,11 @@ export default class ShowMovies extends React.Component {
 
                 }
             }).reverse()
-            
-          
-
-
-        // create for loop to map through all posters??
-        // return allPosters.map((item, i) => {
-        //     if(i < this.state.currentIndex) {
-        //         return null
-        //     } else if (i == this.state.currentIndex) {
-        //         return (
-        //             // <View>{allPosters[2]}</View>
-                //     <Animated.View 
-                //         {...this.PanResponder.panHandlers}
-                //         style={[{transform: this.position.getTranslateTransform()}, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
-                //    <View>{item}</View>
-                // </Animated.View>
-                    
-        //         )
-
-        //     } else {
-        //         <Animated.View 
-        //                 style={[{height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
-        //            <View>{item}</View>
-        //         </Animated.View>
-
-        //     }
-            
-
-        // })
-        
-        // return allPosters.map((item, i) => {
-            // <Animated.View 
-            // {...this.PanResponder.panHandlers}
-            // style={[{transform: this.position.getTranslateTransform()}, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15}]}>
-            //    <View>{item.poster}</View>
-            // </Animated.View>
-        //     if (i < this.state.currentIndex) {
-        //         return null
-        //     }
-        //     else if (i == this.state.currentIndex) {
-        //         return (
-        //             <Animated.View 
-        //             {...this.PanResponder.panHandlers}
-        //             style={[{transform: this.position.getTranslateTransform()}, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15}]}>
-        //                <View>{item.poster}</View>
-        //             </Animated.View>
-
-        //         )
-        //     }
-        // })
-        // console.log(posters[0])
-        // const { moviePosters } = this.state;
-    
-        // return posters.map((item, i) => {
-        //     if (i < this.state.currentIndex) {
-        //         console.log(currentIndex)
-        //         return null
-        //     }
-        //     else if (i == this.state.currentIndex) {
-        //         return (
-                    // <Animated.View 
-                    // {...this.PanResponder.panHandlers}
-                    // style={[{transform: this.position.getTranslateTransform()}, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15}]}>
-                    //    <View>{posters}</View>
-                    // </Animated.View>
-
-
-        //         )
-             
-    
-        //     }
-        //     else {
-        //         return(
-        //             <Animated.View 
-        //             style={[{height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15}]}>
-        //                <View>{posters}</View>
-        //             </Animated.View>
-        //         )
-               
-        //     }
-        // })
-        
-        
-        
-    // return (
-    //   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    //       <View style={{height: 60}}>
-    //     <Text>{genreId}</Text>
-    //       </View>
-    //       <View style={{ flex: 1}}>
-    //           <Animated.View 
-    //           {...this.PanResponder.panHandlers}
-    //           style={[{transform: this.position.getTranslateTransform()}, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15}]}>
-    //              <View>{posters}</View>
-    //           </Animated.View>
-    //       </View>
-    //       <View style={{height: 60}}>
-
-    //       </View>
-    //   </View>
-    // )
-        
-        
+                  
     }
 
     render() {
-        const { posters } = this.state;
+        // const { posters } = this.state;
         return (
             <View style={{ flex: 1 }}>
             <View style={{height: 60}}>
@@ -320,8 +201,6 @@ export default class ShowMovies extends React.Component {
   
             </View>
         </View>
-            
-
         )
     }
 }  
@@ -400,4 +279,3 @@ export default class ShowMovies extends React.Component {
 
 // const styles = StyleSheet.create({
 // })
-
