@@ -5,7 +5,7 @@ import { RegisterData } from './data/RegisterData';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 // import deviceStorage from './deviceStorage';
-
+import FilmateLogo from '../../svgs/FilmateLogo';
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -62,65 +62,97 @@ const SignupScreen = props => {
         )
     }
     return (
-        <View>
-            <RegisterMessage logoLink={RegisterData[0].logoLink} />
+        <View style={styles.screen}>
+            <View style={styles.logo}>
+                <FilmateLogo />
+            </View>
+            <View style={styles.inputWrapper}>
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={(UserName) => 
+                        setUserName(UserName)}
+                    placeholder="Name"
+                    placeholderTextColor="white"
+                    value={userName}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="next"
+                />
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={(UserEmail) => 
+                        setUserEmail(UserEmail)}
+                    placeholder="Email"
+                    placeholderTextColor="white"
+                    keyboardType="email-address"
+                    value={userEmail}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="next"
+                />    
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Password"
+                    placeholderTextColor="white"
+                    value={userPassword}
+                    onChangeText={(UserPassword) =>
+                        setUserPassword(UserPassword)}
+                    secureTextEntry={true}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="go"
+                />
 
-            <TextInput 
-                style={styles.input} 
-                onChangeText={(UserName) => 
-                    setUserName(UserName)}
-                placeholder="Name"
-                value={userName}
-                autoCapitalize="none"
-                autoCorrect={false}
-                returnKeyType="next"
-            />
-            <TextInput 
-                style={styles.input} 
-                onChangeText={(UserEmail) => 
-                    setUserEmail(UserEmail)}
-                placeholder="Email"
-                keyboardType="email-address"
-                value={userEmail}
-                autoCapitalize="none"
-                autoCorrect={false}
-                returnKeyType="next"
-            />    
-            <TextInput 
-                style={styles.input}
-                placeholder="Password"
-                value={userPassword}
-                onChangeText={(UserPassword) =>
-                    setUserPassword(UserPassword)}
-                secureTextEntry={true}
-                autoCapitalize="none"
-                autoCorrect={false}
-                returnKeyType="go"
-            />
+            </View>
+            
 
             {/* <Button title="Sign Up" onPress={handleSubmit}/> */}
-            <MainButton title="Sign Up" onPress={handleSubmit} />
-
+           
 
             <View style={styles.screenBottom}>
-                <Text style={styles.question}>Have an account?</Text>
-                <Button title="Sign In" onPress={() => {
-                    props.navigation.pop()
-                }} />
+                <MainButton title="Sign Up" onPress={handleSubmit} />
+                <View style={styles.flexContainer}>
+                    <Text style={styles.question}>Have an account?</Text>
+                    <Button title="Sign In" onPress={() => {
+                        props.navigation.pop()
+                    }} />
+                </View>
+
             </View>
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    screen: {
+        backgroundColor: '#121212',
+        height: '100%'
+    },
     screenBottom: {
+        height: '30%',
+        marginTop: '40%'
+    },
+    flexContainer: {
        flexDirection: 'row',
        justifyContent: 'space-around'
     },
     question: {
         fontSize: 20,
-        marginTop: 7
+        marginTop: 7,
+        color: 'white'
+    },
+    input: {
+        backgroundColor: '#1E1E1E',
+        marginBottom: 10,
+        padding: 10,
+        borderRadius: 20,
+        marginHorizontal: 20
+    },
+    inputWrapper: {
+        marginTop: 30
     }
+
 });
 
 export default SignupScreen;

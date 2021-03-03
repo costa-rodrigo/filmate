@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 export default class MoodFilter extends React.Component {
     constructor(props) {
@@ -22,7 +22,7 @@ export default class MoodFilter extends React.Component {
           return (
             <View>
             <TouchableOpacity
-                key={index} 
+                key={mood} 
                 style={styles.moodButton} 
                 onPress={() => this.moodPressed(mood)}>
                 <Text style={styles.buttonText}>{mood}</Text>
@@ -33,7 +33,7 @@ export default class MoodFilter extends React.Component {
 
       const moodName = this.state.moodName;
     return (
-     <View style={styles.screen}>
+     <ScrollView style={styles.screen}>
         <Text>{moods}</Text>
          <Button 
             title="Next"
@@ -41,7 +41,7 @@ export default class MoodFilter extends React.Component {
                 this.props.navigation.navigate('')
             }} /> 
             <Text>Chosen Mood: {moodName}</Text>
-     </View>
+     </ScrollView>
     );
   }
 }

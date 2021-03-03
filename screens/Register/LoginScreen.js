@@ -5,9 +5,9 @@ import { RegisterData } from './data/RegisterData';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
-
+// import FilmateLogo from '../../svgs/filmate-logo.svg';
 // import deviceStorage from './deviceStorage';
-
+import FilmateLogo from '../../svgs/FilmateLogo';
 
 const LoginScreen = (props) => {
     // state variables : userUsername, userPassword, loading, errorText
@@ -67,22 +67,28 @@ const LoginScreen = (props) => {
         })
     }
     return (
-        <View>
-             <RegisterMessage logoLink={RegisterData[0].logoLink} />
-                <TextInput 
+        <View style={styles.screen}>
+            <FilmateLogo />
+           
+            
+             {/* <RegisterMessage logoLink={RegisterData[0].logoLink} /> */}
+             <View style={styles.inputWrapper}>
+             <TextInput 
                     style={styles.input} 
                     onChangeText={(Username) => 
                         setUsername(Username)}
                     placeholder="Username"
+                    placeholderTextColor="white"
                     value={userUsername}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    returnKeyType="next"
+                    // returnKeyType="next"
                     />
                     
                 <TextInput 
                     style={styles.input}
                     placeholder="Password"
+                    placeholderTextColor="white"
                     value={userPassword}
                     onChangeText={(UserPassword) =>
                        setUserPassword(UserPassword)}
@@ -91,37 +97,56 @@ const LoginScreen = (props) => {
                     autoCorrect={false}
                     returnKeyType="go"
                     />
+
+             </View>
+               
            
-          
             <Button title="Forgot Password?" onPress={() => {
                     props.navigation.navigate('ForgotPassword')
                 }}/>
 
+           <View style={styles.screenBottom}>
             <MainButton title="Sign In" onPress={handleSubmit} />
-                
-            <View style={styles.screenBottom}>
-                <Text style={styles.question}>Don't have an account?</Text>
-                <Button title="Sign Up" onPress={() => {
-                    props.navigation.navigate('Signup')
-                }} />
-            </View>
-
-            <Button title="Sign In" onPress={() => {
-                    props.navigation.navigate('Home')
-                }} />
+                <View style={styles.flexContainer}>
+                    <Text style={styles.question}>Don't have an account?</Text>
+                    <Button title="Sign Up" onPress={() => {
+                        props.navigation.navigate('Signup')
+                    }} />
+                </View>
+           </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    screen: {
+        backgroundColor: '#121212',
+        height: '100%'
+    },
     screenBottom: {
+        height: '30%',
+        marginTop: '40%'
+    },
+    flexContainer: {
        flexDirection: 'row',
        justifyContent: 'space-around'
     },
     question: {
         fontSize: 20,
-        marginTop: 7
+        marginTop: 7,
+        color: 'white'
+    },
+    input: {
+        backgroundColor: '#1E1E1E',
+        marginBottom: 10,
+        padding: 10,
+        borderRadius: 20,
+        marginHorizontal: 20
+    },
+    inputWrapper: {
+        marginTop: 30
     }
+ 
 });
 
 export default LoginScreen;

@@ -1,59 +1,35 @@
-// import React from 'react';
-// import { View, Text, StyleSheet, Image } from 'react-native';
-
-// const Onboarding = props => {
-//     return (
-//         <View style={styles.screen}>
-//             <Image style={styles.image} source={props.imageLink} />
-//             <Text style={styles.title}>{props.title}</Text>
-//             <Text style={styles.body}>{props.description}</Text>
-//         </View>
-//     )
-// }
-
-
-
-// export default Onboarding;
 import { Alert, StatusBar, Image, StyleSheet } from 'react-native';
 import React from 'react';
-
 import { Button, Icon } from 'react-native-elements';
 import Onboarding from 'react-native-onboarding-swiper';
-
-
+import Onboarding1 from '../../svgs/Onboarding1';
+import Onboarding2 from '../../svgs/Onboarding2';
+import Onboarding3 from '../../svgs/Onboarding3';
 
 const WithCTA = props => {
 
     return(
         <Onboarding
-    showDone={false}
-    onSkip={() => Alert.alert('Skipped')}
-    pages={[
-      {
-        title: 'hi',
-        subtitle: 'Invite friends and add them to your movie night groups.',
-        backgroundColor: '#121212',
-        image: (
-        <Image style={styles.image} source={require('./images/onboarding1.png')} />
-        ),
+          // showDone={false}
+          // onSkip={() => Alert.alert('Skipped')}
+          pages={[
+            {
+              title: 'Create Groups',
+              subtitle: 'Invite friends and add them to your movie night groups.',
+              backgroundColor: '#121212',
+              image:<Onboarding1 />,
       },
       {
         title: 'Endless picks',
         subtitle: 'Select from over 1000+ movies available in our library.',
         backgroundColor: '#121212',
-        image: (
-            <Image style={styles.image} source={require('./images/onboarding2.png')} />
- 
-        ),
+        image: <Onboarding2 />,
       },
       {
         title: 'Swipe & match',
         subtitle: 'Celebrating your movie picks in a fun, non-compromising way!',
         backgroundColor: '#121212',
-        image: (
-            <Image style={styles.image} source={require('./images/onboarding3.png')} />
-        
-        ),
+        image: <Onboarding3 />,
       },
       {
         title: "Get Started",

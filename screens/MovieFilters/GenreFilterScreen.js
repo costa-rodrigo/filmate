@@ -56,7 +56,7 @@ handleSubmit(genreId, posters) {
     this.setState({genreId})
     // this.populateSelectedGenres()
     console.log("id from handleSubmit: ", genreId)
-    console.log("posters:", posters)
+    // console.log("posters:", posters.uri)
     const { navigate } = this.props.navigation;
     this.props.navigation.navigate('ShowMovies', { genreId: genreId, posters: posters})
 
@@ -83,14 +83,15 @@ render() {
   const posters = this.state.moviePosters.map((poster, index) => {
     return (
       <Image key={index} source={{uri: poster}} alt='movie'
-      style={{  maxWidth: 400, height: 600, borderRadius: 25 }}/>
+      style={{  maxWidth: 400, height: '95%', borderRadius: 25 }}/>
     )
   })
-  console.log("posters, ", posters);
+  // console.log("posters, ", posters);
   const genres = this.state.genreArray.map((genre, index) => {
     return (
       <View>
-        <TouchableOpacity 
+        <TouchableOpacity
+            key={genre}
             style={styles.filterButton} 
             backgroundColor={this.state.BackgroundColor}
             onPress={() => this.genrePressed(genre)}>

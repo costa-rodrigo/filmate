@@ -32,8 +32,16 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '' }, 
                        headerTitleStyle: { fontWeight: 'bold' }}}>
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: 'Login' }} />
-        <Stack.Screen name="Signup" component={SignupScreen} options={{ headerTitle: 'Sign Up', headerBackTitle: 'Back' }} />
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: '', headerStyle: {
+          backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
+            height: 0
+          }
+        } }} />
+        <Stack.Screen name="Signup" component={SignupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+          backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
+            height: 0
+          }
+        } }} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerTitle: 'Forgot Password',
                       headerBackTitle: 'Back' }}/>
         <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} options={{ headerTitle: 'Forgot Password',

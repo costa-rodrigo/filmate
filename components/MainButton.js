@@ -11,13 +11,13 @@ const MainButton = props => {
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         padding: 20,
         margin: 20,
         borderRadius: 15
     },
     buttonText: {
-        color: 'white',
+        color: 'black',
         textAlign: 'center',
         
     }

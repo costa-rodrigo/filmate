@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Dimensions, Animated, PanResponder } from 'react-native';
+import { Text, View, Dimensions, Animated, PanResponder, ScrollView } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -57,7 +57,7 @@ export default class ShowMovies extends React.Component {
         })
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -138,6 +138,7 @@ export default class ShowMovies extends React.Component {
                 if (index < this.state.currentIndex) {
                     return null
                 } else if (index == this.state.currentIndex) {
+                    console.log("poster:", poster.props.source.uri)
                     return (
                         <Animated.View 
                                 {...this.PanResponder.panHandlers}
@@ -168,6 +169,7 @@ export default class ShowMovies extends React.Component {
                     )
                 }
                 else {
+                    
                     return (
                         <Animated.View 
                         style={[ { opacity: this.nextCardOpacity, transform: [{scale: this.nextCardScale}], height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
@@ -186,7 +188,6 @@ export default class ShowMovies extends React.Component {
         return (
             <View style={{ flex: 1 }}>
             <View style={{height: 60}}>
-          {/* <Text>{genreId}</Text> */}
             </View>
             <View style={{ flex: 1, position: 'absolute'}}>
                 {this.renderPosters()}
