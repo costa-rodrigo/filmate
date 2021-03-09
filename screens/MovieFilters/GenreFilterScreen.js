@@ -114,7 +114,7 @@ render() {
   // console.log(movieOverview)
   const posters = this.state.moviePosters.map((poster, index) => {
     return (
-      <Image key={index} source={{uri: poster}} alt='movie'
+      <Image key={index + "i"}source={{uri: poster}} alt='movie'
       style={{  maxWidth: 400, height: '95%', borderRadius: 25 }}/>
     )
   })
@@ -175,7 +175,6 @@ render() {
           {/* <Text>{overviews}</Text> */}
           {/* <Text>{everything}</Text> */}
         </View>
-        <Text>HELLOOOO</Text>
         <Button title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything)}/>
         <Text style={styles.color}>genre:{genreId}</Text>
       </ScrollView>

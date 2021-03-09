@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+// import Netflix from '../../svgs/Netflix';
 
 export default class MoodFilter extends React.Component {
     constructor(props) {
@@ -34,6 +35,7 @@ export default class MoodFilter extends React.Component {
       const moodName = this.state.moodName;
     return (
      <ScrollView style={styles.screen}>
+       {/* <Netflix /> */}
         <Text>{moods}</Text>
          <Button 
             title="Next"

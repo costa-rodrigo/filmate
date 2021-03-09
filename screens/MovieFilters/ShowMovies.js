@@ -18,9 +18,9 @@ export default class ShowMovies extends React.Component {
             currentTitle: '',
             currentEverything: '',
             currentIndex: 0,
-            likedMovies: 0,
-            dislikedMovies: 0,
-            likedArray: [],
+            // likedMovies: 0,
+            // dislikedMovies: 0,
+            // likedArray: [],
             resultsArray: [],
             liked: true,
             disliked: false
@@ -70,11 +70,6 @@ export default class ShowMovies extends React.Component {
     
 
     UNSAFE_componentWillMount() {
-        // console.log("everything", this.state.everything)
-        // console.log("titles", this.state.titles)
-        // let det = this.state.everything
-        // console.log(det.props.children)
-        // console.log("titles", this.state.titles)
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -93,21 +88,13 @@ export default class ShowMovies extends React.Component {
                             this.position.setValue({x: 0, y: 0})
                         })
                        
-                        this.setState({likedMovies: this.state.likedMovies + 1})
+                        // this.setState({likedMovies: this.state.likedMovies + 1})
                         this.setState({ newPoster: this.state.newPoster })
                         console.log("pan responder ", this.state.newPoster)
-                        let i;
-                        console.log("all posters: ", this.state.posters[i])
-                        // this.setState({ newPoster: this.state.newPoster })
-                        // console.log(this.state.newPoster)
-                        // console.log("liked movies:", this.state.likedMovies);
-                        // this.setState({likedArray: [...this.state.likedArray, this.state.likedMovies ]})
+                        // let i;
+                        // console.log("all posters: ", this.state.posters[i])
                         this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
-                        // this.setState({likedArray: [...this.state.likedArray, this.state.posters[0].props.source.uri ]})
-                        // console.log("liked array", this.state.likedArray)
                         console.log("Results ", this.state.resultsArray)
-                        // console.log("array list:", this.state.likedArray)
-                        // const titles = this.state;
                         console.log("titles[0]", this.state.titles[0].props.children) 
                         
                     })
@@ -122,8 +109,8 @@ export default class ShowMovies extends React.Component {
                         this.setState({currentIndex: this.state.currentIndex+1}, () => {
                             this.position.setValue({x: 0, y: 0})
                         })
-                        this.setState({dislikedMovies: this.state.dislikedMovies + 1})
-                        console.log("disliked movies:", this.state.dislikedMovies);
+                        // this.setState({dislikedMovies: this.state.dislikedMovies + 1})
+                        // console.log("disliked movies:", this.state.dislikedMovies);
                         
                         this.setState({ resultsArray: [...this.state.resultsArray, this.state.disliked]})
                         console.log("results ", this.state.resultsArray)
@@ -180,19 +167,12 @@ export default class ShowMovies extends React.Component {
                     // console.log("new title", this.state.newTitle)
                     // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
                     return (
-                       
-
-                       
                         <Animated.View 
-                        
                                 {...this.PanResponder.panHandlers}
                                 // {transform: this.position.getTranslateTransform()}
                                 style={[this.rotateAndTranslate, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
                             
                            <View>{poster}</View>
-                           {/* {title} */}
-                          
-                           
                             <Animated.View style={{opacity: this.likeOpacity ,transform: [{rotate: '-30deg'}], position: 'absolute', top: 50, left: 40, zIndex: 1000}}>
                                 <Text 
                                     style={{borderWidth: 1, 
@@ -212,15 +192,6 @@ export default class ShowMovies extends React.Component {
                                     fontWeight: '800',
                                     padding: 10}}>NOPE</Text>
                             </Animated.View>
-                            {/* <Text style={{backgroundColor: 'black', color: 'white'}}>{title}</Text> */}
-                            {/* <Text>{titles}</Text> */}
-                            {/* {title} */}
-                            {/* {titles} */}
-
-                        {/* <AnimatedPressable onPress={() => alert('test on press')}>     */}
-                        {/* <Text>show more</Text> */}
-                            {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
-                        {/* </AnimatedPressable> */}
                         </Animated.View>
                     )
                 }
@@ -237,14 +208,6 @@ export default class ShowMovies extends React.Component {
                   
     }
 
-
-    // renderTitles() {
-    //     let title = titles.map((title, index) => {
-    //         return (
-    //             <Text>{title}</Text>
-    //         )
-    //     })
-    // }
 
     renderTitles = () => {
         const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -388,8 +351,8 @@ export default class ShowMovies extends React.Component {
         // const { posters } = this.state;
         return (
             <View style={{ flex: 1 }}>
-            <Text style={{color: 'red'}}>Disliked: {this.state.dislikedMovies}</Text>
-            <Text style={{color: 'green'}}>Liked: {this.state.likedMovies}</Text>
+            {/* <Text style={{color: 'red'}}>Disliked: {this.state.dislikedMovies}</Text>
+            <Text style={{color: 'green'}}>Liked: {this.state.likedMovies}</Text> */}
             <View style={{height: 60}}>
             </View>
             <View style={styles.card}>

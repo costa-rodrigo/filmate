@@ -1,23 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { View, Button, Text, StyleSheet, TextInput, Alert, TouchableOpacity } from 'react-native';
-import RegisterMessage from './RegisterMessage';
-import { RegisterData } from './data/RegisterData';
+import React, { useState } from 'react';
+import { View, Button, Text, StyleSheet, TextInput, Alert } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
-// import FilmateLogo from '../../svgs/filmate-logo.svg';
-// import deviceStorage from './deviceStorage';
 import FilmateLogo from '../../svgs/FilmateLogo';
+
 const LoginScreen = (props) => {
     // state variables : userUsername, userPassword, loading, errorText
     const [userUsername, setUsername] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [errorText, setErrorText] = useState('')
-    const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
+    // const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
  
     const handleSubmit = () => {
         setErrorText('');
-        // console.log(userUsername)
         if (!userUsername) {
             alert('Please provide a username!');
             return;
@@ -33,15 +29,13 @@ const LoginScreen = (props) => {
             password: userPassword,
         })
         .then((response) => {
-            // const { navigate } = props.navigation;
             const token = response.data.token;
-            // console.log(response)
             if(response.status === 200) {
                 AsyncStorage.setItem("id_token", token);
                 AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                        console.log("async", { [store[i][0]]: store[i][1] });
+                        // console.log("async", { [store[i][0]]: store[i][1] });
                         return true;
                       });
                     });
@@ -53,49 +47,35 @@ const LoginScreen = (props) => {
                 }, {
                     headers: {
                         Authorization: 'Bearer ' + token
-                        // console.log(headers)
                     }
                 }
                console.log(response)
-               
-                // let headers = response.headers
-                // console.log("headers", headers, "Bearer: ", token )
-             
 
-                // console.log("headers", headers);
-                // console.log(response.data.token)
-                // props.navigation.replace('Screen1')
                 props.navigation.replace('Onboarding')
 
-
-            // this.props.navigation.navigate("MyDrawer",
-            // username = result.user.givenName,
-            // lastname = result.user.familyName,
-            // email = result.user.email,
-            // photoUrl = result.user.photoUrl);
-            } else if (error){
-            //      console.log('please check username and password')
-                 Alert.alert('401-Incorrect username or password!')
-                // need else? but not working... skips straight to catch
-            }  else {
-                console.log('else')
+            } else if (response.status === undefined) {
+                console.log("undefined")
             }    
         })
-        .catch((error, response) => {
-            console.log("Please check your username and password -  CATCH.")
-            Alert.alert('Incorrect username or password!')
-            console.log(response.status)
-            console.log(error)
-            // handle returned errors here
-        })
+        // .catch((error) => {
+        //     // if (response.status == undefined) {
+        //     //     Alert.alert('Incorrect username or password!')
+        //     // }
+        //     // else {
+        //     //     console.log('help')
+        //     // }
+        //     console.error(error)
+        //     // console.log("Please check your username and password -  CATCH.")
+          
+        //     // console.log(response.status)
+        //     // console.log(error)
+        //     // handle returned errors here
+        // })
     }
 
     return (
         <View style={styles.screen}>
             <FilmateLogo />
-           
-            
-             {/* <RegisterMessage logoLink={RegisterData[0].logoLink} /> */}
              <View style={styles.inputWrapper}>
              <TextInput 
                     style={styles.input} 
@@ -121,7 +101,6 @@ const LoginScreen = (props) => {
                     autoCorrect={false}
                     returnKeyType="go"
                     />
-
              </View>
                
            

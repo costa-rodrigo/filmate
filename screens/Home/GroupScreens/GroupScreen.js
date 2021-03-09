@@ -60,13 +60,16 @@ const GroupScreen = props => {
                 wrapper: {
                     backgroundColor: "transparent"
                 },
+                container: {
+                    backgroundColor: '#242424'
+                },
                 draggableIcon: {
-                    backgroundColor: "#000"
+                    backgroundColor: "white"
                 }
                 }}
              >
                 {/* <YourOwnComponent /> */}
-                <Text>Group Options</Text>
+                <Text style={styles.groupOptions}>Group Options</Text>
                 <Text>Match History</Text>
                 <Text>Edit Group</Text>
                 <Text>Exit Group</Text>
@@ -98,6 +101,11 @@ const styles = StyleSheet.create({
     },
     search: {
         marginHorizontal: 30,
+        marginTop: 10
+    },
+    groupOptions: {
+        color: 'white', 
+        textAlign: 'center', 
         marginTop: 10
     }
 });

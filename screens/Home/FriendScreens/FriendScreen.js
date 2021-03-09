@@ -5,7 +5,10 @@ import axios from 'axios';
 import NoFriends from '../FriendScreens/NoFriends';
 import MainButton from '../../../components/MainButton';
 import RBSheet from "react-native-raw-bottom-sheet";
+import OptionsButton from '../../../svgs/OptionsButton';
 
+// checkbox article:
+// https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
 class FriendScreen extends React.Component {
     constructor(props) {
       super(props);
@@ -108,24 +111,22 @@ class FriendScreen extends React.Component {
     render() {
         const { buttonPressed } = this.state;
 
-        const usersFriends = this.state.friendsArray.map((friend) => {
+        const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
                 <View>
                      <View
-                        key={friend.key}
+                        key={index}
                         style={styles.friendContainer}
                         onPress={() => this.friendPressed(friend) && this.setState({ buttonPressed: !this.state.buttonPressed })}
                         >
-                        <Text style={styles.friendText}>{friend}</Text>
-                        <TouchableOpacity 
-                            onPress={() => this.RBSheet.open()} 
-                            style={{backgroundColor: 'pink', width: 30, height: 30, borderRadius: '50%'}}>
-                        {/* <Button title="OPEN BOTTOM SHEET" onPress={() => this.RBSheet.open()} /> */}
-                            <Text style={{color: 'white'}}>
-                                click
-                            </Text>
-                            
-                        </TouchableOpacity>
+                        <View style={styles.friendGrid}>
+                            <Text style={styles.friendText}>{friend}</Text>
+                            <TouchableOpacity 
+                                onPress={() => this.RBSheet.open()} 
+                                style={{ width: 30, height: 30, borderRadius: '50%'}}>
+                                <OptionsButton />
+                            </TouchableOpacity>
+                        </View>
                 </View>
                 </View>
                
@@ -162,6 +163,9 @@ class FriendScreen extends React.Component {
                         wrapper: {
                         backgroundColor: "transparent"
                         },
+                        container: {
+                            backgroundColor: '#242424'
+                        },
                         draggableIcon: {
                         backgroundColor: "#000"
                         }
@@ -196,10 +200,15 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginVertical: 10,
         borderRadius: 15,
-        paddingBottom: 30
+        paddingBottom: 30,
+        height: 70
     },
     friendText: {
         color: 'white'
+    },
+    friendGrid: {
+        flexDirection: 'row',
+        justifyContent: 'space-between' 
     }
 });
 
