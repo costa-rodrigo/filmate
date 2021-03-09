@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Button, Text, StyleSheet, TextInput, StatusBar } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import FilmateLogo from '../../svgs/FilmateLogo';
@@ -62,6 +62,10 @@ const SignupScreen = props => {
     }
     return (
         <View style={styles.screen}>
+             <StatusBar
+                barStyle="light-content"
+                backgroundColor="#4F6D7A"
+                />
             <View style={styles.logo}>
                 <FilmateLogo />
             </View>

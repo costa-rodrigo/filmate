@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import FriendScreen from '../FriendScreens/FriendScreen';
 import MainButton from '../../../components/MainButton';
-
+import Checkmark from '../../../svgs/Checkmark';
 export default class CreateGroup extends React.Component {
     constructor(props) {
       super(props);
@@ -12,7 +12,9 @@ export default class CreateGroup extends React.Component {
           token: '',
           friendsArray: [], 
           addedFriends: [],
-          noFriends: true
+          noFriends: true,
+          pressed: false,
+        //   buttonColor: "white"
         
       }
       const { navigate } = props.navigation;
@@ -77,34 +79,67 @@ export default class CreateGroup extends React.Component {
         })
        }
 
+       removeAllElements(array, elem) {
+        var index = array.indexOf(elem);
+        while (index > -1) {
+            array.splice(index, 1);
+            index = array.indexOf(elem);
+        }
+    }
+
        friendPressed = (friend) => {
+           this.setState({ pressed: !this.state.pressed })
             if (this.state.addedFriends.includes(friend)) {
                 console.log('friend already added')
-                this.state.addedFriends.pop(friend)
+                this.removeAllElements(this.state.addedFriends, friend)
+                this.setState({ pressed: !this.state.pressed })
+                
             } else {
                 this.state.addedFriends.push(friend)
-
+                // this.setState({ buttonColor: 'pink'})
+                // this.setState({ backgroundColor: 'pink'})
             }
-            // this.setState({ addedFriends })
+            this.setState({ addedFriends: this.state.addedFriends })
             console.log(this.state.addedFriends)
        }
 
 
 
     render() {
+       
+        const { pressed } = this.state;
+        const { backgroundColor } = this.state;
+        const { buttonColor } = this.state;
+        const className = this.state.pressed ? 'blue' : 'red';
+
         const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
                 <TouchableOpacity 
                     key={index}
-                    style={styles.friendContainer}
+                    style={this.state.addedFriends.includes(friend) 
+                        ? { 
+                            borderWidth: 1.5, 
+                            borderColor: '#56e6a5', 
+                            backgroundColor: '#1E1E1E',
+                            padding: 20,
+                            marginHorizontal: 20,
+                            marginVertical: 10,
+                            borderRadius: 15,
+                            paddingBottom: 30} 
+                        : { 
+                            backgroundColor: '#1E1E1E',
+                            padding: 20,
+                            marginHorizontal: 20,
+                            marginVertical: 10,
+                            borderRadius: 15,
+                            paddingBottom: 30 }}
                     onPress={() => this.friendPressed(friend)}
                     >
                     <Text style={styles.friendText}>{friend}</Text>
+                    {/* <Checkmark style={this.state.addedFriends.includes(friend) ? { display: 'inline'} : { display: 'none'} }/> */}
                 </TouchableOpacity>
             )
         })
-
-        // const noFriends = this.state.noFriends;
 
         return (
             <ScrollView style={styles.screen}>
@@ -150,6 +185,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginVertical: 20,
         marginHorizontal: 20
+    },
+    red: {
+        backgroundColor: 'red'
+    },
+    blue: {
+        backgroundColor: 'blue'
     }
     // screen: {
     //     paddingHorizontal: 20,

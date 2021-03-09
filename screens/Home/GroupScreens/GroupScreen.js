@@ -17,7 +17,10 @@ const GroupScreen = props => {
 
     return (
         <ScrollView style={styles.screen}>
-           
+            {/* <StatusBar
+                barStyle="light-content"
+                backgroundColor="#4F6D7A"
+                /> */}
             <View style={styles.user_info}>
                 <Image style={styles.image} source={require('../../Onboarding/images/moodImage.jpg')} />
                 <Text style={{color: 'white'}}>User Name</Text>

@@ -22,6 +22,7 @@ import GenreMoodNavigator from './navigation/GenreMoodNavigator';
 import HomeNavigator from './navigation/HomeNavigator';
 import NoFriends from './screens/Home/FriendScreens/NoFriends';
 import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
+import { StatusBar } from 'react-native';
 
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
@@ -31,6 +32,10 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
+      <StatusBar
+          barStyle="light-content"
+          backgroundColor="#4F6D7A"
+        />
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '' }, 
                        headerTitleStyle: { fontWeight: 'bold' }}}>
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: '', headerStyle: {

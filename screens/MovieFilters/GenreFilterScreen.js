@@ -16,8 +16,12 @@ export default class GenreFilterScreen extends React.Component {
       genreArray: [],
       genrePressed: false,
       // values: [],
-      genreId: ''
+      genreId: '',
+      backgroundColor: 'black',
+      backgroundColor2: 'black',
+      // pressed: false
     };
+
     this.populateSelectedGenres = this.populateSelectedGenres.bind(this);
   }
   
@@ -93,6 +97,12 @@ handleSubmit(genreId, posters, titles, everything) {
 genrePressed = (genre) => {
   let genrePressed = true;
   this.setState({genrePressed})
+  // if(!this.state.genrePressed) {
+  //   this.setState({ genrePressed: true, backgroundColor: 'red'});
+  // } else {
+  //   this.setState({ genrePressed: false, backgroundColor: 'black', backgroundColor2: 'red'})
+  // }
+
   let genreId = [genre[1]];
   console.log('genre id:',genreId)
   this.setState({ genreId })
@@ -154,7 +164,8 @@ render() {
       <View>
         <TouchableOpacity
             key={index}
-            style={styles.filterButton} 
+            // style={styles.filterButton} 
+            // style={{backgroundColor: this.state.backgroundColor, padding: 15}}
             backgroundColor={this.state.BackgroundColor}
             onPress={() => this.genrePressed(genre)}>
             <Text style={styles.buttonText}>{genre[0]}</Text>

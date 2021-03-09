@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, Text, StyleSheet, TextInput, Alert } from 'react-native';
+import { View, Button, Text, StyleSheet, TextInput } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
