@@ -115,7 +115,7 @@ export default class CreateGroup extends React.Component {
         const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
                 <TouchableOpacity 
-                    key={index}
+                    key={friend + "i"}
                     style={this.state.addedFriends.includes(friend) 
                         ? { 
                             borderWidth: 1.5, 

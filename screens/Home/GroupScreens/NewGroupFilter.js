@@ -22,7 +22,7 @@ export default class NewGroupFilter extends React.Component {
           return (
             <View>
               <TouchableOpacity 
-                  key={index}
+                  key={platform}
                   style={styles.platformButton} 
                   onPress={() => this.platformPressed(platform)}>
                   <Text style={styles.buttonText}>{platform}</Text>

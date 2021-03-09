@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Button, Dimensions, TouchableHighlight, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import MainButton from '../../components/MainButton';
+import { Alert } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -80,7 +82,10 @@ populateSelectedGenres = () => {
 }
 
 handleSubmit(genreId, posters, titles, everything) {
-  // axios.post(`http://localhost:8080/movies`, genreId)
+  if (!genreId) {
+    Alert.alert("please select a genre")
+  } else {
+      // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
     this.setState({genreId})
@@ -92,11 +97,15 @@ handleSubmit(genreId, posters, titles, everything) {
 
     
   })
+
+  }
+
 }
 
 genrePressed = (genre) => {
   let genrePressed = true;
   this.setState({genrePressed})
+  
   // if(!this.state.genrePressed) {
   //   this.setState({ genrePressed: true, backgroundColor: 'red'});
   // } else {
@@ -106,6 +115,7 @@ genrePressed = (genre) => {
   let genreId = [genre[1]];
   console.log('genre id:',genreId)
   this.setState({ genreId })
+  console.log("genreid", genreId)
 
   // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
@@ -124,19 +134,19 @@ render() {
   // console.log(movieOverview)
   const posters = this.state.moviePosters.map((poster, index) => {
     return (
-      <Image key={index + "i"}source={{uri: poster}} alt='movie'
+      <Image key={poster}source={{uri: poster}} alt='movie'
       style={{  maxWidth: 400, height: '95%', borderRadius: 25 }}/>
     )
   })
   const titles = this.state.movieTitles.map((title, index) => {
     return (
-      <Text key={index}>{title}</Text>
+      <Text key={title}>{title}</Text>
     )
   })
 
   const overviews = this.state.movieOverview.map((overview, index) => {
     return (
-      <Text key={index}>{overview}</Text>
+      <Text key={overview}>{overview}</Text>
     )
   })
 
@@ -149,7 +159,7 @@ render() {
 
   const everything = details.map((every, index) => {
     return (
-      <View>
+      <View key={every}>
          {/* <Text key={index}>Title: {every[0]}</Text> */}
          <Text>{every}</Text>
          {/* <Text>Overview: {every[1]}</Text> */}
@@ -158,15 +168,35 @@ render() {
   })
   // console.log("everything com", everything)
   // console.log(titles)
-
+  
   const genres = this.state.genreArray.map((genre, index) => {
     return (
       <View>
         <TouchableOpacity
-            key={index}
+            key={genre}
+            style={this.state.genreId.includes(genre[1])
+              ? {
+                borderRadius: 20,
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                margin: 5,
+                backgroundColor: '#f03349',
+                
+              }
+              : {
+                borderRadius: 20,
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                margin: 5,
+                backgroundColor: '#242424',
+                
+              }
+            
+            }
+            
             // style={styles.filterButton} 
             // style={{backgroundColor: this.state.backgroundColor, padding: 15}}
-            backgroundColor={this.state.BackgroundColor}
+            // backgroundColor={this.state.BackgroundColor}
             onPress={() => this.genrePressed(genre)}>
             <Text style={styles.buttonText}>{genre[0]}</Text>
         </TouchableOpacity>
@@ -174,10 +204,10 @@ render() {
     )
   })
 
+  
   const genreId = this.state.genreId;
-
   return (
-    <View style={styles.container}>
+    <View style={styles.screen}>
       <ScrollView>
         <View style={styles.genre}>
           <Text>{genres}</Text>
@@ -186,8 +216,9 @@ render() {
           {/* <Text>{overviews}</Text> */}
           {/* <Text>{everything}</Text> */}
         </View>
-        <Button title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything)}/>
-        <Text style={styles.color}>genre:{genreId}</Text>
+        <MainButton title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything)}/>
+        {/* <Button title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything)}/> */}
+        {/* <Text style={styles.color}>genre:{genreId}</Text> */}
       </ScrollView>
     </View>
   );
@@ -195,14 +226,15 @@ render() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0A0A0A',
     alignItems: 'center',
     justifyContent: 'center',
   },
   genre: {
-    width: '100%'
+    width: '100%',
+    marginTop: 20
   },
   text: {
     fontSize: 20
@@ -215,6 +247,7 @@ const styles = StyleSheet.create({
     margin: 5
   },
   buttonText: {
-    fontSize: 20
+    fontSize: 20,
+    color: 'white'
   }
 });

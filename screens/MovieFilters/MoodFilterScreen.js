@@ -1,6 +1,14 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 // import Netflix from '../../svgs/Netflix';
+import Happy from '../../svgs/moods/Happy';
+import DateNight from '../../svgs/moods/DateNight';
+import Adrenaline from '../../svgs/moods/Adrenaline';
+import Artsy from '../../svgs/moods/Artsy';
+import HighTech from '../../svgs/moods/HighTech';
+import Inspiring from '../../svgs/moods/Inspiring';
+import Kids from '../../svgs/moods/Kids';
+import Curious from '../../svgs/moods/Curious';
 
 export default class MoodFilter extends React.Component {
     constructor(props) {
@@ -26,7 +34,12 @@ export default class MoodFilter extends React.Component {
                 key={mood} 
                 style={styles.moodButton} 
                 onPress={() => this.moodPressed(mood)}>
-                <Text style={styles.buttonText}>{mood}</Text>
+                <View style={{flexDirection: 'row'}}>
+                  <Text style={styles.buttonText}>{mood}</Text>
+                  <Happy />
+                </View>
+              
+                
             </TouchableOpacity>
           </View>
           )
@@ -35,8 +48,14 @@ export default class MoodFilter extends React.Component {
       const moodName = this.state.moodName;
     return (
      <ScrollView style={styles.screen}>
-       {/* <Netflix /> */}
-        <Text>{moods}</Text>
+       {/* <Adrenaline />
+       <DateNight /> */}
+       {/* <HighTech />
+       <Artsy /> */}
+       {/* <Inspiring />
+       <Kids /> */}
+       {/* <Curious /> */}
+        <Text key={moodName}>{moods}</Text>
          <Button 
             title="Next"
             onPress={() => {

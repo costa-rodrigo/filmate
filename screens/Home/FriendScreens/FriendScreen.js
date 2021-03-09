@@ -115,7 +115,7 @@ class FriendScreen extends React.Component {
             return (
                 <View>
                      <View
-                        key={index}
+                        key={friend}
                         style={styles.friendContainer}
                         onPress={() => this.friendPressed(friend) && this.setState({ buttonPressed: !this.state.buttonPressed })}
                         >

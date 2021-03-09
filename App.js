@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/Register/LoginScreen';
@@ -23,13 +24,14 @@ import HomeNavigator from './navigation/HomeNavigator';
 import NoFriends from './screens/Home/FriendScreens/NoFriends';
 import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
 import { StatusBar } from 'react-native';
-
+import { TouchableOpacity } from 'react-native';
+import ProfileImage from './svgs/ProfileImage';
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
 
 const Stack = createStackNavigator();
 
-function App() {
+function App({ navigation }) {
   return (
     <NavigationContainer>
       <StatusBar
@@ -64,8 +66,20 @@ function App() {
             }
             },
             headerTitle: '', headerBackTitle: 'Back' }}/>  
-        
-        <Stack.Screen name="Home" component={HomeNavigator} options={{ headerTitle: '', headerStyle: {
+      
+        <Stack.Screen 
+          name="Home" 
+          component={HomeNavigator} 
+          options={{headerLeft: ({ props }) =>  
+            // <TouchableOpacity navigation={navigation} onPress={() => {
+            //   props.navigation.navigate('ProfileScreen')
+            // }}>
+            <ProfileImage />
+              // <Image style={styles.image} source={require('./screens/Onboarding/images/moodImage.jpg')} />
+            // </TouchableOpacity>
+           
+          , 
+          headerTitle: '', headerStyle: {
           backgroundColor: '#121212'
         }}}/> 
         <Stack.Screen name="NewGroupFilter" component={NewGroupFilter} options={{ headerTitle: 'New Group', headerBackTitle: 'Back' }}/> 
@@ -92,5 +106,16 @@ function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+ image: {
+   width: 50,
+   height: 50,
+   borderRadius: 50,
+   margin: 5,
+   marginBottom: 20
+ }
+
+});
 
 export default App;
