@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
-import NewGroupAddMember from './NewGroupAddMember';
+// import NewGroupAddMember from './NewGroupAddMember';
+// import CreateGroup from './CreateGroup';
 
 const NewGroupName = props => {
      // state variables : groupName
@@ -16,7 +17,7 @@ const NewGroupName = props => {
              alert('Please provide a group name!');
              return;
          } else {
-             navigate('NewGroupAddMember')
+             navigate('CreateGroup')
          }
         }
 

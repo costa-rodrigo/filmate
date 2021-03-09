@@ -17,10 +17,11 @@ import TellFriendScreen from './screens/Profile/TellFriendScreen';
 import ShowMovies from './screens/MovieFilters/ShowMovies';
 import Onboarding from './screens/Onboarding/Onboarding';
 import GroupCreated from './screens/Home/GroupScreens/GroupCreated';
-
+import CreateGroup from './screens/Home/GroupScreens/CreateGroup';
 import GenreMoodNavigator from './navigation/GenreMoodNavigator';
 import HomeNavigator from './navigation/HomeNavigator';
-
+import NoFriends from './screens/Home/FriendScreens/NoFriends';
+import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
 
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
@@ -59,7 +60,9 @@ function App() {
             },
             headerTitle: '', headerBackTitle: 'Back' }}/>  
         
-        <Stack.Screen name="Home" component={HomeNavigator} options={{ headerTitle: 'Filmate', headerBackTitle: 'Back' }}/> 
+        <Stack.Screen name="Home" component={HomeNavigator} options={{ headerTitle: '', headerStyle: {
+          backgroundColor: '#121212'
+        }}}/> 
         <Stack.Screen name="NewGroupFilter" component={NewGroupFilter} options={{ headerTitle: 'New Group', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="NewGroupName" component={NewGroupName} options={{ headerTitle: 'New Group', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="NewGroupAddMember" component={NewGroupAddMember} options={{ headerTitle: 'New Group', headerBackTitle: 'Back' }}/> 
@@ -72,6 +75,14 @@ function App() {
         <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: 'navigation', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: 'Add Friends', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: 'Friends Invited', headerBackTitle: 'Back' }}/> 
+        <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: 'Create Group', headerBackTitle: 'Back' }}/> 
+        <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/> 
+        <Stack.Screen name="InvitedToGroup" component={InvitedToGroup} options={{ headerTitle: '', headerStyle: {
+          backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
+            height: 0
+          }
+        } }}/> 
+
       </Stack.Navigator>
     </NavigationContainer>
   );

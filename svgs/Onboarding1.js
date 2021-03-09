@@ -6,7 +6,7 @@ import Svg, { Rect, G, Path } from 'react-native-svg';
 
 export default function Onboarding1(props) {
     return (
-        <View style={styles.onboardingImage}>
+        <View style={styles.image}>
             <Svg id="Group_1757" data-name="Group 1757" xmlns="http://www.w3.org/2000/svg" width="264" height="240" viewBox="0 0 264 240">
                 <Rect id="Rectangle_397" data-name="Rectangle 397" width="264" height="240" fill="none"/>
                 <G id="Group_1477" data-name="Group 1477">
@@ -64,7 +64,7 @@ export default function Onboarding1(props) {
 }
 
 const styles = StyleSheet.create({
-    onboardingImage: {
+    image: {
         justifyContent: 'center',
         alignItems: 'center'
     },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const MainButton = props => {
+const GreyButton = props => {
     return (
         <TouchableOpacity style={styles.buttonContainer} onPress={props.onPress}>
             <Text style={styles.buttonText}>{props.title}</Text>
@@ -11,16 +11,17 @@ const MainButton = props => {
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        backgroundColor: 'white',
+        backgroundColor: '#242424',
         padding: 20,
         margin: 20,
-        borderRadius: 15
+        borderRadius: 15,
+        marginHorizontal: '30%'
     },
     buttonText: {
-        color: 'black',
+        color: 'white',
         textAlign: 'center',
         
     }
 });
 
-export default MainButton;
+export default GreyButton;

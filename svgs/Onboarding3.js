@@ -4,7 +4,7 @@ import Svg, { Rect, G, Path } from 'react-native-svg';
 
 export default function Onboarding3(props) {
     return (
-        <View style={styles.onboardingImage}>
+        <View style={styles.image}>
             <Svg id="Group_1759" data-name="Group 1759" xmlns="http://www.w3.org/2000/svg" width="264" height="240" viewBox="0 0 264 240">
                 <G id="Group_1526" data-name="Group 1526">
                     <Path id="Path_373" data-name="Path 373" d="M89.292,33.886v3.222a2.648,2.648,0,0,0-2.227,2.611v9.713a2.647,2.647,0,0,0,2.227,2.61V161.215A10.577,10.577,0,0,0,99.87,171.793H162.9a10.581,10.581,0,0,0,10.579-10.578V41.522h.233a2.653,2.653,0,0,0,2.652-2.652V29.156a2.65,2.65,0,0,0-2.652-2.652h-.233V13.35A10.58,10.58,0,0,0,162.9,2.777H99.87A10.576,10.576,0,0,0,89.292,13.35v5.6a2.647,2.647,0,0,0-2.227,2.611v9.712A2.647,2.647,0,0,0,89.292,33.886Zm2.133-20.534a8.456,8.456,0,0,1,8.446-8.446h13.685V5.47a6.052,6.052,0,0,0,6.053,6.052h23.878a6.052,6.052,0,0,0,6.052-6.052V4.906H162.9a8.456,8.456,0,0,1,8.446,8.446V161.216a8.456,8.456,0,0,1-8.446,8.446H99.871a8.456,8.456,0,0,1-8.446-8.446Z" fill="#fff"/>
@@ -28,7 +28,7 @@ export default function Onboarding3(props) {
 }
 
 const styles = StyleSheet.create({
-    onboardingImage: {
+    image: {
         justifyContent: 'center',
         alignItems: 'center'
     },

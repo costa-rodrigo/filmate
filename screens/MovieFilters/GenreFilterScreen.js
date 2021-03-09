@@ -10,6 +10,8 @@ export default class GenreFilterScreen extends React.Component {
     super(props);
     this.state = {
       moviePosters: [],
+      movieTitles: [],
+      movieOverview: [],
       genres: [],
       genreArray: [],
       genrePressed: false,
@@ -28,10 +30,10 @@ export default class GenreFilterScreen extends React.Component {
       // console.log(genres[0].id)
 
       let genreArray = [];
-      let index = 0;
+      // let index = 0;
       
       for (let i = 0; i < genres.length; i++) {
-        index++;
+        // index++;
         let genre = [(genres[i].name), (genres[i].id)];
         // let genre_id = (genres[i].id)
         genreArray.push(genre);        
@@ -44,12 +46,36 @@ populateSelectedGenres = () => {
   // axios.get(`http://localhost:8080/movies`)
   axios.get(`http://192.168.0.20:8080/movies`)
   .then(res => {
-    const moviePosters = res.data;
-    this.setState({ moviePosters })
+    console.log(res.data)
+    let movies = res.data
+
+    let moviePosters = [];
+    let movieTitles = [];
+    let movieOverview = [];
+    // let movieOverview = [];
+
+    for (let i = 0; i < movies.length; i++) {
+      // index++;
+      let poster = movies[i].poster_path;
+      // console.log(poster)
+      moviePosters.push(poster)
+      this.setState({ moviePosters })
+      console.log(moviePosters)
+      
+      let title = movies[i].title;
+      // console.log(title)
+      movieTitles.push(title)
+      this.setState({ movieTitles })
+
+      let overview = movies[i].overview;
+      movieOverview.push(overview);
+      this.setState({ movieOverview })
+      console.log(movieOverview)
+    }
   })
 }
 
-handleSubmit(genreId, posters) {
+handleSubmit(genreId, posters, titles, everything) {
   // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
@@ -58,7 +84,7 @@ handleSubmit(genreId, posters) {
     console.log("id from handleSubmit: ", genreId)
     // console.log("posters:", posters.uri)
     const { navigate } = this.props.navigation;
-    this.props.navigation.navigate('ShowMovies', { genreId: genreId, posters: posters})
+    this.props.navigation.navigate('ShowMovies', { genreId: genreId, posters: posters, titles: titles, everything: everything})
 
     
   })
@@ -74,24 +100,60 @@ genrePressed = (genre) => {
   // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
+    // console.log(res.data)
     this.populateSelectedGenres()
   })
 }
 
 
 render() {
+  
+  const movieTitles = this.state.movieTitles;
+  // console.log(movieTitles)
+  const movieOverview = this.state.movieOverview;
+  // console.log(movieOverview)
   const posters = this.state.moviePosters.map((poster, index) => {
     return (
       <Image key={index} source={{uri: poster}} alt='movie'
       style={{  maxWidth: 400, height: '95%', borderRadius: 25 }}/>
     )
   })
-  // console.log("posters, ", posters);
+  const titles = this.state.movieTitles.map((title, index) => {
+    return (
+      <Text key={index}>{title}</Text>
+    )
+  })
+
+  const overviews = this.state.movieOverview.map((overview, index) => {
+    return (
+      <Text key={index}>{overview}</Text>
+    )
+  })
+
+  var a = [1,2,3]
+  var b = ['a', 'b', 'c']
+  
+  let details = titles.map(function(e, i) {
+    return [e, overviews[i]];
+  });
+
+  const everything = details.map((every, index) => {
+    return (
+      <View>
+         {/* <Text key={index}>Title: {every[0]}</Text> */}
+         <Text>{every}</Text>
+         {/* <Text>Overview: {every[1]}</Text> */}
+      </View>
+    )
+  })
+  // console.log("everything com", everything)
+  // console.log(titles)
+
   const genres = this.state.genreArray.map((genre, index) => {
     return (
       <View>
         <TouchableOpacity
-            key={genre}
+            key={index}
             style={styles.filterButton} 
             backgroundColor={this.state.BackgroundColor}
             onPress={() => this.genrePressed(genre)}>
@@ -108,8 +170,13 @@ render() {
       <ScrollView>
         <View style={styles.genre}>
           <Text>{genres}</Text>
+          
+          {/* <Text>{titles}</Text> */}
+          {/* <Text>{overviews}</Text> */}
+          {/* <Text>{everything}</Text> */}
         </View>
-        <Button title="Next" onPress={() => this.handleSubmit(genreId, posters)}/>
+        <Text>HELLOOOO</Text>
+        <Button title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything)}/>
         <Text style={styles.color}>genre:{genreId}</Text>
       </ScrollView>
     </View>

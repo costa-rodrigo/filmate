@@ -21,12 +21,12 @@ export default class NewGroupFilter extends React.Component {
       const platforms = this.state.platformArray.map((platform, index) => {
           return (
             <View>
-            <TouchableOpacity 
-                key={index}
-                style={styles.platformButton} 
-                onPress={() => this.platformPressed(platform)}>
-                <Text style={styles.buttonText}>{platform}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity 
+                  key={index}
+                  style={styles.platformButton} 
+                  onPress={() => this.platformPressed(platform)}>
+                  <Text style={styles.buttonText}>{platform}</Text>
+              </TouchableOpacity>
           </View>
           )
       })
@@ -35,13 +35,13 @@ export default class NewGroupFilter extends React.Component {
     return (
      <View style={styles.screen}>
          <Text style={styles.title}>Filter streaming platform for the group</Text>
-        <Text>{platforms}</Text>
-         <Button 
-            title="Filter"
-            onPress={() => {
-                this.props.navigation.navigate('NewGroupName')
-            }} /> 
-            <Text>Chosen Platform: {platformName}</Text>
+            <Text>{platforms}</Text>
+            <Button 
+                title="Filter"
+                onPress={() => {
+                    this.props.navigation.navigate('NewGroupName')
+                }} /> 
+                <Text>Chosen Platform: {platformName}</Text>
      </View>
     );
   }
@@ -49,7 +49,6 @@ export default class NewGroupFilter extends React.Component {
 
 const styles = StyleSheet.create({
     screen: {
-        // paddingHorizontal: 20,
         paddingTop: 50
     },
     title: {
@@ -75,7 +74,6 @@ const styles = StyleSheet.create({
       },
       container: {
         flexDirection: 'row'
-       
     }
 
 });

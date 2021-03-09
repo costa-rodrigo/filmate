@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { View, Button, Text, StyleSheet, TextInput } from 'react-native';
-import RegisterMessage from './RegisterMessage';
-import { RegisterData } from './data/RegisterData';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
-// import deviceStorage from './deviceStorage';
 import FilmateLogo from '../../svgs/FilmateLogo';
+
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -31,6 +29,7 @@ const SignupScreen = props => {
         axios.post('http://192.168.0.20:3000/register', {
         // axios.post('http://localhost:3000/register', {
             name: userName,
+            email: userEmail,
             password: userPassword
         })
         .then((response) => {
@@ -147,7 +146,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         padding: 10,
         borderRadius: 20,
-        marginHorizontal: 20
+        marginHorizontal: 20,
+        color: 'white'
     },
     inputWrapper: {
         marginTop: 30

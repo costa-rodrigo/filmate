@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-
+// import axios from 'axios';
 
 const FriendsInvited= props => {
+
 
     return (
         <View style={styles.screen}>

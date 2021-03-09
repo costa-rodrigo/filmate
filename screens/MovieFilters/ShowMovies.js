@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, Dimensions, Animated, PanResponder, ScrollView } from 'react-native';
+import { Alert } from 'react-native';
+import { Text, View, Dimensions, Animated, PanResponder, Pressable, Button, StyleSheet, ScrollView } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -11,9 +12,18 @@ export default class ShowMovies extends React.Component {
         this.state = {
             genreId: this.props.route.params.genreId,
             posters: this.props.route.params.posters,
-            // moviePosters: [],
-            // moviePosters: this.props.route.params.moviePosters,
-            currentIndex: 0
+            titles: this.props.route.params.titles,
+            everything: this.props.route.params.everything,
+            newPoster: '',
+            currentTitle: '',
+            currentEverything: '',
+            currentIndex: 0,
+            likedMovies: 0,
+            dislikedMovies: 0,
+            likedArray: [],
+            resultsArray: [],
+            liked: true,
+            disliked: false
         };
         this.rotate = this.position.x.interpolate({
             // takes half of the screen width to the right and half to the left
@@ -57,7 +67,14 @@ export default class ShowMovies extends React.Component {
         })
     }
 
+    
+
     UNSAFE_componentWillMount() {
+        // console.log("everything", this.state.everything)
+        // console.log("titles", this.state.titles)
+        // let det = this.state.everything
+        // console.log(det.props.children)
+        // console.log("titles", this.state.titles)
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -75,6 +92,24 @@ export default class ShowMovies extends React.Component {
                         this.setState({currentIndex: this.state.currentIndex+1}, () => {
                             this.position.setValue({x: 0, y: 0})
                         })
+                       
+                        this.setState({likedMovies: this.state.likedMovies + 1})
+                        this.setState({ newPoster: this.state.newPoster })
+                        console.log("pan responder ", this.state.newPoster)
+                        let i;
+                        console.log("all posters: ", this.state.posters[i])
+                        // this.setState({ newPoster: this.state.newPoster })
+                        // console.log(this.state.newPoster)
+                        // console.log("liked movies:", this.state.likedMovies);
+                        // this.setState({likedArray: [...this.state.likedArray, this.state.likedMovies ]})
+                        this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
+                        // this.setState({likedArray: [...this.state.likedArray, this.state.posters[0].props.source.uri ]})
+                        // console.log("liked array", this.state.likedArray)
+                        console.log("Results ", this.state.resultsArray)
+                        // console.log("array list:", this.state.likedArray)
+                        // const titles = this.state;
+                        console.log("titles[0]", this.state.titles[0].props.children) 
+                        
                     })
                 }
                 // if swipe to the left (DISLIKE!) if its less that -120deg
@@ -87,6 +122,12 @@ export default class ShowMovies extends React.Component {
                         this.setState({currentIndex: this.state.currentIndex+1}, () => {
                             this.position.setValue({x: 0, y: 0})
                         })
+                        this.setState({dislikedMovies: this.state.dislikedMovies + 1})
+                        console.log("disliked movies:", this.state.dislikedMovies);
+                        
+                        this.setState({ resultsArray: [...this.state.resultsArray, this.state.disliked]})
+                        console.log("results ", this.state.resultsArray)
+                        // Alert.alert('swiped left')
                     })
                 }
                 // if the user has not swiped enough - snaps image back to its original position!
@@ -96,56 +137,62 @@ export default class ShowMovies extends React.Component {
                         friction: 4,
                         useNativeDriver: true
                     }).start()
-
                 }
-                
-
-            }
-            
+            }  
         })
     }
 
-    // handleSubmit(genreId) {
-    //     axios.post(`http://localhost:8080/movies`, genreId)
-    //     .then(res => {
-    //       this.setState({genreId})
-    //       // this.populateSelectedGenres()
-    //       console.log("id from handleSubmit: ", genreId)
-    //     //   const { navigate } = this.props.navigation;
-    //       populateSelectedGenres();
-    //     //   this.props.navigation.navigate('ShowMovies', { otherParam: genreId})
-      
-    //     })
-    //   }
-    
-    // populateSelectedGenres() {
-    //     axios.get(`http://localhost:8080/movies`)
-    //     .then(res => {
-    //       const moviePosters = res.data;
-    //       this.setState({ moviePosters })
-    //       console.log("its working!.......", moviePosters)
-    //     })
-    //   }  
-
-
-    // handleSubmit()
     renderPosters = () => {
+        const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
         // const { moviePosters } = this.state; 
         const { posters } = this.state;
+        const { titles } = this.state;
+        
+        // console.log(titles)
+        // console.log(titles[0])
         // const { moviePosters}  = this.state;
-
             return posters.map((poster, index) => {
+               
                 if (index < this.state.currentIndex) {
+                    // var index = index - 1
+                    // console.log("poster", poster.props.source.uri)
+                    // let index = index -1
+                    // console.log("movie poster: ", poster.source.uri, "at index: ", index)
+                   
                     return null
                 } else if (index == this.state.currentIndex) {
-                    console.log("poster:", poster.props.source.uri)
+                    // console.log("poster props ", poster.props.source.uri)
+                    // console.log(poster)
+                    this.state.newPoster = "else if" + poster.props.source.uri;
+                    let i;
+                    console.log("posters[i]", posters[i])
+                    // if (posters[i] == poster) {
+                    //     this.state.newPoster == posters[i] - 1
+                    //     console.log("new poster", this.state.newPoster)
+                    // }
+                    // console.log(posters[])
+                    // this.setState({ newPoster: poster.props.source.uri });
+                    
+                    // this.state.newTitle = title;
+                    // let index = index -1;
+                    // console.log(posters[2].props.source.uri)
+                    console.log("new poster", this.state.newPoster)
+                    // console.log("new title", this.state.newTitle)
+                    // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
                     return (
+                       
+
+                       
                         <Animated.View 
+                        
                                 {...this.PanResponder.panHandlers}
                                 // {transform: this.position.getTranslateTransform()}
                                 style={[this.rotateAndTranslate, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
+                            
                            <View>{poster}</View>
-
+                           {/* {title} */}
+                          
+                           
                             <Animated.View style={{opacity: this.likeOpacity ,transform: [{rotate: '-30deg'}], position: 'absolute', top: 50, left: 40, zIndex: 1000}}>
                                 <Text 
                                     style={{borderWidth: 1, 
@@ -165,19 +212,173 @@ export default class ShowMovies extends React.Component {
                                     fontWeight: '800',
                                     padding: 10}}>NOPE</Text>
                             </Animated.View>
+                            {/* <Text style={{backgroundColor: 'black', color: 'white'}}>{title}</Text> */}
+                            {/* <Text>{titles}</Text> */}
+                            {/* {title} */}
+                            {/* {titles} */}
+
+                        {/* <AnimatedPressable onPress={() => alert('test on press')}>     */}
+                        {/* <Text>show more</Text> */}
+                            {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
+                        {/* </AnimatedPressable> */}
                         </Animated.View>
                     )
                 }
                 else {
-                    
                     return (
                         <Animated.View 
                         style={[ { opacity: this.nextCardOpacity, transform: [{scale: this.nextCardScale}], height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
                         <View>{poster}</View>
+                        {/* <Text>{title}</Text> */}
                         </Animated.View>
                     )
-                   
+                }
+            }).reverse()
+                  
+    }
 
+
+    // renderTitles() {
+    //     let title = titles.map((title, index) => {
+    //         return (
+    //             <Text>{title}</Text>
+    //         )
+    //     })
+    // }
+
+    renderTitles = () => {
+        const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+        // const { moviePosters } = this.state; 
+        // const { posters } = this.state;
+        const { titles } = this.state;
+        // console.log(titles)
+        // console.log(titles[0])
+        // const { moviePosters}  = this.state;
+            return titles.map((title, index) => {
+               
+                if (index < this.state.currentIndex) {
+                    console.log("if current index", this.state.currentIndex)
+                    // var index = index - 1
+                    // console.log("poster", poster.props.source.uri)
+                    // let index = index -1
+                    // console.log("movie poster: ", poster.source.uri, "at index: ", index)
+                   
+                    return null
+                } else if (index == this.state.currentIndex) {
+                    console.log("title", title.props.children);
+                    let currentTitle = title.props.children;
+                    console.log(currentTitle)
+                    // this.setState({ currentTitle: title.props.children})
+                    console.log(this.state.currentTitle)
+                    // this.state.newPoster = poster.props.source.uri;
+                    // this.state.newTitle = title.props.
+                    // this.state.newTitle = title;
+                    // let index = index -1;
+                    // console.log(posters[2].props.source.uri)
+                    // console.log("new poster", this.state.newPoster)
+                    // console.log("new title", this.state.newTitle)
+                    // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
+                    return (
+                       
+                        <View
+                        style={{position: 'absolute', marginVertical: 720}}>
+                           <Text
+                                style={{
+                                    backgroundColor: 'black',
+                                    color: 'white',   
+                                }}>{title}</Text>
+
+                        <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>    
+
+                        {/* <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>     */}
+                        <Text>show more</Text>
+                            {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
+                        </AnimatedPressable>
+                        </View>
+                    )
+                }
+                else {
+                    return (
+                        <View
+                        style={ { position: 'absolute', }}>
+                        
+                        <Text style={{
+                            color: 'yellow',
+                            opacity: 0
+                        }}>{title}</Text>
+                        {/* <Text>{title}</Text> */}
+                        </View>
+                    )
+                }
+            }).reverse()
+                  
+    }
+
+    renderEverything = () => {
+        const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+        // const { moviePosters } = this.state; 
+        // const { posters } = this.state;
+        const { everything } = this.state;
+        // console.log(titles)
+        // console.log(titles[0])
+        // const { moviePosters}  = this.state;
+            return everything.map((details, index) => {
+               
+                if (index < this.state.currentIndex) {
+                    console.log("if current index", this.state.currentIndex)
+                    // var index = index - 1
+                    // console.log("poster", poster.props.source.uri)
+                    // let index = index -1
+                    // console.log("movie poster: ", poster.source.uri, "at index: ", index)
+                   
+                    return null
+                } else if (index == this.state.currentIndex) {
+                    // console.log("else if", everything)
+                    // console.log("everything", everything[0].props.children._owner.tag);
+                    // console.log("everything", everything[0].props.children.props.children._owner.tag);
+                    // let currentEverything = everything.props.children;
+                    // console.log(currentEverything)
+                    // this.setState({ currentTitle: title.props.children})
+                    // console.log(this.state.currentEverything)
+                    // this.state.newPoster = poster.props.source.uri;
+                    // this.state.newTitle = title.props.
+                    // this.state.newTitle = title;
+                    // let index = index -1;
+                    // console.log(posters[2].props.source.uri)
+                    // console.log("new poster", this.state.newPoster)
+                    // console.log("new title", this.state.newTitle)
+                    // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
+                    return (
+                       
+                        <View
+                        style={{position: 'absolute', marginVertical: 720}}>
+                           <Text
+                                style={{
+                                    backgroundColor: 'black',
+                                    color: 'white',   
+                                }}>{details}</Text>
+
+                        <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>    
+
+                        {/* <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>     */}
+                        <Text>show more</Text>
+                            {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
+                        </AnimatedPressable>
+                        </View>
+                    )
+                }
+                else {
+                    return (
+                        <View
+                        style={ { position: 'absolute', }}>
+                        
+                        <Text style={{
+                            color: 'yellow',
+                            opacity: 0
+                        }}>{details}</Text>
+                        {/* <Text>{title}</Text> */}
+                        </View>
+                    )
                 }
             }).reverse()
                   
@@ -187,10 +388,14 @@ export default class ShowMovies extends React.Component {
         // const { posters } = this.state;
         return (
             <View style={{ flex: 1 }}>
+            <Text style={{color: 'red'}}>Disliked: {this.state.dislikedMovies}</Text>
+            <Text style={{color: 'green'}}>Liked: {this.state.likedMovies}</Text>
             <View style={{height: 60}}>
             </View>
-            <View style={{ flex: 1, position: 'absolute'}}>
+            <View style={styles.card}>
                 {this.renderPosters()}
+                {this.renderTitles()}
+                {/* {this.renderEverything()} */}
                 {/* {posters} */}
                 {/* <Animated.View 
                 {...this.PanResponder.panHandlers}
@@ -198,85 +403,24 @@ export default class ShowMovies extends React.Component {
                    <View>{posters}</View>
                 </Animated.View> */}
             </View>
+           
             <View style={{height: 60}}>
+                {/* {this.state.titles} */}
+               
   
             </View>
+           
+            
         </View>
         )
     }
 }  
-// const ShowMovies = ({ route, navigation }) => {
 
-//     const SCREEN_HEIGHT = Dimensions.get('window').height;
-//     const SCREEN_WIDTH = Dimensions.get('window').width;
-    
-//     const handleSubmit = (genreId) => {
-//         axios.post(`http://localhost:8080/movies`, genreId)
-//         .then(res => {
-//           this.setState({genreId})
-//           // this.populateSelectedGenres()
-//           console.log("id from handleSubmit: ", genreId)
-//           const { navigate } = this.props.navigation;
-//           populateSelectedGenres();
-//         //   this.props.navigation.navigate('ShowMovies', { otherParam: genreId})
-      
-//         })
-//       }
-    
-//     const populateSelectedGenres = () => {
-//         axios.get(`http://localhost:8080/movies`)
-//         .then(res => {
-//           const moviePosters = res.data;
-//           this.setState({ moviePosters })
-//           console.log("its working!")
-//         })
-//       }  
-      
-//      componentWillMount = () => {
-//           this.PanResponder = PanResponder.create({
-//               onStartShouldSetPanResponder:(evt, gestureState) => true,
-//               onPanResponderMove:(evt, gestureState) => {
+const styles = StyleSheet.create({
+    card: {
+        flex: 1, 
+        position: 'absolute', 
+        marginTop: 30
+    }
 
-//               },
-//               onPanResponderRelease:(evt, gestureState) => {
-
-//               }
-//           })
-
-//       }
-
-
-//     handleSubmit()
-//     const { genreId } = route.params;
-//     const { posters } =route.params;
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//           <View style={{height: 60}}>
-
-//           </View>
-//           <View style={{ flex: 1}}>
-//               <Animated.View style={{height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15}}>
-//                  <View>{posters}</View>
-
-
-//               </Animated.View>
-
-
-//           </View>
-//           <View style={{height: 60}}>
-
-//           </View>
-//           <ScrollView>
-//             {/* <Text>Details Screen</Text>
-//             <Text>genreId: {genreId}</Text> */}
-//             {/* <View>{posters[0]}</View> */}
-//           </ScrollView>
-
-//       </View>
-//     );
-//   }
-
-//   export default ShowMovies;
-
-// const styles = StyleSheet.create({
-// })
+})

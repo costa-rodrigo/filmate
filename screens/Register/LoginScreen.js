@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Button, Text, StyleSheet, TextInput, Alert, TouchableOpacity } from 'react-native';
 import RegisterMessage from './RegisterMessage';
 import { RegisterData } from './data/RegisterData';
@@ -8,7 +8,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 // import FilmateLogo from '../../svgs/filmate-logo.svg';
 // import deviceStorage from './deviceStorage';
 import FilmateLogo from '../../svgs/FilmateLogo';
-
 const LoginScreen = (props) => {
     // state variables : userUsername, userPassword, loading, errorText
     const [userUsername, setUsername] = useState('');
@@ -31,15 +30,39 @@ const LoginScreen = (props) => {
         axios.post('http://192.168.0.20:3000/login', {
         // axios.post('http://localhost:3000/login', {
             name: userUsername,
-            password: userPassword
+            password: userPassword,
         })
         .then((response) => {
             // const { navigate } = props.navigation;
             const token = response.data.token;
-            console.log(response)
+            // console.log(response)
             if(response.status === 200) {
                 AsyncStorage.setItem("id_token", token);
+                AsyncStorage.getAllKeys((err, keys) => {
+                    AsyncStorage.multiGet(keys, (error, stores) => {
+                      stores.map((result, i, store) => {
+                        console.log("async", { [store[i][0]]: store[i][1] });
+                        return true;
+                      });
+                    });
+                  });
                 console.log("token:", token)
+                axios.get('http://192.168.0.20:3000/login'), {
+                    name: userUsername,
+                    password: userPassword
+                }, {
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                        // console.log(headers)
+                    }
+                }
+               console.log(response)
+               
+                // let headers = response.headers
+                // console.log("headers", headers, "Bearer: ", token )
+             
+
+                // console.log("headers", headers);
                 // console.log(response.data.token)
                 // props.navigation.replace('Screen1')
                 props.navigation.replace('Onboarding')
@@ -66,6 +89,7 @@ const LoginScreen = (props) => {
             // handle returned errors here
         })
     }
+
     return (
         <View style={styles.screen}>
             <FilmateLogo />
@@ -141,7 +165,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         padding: 10,
         borderRadius: 20,
-        marginHorizontal: 20
+        marginHorizontal: 20,
+        color: 'white'
     },
     inputWrapper: {
         marginTop: 30

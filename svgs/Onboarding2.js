@@ -133,7 +133,7 @@ export default function Onboarding2(props) {
 }
 
 const styles = StyleSheet.create({
-    onboardingImage: {
+    image: {
         justifyContent: 'center',
         alignItems: 'center'
     },
