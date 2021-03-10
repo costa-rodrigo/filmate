@@ -21,6 +21,7 @@ export default class GenreFilterScreen extends React.Component {
       genreId: '',
       backgroundColor: 'black',
       backgroundColor2: 'black',
+      allData: ''
       // pressed: false
     };
 
@@ -58,6 +59,7 @@ populateSelectedGenres = () => {
     let moviePosters = [];
     let movieTitles = [];
     let movieOverview = [];
+    let allData = [];
     // let movieOverview = [];
 
     for (let i = 0; i < movies.length; i++) {
@@ -66,8 +68,13 @@ populateSelectedGenres = () => {
       // console.log(poster)
       moviePosters.push(poster)
       this.setState({ moviePosters })
-      console.log(moviePosters)
+      // console.log(moviePosters)
       
+      // let everythingObject = {
+      //   title: movies[i].title, overview: movies[i].overview
+      // }
+      // console.log("everythingObj: ", everythingObject)
+      // this.setState({ allData: everythingObject })
       let title = movies[i].title;
       // console.log(title)
       movieTitles.push(title)
@@ -76,12 +83,34 @@ populateSelectedGenres = () => {
       let overview = movies[i].overview;
       movieOverview.push(overview);
       this.setState({ movieOverview })
-      console.log(movieOverview)
+      // console.log(movieOverview)
+
+      // let vote_average = movies[i].vote_average;
+
     }
+
+    for (let i = 0; i < movies.length; i++) {
+      let data = [movies[i].title, movies[i].overview, movies[i].vote_average]
+      allData.push(data)
+    //   let everythingObject = 
+    //   {
+    //     title: movies[i].title, overview: movies[i].overview
+    //   }
+    
+    //   allData.push(everythingObject)
+      
+      this.setState({ allData })
+      console.log(this.state.allData)
+
+    }
+    // console.log("everythingObj: ", this.state.allData[1].title)
+    // console.log("everythingObj: ", this.state.allData[1].overview)
+    // console.log("index 1: ", this.state.allData[1][0].title)
+    // console.log("arrayofarray: ", this.state.allData)
   })
 }
 
-handleSubmit(genreId, posters, titles, everything) {
+handleSubmit(genreId, posters, titles, everything, allData) {
   if (!genreId) {
     Alert.alert("please select a genre")
   } else {
@@ -93,7 +122,7 @@ handleSubmit(genreId, posters, titles, everything) {
     console.log("id from handleSubmit: ", genreId)
     // console.log("posters:", posters.uri)
     const { navigate } = this.props.navigation;
-    this.props.navigation.navigate('ShowMovies', { genreId: genreId, posters: posters, titles: titles, everything: everything})
+    this.props.navigation.navigate('ShowMovies', { genreId: genreId, posters: posters, titles: titles, everything: everything, allData: allData})
 
     
   })
@@ -135,7 +164,7 @@ render() {
   const posters = this.state.moviePosters.map((poster, index) => {
     return (
       <Image key={poster}source={{uri: poster}} alt='movie'
-      style={{  maxWidth: 400, height: '95%', borderRadius: 25 }}/>
+      style={{  maxWidth: 400, height: '85%', borderRadius: 25 }}/>
     )
   })
   const titles = this.state.movieTitles.map((title, index) => {
@@ -204,7 +233,7 @@ render() {
     )
   })
 
-  
+  const allData = this.state;
   const genreId = this.state.genreId;
   return (
     <View style={styles.screen}>
@@ -216,7 +245,7 @@ render() {
           {/* <Text>{overviews}</Text> */}
           {/* <Text>{everything}</Text> */}
         </View>
-        <MainButton title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything)}/>
+        <MainButton title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything, allData)}/>
         {/* <Button title="Next" onPress={() => this.handleSubmit(genreId, posters, titles, everything)}/> */}
         {/* <Text style={styles.color}>genre:{genreId}</Text> */}
       </ScrollView>

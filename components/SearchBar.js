@@ -21,6 +21,9 @@ export default class App extends React.Component {
         onChangeText={this.updateSearch}
         value={search}
       />
+      // <View>
+      //   <Text>Search Groups</Text>
+      // </View>
     );
   }
 }

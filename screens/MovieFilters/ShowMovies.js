@@ -1,7 +1,6 @@
 import React from 'react';
-import { Alert } from 'react-native';
-import { Text, View, Dimensions, Animated, PanResponder, Pressable, Button, StyleSheet, ScrollView } from 'react-native';
-
+import { Text, View, Dimensions, Alert, Animated, PanResponder, Button, StyleSheet, Modal, Pressable } from 'react-native';
+import Happy from '../../svgs/moods/Happy';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -14,17 +13,21 @@ export default class ShowMovies extends React.Component {
             posters: this.props.route.params.posters,
             titles: this.props.route.params.titles,
             everything: this.props.route.params.everything,
+            allData: this.props.route.params.allData,
             newPoster: '',
             currentTitle: '',
             currentEverything: '',
             currentIndex: 0,
+            currentOverview: '',
             // likedMovies: 0,
             // dislikedMovies: 0,
             // likedArray: [],
             resultsArray: [],
             liked: true,
-            disliked: false
+            disliked: false,
+            modalVisible: false
         };
+
         this.rotate = this.position.x.interpolate({
             // takes half of the screen width to the right and half to the left
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
@@ -68,8 +71,26 @@ export default class ShowMovies extends React.Component {
     }
 
     
-
+    setModalVisible = (visible) => {
+        this.setState({ modalVisible: visible });
+    }
     UNSAFE_componentWillMount() {
+        console.log("elephant", this.state.allData.allData)
+       
+        // console.log("elephant", this.state.allData.length())
+        // let i;
+        // for (i = 0; i < this.state.allData.length; i++) {
+        //     console.log("helpme", this.state.allData[i].title)
+        // }
+        // this.state.allData.forEach(myFunction);
+        // function myFunction(item, index) {
+        //     for (var key in item) {
+        //         console.log(item[key])
+        //     }
+        // }
+//         const result = this.state.allData.map(data => ({ title, overview }));
+// console.log(result)
+        // console.log("TESTING", this.state.allData)
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -95,7 +116,7 @@ export default class ShowMovies extends React.Component {
                         // console.log("all posters: ", this.state.posters[i])
                         this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
                         console.log("Results ", this.state.resultsArray)
-                        console.log("titles[0]", this.state.titles[0].props.children) 
+                        // console.log("titles[0]", this.state.titles[0].props.children) 
                         
                     })
                 }
@@ -209,125 +230,198 @@ export default class ShowMovies extends React.Component {
     }
 
 
-    renderTitles = () => {
-        const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-        // const { moviePosters } = this.state; 
-        // const { posters } = this.state;
-        const { titles } = this.state;
-        // console.log(titles)
-        // console.log(titles[0])
-        // const { moviePosters}  = this.state;
-            return titles.map((title, index) => {
+    // renderTitles = () => {
+    //     const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+    //     // const { moviePosters } = this.state; 
+    //     // const { posters } = this.state;
+    //     const { titles } = this.state;
+    //     // console.log(titles)
+    //     // console.log(titles[0])
+    //     // const { moviePosters}  = this.state;
+    //         return titles.map((title, index) => {
                
-                if (index < this.state.currentIndex) {
-                    console.log("if current index", this.state.currentIndex)
-                    // var index = index - 1
-                    // console.log("poster", poster.props.source.uri)
-                    // let index = index -1
-                    // console.log("movie poster: ", poster.source.uri, "at index: ", index)
+    //             if (index < this.state.currentIndex) {
+    //                 console.log("if current index", this.state.currentIndex)
+    //                 // var index = index - 1
+    //                 // console.log("poster", poster.props.source.uri)
+    //                 // let index = index -1
+    //                 // console.log("movie poster: ", poster.source.uri, "at index: ", index)
                    
-                    return null
-                } else if (index == this.state.currentIndex) {
-                    console.log("title", title.props.children);
-                    let currentTitle = title.props.children;
-                    console.log(currentTitle)
-                    // this.setState({ currentTitle: title.props.children})
-                    console.log(this.state.currentTitle)
-                    // this.state.newPoster = poster.props.source.uri;
-                    // this.state.newTitle = title.props.
-                    // this.state.newTitle = title;
-                    // let index = index -1;
-                    // console.log(posters[2].props.source.uri)
-                    // console.log("new poster", this.state.newPoster)
-                    // console.log("new title", this.state.newTitle)
-                    // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
-                    return (
+    //                 return null
+    //             } else if (index == this.state.currentIndex) {
+    //                 console.log("title", title.props.children);
+    //                 let currentTitle = title.props.children;
+    //                 console.log(currentTitle)
+    //                 // this.setState({ currentTitle: title.props.children})
+    //                 console.log(this.state.currentTitle)
+    //                 // this.state.newPoster = poster.props.source.uri;
+    //                 // this.state.newTitle = title.props.
+    //                 // this.state.newTitle = title;
+    //                 // let index = index -1;
+    //                 // console.log(posters[2].props.source.uri)
+    //                 // console.log("new poster", this.state.newPoster)
+    //                 // console.log("new title", this.state.newTitle)
+    //                 // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
+    //                 return (
                        
-                        <View
-                        style={{position: 'absolute', marginVertical: 720}}>
-                           <Text
-                                style={{
-                                    backgroundColor: 'black',
-                                    color: 'white',   
-                                }}>{title}</Text>
+    //                     <View
+    //                     style={{position: 'absolute', marginVertical: 720}}>
+    //                        <Text
+    //                             style={{
+    //                                 backgroundColor: 'black',
+    //                                 color: 'white',   
+    //                             }}>{title}</Text>
 
-                        <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>    
+    //                     <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>    
 
-                        {/* <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>     */}
-                        <Text>show more</Text>
-                            {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
-                        </AnimatedPressable>
-                        </View>
-                    )
-                }
-                else {
-                    return (
-                        <View
-                        style={ { position: 'absolute', }}>
+    //                     {/* <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>     */}
+    //                     <Text>show more</Text>
+    //                         {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
+    //                     </AnimatedPressable>
+    //                     </View>
+    //                 )
+    //             }
+    //             else {
+    //                 return (
+    //                     <View
+    //                     style={ { position: 'absolute', }}>
                         
-                        <Text style={{
-                            color: 'yellow',
-                            opacity: 0
-                        }}>{title}</Text>
-                        {/* <Text>{title}</Text> */}
-                        </View>
-                    )
-                }
-            }).reverse()
+    //                     <Text style={{
+    //                         color: 'yellow',
+    //                         opacity: 0
+    //                     }}>{title}</Text>
+    //                     {/* <Text>{title}</Text> */}
+    //                     </View>
+    //                 )
+    //             }
+    //         }).reverse()
                   
-    }
+    // }
+
+    // renderEverything = () => {
+    //     const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+    //     // const { moviePosters } = this.state; 
+    //     // const { posters } = this.state;
+    //     const { everything } = this.state;
+    //     // console.log(titles)
+    //     // console.log(titles[0])
+    //     // const { moviePosters}  = this.state;
+    //         return everything.map((details, index) => {
+               
+    //             if (index < this.state.currentIndex) {
+    //                 console.log("if current index", this.state.currentIndex)
+                    
+    //                 // var index = index - 1
+    //                 // console.log("poster", poster.props.source.uri)
+    //                 // let index = index -1
+    //                 // console.log("movie poster: ", poster.source.uri, "at index: ", index)
+                   
+    //                 return null
+    //             } else if (index == this.state.currentIndex) {
+    //                 console.log("details: ", this.state.everything)
+                    
+    //                 // console.log("else if", everything)
+    //                 // console.log("everything", everything[0].props.children._owner.tag);
+    //                 // console.log("everything", everything[0].props.children.props.children._owner.tag);
+    //                 // let currentEverything = everything.props.children;
+    //                 // console.log(currentEverything)
+    //                 // this.setState({ currentTitle: title.props.children})
+    //                 // console.log(this.state.currentEverything)
+    //                 // this.state.newPoster = poster.props.source.uri;
+    //                 // this.state.newTitle = title.props.
+    //                 // this.state.newTitle = title;
+    //                 // let index = index -1;
+    //                 // console.log(posters[2].props.source.uri)
+    //                 // console.log("new poster", this.state.newPoster)
+    //                 // console.log("new title", this.state.newTitle)
+    //                 // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
+    //                 return (
+                       
+    //                     <View
+    //                     style={{position: 'absolute', marginVertical: 720}}>
+    //                        <Text
+    //                             style={{
+    //                                 backgroundColor: 'black',
+    //                                 color: 'white',   
+    //                             }}>{details}</Text>
+
+    //                     <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>    
+
+    //                     {/* <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>     */}
+    //                     <Text>show more</Text>
+    //                         {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
+    //                     </AnimatedPressable>
+    //                     </View>
+    //                 )
+    //             }
+    //             else {
+    //                 return (
+    //                     <View
+    //                     style={ { position: 'absolute', }}>
+                        
+    //                     <Text style={{
+    //                         color: 'yellow',
+    //                         opacity: 0
+    //                     }}>{details}</Text>
+    //                     {/* <Text>{title}</Text> */}
+    //                     </View>
+    //                 )
+    //             }
+    //         }).reverse()
+                  
+    // }
 
     renderEverything = () => {
+        const { modalVisible } = this.state;
+
         const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-        // const { moviePosters } = this.state; 
-        // const { posters } = this.state;
-        const { everything } = this.state;
-        // console.log(titles)
-        // console.log(titles[0])
-        // const { moviePosters}  = this.state;
-            return everything.map((details, index) => {
-               
+      
+        const { allData } = this.state;
+       
+            return allData.allData.map((details, index) => {
                 if (index < this.state.currentIndex) {
                     console.log("if current index", this.state.currentIndex)
-                    // var index = index - 1
-                    // console.log("poster", poster.props.source.uri)
-                    // let index = index -1
-                    // console.log("movie poster: ", poster.source.uri, "at index: ", index)
-                   
                     return null
                 } else if (index == this.state.currentIndex) {
-                    // console.log("else if", everything)
-                    // console.log("everything", everything[0].props.children._owner.tag);
-                    // console.log("everything", everything[0].props.children.props.children._owner.tag);
-                    // let currentEverything = everything.props.children;
-                    // console.log(currentEverything)
-                    // this.setState({ currentTitle: title.props.children})
-                    // console.log(this.state.currentEverything)
-                    // this.state.newPoster = poster.props.source.uri;
-                    // this.state.newTitle = title.props.
-                    // this.state.newTitle = title;
-                    // let index = index -1;
-                    // console.log(posters[2].props.source.uri)
-                    // console.log("new poster", this.state.newPoster)
-                    // console.log("new title", this.state.newTitle)
-                    // console.log("key:", parseInt(poster.key) + -1, poster.props.source.uri)
+                    console.log("detailsDATA: ", details)
+                    
+                
                     return (
-                       
-                        <View
-                        style={{position: 'absolute', marginVertical: 720}}>
-                           <Text
-                                style={{
-                                    backgroundColor: 'black',
-                                    color: 'white',   
-                                }}>{details}</Text>
-
-                        <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>    
-
-                        {/* <AnimatedPressable onPress={() => alert( `${currentTitle}`)}>     */}
-                        <Text>show more</Text>
-                            {/* <Button title="see details" onPress={()=>alert('test')} style={{position: 'absolute'}}/> */}
-                        </AnimatedPressable>
-                        </View>
+                        <View style={{position: 'absolute', marginVertical: 550}}>
+                                <View style={styles.centeredView}>
+                                <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20}}>{details[0]}</Text>
+                                <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20}}>IMDb {details[2]}/10</Text>
+                                    <Modal
+                                    animationType="slide"
+                                    transparent={true}
+                                    visible={modalVisible}
+                                    onRequestClose={() => {
+                                        Alert.alert("Modal has been closed.");
+                                        this.setModalVisible(!modalVisible);
+                                    }}
+                                    >
+                                    <View style={styles.centeredView}>
+                                        <View style={styles.modalView}>
+                                        <Text style={styles.modalText}>{details[0]}</Text>
+                                        <Text style={styles.modalText}>{details[1]}</Text>
+                                        
+                                        <Pressable
+                                            style={[styles.button, styles.buttonClose]}
+                                            onPress={() => this.setModalVisible(!modalVisible)}
+                                        >
+                                            <Text style={styles.textStyle}>Done</Text>
+                                        </Pressable>
+                                        </View>
+                                    </View>
+                                    </Modal>
+                                    <Pressable
+                                    style={[styles.button, styles.buttonOpen]}
+                                    onPress={() => this.setModalVisible(true)}
+                                    >
+                                    <Text style={styles.textStyle}>Show Details</Text>
+                                    </Pressable>
+                                </View>
+                            </View>   
                     )
                 }
                 else {
@@ -338,7 +432,7 @@ export default class ShowMovies extends React.Component {
                         <Text style={{
                             color: 'yellow',
                             opacity: 0
-                        }}>{details}</Text>
+                        }}>{details[0]}</Text>
                         {/* <Text>{title}</Text> */}
                         </View>
                     )
@@ -349,17 +443,20 @@ export default class ShowMovies extends React.Component {
 
     render() {
         // const { posters } = this.state;
+        // const { allData } = this.state;
         return (
-            <View style={{ flex: 1 }}>
+            <View style={styles.screen}>
+             {/* <View style={{ flex: 1 }}> */}
             {/* <Text style={{color: 'red'}}>Disliked: {this.state.dislikedMovies}</Text>
             <Text style={{color: 'green'}}>Liked: {this.state.likedMovies}</Text> */}
             <View style={{height: 60}}>
             </View>
             <View style={styles.card}>
                 {this.renderPosters()}
-                {this.renderTitles()}
-                {/* {this.renderEverything()} */}
+                {/* {this.renderTitles()} */}
+                {this.renderEverything()}
                 {/* {posters} */}
+                
                 {/* <Animated.View 
                 {...this.PanResponder.panHandlers}
                 style={[{transform: this.position.getTranslateTransform()}, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15}]}>
@@ -380,10 +477,55 @@ export default class ShowMovies extends React.Component {
 }  
 
 const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        backgroundColor: '#0A0A0A'
+    },
     card: {
         flex: 1, 
         position: 'absolute', 
-        marginTop: 30
-    }
+        // marginTop: 30
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+      },
+      modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+      },
+      button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+      },
+      buttonOpen: {
+        backgroundColor: "#F194FF",
+      },
+      buttonClose: {
+        backgroundColor: "#2196F3",
+      },
+      textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+      }
 
 })

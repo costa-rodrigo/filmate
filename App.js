@@ -38,7 +38,9 @@ function App({ navigation }) {
           barStyle="light-content"
           backgroundColor="#4F6D7A"
         />
-      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '' }, 
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '#0A0A0A', shadowRadius: 0, shadowOffset: {
+            height: 0
+          } }, 
                        headerTitleStyle: { fontWeight: 'bold' }}}>
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: '', headerStyle: {
           backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
@@ -89,7 +91,7 @@ function App({ navigation }) {
         <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerTitle: 'Edit Profile', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="RequestScreen" component={RequestScreen} options={{ headerTitle: 'Request Screen', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="TellFriendScreen" component={TellFriendScreen} options={{ headerTitle: 'Tell Friends Screen', headerBackTitle: 'Back' }}/> 
-        <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: 'Show Movies', headerBackTitle: 'Back' }}/> 
+        <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: 'Group Created', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: 'navigation', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: 'Add Friends', headerBackTitle: 'Back' }}/> 

@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       platformButton: {
-        width: 200,
+        minWidth: 175,
+        maxWidth: 200,
         borderWidth: 1,
         borderRadius: 20,
         paddingHorizontal: 30,
