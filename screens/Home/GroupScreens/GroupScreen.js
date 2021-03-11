@@ -22,7 +22,6 @@ const GroupScreen = props => {
                 backgroundColor="#4F6D7A"
                 /> */}
             <View style={styles.user_info}>
-                <Image style={styles.image} source={require('../../Onboarding/images/moodImage.jpg')} />
                 <Text style={{color: 'white'}}>User Name</Text>
             </View>
             <View style={styles.button}>

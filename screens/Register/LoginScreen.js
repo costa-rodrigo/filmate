@@ -31,10 +31,12 @@ const LoginScreen = (props) => {
         .then((response) => {
             const token = response.data.token;
             if(response.status === 200) {
+                // AsyncStorage.removeItem("username");
                 AsyncStorage.setItem("id_token", token);
                 AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
+                          console.log(store)
                         // console.log("async", { [store[i][0]]: store[i][1] });
                         return true;
                       });

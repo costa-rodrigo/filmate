@@ -6,7 +6,7 @@ import NoFriends from '../FriendScreens/NoFriends';
 import MainButton from '../../../components/MainButton';
 import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/OptionsButton';
-
+import ProfileImage from '../../../svgs/ProfileImage';
 // checkbox article:
 // https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
 class FriendScreen extends React.Component {
@@ -18,14 +18,26 @@ class FriendScreen extends React.Component {
           friendsArray: [], 
           noFriends: true, 
           selectedFriends: [],
+          change: 0,
+         
         
       }
-      this.selectionOnPress = this.selectionOnPress.bind(this);
+    //   this.selectionOnPress = this.selectionOnPress.bind(this);
       this.handleToken = this.handleToken.bind(this);
       this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.forceUpdate = this.forceUpdate.bind(this);
+    }
+    handleChange() {
+        this.componentDidMount()
+    }
+
+    forceUpdate() {
+        this.componentDidMount()
     }
 
     componentDidMount() {
+        this.setState({});
         console.log(this.state.noFriends)
         // console.log("get token")
         return new Promise ( async (resolve, reject) => {
@@ -33,7 +45,7 @@ class FriendScreen extends React.Component {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                        //   console.log(store)
+                          console.log("store", store)
                         let token = "Bearer " + store[0][1];
                         // setToken(token)
                         this.setState({ token })
@@ -51,11 +63,31 @@ class FriendScreen extends React.Component {
 
     }
 
-    selectionOnPress(friend) {
-        // let friendName = friend;
-        // console.log('friend', friendName)
-        // this.setState({ friendName })
-    }
+    componentDidUpdate(prevProps) {
+        // this.setState({ change })
+        console.log(prevProps)
+        if(this.state.friendsArray.length > 0) {
+           console.log("checked array length")
+        }
+        // console.log("prev", this.state.friendsArray.length)
+        // if (this.props.id !== prevProps.id) {
+        //   let data = axios
+        //   .get("https://jsonplaceholder.typicode.com/todos/" + this.props.id)
+        //   .then(function(response) {
+        //     return response;
+        //   })
+        //   .catch(function(error) {
+        //     console.log(error);
+        //   });
+        //   this.setState({ todo: data.data });
+    //     }
+      }
+
+    // selectionOnPress(friend) {
+    //     // let friendName = friend;
+    //     // console.log('friend', friendName)
+    //     // this.setState({ friendName })
+    // }
 
 
     handleToken  = async (token) => {
@@ -71,7 +103,7 @@ class FriendScreen extends React.Component {
             } else {
                 this.setState({ noFriends: true })
             }
-            // console.log("friends", friends) 
+            console.log("friends", friends) 
             // console.log(this.state.noFriends)
     
             let allFriends = [];
@@ -109,9 +141,11 @@ class FriendScreen extends React.Component {
        };
 
     render() {
-        const { buttonPressed } = this.state;
+      
+        // const { buttonPressed } = this.state;
 
         const usersFriends = this.state.friendsArray.map((friend, index) => {
+            // this.componentDidMount()
             return (
                 <View>
                      <View
@@ -119,14 +153,23 @@ class FriendScreen extends React.Component {
                         style={styles.friendContainer}
                         onPress={() => this.friendPressed(friend) && this.setState({ buttonPressed: !this.state.buttonPressed })}
                         >
+                        <View style={styles.fullGrid}>
+
+                       
                         <View style={styles.friendGrid}>
+                            <ProfileImage style={{marginBottom: 40}}/>
                             <Text style={styles.friendText}>{friend}</Text>
-                            <TouchableOpacity 
+                        </View>
+                        <View>
+                        <TouchableOpacity 
                                 onPress={() => this.RBSheet.open()} 
                                 style={{ width: 30, height: 30, borderRadius: '50%'}}>
                                 <OptionsButton />
                             </TouchableOpacity>
                         </View>
+                        </View>
+                           
+                        
                 </View>
                 </View>
                
@@ -134,7 +177,7 @@ class FriendScreen extends React.Component {
         })
 
         const noFriends = this.state.noFriends;
-
+        
         return (
             <ScrollView style={styles.screen}>
                 <Button onPress={this.forceUpdateHandler} title="refresh"/>
@@ -153,7 +196,6 @@ class FriendScreen extends React.Component {
                         this.props.navigation.navigate('AddFriends')}} />
             </View>
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                {/* <Button title="OPEN BOTTOM SHEET" onPress={() => this.RBSheet.open()} /> */}
                 <RBSheet
                     ref={ref => {
                         this.RBSheet = ref;
@@ -167,11 +209,12 @@ class FriendScreen extends React.Component {
                             backgroundColor: '#242424'
                         },
                         draggableIcon: {
-                        backgroundColor: "#000"
+                        backgroundColor: "white"
                         }
                     }}
                     >
-                    <Text>Remove friend</Text>
+                    <Text style={styles.options}>Friend Options</Text>
+                    <Text style={{color: 'white'}}>Remove friend</Text>
                 </RBSheet>
             </View>
             </ScrollView>
@@ -204,11 +247,22 @@ const styles = StyleSheet.create({
         height: 70
     },
     friendText: {
-        color: 'white'
+        color: 'white',
+        marginLeft: 15,
+        marginBottom: 5
     },
     friendGrid: {
         flexDirection: 'row',
-        justifyContent: 'space-between' 
+        alignItems: 'center',
+    },
+    fullGrid: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    options: {
+        textAlign: 'center',
+        color: 'white',
+        marginTop: 10
     }
 });
 

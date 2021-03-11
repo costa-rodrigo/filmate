@@ -31,6 +31,7 @@ export default class CreateGroup extends React.Component {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
                         //   console.log(store)
+                        // let token = "Bearer " + store[0][1];
                         let token = "Bearer " + store[0][1];
                         // setToken(token)
                         this.setState({ token })

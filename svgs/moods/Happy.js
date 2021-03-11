@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View } from 'react-native';
 import Svg, { G, Path, Circle } from 'react-native-svg';
 
 export default function Happy() {
     return (
-        <View style={styles.image}>
+        <View>
          <Svg xmlns="http://www.w3.org/2000/svg" width="64.137" height="62.863" viewBox="0 0 64.137 62.863">
             <G id="Group_1153" data-name="Group 1153" transform="translate(-123.007 -71.04)">
                 <Path id="Path_158" data-name="Path 158" d="M165.876,100.5a1.844,1.844,0,0,0-2.175-.254,17.595,17.595,0,0,1-16.185-.009,1.835,1.835,0,0,0-2.168.263h0a1.483,1.483,0,0,0,.32,2.388,21.231,21.231,0,0,0,19.891,0,1.485,1.485,0,0,0,.317-2.392Z" transform="translate(-0.159)" fill="#fff"/>
@@ -17,13 +17,6 @@ export default function Happy() {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    image: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-});
 
 
 

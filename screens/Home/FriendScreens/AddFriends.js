@@ -9,6 +9,7 @@ const AddFriends = props => {
     const [friendEmail, setFriendEmail] = useState('');
     const [errorText, setErrorText] = useState('');
     const [token, setToken] = useState('');
+    
 
 
     const { navigate } = props.navigation;
@@ -30,11 +31,10 @@ const AddFriends = props => {
                             let token = "Bearer " + store[0][1];
                             setToken(token)
                             console.log("token from handlesubmit", token)
-                            // setFriendEmail(friendEmail)
+                            setFriendEmail(friendEmail)
                             // console.log(friendEmail)
                             resolve(storage)
                             handleToken(token)
-                            
                             return token;
                           });
                         });
@@ -63,9 +63,7 @@ const AddFriends = props => {
             navigate('FriendsInvited')
         })
         .catch((error) => {
-            // console.error(error)
             console.log("catch error")
-            // console.log('something went wrong...')
 
         })
        }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/Register/LoginScreen';
@@ -24,14 +24,17 @@ import HomeNavigator from './navigation/HomeNavigator';
 import NoFriends from './screens/Home/FriendScreens/NoFriends';
 import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
 import { StatusBar } from 'react-native';
-import { TouchableOpacity } from 'react-native';
 import ProfileImage from './svgs/ProfileImage';
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
 
 const Stack = createStackNavigator();
 
-function App({ navigation }) {
+const App = props => {
+  console.log(props)
+  // const { navigate } = props.navigation;
+// function App({ props }) {
+  // const { navigate } = props.navigation;
   return (
     <NavigationContainer>
       <StatusBar
@@ -72,13 +75,13 @@ function App({ navigation }) {
         <Stack.Screen 
           name="Home" 
           component={HomeNavigator} 
-          options={{headerLeft: ({ props }) =>  
-            // <TouchableOpacity navigation={navigation} onPress={() => {
-            //   props.navigation.navigate('ProfileScreen')
-            // }}>
-            <ProfileImage />
-              // <Image style={styles.image} source={require('./screens/Onboarding/images/moodImage.jpg')} />
-            // </TouchableOpacity>
+          options={{headerLeft: ({ navigation }) =>  
+            <TouchableOpacity  onPress={() => {
+              alert('This is a button!')
+              // props.navigate('ProfileScreen')
+            }}>
+            <ProfileImage/>
+            </TouchableOpacity>
            
           , 
           headerTitle: '', headerStyle: {
