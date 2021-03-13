@@ -1,7 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-// import FilmateLogo from '../../svgs/filmate-logo.svg';
-// import Svg, { Circle, Rect, G, Path } from 'react-native-svg';
 
 const RegisterMessage = props => {
     return (

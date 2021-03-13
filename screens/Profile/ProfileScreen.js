@@ -15,9 +15,9 @@ const ProfileScreen = props => {
                 <Button title="Edit profile" onPress={() => {
                     props.navigation.navigate('EditProfile')
                 }} />
-                 <Button title="Requests" onPress={() => {
+                 {/* <Button title="Requests" onPress={() => {
                     props.navigation.navigate('RequestScreen')
-                }} />
+                }} /> */}
             </View>
         </View>
     )

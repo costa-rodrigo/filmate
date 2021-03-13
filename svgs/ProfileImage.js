@@ -4,7 +4,7 @@ import Svg, { Path, G, Circle } from 'react-native-svg';
 
 export default function ProfileImage() {
     return (
-        <View style={styles.image}>
+        <View>
           <Svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54">
             <G id="Group_1143" data-name="Group 1143" transform="translate(-53 -905)">
                 <G id="Group_1096" data-name="Group 1096" transform="translate(-6316 14804)">
@@ -27,12 +27,4 @@ export default function ProfileImage() {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    image: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-});
-
 

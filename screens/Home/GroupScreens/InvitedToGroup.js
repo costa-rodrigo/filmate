@@ -10,7 +10,7 @@ const InvitedToGroup = props => {
             <Text style={styles.title}>Friends invited to group!</Text>
             <Text style={styles.description}>Your friends will join your group after they accept the invitation.</Text>
             <MainButton title="Back to home"  onPress={() => {
-                    props.navigation.navigate('Home')
+                    props.navigation.navigate('GroupScreen')
                 }} />
         </View>
     )

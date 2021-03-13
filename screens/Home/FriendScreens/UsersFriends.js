@@ -8,10 +8,10 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/OptionsButton';
 import ProfileImage from '../../../svgs/ProfileImage';
 import GroupTabButton from '../GroupTabButton';
-import UsersFriends from './UsersFriends';
+
 // checkbox article:
 // https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
-class FriendScreen extends React.Component {
+class UsersFriends extends React.Component {
     constructor(props) {
       super(props);
       this.state={
@@ -32,9 +32,9 @@ class FriendScreen extends React.Component {
         this.componentDidMount()
     }
 
-    // forceUpdate() {
-    //     this.componentDidMount()
-    // }
+    forceUpdate() {
+        this.componentDidMount()
+    }
 
     componentDidMount() {
         this.setState({});
@@ -178,13 +178,13 @@ class FriendScreen extends React.Component {
         
         return (
             <ScrollView style={styles.screen}>
-            <View style={styles.user_grid}>             
+            {/* <View style={styles.user_grid}>             
                 <View style={styles.user_info}>
                     <ProfileImage />
                     <View>
                         <Text style={{color: 'white'}}> 👋</Text>
                         <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('ProfileScreen')
+                            navigation.navigate('ProfileScreen')
                         }}>
                             <Text style={{color: '#f03349'}}>View profile</Text>
                         </TouchableOpacity>
@@ -193,25 +193,25 @@ class FriendScreen extends React.Component {
                 <GroupTabButton onPress={() => {
                         this.props.navigation.replace('GroupScreen')
                     }} />
-            </View>
-            <Button onPress={this.forceUpdateHandler} title="refresh"/>
-            <View style={styles.screen}>
-            </View>
+            </View> */}
+            {/* <Button onPress={this.forceUpdateHandler} title="refresh"/> */}
+            {/* <View style={styles.screen}>
+            </View> */}
 
             <View>
-                {noFriends == true ? (
+                {[usersFriends]}
+                {/* {noFriends == true ? (
                     <NoFriends navigation={this.props.navigation} noFriends={this.state.noFriends}/>
                 ) : (
                     [usersFriends]
-                    // <UsersFriends />
                 )
-            }
+            } */}
             </View>
-            <View style={{height: 150}}>
+            {/* <View style={{height: 150}}>
                 <MainButton title="Add Friends" onPress={() => {
                         this.props.navigation.navigate('AddFriends')}} />
-            </View>
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            </View> */}
+            {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                 <RBSheet
                     ref={ref => {
                         this.RBSheet = ref;
@@ -232,7 +232,7 @@ class FriendScreen extends React.Component {
                     <Text style={styles.options}>Friend Options</Text>
                     <Text style={{color: 'white'}}>Remove friend</Text>
                 </RBSheet>
-            </View>
+            </View> */}
             </ScrollView>
         )
     }
@@ -289,4 +289,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default FriendScreen;
+export default UsersFriends;

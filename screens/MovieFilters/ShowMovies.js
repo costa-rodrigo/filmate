@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, View, Dimensions, Alert, Animated, PanResponder, Button, StyleSheet, Modal, Pressable } from 'react-native';
-import Happy from '../../svgs/moods/Happy';
+import Heart from '../../svgs/swipe/Heart';
+import ThumbsDown from '../../svgs/swipe/ThumbsDown';
+import Star from '../../svgs/swipe/Star';
+
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -140,22 +143,24 @@ export default class ShowMovies extends React.Component {
                             style={[this.rotateAndTranslate, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
                            <View>{poster}</View>
                             <Animated.View style={{opacity: this.likeOpacity ,transform: [{rotate: '-30deg'}], position: 'absolute', top: 50, left: 40, zIndex: 1000}}>
-                                <Text 
+                                {/* <Text 
                                     style={{borderWidth: 1, 
                                     borderColor: 'green',
                                     color: 'green',
                                     fontSize: 32,
                                     fontWeight: '800',
-                                    padding: 10}}>LIKE</Text>
+                                    padding: 10}}>LIKE</Text> */}
+                                    <Heart />
                             </Animated.View>
                             <Animated.View style={{opacity: this.dislikeOpacity, transform: [{rotate: '30deg'}], position: 'absolute', top: 50, right: 40, zIndex: 1000}}>
-                                <Text 
+                                {/* <Text 
                                     style={{borderWidth: 1, 
                                     borderColor: 'red',
                                     color: 'red',
                                     fontSize: 32,
                                     fontWeight: '800',
-                                    padding: 10}}>NOPE</Text>
+                                    padding: 10}}>NOPE</Text> */}
+                                    <ThumbsDown />
                             </Animated.View>
                         </Animated.View>
                     )
@@ -190,7 +195,11 @@ export default class ShowMovies extends React.Component {
                         <View style={{position: 'absolute', marginVertical: 550}}>
                                 <View style={styles.centeredView}>
                                 <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20}}>{details[0]}</Text>
-                                <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20}}>IMDb {details[2]}/10</Text>
+                                
+
+                                    <Star />
+                                    <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20}}> IMDb {details[2]}/10</Text>
+                                
                                     <Modal
                                     animationType="slide"
                                     transparent={true}
@@ -221,19 +230,25 @@ export default class ShowMovies extends React.Component {
                                     >
                                     <Text style={styles.textStyle}>Show Details</Text>
                                     </Pressable>
+                                    <View style={{flexDirection: 'row'}}>
+                                        <View style={{marginRight: 5}}>
+                                            <ThumbsDown/>   
+                                        </View>
+                                        <View style={{marginLeft: 5}}>
+                                            <Heart />
+                                        </View>
+                                    </View>
                                 </View>
                             </View>   
                     )
                 }
                 else {
                     return (
-                        <View
-                        style={ { position: 'absolute', }}>
-                        
-                        <Text style={{
+                        <View style={ { position: 'absolute', }}>
+                        {/* <Text style={{
                             color: 'yellow',
                             opacity: 0
-                        }}>{details[0]}</Text>
+                        }}>{details[0]}</Text> */}
                         </View>
                     )
                 }
@@ -244,15 +259,15 @@ export default class ShowMovies extends React.Component {
     render() {
         return (
             <View style={styles.screen}>
-            <View style={{height: 60}}>
+                <View style={{height: 60}}>
+                </View>
+                <View style={styles.card}>
+                    {this.renderPosters()}
+                    {this.renderEverything()}
+                </View>
+                <View style={{height: 60}}>
+                </View>
             </View>
-            <View style={styles.card}>
-                {this.renderPosters()}
-                {this.renderEverything()}
-            </View>
-            <View style={{height: 60}}>
-            </View>
-        </View>
         )
     }
 }  
@@ -265,7 +280,6 @@ const styles = StyleSheet.create({
     card: {
         flex: 1, 
         position: 'absolute', 
-        // marginTop: 30
     },
     centeredView: {
         flex: 1,

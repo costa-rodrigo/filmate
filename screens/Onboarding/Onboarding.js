@@ -2,11 +2,16 @@ import { Alert, StatusBar, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import { Button, Icon } from 'react-native-elements';
 import Onboarding from 'react-native-onboarding-swiper';
-import Onboarding1 from '../../svgs/Onboarding1';
-import Onboarding2 from '../../svgs/Onboarding2';
-import Onboarding3 from '../../svgs/Onboarding3';
+import Onboarding1 from '../../svgs/onboarding/Onboarding1';
+import Onboarding2 from '../../svgs/onboarding/Onboarding2';
+import Onboarding3 from '../../svgs/onboarding/Onboarding3';
 
-const WithCTA = props => {
+function WithCTA({ route, navigation, props }) {
+  /* 2. Get the param */
+  const { userUsername } = route.params;
+  console.log("username", userUsername)
+  console.log(route)
+// const WithCTA = props => {
 
     return(
         <Onboarding
@@ -41,8 +46,8 @@ const WithCTA = props => {
             borderRadius={5}
             textStyle={{ color: '#D2D5D5' }}
             onPress={() => {
-                props.navigation.replace('Home', {
-                    otherParam: 'anything you want here'
+                navigation.replace('GroupScreen', {
+                    userUsername: route.params.userUsername
                 })
               StatusBar.setBarStyle('default');
             }}

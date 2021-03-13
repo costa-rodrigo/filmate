@@ -10,8 +10,6 @@ const AddFriends = props => {
     const [errorText, setErrorText] = useState('');
     const [token, setToken] = useState('');
     
-
-
     const { navigate } = props.navigation;
 
     const handleSubmit = async => {
@@ -25,14 +23,12 @@ const AddFriends = props => {
                     let storage = await AsyncStorage.getAllKeys((err, keys) => {
                         AsyncStorage.multiGet(keys, (error, stores) => {
                           stores.map((result, i, store) => {
-                              console.log(store)
-                            //   console.log("result", result)
+                            //   console.log(store)
                             // console.log("async", { [store[i][0]]: store[i][1] });
                             let token = "Bearer " + store[0][1];
                             setToken(token)
                             console.log("token from handlesubmit", token)
                             setFriendEmail(friendEmail)
-                            // console.log(friendEmail)
                             resolve(storage)
                             handleToken(token)
                             return token;

@@ -53,7 +53,7 @@ const LoginScreen = (props) => {
                 }
                console.log(response)
 
-                props.navigation.replace('Onboarding')
+                props.navigation.replace('Onboarding', {userUsername, userUsername})
 
             } else if (response.status === undefined) {
                 console.log("undefined")

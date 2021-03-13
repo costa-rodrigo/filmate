@@ -1,48 +1,70 @@
 import React, { useRef, useState } from "react";
-import { View, Text, StyleSheet, Button, Image, ScrollView, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
 import RBSheet from "react-native-raw-bottom-sheet";
 import NoGroupsImage from '../../../svgs/NoGroupsImage';
 import GreyButton from '../../../components/GreyButton';
+import FriendTabButton from '../FriendTabButton';
+import ProfileImage from '../../../svgs/ProfileImage';
 
-const GroupScreen = props => {
-    const { navigate } = props.navigation;
+function GroupScreen({ route, navigation, props }) {
+    // const [username, setUsername] = useState('');
+    // const { userUsername } = route.params;
+    // console.log("username", userUsername)
+    // console.log(route)
+    
+    // const componentDidMount = () => {
+    //     setUsername({userUsername})
+
+    // }
+// const GroupScreen = (props, route) => {
+//     const { navigate } = props.navigation;
+    // const { userUsername } = route.params;
+    // const { userUsername } = route.params;
+    // console.log(route.params)
+    // console.log("username", userUsername)
 
     const refRBSheet = useRef();
     
-    // const onLogout = () => {
-    //     console.log('logged out')
-
-    // }
-
     return (
         <ScrollView style={styles.screen}>
-            {/* <StatusBar
-                barStyle="light-content"
-                backgroundColor="#4F6D7A"
-                /> */}
-            <View style={styles.user_info}>
-                <Text style={{color: 'white'}}>User Name</Text>
+            <View style={styles.user_grid}>
+
+                
+                <View style={styles.user_info}>
+                    <ProfileImage />
+                    <View>
+                        <Text style={{color: 'white'}}> 👋</Text>
+                        <TouchableOpacity onPress={() => {
+                            navigation.navigate('ProfileScreen')
+                        }}>
+                            <Text style={{color: '#f03349'}}>View profile</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <FriendTabButton onPress={() => {
+                        navigation.navigate('FriendScreen')
+                    }} />
             </View>
-            <View style={styles.button}>
-            <Button  title="View profile" onPress={() => {
-                    props.navigation.navigate('ProfileScreen')
-                }} />
-            </View>
-            <View style={styles.search}>
+            {/* <View style={styles.search}>
                 <SearchBar search="Search Groups"/>
-            </View>
+            </View> */}
+            {/* <Button  title="Friend screen" onPress={() => {
+                    props.navigation.navigate('FriendScreen')
+                }} /> */}
+          
             <NoGroupsImage />
         <View style={styles.newGroup}>
             <Text style={styles.title}>You don’t have any groups.</Text>
             <Text style={styles.description}>Create groups by inviting friends.</Text>
             <GreyButton title="New group" onPress={() => {
-                    props.navigation.navigate('NewGroupFilter')
+                    navigation.navigate('NewGroupFilter')
                 }} />
         </View>
         <Button title="start session" onPress={() => {
-                props.navigation.navigate('navigation')
+                navigation.replace('navigation')
             }}/>
+           
         <View
             style={{
                 flex: 1,
@@ -109,6 +131,14 @@ const styles = StyleSheet.create({
         color: 'white', 
         textAlign: 'center', 
         marginTop: 10
+    },
+    user_info: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    user_grid: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 });
 
