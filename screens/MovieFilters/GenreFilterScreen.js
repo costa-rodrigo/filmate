@@ -111,7 +111,7 @@ render() {
 
   const posters = this.state.moviePosters.map((poster, index) => {
     return (
-      <Image key={poster}source={{uri: poster}} alt='movie'
+      <Image key={index} source={{uri: poster}} alt='movie poster'
       style={{  maxWidth: 400, height: '85%', borderRadius: 25 }}/>
     )
   })
@@ -120,7 +120,7 @@ render() {
     return (
       <View>
         <TouchableOpacity
-            key={genre}
+            key={index}
             style={this.state.genreId.includes(genre[1])
               ? {
                 borderRadius: 20,

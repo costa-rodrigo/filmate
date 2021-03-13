@@ -7,7 +7,13 @@ const Tab = createMaterialTopTabNavigator();
 
 const GenreMoodNavigator = () => {
     return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        labelStyle: { color: 'white' },
+        // tabStyle: { width: 100 },
+        style: { backgroundColor: '#121212' },
+        indicatorStyle: { backgroundColor: '#f03349'}
+      }}>
         <Tab.Screen name="By Genres" component={GenreFilterScreen} />
         <Tab.Screen name="By Mood" component={MoodFilterScreen} />
     </Tab.Navigator> 

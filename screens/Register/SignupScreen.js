@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Button, Text, StyleSheet, TextInput, StatusBar } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
-import FilmateLogo from '../../svgs/FilmateLogo';
+import FilmateLogo from '../../svgs/logo/FilmateLogo';
 
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');

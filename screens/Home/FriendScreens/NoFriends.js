@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import SearchBar from '../../../components/SearchBar';
 import { View, Text, StyleSheet, Button, Image, ScrollView } from 'react-native';
 // import RBSheet from "react-native-raw-bottom-sheet";
-import NoFriendsImage from '../../../svgs/NoFriendsImage';
+import NoFriendsImage from '../../../svgs/screens/NoFriendsImage';
 
 const NoFriends = (props) => {
     // const refRBSheet = useRef();

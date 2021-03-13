@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, Button, Image } from 'react-native';
+import ProfileImage from '../../svgs/icons/ProfileImage';
 
 const ProfileScreen = props => {
     // const [userPassword, setUserPassword] = useState('');
@@ -9,7 +10,11 @@ const ProfileScreen = props => {
         <View>
             {/* <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} /> */}
             <View>
-            <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} />
+                <View>
+                    <ProfileImage />
+                </View>
+               
+            {/* <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} /> */}
                 <Text style={styles.text}>Kristen Ingelman</Text>
                 <Text style={styles.text}>kristeningelman@hotmail.com</Text>
                 <Button title="Edit profile" onPress={() => {

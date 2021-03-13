@@ -2,10 +2,10 @@ import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, Button, Image, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
 import RBSheet from "react-native-raw-bottom-sheet";
-import NoGroupsImage from '../../../svgs/NoGroupsImage';
+import NoGroupsImage from '../../../svgs//screens/NoGroupsImage';
 import GreyButton from '../../../components/GreyButton';
 import FriendTabButton from '../FriendTabButton';
-import ProfileImage from '../../../svgs/ProfileImage';
+import ProfileImage from '../../../svgs/icons/ProfileImage';
 
 function GroupScreen({ route, navigation, props }) {
     // const [username, setUsername] = useState('');
@@ -29,8 +29,6 @@ function GroupScreen({ route, navigation, props }) {
     return (
         <ScrollView style={styles.screen}>
             <View style={styles.user_grid}>
-
-                
                 <View style={styles.user_info}>
                     <ProfileImage />
                     <View>

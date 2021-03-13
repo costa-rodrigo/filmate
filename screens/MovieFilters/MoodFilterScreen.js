@@ -53,7 +53,7 @@ export default class MoodFilter extends React.Component {
           return (
             <View>
             <TouchableOpacity
-                key={mood} 
+                key={index} 
                 // style={styles.moodButton} 
                 style={this.state.moodName.includes(mood[0])
                 ? {

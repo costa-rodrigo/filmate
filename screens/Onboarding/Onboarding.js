@@ -51,6 +51,12 @@ function WithCTA({ route, navigation, props }) {
                 })
               StatusBar.setBarStyle('default');
             }}
+          //   onPress={() => {
+          //     navigation.replace('FriendTabButton', {
+          //         userUsername: route.params.userUsername
+          //     })
+          //   StatusBar.setBarStyle('default');
+          // }}
           />
         ),
         backgroundColor: '#121212',

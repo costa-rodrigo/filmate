@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MainButton from '../../../components/MainButton';
-import FriendsInvitedGroupImage from '../../../svgs/FriendsInvitedGroupImage';
+import FriendsInvitedGroupImage from '../../../svgs/screens/FriendsInvitedGroupImage';
 
 const InvitedToGroup = props => {
     return (

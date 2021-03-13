@@ -5,12 +5,10 @@ import axios from 'axios';
 import NoFriends from '../FriendScreens/NoFriends';
 import MainButton from '../../../components/MainButton';
 import RBSheet from "react-native-raw-bottom-sheet";
-import OptionsButton from '../../../svgs/OptionsButton';
-import ProfileImage from '../../../svgs/ProfileImage';
+import OptionsButton from '../../../svgs/icons/OptionsButton';
+import ProfileImage from '../../../svgs/icons/ProfileImage';
 import GroupTabButton from '../GroupTabButton';
 
-// checkbox article:
-// https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
 class UsersFriends extends React.Component {
     constructor(props) {
       super(props);
@@ -19,27 +17,15 @@ class UsersFriends extends React.Component {
           addedFriends: [],
           friendsArray: [], 
           noFriends: true, 
-          selectedFriends: [],
-          change: 0
+        //   selectedFriends: [],
       }
-    //   this.selectionOnPress = this.selectionOnPress.bind(this);
       this.handleToken = this.handleToken.bind(this);
-      this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-      this.handleChange = this.handleChange.bind(this);
-      this.forceUpdate = this.forceUpdate.bind(this);
-    }
-    handleChange() {
-        this.componentDidMount()
-    }
-
-    forceUpdate() {
-        this.componentDidMount()
+    //   this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     }
 
     componentDidMount() {
         this.setState({});
-        console.log(this.state.noFriends)
-        // console.log("get token")
+        // console.log(this.state.noFriends)
         return new Promise ( async (resolve, reject) => {
             try {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
@@ -62,33 +48,6 @@ class UsersFriends extends React.Component {
         });
 
     }
-
-    componentDidUpdate(prevProps) {
-        // this.setState({ change })
-        console.log(prevProps)
-        if(this.state.friendsArray.length > 0) {
-           console.log("checked array length")
-        }
-        // console.log("prev", this.state.friendsArray.length)
-        // if (this.props.id !== prevProps.id) {
-        //   let data = axios
-        //   .get("https://jsonplaceholder.typicode.com/todos/" + this.props.id)
-        //   .then(function(response) {
-        //     return response;
-        //   })
-        //   .catch(function(error) {
-        //     console.log(error);
-        //   });
-        //   this.setState({ todo: data.data });
-    //     }
-      }
-
-    // selectionOnPress(friend) {
-    //     // let friendName = friend;
-    //     // console.log('friend', friendName)
-    //     // this.setState({ friendName })
-    // }
-
 
     handleToken  = async (token) => {
         await axios.get('http://192.168.0.20:3000/friends',  {
@@ -134,22 +93,18 @@ class UsersFriends extends React.Component {
             console.log(this.state.addedFriends)
        }
 
-       forceUpdateHandler() {
-           this.componentDidMount()
-        //    this.setState({ noFriends })
-           console.log('force')
-       };
+    //    forceUpdateHandler() {
+    //        this.componentDidMount()
+    //     //    this.setState({ noFriends })
+    //        console.log('force')
+    //    };
 
     render() {
-      
-        // const { buttonPressed } = this.state;
-
         const usersFriends = this.state.friendsArray.map((friend, index) => {
-            // this.componentDidMount()
             return (
                 <View>
                      <View
-                        key={friend}
+                        key={index}
                         style={styles.friendContainer}
                         onPress={() => this.friendPressed(friend) && this.setState({ buttonPressed: !this.state.buttonPressed })}
                         >
@@ -170,7 +125,6 @@ class UsersFriends extends React.Component {
                         </View>    
                 </View>
                 </View>
-               
             )
         })
 
@@ -178,40 +132,14 @@ class UsersFriends extends React.Component {
         
         return (
             <ScrollView style={styles.screen}>
-            {/* <View style={styles.user_grid}>             
-                <View style={styles.user_info}>
-                    <ProfileImage />
-                    <View>
-                        <Text style={{color: 'white'}}> 👋</Text>
-                        <TouchableOpacity onPress={() => {
-                            navigation.navigate('ProfileScreen')
-                        }}>
-                            <Text style={{color: '#f03349'}}>View profile</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <GroupTabButton onPress={() => {
-                        this.props.navigation.replace('GroupScreen')
-                    }} />
-            </View> */}
-            {/* <Button onPress={this.forceUpdateHandler} title="refresh"/> */}
-            {/* <View style={styles.screen}>
-            </View> */}
-
             <View>
                 {[usersFriends]}
-                {/* {noFriends == true ? (
-                    <NoFriends navigation={this.props.navigation} noFriends={this.state.noFriends}/>
-                ) : (
-                    [usersFriends]
-                )
-            } */}
             </View>
             {/* <View style={{height: 150}}>
                 <MainButton title="Add Friends" onPress={() => {
                         this.props.navigation.navigate('AddFriends')}} />
             </View> */}
-            {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                 <RBSheet
                     ref={ref => {
                         this.RBSheet = ref;
@@ -232,7 +160,7 @@ class UsersFriends extends React.Component {
                     <Text style={styles.options}>Friend Options</Text>
                     <Text style={{color: 'white'}}>Remove friend</Text>
                 </RBSheet>
-            </View> */}
+            </View>
             </ScrollView>
         )
     }

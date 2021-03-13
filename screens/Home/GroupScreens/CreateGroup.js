@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import FriendScreen from '../FriendScreens/FriendScreen';
 import MainButton from '../../../components/MainButton';
-import Checkmark from '../../../svgs/Checkmark';
+import Checkmark from '../../../svgs/icons/Checkmark';
 export default class CreateGroup extends React.Component {
     constructor(props) {
       super(props);

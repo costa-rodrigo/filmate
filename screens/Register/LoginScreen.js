@@ -3,7 +3,7 @@ import { View, Button, Text, StyleSheet, TextInput } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
-import FilmateLogo from '../../svgs/FilmateLogo';
+import FilmateLogo from '../../svgs/logo/FilmateLogo';
 
 const LoginScreen = (props) => {
     // state variables : userUsername, userPassword, loading, errorText

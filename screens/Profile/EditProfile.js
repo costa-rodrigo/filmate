@@ -9,7 +9,7 @@ const EditProfile = props => {
         <View>
             {/* <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} /> */}
             <View>
-            <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} />
+            {/* <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} /> */}
                 <Text style={styles.text}>Change profile picture</Text>
             </View>
         </View>
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     text: {
         textAlign: 'center'
     }
-
 });
 
 export default EditProfile;

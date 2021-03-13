@@ -31,7 +31,6 @@ const ForgotPasswordScreen_Reset = props => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     secureTextEntry={true}
-                    // returnKeyType="next"
                 />
                     <Button title="Reset" onPress={() => {
                         props.navigation.navigate('Login')

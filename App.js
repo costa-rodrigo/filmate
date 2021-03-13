@@ -21,16 +21,17 @@ import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
 import { StatusBar } from 'react-native';
 import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
 import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
+import HomeNavigator from './navigation/HomeNavigator';
+import FriendTabButton from './screens/Home/FriendTabButton';
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
 
 const Stack = createStackNavigator();
-
 const App = () => {
   return (
     <NavigationContainer>
       <StatusBar barStyle="light-content" backgroundColor="#4F6D7A" />
-      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '#0A0A0A', shadowRadius: 0, shadowOffset: {
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
             height: 0
           } }, 
                        headerTitleStyle: { fontWeight: 'bold' }}}>
@@ -64,15 +65,7 @@ const App = () => {
         {/* <Stack.Screen 
           name="Home" 
           component={HomeNavigator} 
-          options={{headerLeft: ({ navigation }) =>  
-            <TouchableOpacity  onPress={() => {
-              alert('This is a button!')
-            }}>
-            <ProfileImage/>
-            </TouchableOpacity>
-           
-          , 
-          headerTitle: '', headerStyle: {
+          options={{headerTitle: '', headerStyle: {
           backgroundColor: '#121212'
         }}}/>  */}
         <Stack.Screen name="NewGroupFilter" component={NewGroupFilter} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
@@ -81,8 +74,8 @@ const App = () => {
         <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerTitle: 'Edit Profile', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: 'Group Created', headerBackTitle: 'Back' }}/> 
-        <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: 'navigation', headerBackTitle: 'Back' }}/> 
-        <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: 'Add Friends', headerBackTitle: 'Back' }}/> 
+        <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
+        <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: 'Friends Invited', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: 'Create Group', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/> 
@@ -93,6 +86,8 @@ const App = () => {
         } }}/> 
         <Stack.Screen name="FriendScreen" component={FriendScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null}}/> 
         <Stack.Screen name="GroupScreen" component={GroupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
+        <Stack.Screen name="FriendTabButton" component={FriendTabButton} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
+
       </Stack.Navigator>
     </NavigationContainer>
   );

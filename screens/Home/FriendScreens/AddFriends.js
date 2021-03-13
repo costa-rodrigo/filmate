@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import MainButton from '../../../components/MainButton';
 import axios from 'axios';
-
-
 
 const AddFriends = props => {
     const [friendEmail, setFriendEmail] = useState('');
@@ -67,21 +66,21 @@ const AddFriends = props => {
     return (
         <View style={styles.screen}>
         <View style={styles.screen}>
-            <Text style={styles.title}>Invite your friend to filmate and join you at *Group Name*</Text>
-           
+            <Text style={styles.title}>Add a friend to the friend list.</Text>
+            <Text>Email address</Text>
             <TextInput 
                     onChangeText={(FriendEmail) => 
                         setFriendEmail(FriendEmail)}
-                    placeholder="Email Address"
+                    placeholder="friend@gmail.com"
                     value={friendEmail}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    // returnKeyType="next"
              />
-            <Button 
+            {/* <Button 
                 title="Invite Friend"
                 onPress={handleSubmit}
-            />
+            /> */}
+            <MainButton title="Invite Friend" onPress={handleSubmit}/>
         </View>
         </View>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import MainButton from '../../../components/MainButton';
-import Checkmark from '../../../svgs/Checkmark';
+import Checkmark from '../../../svgs/icons/Checkmark';
 
 export default class NewGroupFilter extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ export default class NewGroupFilter extends React.Component {
           return (
             <View>
               <TouchableOpacity 
-                  key={platform}
+                  key={index}
                     style={this.state.platformName.includes(platform)
                         ? {
                             width: 168,

@@ -19,7 +19,6 @@ const ForgotPasswordScreen = props => {
                     value={userEmail}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    // returnKeyType="next"
                 />
 
                 <Button title="Next" onPress={() => {
