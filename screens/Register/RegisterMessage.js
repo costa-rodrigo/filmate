@@ -14,7 +14,8 @@ const RegisterMessage = props => {
 const styles = StyleSheet.create({
     screen: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: '10%'
     },
     logo: {
         width: 100,
@@ -24,7 +25,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        color: 'white'
+    },
+    description: {
+        color: 'white'
     }
 });
 

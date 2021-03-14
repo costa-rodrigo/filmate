@@ -12,14 +12,10 @@ export default class GenreFilterScreen extends React.Component {
     super(props);
     this.state = {
       moviePosters: [],
-      // movieTitles: [],
-      // movieOverview: [],
       genres: [],
       genreArray: [],
       genrePressed: false,
       genreId: '',
-      // backgroundColor: 'black',
-      // backgroundColor2: 'black',
       allData: ''
     };
 
@@ -27,7 +23,6 @@ export default class GenreFilterScreen extends React.Component {
   }
   
   componentDidMount() {
-    
     axios.get(`http://192.168.0.20:8080/genres`)
     // axios.get(`http://localhost:8080/genres`)
     .then(res => {

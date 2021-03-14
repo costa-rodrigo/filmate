@@ -14,7 +14,7 @@ const GroupCreated = props => {
 
             
          <Button  title="Back to home" onPress={() => {
-                    props.navigation.navigate('Home')
+                    props.navigation.navigate('GroupScreen')
                 }} />
      </View>
     );

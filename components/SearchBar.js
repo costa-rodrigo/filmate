@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
 export default class App extends React.Component {
@@ -15,19 +15,30 @@ export default class App extends React.Component {
     const { search } = this.state;
 
     return (
-      <SearchBar
-        fontColor="#c6c6c6"
-        placeholder={this.props.search}
-        onChangeText={this.updateSearch}
-        value={search}
-      />
-      // <View>
-      //   <Text>Search Groups</Text>
-      // </View>
+      // <SearchBar
+      //   style={styles.search}
+      //   fontColor="#c6c6c6"
+      //   placeholder={this.props.search}
+      //   onChangeText={this.updateSearch}
+      //   value={search}
+      // />
+      <View>
+        <TextInput 
+            style={styles.input}
+            placeholder="Search"
+            placeholderTextColor="white"
+            />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
+    input: {
+      width: 343,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#242424',
+      color: 'white'
+    }
 });

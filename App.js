@@ -45,9 +45,9 @@ const App = () => {
             height: 0
           }
         } }} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerTitle: 'Forgot Password',
+        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerTitle: '',
                       headerBackTitle: 'Back' }}/>
-        <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} options={{ headerTitle: 'Forgot Password',
+        <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} options={{ headerTitle: '',
                       headerBackTitle: 'Back' }}/>
         <Stack.Screen 
           name="Onboarding" 

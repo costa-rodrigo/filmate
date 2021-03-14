@@ -5,6 +5,7 @@ import axios from 'axios';
 import FriendScreen from '../FriendScreens/FriendScreen';
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
+
 export default class CreateGroup extends React.Component {
     constructor(props) {
       super(props);
@@ -116,7 +117,7 @@ export default class CreateGroup extends React.Component {
         const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
                 <TouchableOpacity 
-                    key={friend + "i"}
+                    key={index}
                     style={this.state.addedFriends.includes(friend) 
                         ? { 
                             borderWidth: 1.5, 

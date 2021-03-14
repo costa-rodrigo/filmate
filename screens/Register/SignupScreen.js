@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { View, Button, Text, StyleSheet, TextInput, StatusBar } from 'react-native';
+import { View, Button, Text, StyleSheet, TextInput, StatusBar, Modal, Pressable } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import FilmateLogo from '../../svgs/logo/FilmateLogo';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [errorText, setErrorText] = useState('');
-    const [isRegistrationSuccessful, setIsRegistrationSuccessful] = useState(false);
+    // const [isRegistrationSuccessful, setIsRegistrationSuccessful] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     const handleSubmit = () => {
         setErrorText('');
@@ -36,7 +38,8 @@ const SignupScreen = props => {
             // console.log(response)
             // NEED to add an if statement here - eg. if message = success - let us know registration was successful. 
             // within IF set registration to success
-            setIsRegistrationSuccessful(true);
+            // setIsRegistrationSuccessful(true);
+            setModalVisible(true);
             console.log("Registration successful, login now!")
             // need to do something similar to below
             // if (response.status === 'success') {
@@ -52,14 +55,7 @@ const SignupScreen = props => {
             console.error(error)
         })
     }
-    if (isRegistrationSuccessful) {
-        return(
-            <View>
-                <Text>Registration Successful!</Text>
-                <Button title="login" onPress={() => props.navigation.navigate('Login')}></Button>
-            </View>
-        )
-    }
+
     return (
         <View style={styles.screen}>
              <StatusBar
@@ -107,22 +103,46 @@ const SignupScreen = props => {
                 />
 
             </View>
+            <View style={styles.centeredView}>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <Text style={styles.modalTextHeading}>Account created!</Text>
+                  <Text style={styles.modalText}>You can now sign in using your credentials.</Text>
+                  <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() =>
+                    props.navigation.navigate('Login')}
+                  >
+                    <Text style={styles.textStyle}>Ok</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </Modal>
+          </View>
             
-
-            {/* <Button title="Sign Up" onPress={handleSubmit}/> */}
-           
-
-            <View style={styles.screenBottom}>
-                <MainButton title="Sign Up" onPress={handleSubmit} />
+            <MainButton title="Sign Up" onPress={handleSubmit} />
                 <View style={styles.flexContainer}>
                     <Text style={styles.question}>Have an account?</Text>
-                    <Button title="Sign In" onPress={() => {
+                    <TouchableOpacity onPress={() => {
                         props.navigation.pop()
-                    }} />
+                    }}>
+                        <Text style={{color: '#f03349', textDecorationLine: 'underline'}}>Sign In</Text>
+                    </TouchableOpacity>
+                    {/* <Button title="Sign In" onPress={() => {
+                        props.navigation.pop()
+                    }} /> */}
                 </View>
 
-            </View>
-            
+
         </View>
     )
 }
@@ -132,31 +152,79 @@ const styles = StyleSheet.create({
         backgroundColor: '#121212',
         height: '100%'
     },
-    screenBottom: {
-        height: '30%',
-        marginTop: '40%'
-    },
     flexContainer: {
        flexDirection: 'row',
-       justifyContent: 'space-around'
+       justifyContent: 'center',
+       marginBottom: 25
     },
     question: {
-        fontSize: 20,
-        marginTop: 7,
-        color: 'white'
+        // fontSize: 20,
+        // marginTop: 7,
+        color: 'white',
+        marginRight: 5
     },
     input: {
         backgroundColor: '#1E1E1E',
         marginBottom: 10,
         padding: 10,
-        borderRadius: 20,
-        marginHorizontal: 20,
-        color: 'white'
+        borderRadius: 15,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        color: 'white',
+        width: 343,
+        height: 52,
     },
     inputWrapper: {
         marginTop: 30
-    }
-
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+      },
+      modalView: {
+        width: 311,
+        height: 216,
+        margin: 20,
+        backgroundColor: "#1E1E1E",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+      },
+      button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+        width: 88,
+        marginTop: 30
+      },
+      buttonClose: {
+        backgroundColor: "#f03349",
+      },
+      textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+      },
+      modalTextHeading: {
+        marginBottom: 15,
+        textAlign: "center",
+        color: 'white'
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center",
+        color: 'white',
+      }
 });
 
 export default SignupScreen;

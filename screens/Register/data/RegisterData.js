@@ -1,6 +1,5 @@
 
 export const RegisterData = [
-
     {
       title: "Welcome Back, Let's Get You In",
       description: ""
@@ -10,7 +9,7 @@ export const RegisterData = [
       description: ""
     },
     {
-      title: "Forgot Your Password?",
-      description: "Let's create a new one. Enter email to get a code."
+      title: "Forgot Password?",
+      description: "Enter your email address and we'll send a reset code."
     }
   ]

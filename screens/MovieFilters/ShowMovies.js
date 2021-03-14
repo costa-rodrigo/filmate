@@ -14,40 +14,31 @@ export default class ShowMovies extends React.Component {
         this.state = {
             genreId: this.props.route.params.genreId,
             posters: this.props.route.params.posters,
-            // titles: this.props.route.params.titles,
-            // everything: this.props.route.params.everything,
             allData: this.props.route.params.allData,
-            newPoster: '',
-            currentTitle: '',
-            currentEverything: '',
             currentIndex: 0,
-            currentOverview: '',
             resultsArray: [],
             liked: true,
             disliked: false,
             modalVisible: false
         };
 
+        // translations for swiping left and right (based on screen width)
         this.rotate = this.position.x.interpolate({
             // takes half of the screen width to the right and half to the left
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
             outputRange: ['-10deg', '0deg', '10deg'],
             extrapolate: 'clamp'
         })
-
         this.rotateAndTranslate = {
             transform: [{
                 rotate: this.rotate
             },
             ...this.position.getTranslateTransform()
-        ]
-        }
-
+        ]}
         this.likeOpacity = this.position.x.interpolate({
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
             outputRange: [0,0,1],
             extrapolate: 'clamp'
-
         })
         this.dislikeOpacity = this.position.x.interpolate({
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
@@ -55,25 +46,23 @@ export default class ShowMovies extends React.Component {
             extrapolate: 'clamp'
 
         })
-
         this.nextCardOpacity = this.position.x.interpolate({
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
             outputRange: [1,0,1],
             extrapolate: 'clamp'
-
         })
         this.nextCardScale = this.position.x.interpolate({
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
             outputRange: [1,0.8,1],
             extrapolate: 'clamp'
-
         })
     }
 
-    
+    // pop up alert/modal
     setModalVisible = (visible) => {
         this.setState({ modalVisible: visible });
     }
+
     UNSAFE_componentWillMount() {
         console.log("elephant", this.state.allData.allData)
         this.PanResponder = PanResponder.create({
@@ -94,7 +83,7 @@ export default class ShowMovies extends React.Component {
                             this.position.setValue({x: 0, y: 0})
                         })
 
-                        this.setState({ newPoster: this.state.newPoster })
+                        // this.setState({ newPoster: this.state.newPoster })
                         this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
                         console.log("Results ", this.state.resultsArray)
                     })
@@ -114,7 +103,7 @@ export default class ShowMovies extends React.Component {
                         console.log("results ", this.state.resultsArray)
                     })
                 }
-                // if the user has not swiped enough - snaps image back to its original position!
+                // if the user has not swiped enough - snaps image back to its original position
                 else {
                     Animated.spring(this.position, {
                         toValue:{ x:0, y: 0 },
@@ -127,12 +116,9 @@ export default class ShowMovies extends React.Component {
     }
 
     renderPosters = () => {
-        const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-       
         const { posters } = this.state;
-        // const { titles } = this.state;
-            return posters.map((poster, index) => {
-               
+            
+        return posters.map((poster, index) => {
                 if (index < this.state.currentIndex) {
                     return null
                 } 
@@ -173,19 +159,15 @@ export default class ShowMovies extends React.Component {
                         </Animated.View>
                     )
                 }
-            }).reverse()
-                  
+            }).reverse()     
     }
 
     renderEverything = () => {
-        const { modalVisible } = this.state;
-        // const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-      
+        const { modalVisible } = this.state;      
         const { allData } = this.state;
-       
             return allData.allData.map((details, index) => {
                 if (index < this.state.currentIndex) {
-                    console.log("if current index", this.state.currentIndex)
+                    // console.log("if current index", this.state.currentIndex)
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
@@ -195,36 +177,33 @@ export default class ShowMovies extends React.Component {
                         <View style={{position: 'absolute', marginVertical: 550}}>
                                 <View style={styles.centeredView}>
                                 <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20}}>{details[0]}</Text>
-                                
-
                                     <Star />
                                     <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20}}> IMDb {details[2]}/10</Text>
-                                
                                     <Modal
-                                    animationType="slide"
-                                    transparent={true}
-                                    visible={modalVisible}
-                                    onRequestClose={() => {
-                                        Alert.alert("Modal has been closed.");
-                                        this.setModalVisible(!modalVisible);
-                                    }}
+                                        animationType="slide"
+                                        transparent={true}
+                                        visible={modalVisible}
+                                        onRequestClose={() => {
+                                            Alert.alert("Modal has been closed.");
+                                            this.setModalVisible(!modalVisible);
+                                        }}
                                     >
-                                    <View style={styles.centeredView}>
-                                        <View style={styles.modalView}>
-                                        <Text style={styles.modalText}>{details[0]}</Text>
-                                        <Text style={styles.modalText}>{details[1]}</Text>
-                                        <Text style={styles.modalText}>{details[3]}</Text>
-                                        
-                                        <Pressable
-                                            style={[styles.button, styles.buttonClose]}
-                                            onPress={() => this.setModalVisible(!modalVisible)}
-                                        >
-                                            <Text style={styles.textStyle}>Done</Text>
-                                        </Pressable>
+                                        <View style={styles.centeredView}>
+                                            <View style={styles.modalView}>
+                                            <Text style={styles.modalText}>{details[0]}</Text>
+                                            <Text style={styles.modalText}>{details[1]}</Text>
+                                            <Text style={styles.modalText}>{details[3]}</Text>
+                                            
+                                            <Pressable
+                                                style={[styles.button, styles.buttonClose]}
+                                                onPress={() => this.setModalVisible(!modalVisible)}
+                                            >
+                                                <Text style={styles.textStyle}>Done</Text>
+                                            </Pressable>
+                                            </View>
                                         </View>
-                                    </View>
-                                    </Modal>
-                                    <Pressable
+                                        </Modal>
+                                        <Pressable
                                     style={[styles.button, styles.buttonOpen]}
                                     onPress={() => this.setModalVisible(true)}
                                     >
@@ -244,29 +223,23 @@ export default class ShowMovies extends React.Component {
                 }
                 else {
                     return (
-                        <View style={ { position: 'absolute', }}>
-                        {/* <Text style={{
-                            color: 'yellow',
-                            opacity: 0
-                        }}>{details[0]}</Text> */}
-                        </View>
+                        <View style={ { position: 'absolute', }}></View>
                     )
                 }
-            }).reverse()
-                  
+            }).reverse()     
     }
 
     render() {
         return (
             <View style={styles.screen}>
-                <View style={{height: 60}}>
-                </View>
+                {/* <View style={{height: 60}}>
+                </View> */}
                 <View style={styles.card}>
                     {this.renderPosters()}
                     {this.renderEverything()}
                 </View>
-                <View style={{height: 60}}>
-                </View>
+                {/* <View style={{height: 60}}>
+                </View> */}
             </View>
         )
     }

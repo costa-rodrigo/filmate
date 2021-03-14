@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, Button, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Button, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 import FilmateLogo from '../../svgs/logo/FilmateLogo';
-
+import CustomInput from '../../components/CustomInput';
 const LoginScreen = (props) => {
     // state variables : userUsername, userPassword, loading, errorText
     const [userUsername, setUsername] = useState('');
@@ -79,18 +79,19 @@ const LoginScreen = (props) => {
         <View style={styles.screen}>
             <FilmateLogo />
              <View style={styles.inputWrapper}>
-             <TextInput 
+                 <TextInput 
                     style={styles.input} 
                     onChangeText={(Username) => 
                         setUsername(Username)}
                     placeholder="Username"
+                    color="white"
                     placeholderTextColor="white"
                     value={userUsername}
                     autoCapitalize="none"
                     autoCorrect={false}
                     // returnKeyType="next"
                     />
-                    
+
                 <TextInput 
                     style={styles.input}
                     placeholder="Password"
@@ -104,21 +105,36 @@ const LoginScreen = (props) => {
                     returnKeyType="go"
                     />
              </View>
-               
-           
-            <Button title="Forgot Password?" onPress={() => {
-                    props.navigation.navigate('ForgotPassword')
-                }}/>
+            <TouchableOpacity onPress={() => {
+                        props.navigation.navigate('ForgotPassword')
+                    }}>
+                        <Text style={{color: '#f03349', marginLeft: '10%'}}>Forgot Password?</Text>
+            </TouchableOpacity>
 
            <View style={styles.screenBottom}>
-            <MainButton title="Sign In" onPress={handleSubmit} />
-                <View style={styles.flexContainer}>
+            
+                {/* <View style={styles.flexContainer}>
                     <Text style={styles.question}>Don't have an account?</Text>
                     <Button title="Sign Up" onPress={() => {
                         props.navigation.navigate('Signup')
                     }} />
-                </View>
+                </View> */}
            </View>
+                <MainButton title="home page" onPress={() => {
+                        props.navigation.navigate('GroupScreen')
+                    }}/>
+                <MainButton title="Sign In" onPress={handleSubmit} />
+                <View style={styles.flexContainer}>
+                        <Text style={styles.question}>Don't have an account?</Text>
+                        <TouchableOpacity onPress={() => {
+                        props.navigation.navigate('Signup')
+                    }}>
+                        <Text style={{color: '#f03349', textDecorationLine: 'underline'}}>Sign Up</Text>
+                    </TouchableOpacity>
+                        {/* <Button title="Sign Up" onPress={() => {
+                            props.navigation.navigate('Signup')
+                        }} /> */}
+                </View>
         </View>
     )
 }
@@ -126,28 +142,29 @@ const LoginScreen = (props) => {
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: '#121212',
-        height: '100%'
-    },
-    screenBottom: {
-        height: '30%',
-        marginTop: '40%'
+        height: '100%',
     },
     flexContainer: {
        flexDirection: 'row',
-       justifyContent: 'space-around'
+       justifyContent: 'center',
+       marginBottom: 25
     },
     question: {
-        fontSize: 20,
-        marginTop: 7,
-        color: 'white'
+        // fontSize: 20,
+        // marginTop: 7,
+        color: 'white',
+        marginRight: 5
     },
     input: {
         backgroundColor: '#1E1E1E',
         marginBottom: 10,
         padding: 10,
-        borderRadius: 20,
-        marginHorizontal: 20,
-        color: 'white'
+        borderRadius: 15,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        color: 'white',
+        width: 343,
+        height: 52,
     },
     inputWrapper: {
         marginTop: 30

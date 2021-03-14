@@ -99,42 +99,9 @@ class FriendScreen extends React.Component {
        }
 
     render() {
-      
-        // const { buttonPressed } = this.state;
-
-        // const usersFriends = this.state.friendsArray.map((friend, index) => {
-        //     return (
-        //         <View>
-        //              <View
-        //                 key={friend}
-        //                 style={styles.friendContainer}
-        //                 // onPress={() => this.friendPressed(friend) && this.setState({ buttonPressed: !this.state.buttonPressed })}
-        //                 >
-        //                 <View style={styles.fullGrid}>
-
-                       
-        //                 <View style={styles.friendGrid}>
-        //                     <ProfileImage style={{marginBottom: 40}}/>
-        //                     <Text style={styles.friendText}>{friend}</Text>
-        //                 </View>
-        //                 <View>
-        //                 <TouchableOpacity 
-        //                         onPress={() => this.RBSheet.open()} 
-        //                         style={{ width: 30, height: 30, borderRadius: '50%'}}>
-        //                         <OptionsButton />
-        //                     </TouchableOpacity>
-        //                 </View>
-        //                 </View>    
-        //         </View>
-        //         </View>
-               
-        //     )
-        // })
-
         const noFriends = this.state.noFriends;
-        
         return (
-            <ScrollView style={styles.screen}>
+            <View style={styles.screen}>
                 <View style={styles.user_grid}>             
                     <View style={styles.user_info}>
                         <ProfileImage />
@@ -153,21 +120,18 @@ class FriendScreen extends React.Component {
                     {/* <GroupTabButton onPress={this.handlePress} /> */}
                 </View>
                 {/* <Button onPress={this.forceUpdateHandler} title="refresh"/> */}
-                <View style={styles.screen}>
-                </View>
 
                 <View>
+                    <Text>HI</Text>
                     {noFriends === false
                     ? (
-                        <View>
+                        <View style={{height: '89%'}}>
                             <UsersFriends />
-                            <View style={{height: 150}}>
-                                <MainButton title="Add Friends" onPress={() => {
-                            this.props.navigation.navigate('AddFriends')}} />
+                            <View style={{marginBottom: 25}}>
+                                <MainButton  title="Add Friends" onPress={() => {
+                                this.props.navigation.navigate('AddFriends')}} />
                             </View>
                         </View>
-
-               
                     ) 
                     : (
                         <NoFriends navigation={this.props.navigation} noFriends={this.state.noFriends}/>
@@ -175,83 +139,66 @@ class FriendScreen extends React.Component {
                     )
                 }
                 </View>
-               
-                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                    <RBSheet
-                        ref={ref => {
-                            this.RBSheet = ref;
-                        }}
-                        closeOnDragDown={true}
-                        customStyles={{
-                            wrapper: {
-                            backgroundColor: "transparent"
-                            },
-                            container: {
-                                backgroundColor: '#242424'
-                            },
-                            draggableIcon: {
-                            backgroundColor: "white"
-                            }
-                        }}
-                        >
-                        <Text style={styles.options}>Friend Options</Text>
-                        <Text style={{color: 'white'}}>Remove friend</Text>
-                    </RBSheet>
-                </View>
-            </ScrollView>
+            
+                {/* <MainButton title="test"/> */}
+
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
     screen: {
-        paddingHorizontal: 20,
+        flex: 1,
+        // height: '100%'
+        // paddingHorizontal: 20,
         backgroundColor: '#0A0A0A',
+        
     },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 60
-    },
-    description: {
-        textAlign: 'center',
-        marginBottom: 40
-    },
-    friendContainer: {
-        backgroundColor: '#1E1E1E',
-        padding: 20,
-        marginHorizontal: 20,
-        marginVertical: 10,
-        borderRadius: 15,
-        paddingBottom: 30,
-        height: 70
-    },
-    friendText: {
-        color: 'white',
-        marginLeft: 15,
-        marginBottom: 5
-    },
-    friendGrid: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    fullGrid: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    options: {
-        textAlign: 'center',
-        color: 'white',
-        marginTop: 10
-    },
-    user_info: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    user_grid: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    }
+    // title: {
+    //     fontSize: 20,
+    //     textAlign: 'center',
+    //     marginBottom: 60
+    // },
+    // description: {
+    //     textAlign: 'center',
+    //     marginBottom: 40
+    // },
+    // friendContainer: {
+    //     backgroundColor: '#1E1E1E',
+    //     padding: 20,
+    //     marginHorizontal: 20,
+    //     marginVertical: 10,
+    //     borderRadius: 15,
+    //     paddingBottom: 30,
+    //     height: 70
+    // },
+    // friendText: {
+    //     color: 'white',
+    //     marginLeft: 15,
+    //     marginBottom: 5
+    // },
+    // friendGrid: {
+    //     flexDirection: 'row',
+    //     alignItems: 'center',
+    // },
+    // fullGrid: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between'
+    // },
+    // options: {
+    //     textAlign: 'center',
+    //     color: 'white',
+    //     marginTop: 10
+    // },
+    // user_info: {
+    //     flexDirection: 'row',
+    //     alignItems: 'center'
+    // },
+    // user_grid: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between'
+    // }
 });
 
 export default FriendScreen;

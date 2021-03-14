@@ -44,7 +44,7 @@ const AddFriends = props => {
        }
  
        const handleToken  = async (token) => {
-           console.log(token)
+        console.log(token)
         await axios.post('http://192.168.0.20:3000/friends', {
             email: friendEmail
         }, {
@@ -80,14 +80,16 @@ const AddFriends = props => {
                 title="Invite Friend"
                 onPress={handleSubmit}
             /> */}
-            <MainButton title="Invite Friend" onPress={handleSubmit}/>
+          
         </View>
+        <MainButton title="Invite Friend" onPress={handleSubmit}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     screen: {
+        flex: 1,
         paddingHorizontal: 20,
         paddingTop: 50
     },

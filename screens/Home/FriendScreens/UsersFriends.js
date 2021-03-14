@@ -93,16 +93,10 @@ class UsersFriends extends React.Component {
             console.log(this.state.addedFriends)
        }
 
-    //    forceUpdateHandler() {
-    //        this.componentDidMount()
-    //     //    this.setState({ noFriends })
-    //        console.log('force')
-    //    };
-
     render() {
         const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
-                <View>
+               
                      <View
                         key={index}
                         style={styles.friendContainer}
@@ -123,20 +117,22 @@ class UsersFriends extends React.Component {
                             </TouchableOpacity>
                         </View>
                         </View>    
-                </View>
-                </View>
+                    </View>
+              
             )
         })
 
         const noFriends = this.state.noFriends;
         
         return (
-            <ScrollView style={styles.screen}>
-            <View>
-                {[usersFriends]}
-            </View>
-            {/* <View style={{height: 150}}>
-                <MainButton title="Add Friends" onPress={() => {
+          
+
+           
+            <ScrollView style={styles.scrollScreen}>
+                    {[usersFriends]}
+                
+            {/* <View>
+                <MainButton title="Add Friends now" onPress={() => {
                         this.props.navigation.navigate('AddFriends')}} />
             </View> */}
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -161,26 +157,38 @@ class UsersFriends extends React.Component {
                     <Text style={{color: 'white'}}>Remove friend</Text>
                 </RBSheet>
             </View>
+            {/* <MainButton /> */}
             </ScrollView>
+         
         )
     }
 }
 
 const styles = StyleSheet.create({
     screen: {
-        paddingHorizontal: 20,
+        flex: 1,
+        flexDirection: 'column'
+        
+    },
+    scrollScreen: {
+        // flex: 1,
+        // paddingHorizontal: 20,
         backgroundColor: '#0A0A0A',
+        // flex: 1,
+        // justifyContent: 'flex-end'
     },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 60
-    },
-    description: {
-        textAlign: 'center',
-        marginBottom: 40
-    },
+    // title: {
+    //     fontSize: 20,
+    //     textAlign: 'center',
+    //     // marginBottom: 60
+    // },
+    // description: {
+    //     textAlign: 'center',
+    //     // marginBottom: 40
+    // },
     friendContainer: {
+        // height: '100%',
+        flex: 1,
         backgroundColor: '#1E1E1E',
         padding: 20,
         marginHorizontal: 20,
@@ -207,14 +215,14 @@ const styles = StyleSheet.create({
         color: 'white',
         marginTop: 10
     },
-    user_info: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    user_grid: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    }
+    // user_info: {
+    //     flexDirection: 'row',
+    //     alignItems: 'center'
+    // },
+    // user_grid: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between'
+    // }
 });
 
 export default UsersFriends;

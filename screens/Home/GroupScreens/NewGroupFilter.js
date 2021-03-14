@@ -24,10 +24,9 @@ export default class NewGroupFilter extends React.Component {
     platformPressed = (platform) => {
         let platformBoxPressed = true;
         this.setState({platformBoxPressed});
-        console.log("platformbox:", this.state.platformBoxPressed)
+        // console.log("platformbox:", this.state.platformBoxPressed)
         
         let platformName = [platform];
-        // console.log('platform', platformName)
         this.setState({ platformName })
     }
 
@@ -36,7 +35,7 @@ export default class NewGroupFilter extends React.Component {
           return (
             <View>
               <TouchableOpacity 
-                  key={index}
+                  key={platform}
                     style={this.state.platformName.includes(platform)
                         ? {
                             width: 168,
@@ -61,16 +60,17 @@ export default class NewGroupFilter extends React.Component {
                             backgroundColor: '#1E1E1E',
                             position: 'relative'
                         }
+                        
                     }
                   onPress={() => this.platformPressed(platform)}>
-                  {/* <Checkmark style={{}} /> */}
+                  
                   <View>{platform}</View>
               </TouchableOpacity>
           </View>
           )
       })
 
-    const platformName = this.state.platformName;
+    // const platformName = this.state.platformName;
     return (
      <View style={styles.screen}>
          <Text style={styles.title}>Filter streaming platform for the group</Text>
@@ -88,7 +88,6 @@ export default class NewGroupFilter extends React.Component {
 
 const styles = StyleSheet.create({
     screen: {
-        // paddingTop: 50,
         backgroundColor: '#0A0A0A',
         height: '100%'
     },
@@ -103,11 +102,5 @@ const styles = StyleSheet.create({
        height: 60,
        marginTop: 'auto',
        marginBottom: 'auto'
-    },
-    // fixedButton: {
-    //     position: 'absolute',
-    //     bottom: 0,
-    //     left: 0,
-    // }
-
+    }
 });

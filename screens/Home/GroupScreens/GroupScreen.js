@@ -44,9 +44,9 @@ function GroupScreen({ route, navigation, props }) {
                         navigation.navigate('FriendScreen')
                     }} />
             </View>
-            {/* <View style={styles.search}>
-                <SearchBar search="Search Groups"/>
-            </View> */}
+            <View style={styles.search}>
+                <SearchBar />
+            </View>
             {/* <Button  title="Friend screen" onPress={() => {
                     props.navigation.navigate('FriendScreen')
                 }} /> */}

@@ -23,11 +23,15 @@ const FriendTabButton = props => {
 //         super(props);
 //         this.state = {
 //             buttonPressed: true,
+//             groupPress: false,
+//             friendPress: false
 //         }
 //     }
 //     render() {
 //         // const FriendTabButton = props => {
 //     const handleGroupPress = () => {
+//         this.setState({ groupPress: true})
+//         this.setState({friendPress: false})
 //         console.log("group press")
 //         let text = (
 //             <Text>hello</Text>
@@ -40,31 +44,35 @@ const FriendTabButton = props => {
 //     // )
 
 //     const handleFriendPress = () => {
+//         this.setState({ groupPress: false})
+//         this.setState({friendPress: true})
+
 //         console.log("friend press")
 //     }
 //     let text = (
 //         <NoFriends />
 //     )
 //     const {buttonPressed} = this.state;
+//     const {groupPress} = this.state;
+//     const {friendPress} = this.state;
 //         return (
 //             <View style={styles.grid}>
-//             <TouchableOpacity style={styles.buttonActive} onPress={() => {
-//                 let text = <NoFriends />
-//             }}>
+//             <TouchableOpacity style={styles.buttonActive} onPress={handleGroupPress}>
 //                <Text style={styles.buttonText}>Groups</Text>
 //             </TouchableOpacity>
 //             <TouchableOpacity style={styles.buttonActive} onPress={handleFriendPress}>
 //                <Text style={styles.buttonText}>Friends</Text>
 //             </TouchableOpacity>
 //             <View>
-//                 {buttonPressed === false
+//                 <GroupScreen />
+//                 {groupPress === true
 //                 ? (
 //                     <GroupScreen />
 //                 )
 //                 : (
 //                     <FriendScreen />
 //                 )}
-//                {/* {text} */}
+               
 //            </View>
             
 //        </View>
