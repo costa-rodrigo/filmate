@@ -148,10 +148,11 @@ render() {
         <View style={styles.genre}>
           <Text>{genres}</Text>
         </View>
-        <MainButton 
+       
+      </ScrollView>
+      <MainButton 
           title="Next" 
           onPress={() => this.handleSubmit(genreId, posters, allData )}/>
-      </ScrollView>
     </View>
   );
 }

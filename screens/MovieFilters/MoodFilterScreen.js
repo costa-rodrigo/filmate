@@ -140,16 +140,20 @@ export default class MoodFilter extends React.Component {
     const allData = this.state;
     const moodName = this.state.moodName;
     return (
-     <ScrollView style={styles.screen}>
+    <View style={styles.screen}>
+       <ScrollView>
        <View>
         <Text style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 20}}>{moods}</Text>
        </View>
 
             {/* <Text>Chosen Mood: {moodName}</Text> */}
-            <MainButton 
+           
+     </ScrollView>
+     <MainButton 
             title="Next"
             onPress={() => this.handleSubmit(moodName, posters, allData )}/>
-     </ScrollView>
+    </View>
+    
     );
   }
 }
@@ -157,7 +161,7 @@ export default class MoodFilter extends React.Component {
 const styles = StyleSheet.create({
     screen: {
         backgroundColor: '#0A0A0A',
-        // flex: 1
+        flex: 1
     },
     text:{
         color:'black',

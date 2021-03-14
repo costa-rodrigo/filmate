@@ -13,12 +13,6 @@ class FriendsInvited extends React.Component {
                         this.props.navigation.navigate('GroupScreen')
                     }}
                 />
-                {/* <Button 
-                    title="Back to Home"
-                    onPress={() => {
-                        this.props.navigation.navigate('Home')
-                    }}
-                /> */}
                  <Button 
                     title="Invite More Friends"
                     onPress={() => {

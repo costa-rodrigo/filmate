@@ -6,6 +6,7 @@ import NoGroupsImage from '../../../svgs//screens/NoGroupsImage';
 import GreyButton from '../../../components/GreyButton';
 import FriendTabButton from '../FriendTabButton';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
+import axios from "axios";
 
 function GroupScreen({ route, navigation, props }) {
     // const [username, setUsername] = useState('');
@@ -46,30 +47,24 @@ function GroupScreen({ route, navigation, props }) {
             </View>
             <View style={styles.search}>
                 <SearchBar />
-            </View>
-            {/* <Button  title="Friend screen" onPress={() => {
-                    props.navigation.navigate('FriendScreen')
-                }} /> */}
-          
+            </View> 
             <NoGroupsImage />
-        <View style={styles.newGroup}>
-            <Text style={styles.title}>You don’t have any groups.</Text>
-            <Text style={styles.description}>Create groups by inviting friends.</Text>
-            <GreyButton title="New group" onPress={() => {
-                    navigation.navigate('NewGroupFilter')
-                }} />
-        </View>
-        <Button title="start session" onPress={() => {
+            <View style={styles.newGroup}>
+                <Text style={styles.title}>You don’t have any groups.</Text>
+                <Text style={styles.description}>Create groups by inviting friends.</Text>
+                <GreyButton title="New group" onPress={() => {
+                        navigation.navigate('NewGroupFilter')
+                    }} />
+            </View>
+            <Button title="start session" onPress={() => {
                 navigation.replace('navigation')
             }}/>
            
-        <View
-            style={{
+        <View style={{
                 flex: 1,
                 justifyContent: "center",
                 alignItems: "center",
                 backgroundColor: "white",
-                // marginBottom: 
                 marginTop: 150
             }}
             >

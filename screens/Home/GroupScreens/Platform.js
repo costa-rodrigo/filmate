@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-n
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
 
-export default class NewGroupFilter extends React.Component {
+export default class Platform extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

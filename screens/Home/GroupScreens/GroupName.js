@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 // import CreateGroup from './CreateGroup';
 import axios from 'axios';
 
-const NewGroupName = props => {
+const GroupName = props => {
      // state variables : groupName
      const [groupName, setGroupName] = useState('');
      const [errorText, setErrorText] = useState('');
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default NewGroupName;
+export default GroupName;

@@ -5,6 +5,7 @@ import axios from 'axios';
 import FriendScreen from '../FriendScreens/FriendScreen';
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
+import ProfileImage from '../../../svgs/icons/ProfileImage';
 
 export default class CreateGroup extends React.Component {
     constructor(props) {
@@ -15,7 +16,6 @@ export default class CreateGroup extends React.Component {
           addedFriends: [],
           noFriends: true,
           pressed: false,
-        //   buttonColor: "white"
         
       }
       const { navigate } = props.navigation;
@@ -98,8 +98,6 @@ export default class CreateGroup extends React.Component {
                 
             } else {
                 this.state.addedFriends.push(friend)
-                // this.setState({ buttonColor: 'pink'})
-                // this.setState({ backgroundColor: 'pink'})
             }
             this.setState({ addedFriends: this.state.addedFriends })
             console.log(this.state.addedFriends)
@@ -110,9 +108,9 @@ export default class CreateGroup extends React.Component {
     render() {
        
         const { pressed } = this.state;
-        const { backgroundColor } = this.state;
-        const { buttonColor } = this.state;
-        const className = this.state.pressed ? 'blue' : 'red';
+        // const { backgroundColor } = this.state;
+        // const { buttonColor } = this.state;
+        // const className = this.state.pressed ? 'blue' : 'red';
 
         const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
@@ -123,21 +121,32 @@ export default class CreateGroup extends React.Component {
                             borderWidth: 1.5, 
                             borderColor: '#56e6a5', 
                             backgroundColor: '#1E1E1E',
-                            padding: 20,
-                            marginHorizontal: 20,
                             marginVertical: 10,
                             borderRadius: 15,
-                            paddingBottom: 30} 
+                            paddingBottom: 30,
+                            width: 343,
+                            height: 64,
+                            marginLeft: 'auto',
+                            marginRight: 'auto'
+                        } 
                         : { 
                             backgroundColor: '#1E1E1E',
-                            padding: 20,
-                            marginHorizontal: 20,
                             marginVertical: 10,
                             borderRadius: 15,
-                            paddingBottom: 30 }}
+                            paddingBottom: 30,
+                            width: 343,
+                            height: 64,
+                            marginLeft: 'auto',
+                            marginRight: 'auto'
+                         }
+                        }
                     onPress={() => this.friendPressed(friend)}
                     >
-                    <Text style={styles.friendText}>{friend}</Text>
+                    <View style={styles.image_name}>
+                        <ProfileImage />
+                        <Text style={styles.friendText}>{friend}</Text>
+                    </View>
+                    
                     {/* <Checkmark style={this.state.addedFriends.includes(friend) ? { display: 'inline'} : { display: 'none'} }/> */}
                 </TouchableOpacity>
             )
@@ -157,7 +166,7 @@ export default class CreateGroup extends React.Component {
                 )
                 } */}
                 <MainButton title="Invite" onPress={() => {
-                    this.props.navigation.navigate('InvitedToGroup')
+                    this.props.navigation.navigate('GroupCreated')
                 }}/>
            
             </ScrollView>
@@ -168,19 +177,23 @@ export default class CreateGroup extends React.Component {
 
 const styles = StyleSheet.create({
     screen: {
-        backgroundColor: '#0A0A0A'
+        backgroundColor: '#0A0A0A',
+        // flex: 1
     },
-    friendContainer: {
-        backgroundColor: '#1E1E1E',
-        padding: 20,
-        marginHorizontal: 20,
-        marginVertical: 10,
-        borderRadius: 15,
-        // marginBottom: 30
-        paddingBottom: 30
-    },
+    // friendContainer: {
+    //     backgroundColor: '#1E1E1E',
+    //     padding: 20,
+    //     marginHorizontal: 20,
+    //     marginVertical: 10,
+    //     borderRadius: 15,
+    //     // marginBottom: 30
+    //     paddingBottom: 30
+    // },
     friendText: {
-        color: 'white'
+        color: 'white',
+        marginTop: 'auto',
+        marginBottom: 'auto'
+       
     },
     title: {
         color: 'white',
@@ -188,11 +201,19 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         marginHorizontal: 20
     },
-    red: {
-        backgroundColor: 'red'
+    // red: {
+    //     backgroundColor: 'red'
+    // },
+    // blue: {
+    //     backgroundColor: 'blue'
+    // }, 
+    image_name: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
-    blue: {
-        backgroundColor: 'blue'
+    friendImage: {
+        marginTop: 'auto',
+        marginBottom: 'auto'
     }
     // screen: {
     //     paddingHorizontal: 20,
