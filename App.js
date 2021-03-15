@@ -33,8 +33,7 @@ const App = () => {
       <StatusBar barStyle="light-content" backgroundColor="#4F6D7A" />
       <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
             height: 0
-          } }, 
-                       headerTitleStyle: { fontWeight: 'bold' }}}>
+          } }, headerTitleStyle: { fontWeight: 'bold' }}}>
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: '', headerStyle: {
           backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
             height: 0

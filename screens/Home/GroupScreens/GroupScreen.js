@@ -1,53 +1,38 @@
 import React, { useRef, useState } from "react";
-import { View, Text, StyleSheet, Button, Image, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
 import RBSheet from "react-native-raw-bottom-sheet";
 import NoGroupsImage from '../../../svgs//screens/NoGroupsImage';
 import GreyButton from '../../../components/GreyButton';
 import FriendTabButton from '../FriendTabButton';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
-import axios from "axios";
+// import axios from "axios";
 
 function GroupScreen({ route, navigation, props }) {
-    // const [username, setUsername] = useState('');
-    // const { userUsername } = route.params;
-    // console.log("username", userUsername)
-    // console.log(route)
-    
-    // const componentDidMount = () => {
-    //     setUsername({userUsername})
-
-    // }
-// const GroupScreen = (props, route) => {
-//     const { navigate } = props.navigation;
-    // const { userUsername } = route.params;
-    // const { userUsername } = route.params;
-    // console.log(route.params)
-    // console.log("username", userUsername)
-
     const refRBSheet = useRef();
     
     return (
-        <ScrollView style={styles.screen}>
-            <View style={styles.user_grid}>
-                <View style={styles.user_info}>
-                    <ProfileImage />
-                    <View>
-                        <Text style={{color: 'white'}}> 👋</Text>
-                        <TouchableOpacity onPress={() => {
-                            navigation.navigate('ProfileScreen')
-                        }}>
-                            <Text style={{color: '#f03349'}}>View profile</Text>
-                        </TouchableOpacity>
+        <View style={styles.screen}>
+            <View style={styles.header}>
+                <View style={styles.user_grid}>
+                    <View style={styles.user_info}>
+                        <ProfileImage />
+                        <View>
+                            <Text style={{color: 'white'}}> 👋</Text>
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate('ProfileScreen')
+                            }}>
+                                <Text style={{color: '#f03349'}}>View profile</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
+                    <FriendTabButton onPress={() => {
+                            navigation.navigate('FriendScreen')
+                        }} />
                 </View>
-                <FriendTabButton onPress={() => {
-                        navigation.navigate('FriendScreen')
-                    }} />
+           
+                <SearchBar placeholder="Search groups"/>
             </View>
-            <View style={styles.search}>
-                <SearchBar />
-            </View> 
             <NoGroupsImage />
             <View style={styles.newGroup}>
                 <Text style={styles.title}>You don’t have any groups.</Text>
@@ -92,13 +77,17 @@ function GroupScreen({ route, navigation, props }) {
                 <Text>Exit Group</Text>
             </RBSheet>
              </View>
-        </ScrollView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     screen: {
-        backgroundColor: '#0A0A0A'
+        backgroundColor: '#0A0A0A',
+        height: '100%'
+    },
+    header: {
+        backgroundColor: '#121212'
     },
     title: {
         textAlign: 'center',
@@ -116,10 +105,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         margin: 5
     },
-    search: {
-        marginHorizontal: 30,
-        marginTop: 10
-    },
+
     groupOptions: {
         color: 'white', 
         textAlign: 'center', 
@@ -131,7 +117,9 @@ const styles = StyleSheet.create({
     },
     user_grid: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginLeft: 45,
+        marginRight: 45
     }
 });
 

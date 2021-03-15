@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
+import GreyCircle from '../../../svgs/icons/GreyCircle';
 
 export default class Platform extends React.Component {
     constructor(props) {
@@ -63,8 +64,24 @@ export default class Platform extends React.Component {
                         
                     }
                   onPress={() => this.platformPressed(platform)}>
-                  
-                  <View>{platform}</View>
+                <View style={styles.checkmark_grid}>
+                    <View>{platform}</View>
+                    {
+                        this.state.platformName.includes(platform)
+                        ? (
+                            <View style={styles.circle}>
+                            <Checkmark />
+                            </View>
+                        )
+                        : (
+                            <View style={styles.circle}>
+                            <GreyCircle />
+                            </View>
+                        )
+                    }
+
+                </View>
+
               </TouchableOpacity>
           </View>
           )
@@ -101,6 +118,15 @@ const styles = StyleSheet.create({
        width: 100, 
        height: 60,
        marginTop: 'auto',
-       marginBottom: 'auto'
+    },
+    checkmark_grid: {
+        flexDirection: 'column',
+        
+    },
+    circle: {
+        marginLeft: 100,
+        // paddingBottom: 20
+        // marginBottom: 20
+       
     }
 });

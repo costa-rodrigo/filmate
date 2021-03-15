@@ -3,24 +3,23 @@ import SearchBar from '../../../components/SearchBar';
 import { View, Text, StyleSheet, Button, Image, ScrollView } from 'react-native';
 // import RBSheet from "react-native-raw-bottom-sheet";
 import NoFriendsImage from '../../../svgs/screens/NoFriendsImage';
-
+import MainButton from '../../../components/MainButton';
 const NoFriends = (props) => {
     // const refRBSheet = useRef();
     // const { navigate } = props.navigation;
     return (
-        <ScrollView style={styles.screen}>
-            <SearchBar style={styles.search} search="Search Friends"/>
-        
+        <ScrollView style={styles.screen}>        
         <View>
             <NoFriendsImage />
             <Text style={styles.title}>You don’t have any friends.</Text>
             <Text style={styles.description}>Add friends to create new groups.</Text>
-            <Button 
+
+            {/* <Button 
                 title="Add Friends"
                 onPress={() => {
                     props.navigation.navigate('AddFriends')
                 }}
-            />
+            /> */}
         </View>
 
         <View
@@ -52,6 +51,10 @@ const NoFriends = (props) => {
             
             </RBSheet> */}
     </View>
+    {/* <MainButton title="Add Friends"
+                onPress={() => {
+                    props.navigation.navigate('AddFriends')
+                }}/> */}
         </ScrollView>
     )
 }

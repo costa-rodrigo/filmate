@@ -10,6 +10,7 @@ import ProfileImage from '../../../svgs/icons/ProfileImage';
 import GroupTabButton from '../GroupTabButton';
 import UsersFriends from './UsersFriends';
 import { Alert } from 'react-native';
+import SearchBar from '../../../components/SearchBar';
 // checkbox article:
 // https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
 class FriendScreen extends React.Component {
@@ -102,39 +103,49 @@ class FriendScreen extends React.Component {
         const noFriends = this.state.noFriends;
         return (
             <View style={styles.screen}>
-                <View style={styles.user_grid}>             
-                    <View style={styles.user_info}>
-                        <ProfileImage />
-                        <View>
-                            <Text style={{color: 'white'}}> 👋</Text>
-                            <TouchableOpacity onPress={() => {
-                                this.props.navigation.navigate('ProfileScreen')
-                            }}>
-                                <Text style={{color: '#f03349'}}>View profile</Text>
-                            </TouchableOpacity>
+                <View style={styles.header}>
+                    <View style={styles.user_grid}>             
+                        <View style={styles.user_info}>
+                            <ProfileImage />
+                            <View>
+                                <Text style={{color: 'white'}}> 👋</Text>
+                                <TouchableOpacity onPress={() => {
+                                    this.props.navigation.navigate('ProfileScreen')
+                                }}>
+                                    <Text style={{color: '#f03349', marginLeft: 8, marginTop: 6}}>View profile</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
+                        <GroupTabButton onPress={() => {
+                                this.props.navigation.replace('GroupScreen')
+                            }} />
                     </View>
-                    <GroupTabButton onPress={() => {
-                            this.props.navigation.replace('GroupScreen')
-                        }} />
-                    {/* <GroupTabButton onPress={this.handlePress} /> */}
+                    <SearchBar placeholder="Search your friends"/>
                 </View>
-                {/* <Button onPress={this.forceUpdateHandler} title="refresh"/> */}
 
                 <View>
-                    <Text>HI</Text>
                     {noFriends === false
                     ? (
-                        <View style={{height: '89%'}}>
+                        // fix this here! button is not in the right spot
+                        <View style={{height: '90%'}}>
                             <UsersFriends />
-                            <View style={{marginBottom: 25}}>
+                            <View>
+                            {/* <View style={{marginBottom: 25}}> */}
                                 <MainButton  title="Add Friends" onPress={() => {
                                 this.props.navigation.navigate('AddFriends')}} />
                             </View>
                         </View>
                     ) 
                     : (
+                        <View>
                         <NoFriends navigation={this.props.navigation} noFriends={this.state.noFriends}/>
+                        <MainButton title="Add Friends"
+                        onPress={() => {
+                            this.props.navigation.navigate('AddFriends')
+                        }}/>
+                        </View>
+
+            
 
                     )
                 }
@@ -154,6 +165,9 @@ const styles = StyleSheet.create({
         // paddingHorizontal: 20,
         backgroundColor: '#0A0A0A',
         
+    },
+    header: {
+        backgroundColor: '#121212'
     },
     // title: {
     //     fontSize: 20,
@@ -191,14 +205,16 @@ const styles = StyleSheet.create({
     //     color: 'white',
     //     marginTop: 10
     // },
-    // user_info: {
-    //     flexDirection: 'row',
-    //     alignItems: 'center'
-    // },
-    // user_grid: {
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-between'
-    // }
+    user_info: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    user_grid: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginLeft: 45,
+        marginRight: 45
+    }
 });
 
 export default FriendScreen;

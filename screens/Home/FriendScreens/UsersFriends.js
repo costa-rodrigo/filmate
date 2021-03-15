@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, ScrollView, TouchableHighlight } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-import NoFriends from '../FriendScreens/NoFriends';
-import MainButton from '../../../components/MainButton';
+// import NoFriends from '../FriendScreens/NoFriends';
+// import MainButton from '../../../components/MainButton';
 import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
-import GroupTabButton from '../GroupTabButton';
+// import GroupTabButton from '../GroupTabButton';
 
 class UsersFriends extends React.Component {
     constructor(props) {
@@ -106,13 +106,13 @@ class UsersFriends extends React.Component {
 
                        
                         <View style={styles.friendGrid}>
-                            <ProfileImage style={{marginBottom: 40}}/>
+                            <ProfileImage />
                             <Text style={styles.friendText}>{friend}</Text>
                         </View>
                         <View>
                         <TouchableOpacity 
                                 onPress={() => this.RBSheet.open()} 
-                                style={{ width: 30, height: 30, borderRadius: '50%'}}>
+                                style={styles.editButton}>
                                 <OptionsButton />
                             </TouchableOpacity>
                         </View>
@@ -125,9 +125,6 @@ class UsersFriends extends React.Component {
         const noFriends = this.state.noFriends;
         
         return (
-          
-
-           
             <ScrollView style={styles.scrollScreen}>
                     {[usersFriends]}
                 
@@ -157,7 +154,6 @@ class UsersFriends extends React.Component {
                     <Text style={{color: 'white'}}>Remove friend</Text>
                 </RBSheet>
             </View>
-            {/* <MainButton /> */}
             </ScrollView>
          
         )
@@ -166,45 +162,36 @@ class UsersFriends extends React.Component {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,
-        flexDirection: 'column'
+        // flex: 1,
+        // flexDirection: 'column'
         
     },
     scrollScreen: {
-        // flex: 1,
-        // paddingHorizontal: 20,
-        backgroundColor: '#0A0A0A',
-        // flex: 1,
-        // justifyContent: 'flex-end'
+        // backgroundColor: '#0A0A0A',
+
     },
-    // title: {
-    //     fontSize: 20,
-    //     textAlign: 'center',
-    //     // marginBottom: 60
-    // },
-    // description: {
-    //     textAlign: 'center',
-    //     // marginBottom: 40
-    // },
     friendContainer: {
-        // height: '100%',
-        flex: 1,
         backgroundColor: '#1E1E1E',
-        padding: 20,
-        marginHorizontal: 20,
         marginVertical: 10,
         borderRadius: 15,
         paddingBottom: 30,
-        height: 70
+        width: 343,
+        height: 64,
+        marginLeft: 'auto',
+        marginRight: 'auto'
     },
     friendText: {
         color: 'white',
         marginLeft: 15,
-        marginBottom: 5
+        marginTop: 'auto',
+        marginBottom: 'auto'
     },
     friendGrid: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginTop: 5,
+        marginBottom: 20,
+        marginLeft: 10
     },
     fullGrid: {
         flexDirection: 'row',
@@ -215,14 +202,14 @@ const styles = StyleSheet.create({
         color: 'white',
         marginTop: 10
     },
-    // user_info: {
-    //     flexDirection: 'row',
-    //     alignItems: 'center'
-    // },
-    // user_grid: {
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-between'
-    // }
+    editButton: {
+        width: 30, 
+        height: 30, 
+        borderRadius: 50,
+        marginTop: 15,
+        marginBottom: 10,
+        marginRight: 20
+    }
 });
 
 export default UsersFriends;

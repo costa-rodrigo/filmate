@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
-import { SearchBar } from 'react-native-elements';
+// import { SearchBar } from 'react-native-elements';
+import Search from '../svgs/icons/Search';
 
 export default class App extends React.Component {
   state = {
@@ -22,23 +23,40 @@ export default class App extends React.Component {
       //   onChangeText={this.updateSearch}
       //   value={search}
       // />
-      <View>
+      <View style={styles.search_bar}>
         <TextInput 
             style={styles.input}
-            placeholder="Search"
-            placeholderTextColor="white"
+            placeholder={this.props.placeholder}
+            placeholderTextColor='#8A8C90'
             />
+        <View style={styles.icon}>
+          <Search />
+        </View>
+       
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    input: {
+    search_bar: {
       width: 343,
       height: 40,
-      borderRadius: 20,
+      borderRadius: 10,
       backgroundColor: '#242424',
-      color: 'white'
+      padding: 10,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: 20,
+      marginBottom: 20
+    },
+    input: {
+      color: '#8A8C90',
+    },
+    icon: {
+      marginTop: 'auto',
+      marginBottom: 'auto',
     }
 });

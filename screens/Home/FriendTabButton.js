@@ -1,8 +1,5 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
-import NoFriends from './FriendScreens/NoFriends';
-import GroupScreen from './GroupScreens/GroupScreen';
-import FriendScreen from './FriendScreens/FriendScreen';
 
 const FriendTabButton = props => {
     return (
@@ -17,94 +14,30 @@ const FriendTabButton = props => {
     )
 }
 
-
-// class FriendTabButton extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             buttonPressed: true,
-//             groupPress: false,
-//             friendPress: false
-//         }
-//     }
-//     render() {
-//         // const FriendTabButton = props => {
-//     const handleGroupPress = () => {
-//         this.setState({ groupPress: true})
-//         this.setState({friendPress: false})
-//         console.log("group press")
-//         let text = (
-//             <Text>hello</Text>
-//         )
-//         return text;
-//     }
-
-//     // let text = (
-//     //     // <NoFriends />
-//     // )
-
-//     const handleFriendPress = () => {
-//         this.setState({ groupPress: false})
-//         this.setState({friendPress: true})
-
-//         console.log("friend press")
-//     }
-//     let text = (
-//         <NoFriends />
-//     )
-//     const {buttonPressed} = this.state;
-//     const {groupPress} = this.state;
-//     const {friendPress} = this.state;
-//         return (
-//             <View style={styles.grid}>
-//             <TouchableOpacity style={styles.buttonActive} onPress={handleGroupPress}>
-//                <Text style={styles.buttonText}>Groups</Text>
-//             </TouchableOpacity>
-//             <TouchableOpacity style={styles.buttonActive} onPress={handleFriendPress}>
-//                <Text style={styles.buttonText}>Friends</Text>
-//             </TouchableOpacity>
-//             <View>
-//                 <GroupScreen />
-//                 {groupPress === true
-//                 ? (
-//                     <GroupScreen />
-//                 )
-//                 : (
-//                     <FriendScreen />
-//                 )}
-               
-//            </View>
-            
-//        </View>
-
-//         )
-//     }
-
-
- 
-// }
-
 const styles = StyleSheet.create({
     grid: {
-        // flexDirection: 'row',
-        
+        flexDirection: 'row',
     },
     buttonActive: {
         backgroundColor: '#242424',
-        padding: 15,
-        borderRadius: 10,
-        // height: '50%'
-        // width: 80
+        borderRadius: 7,
+        height: 32,
+        width: 72,
+        marginTop: 'auto',
+        marginBottom: 'auto'
     },
     buttonInactive: {
-        padding: 15,
-        borderRadius: 15,
-        // width: 80,
-        
+        height: 32,
+        width: 72,
+        borderRadius: 7,
+        marginTop: 'auto',
+        marginBottom: 'auto'
     },
     buttonText: {
         color: 'white',
         textAlign: 'center',
+        marginTop: 'auto',
+        marginBottom: 'auto'
     }
 });
 

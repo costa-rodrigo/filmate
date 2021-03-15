@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-import FriendScreen from '../FriendScreens/FriendScreen';
+import SearchBar from '../../../components/SearchBar';
+// import FriendScreen from '../FriendScreens/FriendScreen';
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
+import BlackCircle from '../../../svgs/icons/BlackCircle';
 
 export default class CreateGroup extends React.Component {
     constructor(props) {
@@ -106,12 +108,7 @@ export default class CreateGroup extends React.Component {
 
 
     render() {
-       
         const { pressed } = this.state;
-        // const { backgroundColor } = this.state;
-        // const { buttonColor } = this.state;
-        // const className = this.state.pressed ? 'blue' : 'red';
-
         const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
                 <TouchableOpacity 
@@ -142,34 +139,66 @@ export default class CreateGroup extends React.Component {
                         }
                     onPress={() => this.friendPressed(friend)}
                     >
-                    <View style={styles.image_name}>
-                        <ProfileImage />
-                        <Text style={styles.friendText}>{friend}</Text>
+                    <View style={styles.checkmark_grid}>
+
+                    
+                        <View style={styles.friendGrid}>
+                            <ProfileImage />
+                            <Text style={styles.friendText}>{friend}</Text>
+                            
+                        </View>
+                        {
+                            this.state.addedFriends.includes(friend) 
+                            ? (
+                                <View style={styles.circle}>
+                                    <Checkmark />
+                                </View>
+                            )
+                            : (
+                                <View style={styles.circle}>
+                                    <BlackCircle />
+                                </View>
+
+                            )
+
+                            
+                        }
+
+                        
                     </View>
                     
-                    {/* <Checkmark style={this.state.addedFriends.includes(friend) ? { display: 'inline'} : { display: 'none'} }/> */}
                 </TouchableOpacity>
             )
         })
 
         return (
-            <ScrollView style={styles.screen}>
-            
-                <Text style={styles.title}>Invite friends to your group.</Text>
-          
-                {usersFriends}
-                {/* <FriendScreen /> */}
-                {/* {noFriends == true ? (
-                    <FriendScreen />
-                ) : (
-                    usersFriends
-                )
-                } */}
-                <MainButton title="Invite" onPress={() => {
-                    this.props.navigation.navigate('GroupCreated')
-                }}/>
+            <View style={{marginBottom: 25, backgroundColor: '#0A0A0A', height: '100%' }}>
+                <ScrollView style={styles.screen}>
+                    <View style={styles.header}>
+                        <Text style={styles.title}>Invite friends to your group.</Text>
+                        <SearchBar placeholder="Search Friends" />
+                    </View>
+                    
+                    <View>
+                    {usersFriends}
+                    </View>
+                   
+                    {/* <FriendScreen /> */}
+                    {/* {noFriends == true ? (
+                        <FriendScreen />
+                    ) : (
+                        usersFriends
+                    )
+                    } */}
+                   
+        
+                </ScrollView>
+                
+                    <MainButton title="Invite" onPress={() => {
+                            this.props.navigation.navigate('GroupCreated')
+                        }}/>
+            </View>
            
-            </ScrollView>
 
         )
     }
@@ -179,6 +208,9 @@ const styles = StyleSheet.create({
     screen: {
         backgroundColor: '#0A0A0A',
         // flex: 1
+    },
+    header: {
+        backgroundColor: '#121212'
     },
     // friendContainer: {
     //     backgroundColor: '#1E1E1E',
@@ -191,44 +223,34 @@ const styles = StyleSheet.create({
     // },
     friendText: {
         color: 'white',
+        marginLeft: 15,
         marginTop: 'auto',
         marginBottom: 'auto'
-       
     },
     title: {
         color: 'white',
         fontSize: 20,
-        marginVertical: 20,
-        marginHorizontal: 20
+        marginLeft: 45
     },
-    // red: {
-    //     backgroundColor: 'red'
-    // },
-    // blue: {
-    //     backgroundColor: 'blue'
-    // }, 
-    image_name: {
+    friendGrid: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        alignItems: 'center',
+        marginTop: 5,
+        marginBottom: 20,
+        marginLeft: 10
     },
     friendImage: {
         marginTop: 'auto',
         marginBottom: 'auto'
+    },
+    checkmark_grid: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    circle: {
+        marginTop: 20,
+        marginBottom: 10,
+        marginRight: 20
     }
-    // screen: {
-    //     paddingHorizontal: 20,
-    //     paddingTop: 50
-    // },
-    // title: {
-    //     fontSize: 20,
-    //     textAlign: 'center',
-    //     marginBottom: 60
-    // },
-    // description: {
-    //     textAlign: 'center',
-    //     marginBottom: 40
-    // }
-
-
 });
 

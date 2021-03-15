@@ -10,7 +10,6 @@ const FriendTabButton = props => {
              <TouchableOpacity style={styles.buttonActive}>
                 <Text style={styles.buttonText}>Friends</Text>
              </TouchableOpacity>
-            
         </View>
        
     )
@@ -19,22 +18,27 @@ const FriendTabButton = props => {
 const styles = StyleSheet.create({
     grid: {
         flexDirection: 'row',
-        
     },
     buttonActive: {
         backgroundColor: '#242424',
-        padding: 15,
-        borderRadius: 10,
-        width: 85
+        borderRadius: 7,
+        height: 32,
+        width: 72,
+        marginTop: 'auto',
+        marginBottom: 'auto'
     },
     buttonInactive: {
-        padding: 15,
-        borderRadius: 15,
-        width: 85
+        height: 32,
+        width: 72,
+        borderRadius: 7,
+        marginTop: 'auto',
+        marginBottom: 'auto'
     },
     buttonText: {
         color: 'white',
         textAlign: 'center',
+        marginTop: 'auto',
+        marginBottom: 'auto'
     }
 });
 
