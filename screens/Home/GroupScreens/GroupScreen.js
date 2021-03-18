@@ -29,15 +29,12 @@ class GroupScreen extends React.Component {
     // const refRBSheet = useRef();
 
     componentDidMount() {
-        // this.setState({});
-        console.log(this.state.noGroups)
-        // console.log("get token")
         return new Promise ( async (resolve, reject) => {
             try {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                          console.log("store", store)
+                        //   console.log("store", store)
                         let token = "Bearer " + store[0][1];
                         // setToken(token)
                         this.setState({ token })
@@ -60,7 +57,6 @@ class GroupScreen extends React.Component {
             }
         })
         .then((res) => {
-            console.log("then")
             console.log(res.data)
             const groups = res.data
             if (groups.length !== 0 ) {
@@ -68,8 +64,8 @@ class GroupScreen extends React.Component {
             } else {
                 this.setState({ noGroups: true })
             }
-            console.log("friends", groups) 
-            console.log(this.state.noGroups)
+            // console.log("friends", groups) 
+            // console.log(this.state.noGroups)
     
             let allGroups = [];
             for (let i = 0; i < groups.length; i++) {
@@ -78,7 +74,7 @@ class GroupScreen extends React.Component {
                 allGroups.push(group)
             }
             this.setState({ GroupsArray: allGroups })
-            console.log(this.state.GroupsArray)
+            // console.log(this.state.GroupsArray)
         })
         .catch((error) => {
             console.error(error)
