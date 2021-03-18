@@ -126,12 +126,15 @@ export default class CreateGroup extends React.Component {
 
        handleSubmit = async () => {
            console.log(this.state.currentFriends[0].friend_email);
+           
            console.log(this.state.groupName)
            await axios.post('http://192.168.0.20:3000/groups-update', {
                email: this.state.currentFriends[0].friend_email,
                groupName: this.state.groupName
            })
            .then((response) => {
+            console.log("currentFriends", this.state.currentFriends[0].friend_email)
+            console.log("addedFriends", this.state.addedFriends)
             console.log(".then", this.state.groupName)
             this.props.navigation.navigate('GroupCreated')
             })

@@ -24,22 +24,11 @@ class FriendScreen extends React.Component {
           selectedFriends: [],
           change: 0
       }
-    //   this.selectionOnPress = this.selectionOnPress.bind(this);
       this.handleToken = this.handleToken.bind(this);
     //   this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-    //   this.handleChange = this.handleChange.bind(this);
-    //   this.forceUpdate = this.forceUpdate.bind(this);
     }
-    // handleChange() {
-    //     this.componentDidMount()
-    // }
-
-    // forceUpdate() {
-    //     this.componentDidMount()
-    // }
-
     componentDidMount() {
-        this.setState({});
+        // this.setState({});
         console.log(this.state.noFriends)
         // console.log("get token")
         return new Promise ( async (resolve, reject) => {
@@ -57,12 +46,10 @@ class FriendScreen extends React.Component {
                       });
                     });
                   });
-
             } catch(error) {
                 reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
             }
         });
-
     }
 
     // componentDidUpdate(prevProps) {
@@ -144,15 +131,9 @@ class FriendScreen extends React.Component {
                             this.props.navigation.navigate('AddFriends')
                         }}/>
                         </View>
-
-            
-
                     )
                 }
                 </View>
-            
-                {/* <MainButton title="test"/> */}
-
             </View>
         )
     }

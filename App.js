@@ -23,6 +23,7 @@ import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
 import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
 import HomeNavigator from './navigation/HomeNavigator';
 import FriendTabButton from './screens/Home/FriendTabButton';
+import UsersGroups from './screens/Home/GroupScreens/UsersGroups';
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
 
@@ -67,6 +68,8 @@ const App = () => {
           options={{headerTitle: '', headerStyle: {
           backgroundColor: '#121212'
         }}}/>  */}
+                <Stack.Screen name="UsersGroups" component={UsersGroups} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
+
         <Stack.Screen name="NewGroupFilter" component={Platform} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="NewGroupName" component={GroupName} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
@@ -86,6 +89,7 @@ const App = () => {
         <Stack.Screen name="FriendScreen" component={FriendScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null}}/> 
         <Stack.Screen name="GroupScreen" component={GroupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
         <Stack.Screen name="FriendTabButton" component={FriendTabButton} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
+
       </Stack.Navigator>
     </NavigationContainer>
   );

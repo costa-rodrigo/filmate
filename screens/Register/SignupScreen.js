@@ -4,7 +4,7 @@ import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import FilmateLogo from '../../svgs/logo/FilmateLogo';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import PinkButton from '../../components/PinkButton';
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -117,13 +117,14 @@ const SignupScreen = props => {
                 <View style={styles.modalView}>
                   <Text style={styles.modalTextHeading}>Account created!</Text>
                   <Text style={styles.modalText}>You can now sign in using your credentials.</Text>
-                  <Pressable
+                  <PinkButton
                     style={[styles.button, styles.buttonClose]}
+                    title="Ok"
                     onPress={() =>
                     props.navigation.navigate('Login')}
-                  >
-                    <Text style={styles.textStyle}>Ok</Text>
-                  </Pressable>
+                  />
+                    {/* <Text style={styles.textStyle}>Ok</Text> */}
+                  {/* </Pressable> */}
                 </View>
               </View>
             </Modal>
