@@ -36,7 +36,7 @@ export default class Platform extends React.Component {
           return (
             <View>
               <TouchableOpacity 
-                  key={platform}
+                  key={index}
                     style={this.state.platformName.includes(platform)
                         ? {
                             width: 168,

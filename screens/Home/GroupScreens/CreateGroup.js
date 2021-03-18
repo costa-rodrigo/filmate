@@ -8,6 +8,7 @@ import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
 import BlackCircle from '../../../svgs/icons/BlackCircle';
+import { ActionSheetIOS } from 'react-native';
 
 export default class CreateGroup extends React.Component {
     constructor(props) {
@@ -18,6 +19,8 @@ export default class CreateGroup extends React.Component {
           addedFriends: [],
           noFriends: true,
           pressed: false,
+          currentFriends: '',
+          groupName: this.props.route.params.groupName,
         
       }
       const { navigate } = props.navigation;
@@ -27,7 +30,7 @@ export default class CreateGroup extends React.Component {
     }
 
     componentDidMount() {
-        // console.log("get token")
+        // console.log("groupName in CreateGroup", this.state.groupName);
         return new Promise ( async (resolve, reject) => {
             try {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
@@ -65,7 +68,23 @@ export default class CreateGroup extends React.Component {
         })
         .then((res) => {
             // this.setState({ noFriends: false })
+            // const friends = res.data
+            // console.log(friends) 
+            // console.log(this.state.noFriends)
+    
+            // let allFriends = [];
+            // for (let i = 0; i < friends.length; i++) {
+            //     let friend = friends[i].friend_name;
+            //     // console.log(friend)
+            //     allFriends.push(friend)
+            // }
+            // this.setState({ friendsArray: allFriends })
+            // console.log(this.state.friendsArray)
+
             const friends = res.data
+            this.setState({currentFriends: friends})
+            console.log("NEW", this.state.currentFriends)
+
             console.log(friends) 
             console.log(this.state.noFriends)
     
@@ -105,7 +124,22 @@ export default class CreateGroup extends React.Component {
             console.log(this.state.addedFriends)
        }
 
-
+       handleSubmit = async () => {
+           console.log(this.state.currentFriends[0].friend_email);
+           console.log(this.state.groupName)
+           await axios.post('http://192.168.0.20:3000/groups-update', {
+               email: this.state.currentFriends[0].friend_email,
+               groupName: this.state.groupName
+           })
+           .then((response) => {
+            console.log(".then", this.state.groupName)
+            this.props.navigation.navigate('GroupCreated')
+            })
+            .catch((error) => {
+                console.error(error);
+                console.log("catch error")
+            })
+       }
 
     render() {
         const { pressed } = this.state;
@@ -140,12 +174,9 @@ export default class CreateGroup extends React.Component {
                     onPress={() => this.friendPressed(friend)}
                     >
                     <View style={styles.checkmark_grid}>
-
-                    
                         <View style={styles.friendGrid}>
                             <ProfileImage />
                             <Text style={styles.friendText}>{friend}</Text>
-                            
                         </View>
                         {
                             this.state.addedFriends.includes(friend) 
@@ -158,13 +189,8 @@ export default class CreateGroup extends React.Component {
                                 <View style={styles.circle}>
                                     <BlackCircle />
                                 </View>
-
                             )
-
-                            
                         }
-
-                        
                     </View>
                     
                 </TouchableOpacity>
@@ -178,28 +204,12 @@ export default class CreateGroup extends React.Component {
                         <Text style={styles.title}>Invite friends to your group.</Text>
                         <SearchBar placeholder="Search Friends" />
                     </View>
-                    
                     <View>
                     {usersFriends}
-                    </View>
-                   
-                    {/* <FriendScreen /> */}
-                    {/* {noFriends == true ? (
-                        <FriendScreen />
-                    ) : (
-                        usersFriends
-                    )
-                    } */}
-                   
-        
+                    </View>        
                 </ScrollView>
-                
-                    <MainButton title="Invite" onPress={() => {
-                            this.props.navigation.navigate('GroupCreated')
-                        }}/>
+                <MainButton title="Invite" onPress={this.handleSubmit}/>
             </View>
-           
-
         )
     }
 }
@@ -212,15 +222,6 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#121212'
     },
-    // friendContainer: {
-    //     backgroundColor: '#1E1E1E',
-    //     padding: 20,
-    //     marginHorizontal: 20,
-    //     marginVertical: 10,
-    //     borderRadius: 15,
-    //     // marginBottom: 30
-    //     paddingBottom: 30
-    // },
     friendText: {
         color: 'white',
         marginLeft: 15,

@@ -58,7 +58,7 @@ const GroupName = props => {
         .then((response) => {
             console.log(".then", groupName)
             // console.log(response.data)
-            navigate('CreateGroup')
+            navigate('CreateGroup', {groupName: groupName})
         })
         .catch((error) => {
             console.log("catch error")
