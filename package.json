@@ -21,6 +21,7 @@
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-onboarding-swiper": "^1.1.4",
+    "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-svg": "^12.1.0",
     "react-native-web": "~0.13.12"
   },

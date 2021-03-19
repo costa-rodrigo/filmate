@@ -22,8 +22,8 @@ import Onboarding from './screens/Onboarding/Onboarding';
 // import NoFriends from './screens/Home/FriendScreens/NoFriends';
 // import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
 // import { StatusBar } from 'react-native';
-// import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
-// import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
+import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
+import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
 // import HomeNavigator from './navigation/HomeNavigator';
 // import FriendTabButton from './screens/Home/FriendTabButton';
 // import UsersGroups from './screens/Home/GroupScreens/UsersGroups';
@@ -94,10 +94,10 @@ export default class App extends React.Component {
           <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/> 
+          <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/>  */}
           <Stack.Screen name="FriendScreen" component={FriendScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null}}/> 
           <Stack.Screen name="GroupScreen" component={GroupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
-          <Stack.Screen name="FriendTabButton" component={FriendTabButton} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/>  */}
+          {/* <Stack.Screen name="FriendTabButton" component={FriendTabButton} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/>  */}
         </Stack.Navigator>
       </NavigationContainer>
         // <View style={styles.container}>
