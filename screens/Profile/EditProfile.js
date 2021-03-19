@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Text, Button, Image } from 'react-native';
+import style from '../../Styles';
 
 const EditProfile = props => {
     // const [userPassword, setUserPassword] = useState('');
     // const [userPasswordConfirm, setUserPasswordConfirm] = useState('');
     return (
 
-        <View>
+        <View style={style.screen}>
             {/* <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} /> */}
             <View>
             {/* <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} /> */}

@@ -4,11 +4,12 @@ import { View, Text, StyleSheet, Button, Image, ScrollView } from 'react-native'
 // import RBSheet from "react-native-raw-bottom-sheet";
 import NoFriendsImage from '../../../svgs/screens/NoFriendsImage';
 import MainButton from '../../../components/MainButton';
+import style from '../../../Styles';
 const NoFriends = (props) => {
     // const refRBSheet = useRef();
     // const { navigate } = props.navigation;
     return (
-        <ScrollView style={styles.screen}>        
+        <ScrollView style={style.screen}>        
         <View>
             <NoFriendsImage />
             <Text style={styles.title}>You don’t have any friends.</Text>
@@ -77,11 +78,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 30,
         color: 'white'
-    },
-    screen: {
-        backgroundColor: '#0A0A0A'
     }
-
 });
 
 export default NoFriends;

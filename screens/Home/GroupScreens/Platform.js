@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-n
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
 import GreyCircle from '../../../svgs/icons/GreyCircle';
+import style from '../../../Styles';
 
 export default class Platform extends React.Component {
     constructor(props) {
@@ -89,7 +90,7 @@ export default class Platform extends React.Component {
 
     // const platformName = this.state.platformName;
     return (
-     <View style={styles.screen}>
+     <View style={style.screen}>
          <Text style={styles.title}>Filter streaming platform for the group</Text>
             <Text style={{marginLeft: 'auto', marginRight: 'auto'}}>
                 {platforms}
@@ -104,10 +105,10 @@ export default class Platform extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: '#0A0A0A',
-        height: '100%'
-    },
+    // screen: {
+    //     backgroundColor: '#0A0A0A',
+    //     height: '100%'
+    // },
     title: {
         fontSize: 20,
         textAlign: 'center',

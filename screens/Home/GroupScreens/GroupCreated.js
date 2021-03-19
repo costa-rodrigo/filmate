@@ -3,13 +3,13 @@ import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 // import NewGroupAddMember from './NewGroupAddMember';
 import GroupCreatedImage from '../../../svgs/screens/GroupCreatedImage';
 import MainButton from '../../../components/MainButton';
-
+import style from '../../../Styles';
 const GroupCreated = props => {
 
      const { navigate } = props.navigation;
 
     return (
-     <View style={styles.screen}>
+     <View style={style.screen}>
          <GroupCreatedImage />
          <Text style={styles.title}>Your group is created!</Text>
          <Text style={styles.desc}>You can edit your group from the home screen. Happy swiping!</Text>
@@ -25,10 +25,6 @@ const GroupCreated = props => {
   }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        backgroundColor: '#121212'
-    },
     title: {
         fontSize: 20,
         textAlign: 'center',

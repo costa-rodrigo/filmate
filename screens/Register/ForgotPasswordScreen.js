@@ -3,13 +3,13 @@ import { View, Button, StyleSheet, TextInput } from 'react-native';
 import RegisterMessage from './RegisterMessage';
 import { RegisterData } from './data/RegisterData';
 import MainButton from '../../components/MainButton';
-
+import style from '../../Styles';
 
 const ForgotPasswordScreen = props => {
     const [userEmail, setUserEmail] = useState('');
 
     return (
-        <View style={styles.screen}>
+        <View style={style.screen}>
             <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} />
                 <TextInput 
                     style={styles.input} 
@@ -29,10 +29,6 @@ const ForgotPasswordScreen = props => {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        backgroundColor: '#121212'
-    },
     question: {
         fontSize: 20,
         marginTop: 7

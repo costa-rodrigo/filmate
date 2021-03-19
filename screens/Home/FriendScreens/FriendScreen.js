@@ -11,6 +11,7 @@ import GroupTabButton from '../GroupTabButton';
 import UsersFriends from './UsersFriends';
 import { Alert } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
+import style from '../../../Styles';
 // checkbox article:
 // https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
 class FriendScreen extends React.Component {
@@ -89,7 +90,7 @@ class FriendScreen extends React.Component {
     render() {
         const noFriends = this.state.noFriends;
         return (
-            <View style={styles.screen}>
+            <View style={style.screen}>
                 <View style={styles.header}>
                     <View style={styles.user_grid}>             
                         <View style={styles.user_info}>
@@ -140,13 +141,6 @@ class FriendScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        // height: '100%'
-        // paddingHorizontal: 20,
-        backgroundColor: '#0A0A0A',
-        
-    },
     header: {
         backgroundColor: '#121212'
     },

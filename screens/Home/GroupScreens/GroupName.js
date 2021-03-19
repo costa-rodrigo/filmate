@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 // import NewGroupAddMember from './NewGroupAddMember';
 // import CreateGroup from './CreateGroup';
 import axios from 'axios';
+import style from '../../../Styles';
 
 const GroupName = props => {
      // state variables : groupName
@@ -67,7 +68,7 @@ const GroupName = props => {
        }
 
     return (
-     <View style={styles.screen}>
+     <View style={style.screen}>
          <Text style={styles.title}>What's the name of this group?</Text>
 
              <TextInput style={styles.input}
@@ -87,12 +88,6 @@ const GroupName = props => {
   }
 
 const styles = StyleSheet.create({
-    screen: {
-        paddingHorizontal: 20,
-        paddingTop: 50,
-        backgroundColor: '#121212',
-        height: '100%'
-    },
     title: {
         fontSize: 20,
         textAlign: 'center',

@@ -56,7 +56,7 @@ export default class App extends React.Component {
           <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: 'Friends Invited', headerBackTitle: 'Back' }}/> 
+          <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="FriendScreen" component={FriendScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null}}/> 

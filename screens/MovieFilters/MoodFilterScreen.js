@@ -17,7 +17,7 @@ import Curious from '../../svgs/moods/Curious';
 import CuriousDark from '../../svgs/moods/CuriousDark';
 import axios from 'axios';
 import MainButton from '../../components/MainButton';
-
+import style from '../../Styles';
 
 export default class MoodFilter extends React.Component {
     constructor(props) {
@@ -140,7 +140,7 @@ export default class MoodFilter extends React.Component {
     const allData = this.state;
     const moodName = this.state.moodName;
     return (
-    <View style={styles.screen}>
+    <View style={style.screen}>
        <ScrollView>
        <View>
         <Text style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 20}}>{moods}</Text>
@@ -159,10 +159,6 @@ export default class MoodFilter extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: '#0A0A0A',
-        flex: 1
-    },
     text:{
         color:'black',
     },

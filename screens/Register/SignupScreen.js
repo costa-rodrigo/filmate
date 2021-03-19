@@ -5,6 +5,8 @@ import axios from 'axios';
 import FilmateLogo from '../../svgs/logo/FilmateLogo';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import PinkButton from '../../components/PinkButton';
+import style from '../../Styles';
+
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -57,7 +59,7 @@ const SignupScreen = props => {
     }
 
     return (
-        <View style={styles.screen}>
+        <View style={style.screen}>
              <StatusBar
                 barStyle="light-content"
                 backgroundColor="#4F6D7A"
@@ -138,21 +140,12 @@ const SignupScreen = props => {
                     }}>
                         <Text style={{color: '#f03349', textDecorationLine: 'underline'}}>Sign In</Text>
                     </TouchableOpacity>
-                    {/* <Button title="Sign In" onPress={() => {
-                        props.navigation.pop()
-                    }} /> */}
                 </View>
-
-
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: '#121212',
-        height: '100%'
-    },
     flexContainer: {
        flexDirection: 'row',
        justifyContent: 'center',

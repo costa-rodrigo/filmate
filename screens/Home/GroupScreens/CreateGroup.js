@@ -9,7 +9,7 @@ import Checkmark from '../../../svgs/icons/Checkmark';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
 import BlackCircle from '../../../svgs/icons/BlackCircle';
 import { ActionSheetIOS } from 'react-native';
-
+import style from '../../../Styles';
 export default class CreateGroup extends React.Component {
     constructor(props) {
       super(props);
@@ -202,7 +202,7 @@ export default class CreateGroup extends React.Component {
 
         return (
             <View style={{marginBottom: 25, backgroundColor: '#0A0A0A', height: '100%' }}>
-                <ScrollView style={styles.screen}>
+                <ScrollView style={style.screen}>
                     <View style={styles.header}>
                         <Text style={styles.title}>Invite friends to your group.</Text>
                         <SearchBar placeholder="Search Friends" />
@@ -218,10 +218,6 @@ export default class CreateGroup extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: '#0A0A0A',
-        // flex: 1
-    },
     header: {
         backgroundColor: '#121212'
     },

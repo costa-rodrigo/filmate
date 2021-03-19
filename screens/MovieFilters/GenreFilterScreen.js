@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView, Button, Dimensions, Touchabl
 import axios from 'axios';
 import MainButton from '../../components/MainButton';
 import { Alert } from 'react-native';
+import style from '../../Styles';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -143,7 +144,7 @@ render() {
   const genreId = this.state.genreId;
   
   return (
-    <View style={styles.screen}>
+    <View style={style.screen}>
       <ScrollView>
         <View style={styles.genre}>
           <Text>{genres}</Text>
@@ -159,12 +160,6 @@ render() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: '#0A0A0A',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   genre: {
     width: '100%',
     marginTop: 20

@@ -3,6 +3,7 @@ import { Text, View, Dimensions, Alert, Animated, PanResponder, Button, StyleShe
 import Heart from '../../svgs/swipe/Heart';
 import ThumbsDown from '../../svgs/swipe/ThumbsDown';
 import Star from '../../svgs/swipe/Star';
+import style from '../../Styles';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -231,7 +232,7 @@ export default class ShowMovies extends React.Component {
 
     render() {
         return (
-            <View style={styles.screen}>
+            <View style={style.screen}>
                 {/* <View style={{height: 60}}>
                 </View> */}
                 <View style={styles.card}>
@@ -246,10 +247,6 @@ export default class ShowMovies extends React.Component {
 }  
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        backgroundColor: '#0A0A0A'
-    },
     card: {
         flex: 1, 
         position: 'absolute', 

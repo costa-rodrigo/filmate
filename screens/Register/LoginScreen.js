@@ -5,6 +5,8 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 import FilmateLogo from '../../svgs/logo/FilmateLogo';
 import CustomInput from '../../components/CustomInput';
+import style from '../../Styles';
+
 const LoginScreen = (props) => {
     // state variables : userUsername, userPassword, loading, errorText
     const [userUsername, setUsername] = useState('');
@@ -76,7 +78,7 @@ const LoginScreen = (props) => {
     }
 
     return (
-        <View style={styles.screen}>
+        <View style={style.screen}>
             <FilmateLogo />
              <View style={styles.inputWrapper}>
                  <TextInput 
@@ -140,10 +142,6 @@ const LoginScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: '#121212',
-        height: '100%',
-    },
     flexContainer: {
        flexDirection: 'row',
        justifyContent: 'center',

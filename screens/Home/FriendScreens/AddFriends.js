@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import MainButton from '../../../components/MainButton';
 import axios from 'axios';
+import style from '../../../Styles';
 
 const AddFriends = props => {
     const [friendEmail, setFriendEmail] = useState('');
@@ -64,8 +65,7 @@ const AddFriends = props => {
        }
 
     return (
-        <View style={styles.screen}>
-        <View style={styles.screen}>
+        <View style={style.screen}>
             <Text style={styles.title}>Add a friend to the friend list.</Text>
             <Text>Email address</Text>
             <TextInput 
@@ -80,19 +80,14 @@ const AddFriends = props => {
                 title="Invite Friend"
                 onPress={handleSubmit}
             /> */}
-          
+                  <MainButton title="Invite Friend" onPress={handleSubmit}/>
+
         </View>
-        <MainButton title="Invite Friend" onPress={handleSubmit}/>
-        </View>
+       
     )
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 50
-    },
     title: {
         fontSize: 20,
         textAlign: 'center',

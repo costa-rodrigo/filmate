@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-
+import style from '../../../Styles';
 class FriendsInvited extends React.Component {
     render() {
         return (
-            <View style={styles.screen}>
+            <View style={style.screen}>
                 <Text style={styles.title}>Friends Invited!</Text>
                 <Text style={styles.description}>Waiting for approval, we will nofity you when they approve the invitation!</Text>
                 <Button 
@@ -27,10 +27,10 @@ class FriendsInvited extends React.Component {
 export default FriendsInvited;
 
 const styles = StyleSheet.create({
-    screen: {
-        paddingHorizontal: 20,
-        paddingTop: 50
-    },
+    // screen: {
+    //     paddingHorizontal: 20,
+    //     paddingTop: 50
+    // },
     title: {
         fontSize: 20,
         textAlign: 'center',

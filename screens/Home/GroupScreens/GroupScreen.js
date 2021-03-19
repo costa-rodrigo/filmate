@@ -10,6 +10,7 @@ import ProfileImage from '../../../svgs/icons/ProfileImage';
 import UsersGroups from '../GroupScreens/UsersGroups';
 import axios from "axios";
 import MainButton from '../../../components/MainButton';
+import style from '../../../Styles';
 
 class GroupScreen extends React.Component {
     constructor(props) {
@@ -85,7 +86,7 @@ class GroupScreen extends React.Component {
     render() {
         const noGroups = this.state.noGroups;
         return (
-            <View style={styles.screen}>
+            <View style={style.screen}>
                 <View style={styles.header}>
                     <View style={styles.user_grid}>
                         <View style={styles.user_info}>
@@ -147,10 +148,6 @@ class GroupScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: '#0A0A0A',
-        height: '100%'
-    },
     header: {
         backgroundColor: '#121212'
     },

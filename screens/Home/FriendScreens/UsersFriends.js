@@ -8,7 +8,6 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
 // import GroupTabButton from '../GroupTabButton';
-
 class UsersFriends extends React.Component {
     constructor(props) {
       super(props);
