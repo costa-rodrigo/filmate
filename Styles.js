@@ -13,7 +13,8 @@ export default StyleSheet.create({
   },
   h1_heading: {
       fontSize: 28,
-      lineHeight: 34
+      lineHeight: 34,
+      fontFamily: 'Nunito-ExtraBold'
   },
   h2_heading: {
       fontSize: 24,

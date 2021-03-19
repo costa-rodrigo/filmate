@@ -15,7 +15,7 @@ import ForgotPasswordScreen_Reset from './screens/Register/ForgotPasswordScreen_
 // import ProfileScreen from './screens/Profile/ProfileScreen';
 // import EditProfile from './screens/Profile/EditProfile';
 // import ShowMovies from './screens/MovieFilters/ShowMovies';
-// import Onboarding from './screens/Onboarding/Onboarding';
+import Onboarding from './screens/Onboarding/Onboarding';
 // import GroupCreated from './screens/Home/GroupScreens/GroupCreated';
 // import CreateGroup from './screens/Home/GroupScreens/CreateGroup';
 // import GenreMoodNavigator from './navigation/GenreMoodNavigator';
@@ -82,8 +82,8 @@ export default class App extends React.Component {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} />
           <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerTitle: '', headerBackTitle: 'Back' }}/>
           <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} options={{ headerTitle: '', headerBackTitle: 'Back' }}/>
-          {/* <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 }}, headerTitle: '', headerBackTitle: 'Back' }}/>  
-          <Stack.Screen name="UsersGroups" component={UsersGroups} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
+          <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 }}, headerTitle: '', headerBackTitle: 'Back' }}/>  
+          {/* <Stack.Screen name="UsersGroups" component={UsersGroups} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
           <Stack.Screen name="NewGroupFilter" component={Platform} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="NewGroupName" component={GroupName} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
