@@ -203,8 +203,8 @@ export default class CreateGroup extends React.Component {
         return (
             <View style={{marginBottom: 25, backgroundColor: '#0A0A0A', height: '100%' }}>
                 <ScrollView style={style.screen}>
-                    <View style={styles.header}>
-                        <Text style={styles.title}>Invite friends to your group.</Text>
+                    <View style={style.header}>
+                        <Text style={style.h3_heading}>Invite friends to your group.</Text>
                         <SearchBar placeholder="Search Friends" />
                     </View>
                     <View>
@@ -218,19 +218,11 @@ export default class CreateGroup extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    header: {
-        backgroundColor: '#121212'
-    },
     friendText: {
         color: 'white',
         marginLeft: 15,
         marginTop: 'auto',
         marginBottom: 'auto'
-    },
-    title: {
-        color: 'white',
-        fontSize: 20,
-        marginLeft: 45
     },
     friendGrid: {
         flexDirection: 'row',

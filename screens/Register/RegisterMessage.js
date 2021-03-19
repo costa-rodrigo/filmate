@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 const RegisterMessage = props => {
     return (
         <View style={styles.screen}>
-            <Image style={styles.logo} source={props.logoLink} />
             <Text style={styles.title}>{props.title}</Text>
             <Text style={styles.description}>{props.description}</Text>           
         </View>

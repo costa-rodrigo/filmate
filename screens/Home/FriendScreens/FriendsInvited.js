@@ -27,10 +27,6 @@ class FriendsInvited extends React.Component {
 export default FriendsInvited;
 
 const styles = StyleSheet.create({
-    // screen: {
-    //     paddingHorizontal: 20,
-    //     paddingTop: 50
-    // },
     title: {
         fontSize: 20,
         textAlign: 'center',

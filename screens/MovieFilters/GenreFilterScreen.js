@@ -164,9 +164,6 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 20
   },
-  text: {
-    fontSize: 20
-  },
   filterButton: {
     borderWidth: 1,
     borderRadius: 20,
@@ -175,7 +172,6 @@ const styles = StyleSheet.create({
     margin: 5
   },
   buttonText: {
-    fontSize: 20,
     color: 'white'
   }
 });

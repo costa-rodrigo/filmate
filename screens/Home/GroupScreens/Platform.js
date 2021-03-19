@@ -91,7 +91,7 @@ export default class Platform extends React.Component {
     // const platformName = this.state.platformName;
     return (
      <View style={style.screen}>
-         <Text style={styles.title}>Filter streaming platform for the group</Text>
+         <Text style={style.h3_heading}>Filter streaming platform for the group</Text>
             <Text style={{marginLeft: 'auto', marginRight: 'auto'}}>
                 {platforms}
             </Text>
@@ -105,16 +105,6 @@ export default class Platform extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    // screen: {
-    //     backgroundColor: '#0A0A0A',
-    //     height: '100%'
-    // },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 60,
-        color: 'white'
-    },
     image: {
        width: 100, 
        height: 60,

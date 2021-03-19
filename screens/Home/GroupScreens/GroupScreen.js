@@ -87,7 +87,7 @@ class GroupScreen extends React.Component {
         const noGroups = this.state.noGroups;
         return (
             <View style={style.screen}>
-                <View style={styles.header}>
+                <View style={style.header}>
                     <View style={styles.user_grid}>
                         <View style={styles.user_info}>
                             <ProfileImage />
@@ -148,9 +148,6 @@ class GroupScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    header: {
-        backgroundColor: '#121212'
-    },
     title: {
         textAlign: 'center',
         fontSize: 25,

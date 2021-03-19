@@ -4,16 +4,14 @@ import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 import FilmateLogo from '../../svgs/logo/FilmateLogo';
-import CustomInput from '../../components/CustomInput';
 import style from '../../Styles';
 
 const LoginScreen = (props) => {
     // state variables : userUsername, userPassword, loading, errorText
     const [userUsername, setUsername] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [errorText, setErrorText] = useState('')
-    // const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
- 
+    const [errorText, setErrorText] = useState('');
+
     const handleSubmit = () => {
         setErrorText('');
         if (!userUsername) {
@@ -82,22 +80,20 @@ const LoginScreen = (props) => {
             <FilmateLogo />
              <View style={styles.inputWrapper}>
                  <TextInput 
-                    style={styles.input} 
+                    style={style.input} 
                     onChangeText={(Username) => 
                         setUsername(Username)}
                     placeholder="Username"
-                    color="white"
-                    placeholderTextColor="white"
+                    placeholderTextColor='#8A8C90'
                     value={userUsername}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    // returnKeyType="next"
                     />
 
                 <TextInput 
-                    style={styles.input}
+                    style={style.input}
                     placeholder="Password"
-                    placeholderTextColor="white"
+                    placeholderTextColor='#8A8C90'
                     value={userPassword}
                     onChangeText={(UserPassword) =>
                        setUserPassword(UserPassword)}
@@ -112,30 +108,17 @@ const LoginScreen = (props) => {
                     }}>
                         <Text style={{color: '#f03349', marginLeft: '10%'}}>Forgot Password?</Text>
             </TouchableOpacity>
-
-           <View style={styles.screenBottom}>
-            
-                {/* <View style={styles.flexContainer}>
-                    <Text style={styles.question}>Don't have an account?</Text>
-                    <Button title="Sign Up" onPress={() => {
-                        props.navigation.navigate('Signup')
-                    }} />
-                </View> */}
-           </View>
                 <MainButton title="home page" onPress={() => {
                         props.navigation.navigate('GroupScreen')
                     }}/>
                 <MainButton title="Sign In" onPress={handleSubmit} />
                 <View style={styles.flexContainer}>
-                        <Text style={styles.question}>Don't have an account?</Text>
+                        <Text style={style.paragraph_small}>Don't have an account?</Text>
                         <TouchableOpacity onPress={() => {
                         props.navigation.navigate('Signup')
                     }}>
                         <Text style={{color: '#f03349', textDecorationLine: 'underline'}}>Sign Up</Text>
                     </TouchableOpacity>
-                        {/* <Button title="Sign Up" onPress={() => {
-                            props.navigation.navigate('Signup')
-                        }} /> */}
                 </View>
         </View>
     )
@@ -147,27 +130,9 @@ const styles = StyleSheet.create({
        justifyContent: 'center',
        marginBottom: 25
     },
-    question: {
-        // fontSize: 20,
-        // marginTop: 7,
-        color: 'white',
-        marginRight: 5
-    },
-    input: {
-        backgroundColor: '#1E1E1E',
-        marginBottom: 10,
-        padding: 10,
-        borderRadius: 15,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        color: 'white',
-        width: 343,
-        height: 52,
-    },
     inputWrapper: {
         marginTop: 30
     }
- 
 });
 
 export default LoginScreen;

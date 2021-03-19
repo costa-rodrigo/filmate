@@ -91,7 +91,7 @@ class FriendScreen extends React.Component {
         const noFriends = this.state.noFriends;
         return (
             <View style={style.screen}>
-                <View style={styles.header}>
+                <View style={style.header}>
                     <View style={styles.user_grid}>             
                         <View style={styles.user_info}>
                             <ProfileImage />
@@ -141,45 +141,6 @@ class FriendScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    header: {
-        backgroundColor: '#121212'
-    },
-    // title: {
-    //     fontSize: 20,
-    //     textAlign: 'center',
-    //     marginBottom: 60
-    // },
-    // description: {
-    //     textAlign: 'center',
-    //     marginBottom: 40
-    // },
-    // friendContainer: {
-    //     backgroundColor: '#1E1E1E',
-    //     padding: 20,
-    //     marginHorizontal: 20,
-    //     marginVertical: 10,
-    //     borderRadius: 15,
-    //     paddingBottom: 30,
-    //     height: 70
-    // },
-    // friendText: {
-    //     color: 'white',
-    //     marginLeft: 15,
-    //     marginBottom: 5
-    // },
-    // friendGrid: {
-    //     flexDirection: 'row',
-    //     alignItems: 'center',
-    // },
-    // fullGrid: {
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-between'
-    // },
-    // options: {
-    //     textAlign: 'center',
-    //     color: 'white',
-    //     marginTop: 10
-    // },
     user_info: {
         flexDirection: 'row',
         alignItems: 'center'

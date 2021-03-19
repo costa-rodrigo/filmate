@@ -69,22 +69,22 @@ const SignupScreen = props => {
             </View>
             <View style={styles.inputWrapper}>
                 <TextInput 
-                    style={styles.input} 
+                    style={style.input} 
                     onChangeText={(UserName) => 
                         setUserName(UserName)}
                     placeholder="Name"
-                    placeholderTextColor="white"
+                    placeholderTextColor='#8A8C90'
                     value={userName}
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
                 />
                 <TextInput 
-                    style={styles.input} 
+                    style={style.input} 
                     onChangeText={(UserEmail) => 
                         setUserEmail(UserEmail)}
                     placeholder="Email"
-                    placeholderTextColor="white"
+                    placeholderTextColor='#8A8C90'
                     keyboardType="email-address"
                     value={userEmail}
                     autoCapitalize="none"
@@ -92,9 +92,9 @@ const SignupScreen = props => {
                     returnKeyType="next"
                 />    
                 <TextInput 
-                    style={styles.input}
+                    style={style.input}
                     placeholder="Password"
-                    placeholderTextColor="white"
+                    placeholderTextColor='#8A8C90'
                     value={userPassword}
                     onChangeText={(UserPassword) =>
                         setUserPassword(UserPassword)}
@@ -134,7 +134,7 @@ const SignupScreen = props => {
             
             <MainButton title="Sign Up" onPress={handleSubmit} />
                 <View style={styles.flexContainer}>
-                    <Text style={styles.question}>Have an account?</Text>
+                    <Text style={style.paragraph_small}>Have an account?</Text>
                     <TouchableOpacity onPress={() => {
                         props.navigation.pop()
                     }}>
@@ -150,23 +150,6 @@ const styles = StyleSheet.create({
        flexDirection: 'row',
        justifyContent: 'center',
        marginBottom: 25
-    },
-    question: {
-        // fontSize: 20,
-        // marginTop: 7,
-        color: 'white',
-        marginRight: 5
-    },
-    input: {
-        backgroundColor: '#1E1E1E',
-        marginBottom: 10,
-        padding: 10,
-        borderRadius: 15,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        color: 'white',
-        width: 343,
-        height: 52,
     },
     inputWrapper: {
         marginTop: 30

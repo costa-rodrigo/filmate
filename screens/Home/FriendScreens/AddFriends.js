@@ -66,7 +66,7 @@ const AddFriends = props => {
 
     return (
         <View style={style.screen}>
-            <Text style={styles.title}>Add a friend to the friend list.</Text>
+            <Text style={style.h3_heading}>Add a friend to the friend list.</Text>
             <Text>Email address</Text>
             <TextInput 
                     onChangeText={(FriendEmail) => 
@@ -88,11 +88,6 @@ const AddFriends = props => {
 }
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 60
-    },
     description: {
         textAlign: 'center',
         marginBottom: 40

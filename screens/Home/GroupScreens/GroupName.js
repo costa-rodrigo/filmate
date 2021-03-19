@@ -69,7 +69,7 @@ const GroupName = props => {
 
     return (
      <View style={style.screen}>
-         <Text style={styles.title}>What's the name of this group?</Text>
+         <Text style={style.h3_heading}>What's the name of this group?</Text>
 
              <TextInput style={styles.input}
                     onChangeText={(GroupName) => 
@@ -88,12 +88,6 @@ const GroupName = props => {
   }
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 60,
-        color: '#D2D5D5'
-    },
     input: {
         color: "#737475"
     }

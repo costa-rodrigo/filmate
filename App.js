@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/Register/LoginScreen';
@@ -26,12 +27,43 @@ import FriendTabButton from './screens/Home/FriendTabButton';
 import UsersGroups from './screens/Home/GroupScreens/UsersGroups';
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
+import * as Font from 'expo-font';
 
 const Stack = createStackNavigator();
 export default class App extends React.Component {
 // const App = () => {
+  state = {
+    fontsLoaded: false,
+  };
+
+  async loadFonts() {
+    console.log("is this working?")
+    await Font.loadAsync({
+      
+      // Load a font `Montserrat` from a static resource
+      // Nunito: require('./assets/fonts/Nunito-SemiBold.ttf'),
+
+      // Any string can be used as the fontFamily name. Here we use an object to provide more control
+      'Nunito-SemiBold': {
+        uri: require('./assets/fonts/Nunito-SemiBold.ttf'),
+        display: Font.FontDisplay.FALLBACK,
+      },
+    });
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this.loadFonts();
+  }
   render()  {
-    return (
+   
+      return (
+        // <View>
+        //   <Text style={{marginTop: 50, fontFamily: 'Nunito-SemiBold'}}>HIIII</Text>
+        // </View>
+      // ) 
+   
+     
       <NavigationContainer>
         <StatusBar barStyle="light-content" backgroundColor="#4F6D7A" />
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
@@ -69,3 +101,58 @@ export default class App extends React.Component {
   }
  
 }
+
+// import * as React from 'react';
+// import { Text, View, StyleSheet } from 'react-native';
+// import * as Font from 'expo-font';
+
+// export default class App extends React.Component {
+//   state = {
+//     fontsLoaded: false,
+//   };
+
+//   // async loadFonts() {
+//   //   await Font.loadAsync({
+//   //     // Load a font `Montserrat` from a static resource
+//   //     // Montserrat: require('./assets/fonts/Montserrat.ttf'),
+
+//   //     // Any string can be used as the fontFamily name. Here we use an object to provide more control
+//   //     'Montserrat-SemiBold': {
+//   //       uri: require('./assets/fonts/Montserrat-SemiBold.ttf'),
+//   //       display: Font.FontDisplay.FALLBACK,
+//   //     },
+//   //   });
+//   //   this.setState({ fontsLoaded: true });
+//   // }
+
+//   // componentDidMount() {
+//   //   this.loadFonts();
+//   // }
+
+//   render() {
+//     // Use the font with the fontFamily property after loading
+//     // if (this.state.fontsLoaded) {
+//       return (
+//         <View style={styles.container}>
+//           <Text style={{ fontSize: 20 }}>Default Font</Text>
+//           {/* <Text style={{ fontFamily: 'Montserrat-SemiBold', fontSize: 20 }}>
+//             Montserrat-SemiBold
+//           </Text> */}
+//         </View>
+//       );
+//     } 
+//     // else {
+//     //   return null;
+//     // }
+//   // }
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
+
