@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-navigation/material-top-tabs": "^5.3.14",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
     "axios": "^0.21.1",
@@ -21,8 +22,10 @@
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-onboarding-swiper": "^1.1.4",
+    "react-native-pager-view": "^5.1.2",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-svg": "^12.1.0",
+    "react-native-tab-view": "^3.0.0",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {

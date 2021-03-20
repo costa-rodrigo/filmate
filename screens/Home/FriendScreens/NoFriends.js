@@ -1,99 +1,84 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import MainButton from '../../../components/MainButton';
-import axios from 'axios';
-import style from '../../../Styles';
+// import React, { useRef } from 'react';
+// import SearchBar from '../../../components/SearchBar';
+// import { View, Text, StyleSheet, Button, Image, ScrollView } from 'react-native';
+// // import RBSheet from "react-native-raw-bottom-sheet";
+// import NoFriendsImage from '../../../svgs/screens/NoFriendsImage';
+// import MainButton from '../../../components/MainButton';
+// import style from '../../../Styles';
+// const NoFriends = (props) => {
+//     // const refRBSheet = useRef();
+//     // const { navigate } = props.navigation;
+//     return (
+//         <ScrollView style={style.screen}>        
+//         <View>
+//             <NoFriendsImage />
+//             <Text style={styles.title}>You don’t have any friends.</Text>
+//             <Text style={styles.description}>Add friends to create new groups.</Text>
 
-const AddFriends = props => {
-    const [friendEmail, setFriendEmail] = useState('');
-    const [errorText, setErrorText] = useState('');
-    const [token, setToken] = useState('');
-    
-    const { navigate } = props.navigation;
+//             {/* <Button 
+//                 title="Add Friends"
+//                 onPress={() => {
+//                     props.navigation.navigate('AddFriends')
+//                 }}
+//             /> */}
+//         </View>
 
-    const handleSubmit = async => {
-        setErrorText('');
-        if (!friendEmail) {
-            alert('Please provide an email!');
-            return;
-        } else {
-            return new Promise ( async (resolve, reject) => {
-                try {
-                    let storage = await AsyncStorage.getAllKeys((err, keys) => {
-                        AsyncStorage.multiGet(keys, (error, stores) => {
-                          stores.map((result, i, store) => {
-                            //   console.log(store)
-                            // console.log("async", { [store[i][0]]: store[i][1] });
-                            let token = "Bearer " + store[0][1];
-                            setToken(token)
-                            console.log("token from handlesubmit", token)
-                            setFriendEmail(friendEmail)
-                            resolve(storage)
-                            handleToken(token)
-                            return token;
-                          });
-                        });
-                      });
+//         <View
+//             style={{
+//                 flex: 1,
+//                 justifyContent: "center",
+//                 alignItems: "center",
+//                 backgroundColor: "white",
+//                 marginBottom: 80
+//             }}
+//             >
+//             {/* <Button title="Friend Options" onPress={() => refRBSheet.current.open()} /> */}
+//             {/* <RBSheet
+//                 ref={refRBSheet}
+//                 closeOnDragDown={true}
+//                 closeOnPressMask={false}
+//                 customStyles={{
+//                 wrapper: {
+//                     backgroundColor: "transparent"
+//                 },
+//                 draggableIcon: {
+//                     backgroundColor: "#000"
+//                 }
+//                 }}
+//             >
+//                 <YourOwnComponent />
+//                 <Text>Friend Options</Text>
+//                 <Text>Remove Friend</Text>
+            
+//             </RBSheet> */}
+//     </View>
+//     {/* <MainButton title="Add Friends"
+//                 onPress={() => {
+//                     props.navigation.navigate('AddFriends')
+//                 }}/> */}
+//         </ScrollView>
+//     )
+// }
 
-                } catch(error) {
-                    reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
+// const styles = StyleSheet.create({
+//     // newFriend: {
+//     //     marginVertical: 100,
+//     //     textAlign: 'center',
+//     //     borderWidth: 1,
+//     //     borderStyle: 'dashed',
+//     //     paddingVertical: 100,
+//     //     marginHorizontal: 30
+//     // },
+//     title: {
+//         textAlign: 'center',
+//         fontSize: 25,
+//         color: 'white'
+//     },
+//     description: {
+//         textAlign: 'center',
+//         marginBottom: 30,
+//         color: 'white'
+//     }
+// });
 
-                }
-            });
-        }
-       }
- 
-       const handleToken  = async (token) => {
-        console.log(token)
-        await axios.post('http://192.168.0.20:3000/friends', {
-            email: friendEmail
-        }, {
-            headers: {
-                'Authorization': `${token}`
-            }
-        })
-        .then((response) => {
-            console.log(".then", friendEmail)
-            console.log(response.data)
-            navigate('FriendsInvited')
-        })
-        .catch((error) => {
-            console.log("catch error")
-
-        })
-       }
-
-    return (
-        <View style={style.screen}>
-            <Text style={style.h3_heading}>Add a friend to the friend list.</Text>
-            <Text>Email address</Text>
-            <TextInput 
-                    onChangeText={(FriendEmail) => 
-                        setFriendEmail(FriendEmail)}
-                    placeholder="friend@gmail.com"
-                    value={friendEmail}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-             />
-            {/* <Button 
-                title="Invite Friend"
-                onPress={handleSubmit}
-            /> */}
-                  <MainButton title="Invite Friend" onPress={handleSubmit}/>
-
-        </View>
-       
-    )
-}
-
-const styles = StyleSheet.create({
-    description: {
-        textAlign: 'center',
-        marginBottom: 40
-    }
-
-
-});
-
-export default AddFriends;
+// export default NoFriends;

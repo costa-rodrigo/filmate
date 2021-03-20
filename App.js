@@ -1,27 +1,25 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import * as Font from 'expo-font';
-// import style from './Styles';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/Register/LoginScreen';
 import SignupScreen from './screens/Register/SignupScreen';
 import ForgotPasswordScreen from './screens/Register/ForgotPasswordScreen';
 import ForgotPasswordScreen_Reset from './screens/Register/ForgotPasswordScreen_Reset';
-// import Platform from './screens/Home/GroupScreens/Platform';
-// import GroupName from './screens/Home/GroupScreens/GroupName';
-// import AddFriends from './screens/Home/FriendScreens/AddFriends';
-// import FriendsInvited from './screens/Home/FriendScreens/FriendsInvited';
-// import ProfileScreen from './screens/Profile/ProfileScreen';
-// import EditProfile from './screens/Profile/EditProfile';
-// import ShowMovies from './screens/MovieFilters/ShowMovies';
+import Platform from './screens/Home/GroupScreens/Platform';
+import GroupName from './screens/Home/GroupScreens/GroupName';
+import AddFriends from './screens/Home/FriendScreens/AddFriends';
+import FriendsInvited from './screens/Home/FriendScreens/FriendsInvited';
+import ProfileScreen from './screens/Profile/ProfileScreen';
+import EditProfile from './screens/Profile/EditProfile';
+import ShowMovies from './screens/MovieFilters/ShowMovies';
 import Onboarding from './screens/Onboarding/Onboarding';
-// import GroupCreated from './screens/Home/GroupScreens/GroupCreated';
-// import CreateGroup from './screens/Home/GroupScreens/CreateGroup';
-// import GenreMoodNavigator from './navigation/GenreMoodNavigator';
+import GroupCreated from './screens/Home/GroupScreens/GroupCreated';
+import CreateGroup from './screens/Home/GroupScreens/CreateGroup';
+import GenreMoodNavigator from './navigation/GenreMoodNavigator';
 // import NoFriends from './screens/Home/FriendScreens/NoFriends';
 // import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
-// import { StatusBar } from 'react-native';
 import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
 import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
 // import HomeNavigator from './navigation/HomeNavigator';
@@ -83,33 +81,23 @@ export default class App extends React.Component {
           <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerTitle: '', headerBackTitle: 'Back' }}/>
           <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} options={{ headerTitle: '', headerBackTitle: 'Back' }}/>
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 }}, headerTitle: '', headerBackTitle: 'Back' }}/>  
-          {/* <Stack.Screen name="UsersGroups" component={UsersGroups} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
+          {/* <Stack.Screen name="UsersGroups" component={UsersGroups} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/>  */}
           <Stack.Screen name="NewGroupFilter" component={Platform} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="NewGroupName" component={GroupName} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
+          <Stack.Screen name="NewGroupName" component={GroupName} options={{ headerTitle: '', headerBackTitle: 'Invite Friends' }}/> 
           <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerTitle: 'Edit Profile', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
           <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
+          <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: '', headerBackTitle: 'Filter movies' }}/> 
+          <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: '', headerBackTitle: 'Add a friend' }}/> 
           <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/>  */}
+          <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: '', headerBackTitle: 'Invite Friends' }}/> 
+          {/* <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/>  */}
           <Stack.Screen name="FriendScreen" component={FriendScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null}}/> 
           <Stack.Screen name="GroupScreen" component={GroupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
           {/* <Stack.Screen name="FriendTabButton" component={FriendTabButton} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/>  */}
         </Stack.Navigator>
       </NavigationContainer>
-        // <View style={styles.container}>
-        //   <Text style={style.text}>Hi</Text>
-        //   <Text style={{ fontSize: 30 }}>Default Font</Text>
-        //   <Text style={style.text}>
-        //     Nunito-SemiBold
-        //   </Text>
-        //   <Text style={{fontFamily: 'Nunito-Bold'}}>Kristen</Text>
-        //   <Text style={{fontFamily: 'Nunito-Regular'}}>Kristen</Text>
-        //   <Text style={{fontFamily: 'Nunito-ExtraBold'}}>Kristen</Text>
-        // </View>
       );
     } else {
       return null;
@@ -117,11 +105,3 @@ export default class App extends React.Component {
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

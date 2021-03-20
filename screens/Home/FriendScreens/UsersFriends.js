@@ -7,6 +7,7 @@ import axios from 'axios';
 import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
+import style from '../../../Styles';
 // import GroupTabButton from '../GroupTabButton';
 class UsersFriends extends React.Component {
     constructor(props) {
@@ -16,15 +17,11 @@ class UsersFriends extends React.Component {
           addedFriends: [],
           friendsArray: [], 
           noFriends: true, 
-        //   selectedFriends: [],
       }
       this.handleToken = this.handleToken.bind(this);
-    //   this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     }
 
     componentDidMount() {
-        this.setState({});
-        // console.log(this.state.noFriends)
         return new Promise ( async (resolve, reject) => {
             try {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
@@ -34,7 +31,7 @@ class UsersFriends extends React.Component {
                         let token = "Bearer " + store[0][1];
                         // setToken(token)
                         this.setState({ token })
-                        console.log("token from handlesubmit", token)
+                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                       });
@@ -71,7 +68,6 @@ class UsersFriends extends React.Component {
                 allFriends.push(friend)
             }
             this.setState({ friendsArray: allFriends })
-            // console.log(this.state.friendsArray)
         })
         .catch((error) => {
             console.error(error)
@@ -106,7 +102,9 @@ class UsersFriends extends React.Component {
                        
                         <View style={styles.friendGrid}>
                             <ProfileImage />
-                            <Text style={styles.friendText}>{friend}</Text>
+                            <View style={{marginLeft: 15}}>
+                                <Text style={style.bold_med_small}>{friend}</Text>
+                            </View>
                         </View>
                         <View>
                         <TouchableOpacity 

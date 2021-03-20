@@ -68,7 +68,9 @@ export default function GroupCreatedImage() {
 const styles = StyleSheet.create({
     image: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: '30%',
+        marginBottom: 20
     },
 });
 

@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
     },
     input: {
       color: '#8A8C90',
+      fontFamily: 'Nunito-Bold',
+      fontSize: 12
     },
     icon: {
       marginTop: 'auto',

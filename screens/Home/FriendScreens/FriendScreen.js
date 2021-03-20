@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button, ScrollView, TouchableHighlight } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-import NoFriends from '../FriendScreens/NoFriends';
+// import NoFriends from '../FriendScreens/NoFriends';
 import MainButton from '../../../components/MainButton';
 import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
@@ -12,6 +12,8 @@ import UsersFriends from './UsersFriends';
 import { Alert } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
 import style from '../../../Styles';
+import NoFriendsImage from '../../../svgs/screens/NoFriendsImage';
+import GreyButton from '../../../components/GreyButton';
 // checkbox article:
 // https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
 class FriendScreen extends React.Component {
@@ -53,13 +55,6 @@ class FriendScreen extends React.Component {
         });
     }
 
-    // componentDidUpdate(prevProps) {
-    
-    //     if(this.state.friendsArray.length > 0) {
-    //        console.log("checked array length")
-    //     }
-    //   }
-
     handleToken  = async (token) => {
         await axios.get('http://192.168.0.20:3000/friends',  {
             headers: {
@@ -93,14 +88,14 @@ class FriendScreen extends React.Component {
             <View style={style.screen}>
                 <View style={style.header}>
                     <View style={styles.user_grid}>             
-                        <View style={styles.user_info}>
+                    <View style={styles.user_info}>
                             <ProfileImage />
-                            <View>
-                                <Text style={{color: 'white'}}> 👋</Text>
+                            <View style={{marginLeft: 8}}>
+                                <Text style={style.title}>Username 👋</Text>
                                 <TouchableOpacity onPress={() => {
                                     this.props.navigation.navigate('ProfileScreen')
                                 }}>
-                                    <Text style={{color: '#f03349', marginLeft: 8, marginTop: 6}}>View profile</Text>
+                                    <Text style={{color: '#f03349', fontSize: 12, fontFamily: 'Nunito-ExtraBold'}}>View profile</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -110,6 +105,7 @@ class FriendScreen extends React.Component {
                     </View>
                     <SearchBar placeholder="Search your friends"/>
                 </View>
+                {/* <NoFriends /> */}
 
                 <View>
                     {noFriends === false
@@ -118,19 +114,19 @@ class FriendScreen extends React.Component {
                         <View style={{height: '90%'}}>
                             <UsersFriends />
                             <View>
-                            {/* <View style={{marginBottom: 25}}> */}
                                 <MainButton  title="Add Friends" onPress={() => {
                                 this.props.navigation.navigate('AddFriends')}} />
                             </View>
                         </View>
                     ) 
                     : (
-                        <View>
-                        <NoFriends navigation={this.props.navigation} noFriends={this.state.noFriends}/>
-                        <MainButton title="Add Friends"
-                        onPress={() => {
-                            this.props.navigation.navigate('AddFriends')
-                        }}/>
+                        <View style={styles.newFriends}>
+                        <NoFriendsImage />
+                        <Text style={styles.title}>You don’t have any groups.</Text>
+                        <Text style={styles.description}>Create groups by inviting friends.</Text>
+                        <GreyButton title="Add Friends" onPress={() => {
+                                this.props.navigation.navigate('AddFriends')
+                            }} />
                         </View>
                     )
                 }
@@ -147,9 +143,14 @@ const styles = StyleSheet.create({
     },
     user_grid: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginLeft: 45,
-        marginRight: 45
+        marginLeft: 35,
+        marginRight: 35
+    },
+    title: {
+        color: 'white',
+    },
+    description: {
+        color: 'white'
     }
 });
 

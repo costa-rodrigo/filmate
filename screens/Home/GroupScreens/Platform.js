@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
 import GreyCircle from '../../../svgs/icons/GreyCircle';
@@ -9,14 +9,13 @@ export default class Platform extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // platformArray: ['netflix', 'prime', 'crave', 'hulu', 'hbo', 'disney plus']
             platformArray: [
-                <Image style={styles.image} source={require('../../../assets/platforms/stream-netflix.png')} />, 
-                <Image style={styles.image} source={require('../../../assets/platforms/stream-prime.png')} />, 
-                <Image style={styles.image} source={require('../../../assets/platforms/stream-crave.png')} />, 
-                <Image style={styles.image} source={require('../../../assets/platforms/stream-hulu.png')} />, 
-                <Image style={styles.image} source={require('../../../assets/platforms/stream-hbo.png')} />, 
-                <Image style={styles.image} source={require('../../../assets/platforms/stream-disney.png')} />
+                [<Image style={styles.image} source={require('../../../assets/platforms/stream-netflix.png')} />, 'netflix'],
+                [<Image style={styles.image} source={require('../../../assets/platforms/stream-prime.png')} />, 'prime'],
+                [<Image style={styles.image} source={require('../../../assets/platforms/stream-crave.png')} />, 'crave'],
+                [<Image style={styles.image} source={require('../../../assets/platforms/stream-hulu.png')} />, 'hulu'],
+                [<Image style={styles.image} source={require('../../../assets/platforms/stream-hbo.png')} />, 'hbo'],
+                [<Image style={styles.image} source={require('../../../assets/platforms/stream-disney.png')} />, 'disney']
             ],
             platformBoxPressed: false,
             platformName: ''
@@ -26,8 +25,6 @@ export default class Platform extends React.Component {
     platformPressed = (platform) => {
         let platformBoxPressed = true;
         this.setState({platformBoxPressed});
-        // console.log("platformbox:", this.state.platformBoxPressed)
-        
         let platformName = [platform];
         this.setState({ platformName })
     }
@@ -37,8 +34,8 @@ export default class Platform extends React.Component {
           return (
             <View>
               <TouchableOpacity 
-                  key={index}
-                    style={this.state.platformName.includes(platform)
+                  key={platform[1]}
+                    style={this.state.platformName.includes(platform[0])
                         ? {
                             width: 168,
                             height: 128,
@@ -64,11 +61,11 @@ export default class Platform extends React.Component {
                         }
                         
                     }
-                  onPress={() => this.platformPressed(platform)}>
+                  onPress={() => this.platformPressed(platform[0])}>
                 <View style={styles.checkmark_grid}>
-                    <View>{platform}</View>
+                    <View>{platform[0]}</View>
                     {
-                        this.state.platformName.includes(platform)
+                        this.state.platformName.includes(platform[0])
                         ? (
                             <View style={styles.circle}>
                             <Checkmark />
@@ -80,15 +77,12 @@ export default class Platform extends React.Component {
                             </View>
                         )
                     }
-
                 </View>
-
               </TouchableOpacity>
           </View>
           )
       })
 
-    // const platformName = this.state.platformName;
     return (
      <View style={style.screen}>
          <Text style={style.h3_heading}>Filter streaming platform for the group</Text>
@@ -98,7 +92,6 @@ export default class Platform extends React.Component {
             <MainButton style={styles.fixedButton} title="Filter"  onPress={() => {
                     this.props.navigation.navigate('NewGroupName')
                 }} />
-            {/* <Text>Chosen Platform: {platformName}</Text> */}
      </View>
     );
   }
@@ -115,9 +108,6 @@ const styles = StyleSheet.create({
         
     },
     circle: {
-        marginLeft: 100,
-        // paddingBottom: 20
-        // marginBottom: 20
-       
+        marginLeft: 100,       
     }
 });

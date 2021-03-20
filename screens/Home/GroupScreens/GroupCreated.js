@@ -11,8 +11,8 @@ const GroupCreated = props => {
     return (
      <View style={style.screen}>
          <GroupCreatedImage />
-         <Text style={styles.title}>Your group is created!</Text>
-         <Text style={styles.desc}>You can edit your group from the home screen. Happy swiping!</Text>
+         <Text style={style.h1_heading}>Your group is created!</Text>
+         <Text style={style.paragraph_medium}>You can edit your group from the home screen. Happy swiping!</Text>
 
         <MainButton title="Back to home" onPress={() => {
                     props.navigation.navigate('GroupScreen')
@@ -25,16 +25,16 @@ const GroupCreated = props => {
   }
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginBottom: 60,
-        color: 'white'
-    },
-    desc: {
-        color: 'white',
-        textAlign: 'center'
-    }
+    // title: {
+    //     fontSize: 20,
+    //     textAlign: 'center',
+    //     marginBottom: 60,
+    //     color: 'white'
+    // },
+    // desc: {
+    //     color: 'white',
+    //     textAlign: 'center'
+    // }
 
 });
 

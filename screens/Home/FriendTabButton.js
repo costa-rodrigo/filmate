@@ -1,14 +1,15 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
+import style from '../../Styles';
 
 const FriendTabButton = props => {
     return (
         <View style={styles.grid}>
              <TouchableOpacity style={styles.buttonActive}>
-                <Text style={styles.buttonText}>Groups</Text>
+                <Text style={style.bold_small}>Groups</Text>
              </TouchableOpacity>
              <TouchableOpacity style={styles.buttonInactive} onPress={props.onPress}>
-                <Text style={styles.buttonText}>Friends</Text>
+                <Text style={style.bold_small}>Friends</Text>
              </TouchableOpacity>
         </View>
     )
@@ -30,12 +31,6 @@ const styles = StyleSheet.create({
         height: 32,
         width: 72,
         borderRadius: 7,
-        marginTop: 'auto',
-        marginBottom: 'auto'
-    },
-    buttonText: {
-        color: 'white',
-        textAlign: 'center',
         marginTop: 'auto',
         marginBottom: 'auto'
     }

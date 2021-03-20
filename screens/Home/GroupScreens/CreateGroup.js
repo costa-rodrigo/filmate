@@ -179,7 +179,9 @@ export default class CreateGroup extends React.Component {
                     <View style={styles.checkmark_grid}>
                         <View style={styles.friendGrid}>
                             <ProfileImage />
-                            <Text style={styles.friendText}>{friend}</Text>
+                            <View style={{marginLeft: 15}}>
+                                <Text style={style.bold_med_small}>{friend}</Text>
+                            </View>
                         </View>
                         {
                             this.state.addedFriends.includes(friend) 
@@ -201,15 +203,13 @@ export default class CreateGroup extends React.Component {
         })
 
         return (
-            <View style={{marginBottom: 25, backgroundColor: '#0A0A0A', height: '100%' }}>
-                <ScrollView style={style.screen}>
-                    <View style={style.header}>
-                        <Text style={style.h3_heading}>Invite friends to your group.</Text>
-                        <SearchBar placeholder="Search Friends" />
-                    </View>
-                    <View>
+            <View style={style.screen}>
+                <View style={style.header}>
+                    <Text style={style.h3_heading}>Invite friends to your group.</Text>
+                    <SearchBar placeholder="Search Friends" />
+                </View>
+                <ScrollView>
                     {usersFriends}
-                    </View>        
                 </ScrollView>
                 <MainButton title="Invite" onPress={this.handleSubmit}/>
             </View>

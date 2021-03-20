@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import MainButton from '../../../components/MainButton';
 import AsyncStorage from '@react-native-community/async-storage';
-// import NewGroupAddMember from './NewGroupAddMember';
-// import CreateGroup from './CreateGroup';
 import axios from 'axios';
 import style from '../../../Styles';
 
 const GroupName = props => {
-     // state variables : groupName
      const [groupName, setGroupName] = useState('');
      const [errorText, setErrorText] = useState('');
      const [token, setToken] = useState('');
@@ -48,7 +45,6 @@ const GroupName = props => {
        }
  
        const handleToken  = async (token) => {
-        // console.log(token)
         await axios.post('http://192.168.0.20:3000/groups', {
             groupName: groupName
         }, {
@@ -58,7 +54,6 @@ const GroupName = props => {
         })
         .then((response) => {
             console.log(".then", groupName)
-            // console.log(response.data)
             navigate('CreateGroup', {groupName: groupName})
         })
         .catch((error) => {
@@ -74,7 +69,7 @@ const GroupName = props => {
              <TextInput style={styles.input}
                     onChangeText={(GroupName) => 
                         setGroupName(GroupName)}
-                    placeholder="eg. Roomates"
+                    placeholder="roomates. friends, etc."
                     placeholderTextColor= "#737475"
                     value={groupName}
                     autoCapitalize="none"
@@ -82,14 +77,20 @@ const GroupName = props => {
                     // returnKeyType="next"
              />
              <MainButton title="Next" onPress={handleSubmit}/>
-            {/* <Button title="Next" onPress={handleSubmit} /> */}
      </View>
     );
   }
 
 const styles = StyleSheet.create({
     input: {
-        color: "#737475"
+        color: "white",
+        fontFamily: 'Nunito-Regular',
+        marginLeft: 20,
+        marginTop: 20,
+        fontSize: 28,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: 343,
     }
 
 });

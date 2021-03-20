@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         width: 88,
         height: 32,
         borderRadius: 15,
+        marginTop: 15
        
     },
     buttonText: {
@@ -22,6 +23,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 'auto',
         marginBottom: 'auto',
+        fontFamily: 'Nunito-ExtraBold',
+        fontSize: 13,
+
     }
 });
 

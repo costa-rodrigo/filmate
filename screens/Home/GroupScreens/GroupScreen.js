@@ -91,12 +91,12 @@ class GroupScreen extends React.Component {
                     <View style={styles.user_grid}>
                         <View style={styles.user_info}>
                             <ProfileImage />
-                            <View>
-                                <Text style={{color: 'white'}}> 👋</Text>
+                            <View style={{marginLeft: 8}}>
+                                <Text style={style.title}>Username 👋</Text>
                                 <TouchableOpacity onPress={() => {
                                     this.props.navigation.navigate('ProfileScreen')
                                 }}>
-                                    <Text style={{color: '#f03349'}}>View profile</Text>
+                                    <Text style={{color: '#f03349', fontSize: 12, fontFamily: 'Nunito-ExtraBold'}}>View profile</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -111,15 +111,19 @@ class GroupScreen extends React.Component {
                 <View>
                     {noGroups === false
                     ? (
-                        <View>
-                            <UsersGroups props={this.props}/>
-                            {/* <PinkButton title="SWIPE" onPress={() => {
-                            this.props.navigation.navigate('FriendScreen')
-                }}/> */}
-                        <MainButton title="New Group" 
-                            onPress={() => {
-                                this.props.navigation.navigate('NewGroupFilter')}}/>
-                        </View>
+                        // <View style={{marginBottom: 50}}>
+                        //     <UsersGroups props={this.props}/>
+                        //     <MainButton title="New Group" 
+                        //         onPress={() => {
+                        //         this.props.navigation.navigate('NewGroupFilter')}}/>
+                        // </View>
+                            <View style={{height: '87%'}}>
+                                <UsersGroups props={this.props}/>
+                                <View>
+                                    <MainButton  title="New Group" onPress={() => {
+                                        this.props.navigation.navigate('NewGroupFilter')}} />
+                                </View>
+                                </View>
                         
                         
                     )
@@ -139,7 +143,6 @@ class GroupScreen extends React.Component {
                     this.props.navigation.replace('navigation')
                 }}/>
                 </View>
-                
             </View>
         )
 
@@ -155,16 +158,9 @@ const styles = StyleSheet.create({
     },
     description: {
         textAlign: 'center',
-        marginBottom: 30,
+        // marginBottom: 30,
         color: 'white'
     },
-    image: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        margin: 5
-    },
-
     groupOptions: {
         color: 'white', 
         textAlign: 'center', 
@@ -177,8 +173,8 @@ const styles = StyleSheet.create({
     user_grid: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: 45,
-        marginRight: 45
+        marginLeft: 35,
+        marginRight: 35
     }
 });
 

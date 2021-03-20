@@ -37,6 +37,7 @@ export default function FilmateLogo(props) {
 const styles = StyleSheet.create({
     logo: {
         justifyContent: 'center',
-        alignItems: 'center'
-    },
+        alignItems: 'center',
+        marginTop: 50
+    }
 });

@@ -67,20 +67,35 @@ const AddFriends = props => {
     return (
         <View style={style.screen}>
             <Text style={style.h3_heading}>Add a friend to the friend list.</Text>
-            <Text>Email address</Text>
+            <Text style={{
+                    fontFamily: 'Nunito-Bold', 
+                    color: '#737475', 
+                    fontSize: 12,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    width: 343,
+                    marginTop: 30}}>
+                Email address
+            </Text>
             <TextInput 
+                    style={{
+                        fontSize: 28, 
+                        color: '#737475', 
+                        fontFamily: 'Nunito-Regular',                
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        width: 343,
+                        marginTop: 5}}
                     onChangeText={(FriendEmail) => 
                         setFriendEmail(FriendEmail)}
                     placeholder="friend@gmail.com"
+                    placeholderTextColor='#737475'
                     value={friendEmail}
                     autoCapitalize="none"
                     autoCorrect={false}
              />
-            {/* <Button 
-                title="Invite Friend"
-                onPress={handleSubmit}
-            /> */}
-                  <MainButton title="Invite Friend" onPress={handleSubmit}/>
+
+            <MainButton title="Invite Friend" onPress={handleSubmit}/>
 
         </View>
        

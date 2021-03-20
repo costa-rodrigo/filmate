@@ -1,11 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import style from '../../Styles';
 
 const RegisterMessage = props => {
     return (
         <View style={styles.screen}>
-            <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.description}>{props.description}</Text>           
+            <View style={{marginTop: 80, marginHorizontal: 80}}>
+                <Text style={style.h1_heading}>{props.title}</Text>
+                <Text style={style.paragraph_medium}>{props.description}</Text>  
+            </View>
+                     
         </View>
     )
 }
