@@ -130,8 +130,8 @@ class GroupScreen extends React.Component {
                     : (
                         <View style={styles.newGroup}>
                         <NoGroupsImage />
-                        <Text style={styles.title}>You don’t have any groups.</Text>
-                        <Text style={styles.description}>Create groups by inviting friends.</Text>
+                        <Text style={style.semi_bold_medium}>You don’t have any groups.</Text>
+                        <Text style={style.semi_bold_medium}>Create groups by inviting friends.</Text>
                         <GreyButton title="New group" onPress={() => {
                                 this.props.navigation.navigate('NewGroupFilter')
                             }} />
@@ -139,9 +139,9 @@ class GroupScreen extends React.Component {
                     )
                 }
 
-                <Button title="start session" onPress={() => {
+                {/* <Button title="start session" onPress={() => {
                     this.props.navigation.replace('navigation')
-                }}/>
+                }}/> */}
                 </View>
             </View>
         )
@@ -158,7 +158,6 @@ const styles = StyleSheet.create({
     },
     description: {
         textAlign: 'center',
-        // marginBottom: 30,
         color: 'white'
     },
     groupOptions: {
@@ -173,8 +172,9 @@ const styles = StyleSheet.create({
     user_grid: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: 35,
-        marginRight: 35
+        width: 343,
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
 });
 

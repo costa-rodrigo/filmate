@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         textAlign: 'center',
-        
+        fontFamily: 'Nunito-Bold',
+        fontSize: 16
     }
 });
 

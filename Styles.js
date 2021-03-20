@@ -73,6 +73,13 @@ export default StyleSheet.create({
     fontSize: 13,
     color: 'white',
   },
+  semi_bold_medium: {
+    fontFamily: 'Nunito-SemiBold',
+    fontSize: 16,
+    color: '#8A8C90',
+    textAlign: 'center'
+
+  },
   input: {
     backgroundColor: '#1E1E1E',
     marginBottom: 10,

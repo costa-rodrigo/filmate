@@ -103,9 +103,8 @@ class FriendScreen extends React.Component {
                                 this.props.navigation.replace('GroupScreen')
                             }} />
                     </View>
-                    <SearchBar placeholder="Search your friends"/>
+                    <SearchBar placeholder="Search friends"/>
                 </View>
-                {/* <NoFriends /> */}
 
                 <View>
                     {noFriends === false
@@ -122,8 +121,8 @@ class FriendScreen extends React.Component {
                     : (
                         <View style={styles.newFriends}>
                         <NoFriendsImage />
-                        <Text style={styles.title}>You don’t have any groups.</Text>
-                        <Text style={styles.description}>Create groups by inviting friends.</Text>
+                        <Text style={style.semi_bold_medium}>You don’t have any groups.</Text>
+                        <Text style={style.semi_bold_medium}>Create groups by inviting friends.</Text>
                         <GreyButton title="Add Friends" onPress={() => {
                                 this.props.navigation.navigate('AddFriends')
                             }} />
@@ -137,20 +136,22 @@ class FriendScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    title: {
+        color: 'white',
+    },
+    description: {
+        color: 'white'
+    },
     user_info: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     user_grid: {
         flexDirection: 'row',
-        marginLeft: 35,
-        marginRight: 35
-    },
-    title: {
-        color: 'white',
-    },
-    description: {
-        color: 'white'
+        justifyContent: 'space-between',
+        width: 343,
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
 });
 
