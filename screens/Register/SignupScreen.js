@@ -6,6 +6,7 @@ import FilmateLogo from '../../svgs/logo/FilmateLogo';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import PinkButton from '../../components/PinkButton';
 import style from '../../Styles';
+import modal from '../../Modal';
 
 const SignupScreen = props => {
     const [userName, setUserName] = useState('');
@@ -105,7 +106,7 @@ const SignupScreen = props => {
                 />
 
             </View>
-            <View style={styles.centeredView}>
+            <View style={modal.centeredView}>
             <Modal
               animationType="slide"
               transparent={true}
@@ -115,12 +116,12 @@ const SignupScreen = props => {
                 setModalVisible(!modalVisible);
               }}
             >
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <Text style={styles.modalTextHeading}>Account created!</Text>
-                  <Text style={styles.modalText}>You can now sign in using your credentials.</Text>
+              <View style={modal.centeredView}>
+                <View style={modal.modalView}>
+                  <Text style={style.title}>Account created!</Text>
+                  <Text style={style.bold_small}>You can now sign in using your credentials.</Text>
                   <PinkButton
-                    style={[styles.button, styles.buttonClose]}
+                    style={[modal.button, modal.buttonClose]}
                     title="Ok"
                     onPress={() =>
                     props.navigation.navigate('Login')}
@@ -153,55 +154,7 @@ const styles = StyleSheet.create({
     },
     inputWrapper: {
         marginTop: 30
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-      },
-      modalView: {
-        width: 311,
-        height: 216,
-        margin: 20,
-        backgroundColor: "#1E1E1E",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-      },
-      button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-        width: 88,
-        marginTop: 30
-      },
-      buttonClose: {
-        backgroundColor: "#f03349",
-      },
-      textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-      },
-      modalTextHeading: {
-        marginBottom: 15,
-        textAlign: "center",
-        color: 'white'
-      },
-      modalText: {
-        marginBottom: 15,
-        textAlign: "center",
-        color: 'white',
-      }
+    }
 });
 
 export default SignupScreen;

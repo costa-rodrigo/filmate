@@ -22,9 +22,7 @@ import GenreMoodNavigator from './navigation/GenreMoodNavigator';
 // import InvitedToGroup from './screens/Home/GroupScreens/InvitedToGroup';
 import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
 import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
-// import HomeNavigator from './navigation/HomeNavigator';
-// import FriendTabButton from './screens/Home/FriendTabButton';
-// import UsersGroups from './screens/Home/GroupScreens/UsersGroups';
+
 // https://docs.expo.io/versions/latest/sdk/splash-screen/
 // ADD splash screen
 
@@ -62,40 +60,49 @@ export default class App extends React.Component {
   }
 
   render() {
-    // Use the font with the fontFamily property after loading
     if (this.state.fontsLoaded) {
       return (
-        // <LoginScreen />
         <NavigationContainer>
         <StatusBar barStyle="light-content" backgroundColor="#4F6D7A" />
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
               height: 0
-            } }, headerTitleStyle: { fontWeight: 'bold' }}}>
+            } }, headerTitleStyle: { fontWeight: 'bold' }}, {headerTintColor: '#d2d5d5'}}>
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerTitle: '', headerStyle: {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: {
-              height: 0
-            }
-          } }} />
+              height: 0 }}}} />
           <Stack.Screen name="Signup" component={SignupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} />
-          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerTitle: '', headerBackTitle: 'Back' }}/>
-          <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} options={{ headerTitle: '', headerBackTitle: 'Back' }}/>
+          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/>
+          <Stack.Screen name="ForgotPassword_Reset" component={ForgotPasswordScreen_Reset} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/>
           <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerStyle: { backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 }}, headerTitle: '', headerBackTitle: 'Back' }}/>  
           {/* <Stack.Screen name="UsersGroups" component={UsersGroups} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/>  */}
-          <Stack.Screen name="NewGroupFilter" component={Platform} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="NewGroupName" component={GroupName} options={{ headerTitle: '', headerBackTitle: 'Invite Friends' }}/> 
-          <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerTitle: 'Edit Profile', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: '', headerBackTitle: 'Filter movies' }}/> 
-          <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: '', headerBackTitle: 'Add a friend' }}/> 
-          <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: '', headerBackTitle: 'Back' }}/> 
-          <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: '', headerBackTitle: 'Invite Friends' }}/> 
+          <Stack.Screen name="NewGroupFilter" component={Platform} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
+          <Stack.Screen name="NewGroupName" component={GroupName} options={{ headerTitle: '', headerBackTitle: 'Invite Friends', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} /> 
+          <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
+          <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
+          <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
+          <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
+          <Stack.Screen name="navigation" component={GenreMoodNavigator} options={{ headerTitle: '', headerBackTitle: 'Filter movies', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} /> 
+          <Stack.Screen name="AddFriends" component={AddFriends} options={{ headerTitle: '', headerBackTitle: 'Add a friend', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} /> 
+          <Stack.Screen name="FriendsInvited" component={FriendsInvited} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
+          <Stack.Screen name="CreateGroup" component={CreateGroup} options={{ headerTitle: '', headerBackTitle: 'Invite Friends', headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} /> 
           {/* <Stack.Screen name="NoFriends" component={NoFriends} options={{ headerTitle: 'NoFriends', headerBackTitle: 'Back' }}/>  */}
-          <Stack.Screen name="FriendScreen" component={FriendScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null}}/> 
-          <Stack.Screen name="GroupScreen" component={GroupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/> 
-          {/* <Stack.Screen name="FriendTabButton" component={FriendTabButton} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null }}/>  */}
+          <Stack.Screen name="FriendScreen" component={FriendScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null, headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} /> 
+          <Stack.Screen name="GroupScreen" component={GroupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null, headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} />
         </Stack.Navigator>
       </NavigationContainer>
       );

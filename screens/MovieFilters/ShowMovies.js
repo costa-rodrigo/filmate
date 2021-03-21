@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, Dimensions, Alert, Animated, PanResponder, Button, StyleSheet, Modal, Pressable } from 'react-native';
+import { Text, View, Dimensions, Alert, Animated, PanResponder, Modal, Pressable } from 'react-native';
 import Heart from '../../svgs/swipe/Heart';
 import ThumbsDown from '../../svgs/swipe/ThumbsDown';
 import PinkButton from '../../components/PinkButton';
 import style from '../../Styles';
+import modal from '../../Modal';
 // import { LogBox } from 'react-native';
 
 // LogBox.ignoreWarnings([
@@ -178,7 +179,7 @@ export default class ShowMovies extends React.Component {
                 else if (index == this.state.currentIndex) {
                     return (
                         <View style={{position: 'absolute', bottom: '10%'}}>
-                                <View style={styles.centeredView}>
+                                <View style={modal.centeredView}>
                                 <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginTop: 0, fontFamily: 'Nunito-Bold', fontSize: 20}}>{details[0]}</Text>
                                         <Text style={{ color: '#737475', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20, fontFamily: 'Nunito-Regular', fontSize: 16}}>⭐ IMDb {details[2]}/10</Text>
                                   
@@ -191,8 +192,8 @@ export default class ShowMovies extends React.Component {
                                             this.setModalVisible(!modalVisible);
                                         }}
                                     >
-                                        <View style={styles.centeredView}>
-                                            <View style={styles.modalView}>
+                                        <View style={modal.centeredView}>
+                                            <View style={modal.modalView}>
                                             <Text style={style.h1_heading}>{details[0]}</Text>
                                             <Text style={style.bold_medium}>({details[3]})</Text>
                                             <Text style={style.paragraph_medium}>{details[1]}</Text>
@@ -218,10 +219,10 @@ export default class ShowMovies extends React.Component {
                                         </View>
                                     </View> */}
                                     <Pressable
-                                            style={[styles.button, styles.buttonOpen]}
+                                            style={[modal.button, modal.buttonOpen]}
                                             onPress={() => this.setModalVisible(true)}
                                             >
-                                            <Text style={styles.textStyle}>Show Details</Text>
+                                            <Text style={modal.textStyle}>Show Details</Text>
                                         </Pressable>
                                 </View>
                             </View>   
@@ -245,49 +246,3 @@ export default class ShowMovies extends React.Component {
     }
 }  
 
-const styles = StyleSheet.create({
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22,
-      },
-      modalView: {
-        margin: 20,
-        backgroundColor: "#1E1E1E",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-      },
-      button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-        marginTop: 10
-      },
-      buttonOpen: {
-        backgroundColor: "#f03349",
-      },
-      buttonClose: {
-        backgroundColor: "#2196F3",
-      },
-      textStyle: {
-        color: "white",
-        fontFamily: 'Nunito-ExtraBold',
-        fontSize: 13,
-        textAlign: "center"
-      },
-      modalText: {
-        marginBottom: 15,
-        textAlign: "center"
-      }
-
-})

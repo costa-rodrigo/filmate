@@ -44,18 +44,13 @@ export default class MoodFilter extends React.Component {
   moodPressed = (mood) => {
         let moodBoxPressed = true;
         this.setState({moodBoxPressed});
-        // console.log("moodbox: ", this.state.moodBoxPressed)
-
         let moodName = [mood[1]];
-        // console.log('mood', moodName)
         this.setState({ moodName })
         
 
         axios.post(`http://192.168.0.20:8080/mood`, moodName)
         .then(res => {
-          // console.log("RESDATA", res.data)
           let movies = res.data
-
           let moviePosters = [];
           let allData = [];
         
@@ -69,14 +64,13 @@ export default class MoodFilter extends React.Component {
             let data = [movies[i].title, movies[i].overview, movies[i].vote_average, movies[i].release_date]
             allData.push(data)    
             this.setState({ allData })
-            // console.log(this.state.allData)
           }
         })
     }
 
     handleSubmit(moodName, posters, allData) {
       if (!moodName) {
-        Alert.alert("please select a genre")
+        Alert.alert("Please select a mood.")
       } else {
         this.props.navigation.navigate('ShowMovies', { genreId: moodName, posters: posters, allData: allData})
       }
@@ -85,7 +79,7 @@ export default class MoodFilter extends React.Component {
   render() {
     const posters = this.state.moviePosters.map((poster, index) => {
       return (
-        <Image key={index.toString()} source={{uri: poster}} alt='movie poster'
+        <Image key={index} source={{uri: poster}} alt='movie poster'
         style={{  maxWidth: 400, height: '85%', borderRadius: 25 }}
         />
       )
@@ -93,10 +87,8 @@ export default class MoodFilter extends React.Component {
 
       const moods = this.state.moodArray.map((mood, index) => {
           return (
-            <View>
+            <View key={mood[0]} >
             <TouchableOpacity
-                key={index.toString()} 
-                // style={styles.moodButton} 
                 style={this.state.moodName.includes(mood[1])
                 ? {
                   width: 168,

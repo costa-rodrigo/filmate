@@ -32,9 +32,8 @@ export default class Platform extends React.Component {
   render() {
       const platforms = this.state.platformArray.map((platform, index) => {
           return (
-            <View>
+            <View key={platform[1]}>
               <TouchableOpacity 
-                  key={platform[1]}
                     style={this.state.platformName.includes(platform[0])
                         ? {
                             width: 168,
@@ -68,12 +67,12 @@ export default class Platform extends React.Component {
                         this.state.platformName.includes(platform[0])
                         ? (
                             <View style={styles.circle}>
-                            <Checkmark />
+                                <Checkmark />
                             </View>
                         )
                         : (
                             <View style={styles.circle}>
-                            <GreyCircle />
+                                <GreyCircle />
                             </View>
                         )
                     }
@@ -86,12 +85,10 @@ export default class Platform extends React.Component {
     return (
      <View style={style.screen}>
          <Text style={style.h3_heading}>Filter streaming platform for the group</Text>
-            <Text style={{marginLeft: 'auto', marginRight: 'auto'}}>
-                {platforms}
-            </Text>
-            <MainButton style={styles.fixedButton} title="Filter"  onPress={() => {
-                    this.props.navigation.navigate('NewGroupName')
-                }} />
+         <Text style={{marginLeft: 'auto', marginRight: 'auto'}}>{platforms}</Text>
+         <MainButton title="Filter"  
+                     onPress={() => { this.props.navigation.navigate('NewGroupName')
+         }} />
      </View>
     );
   }
@@ -104,8 +101,7 @@ const styles = StyleSheet.create({
        marginTop: 'auto',
     },
     checkmark_grid: {
-        flexDirection: 'column',
-        
+        flexDirection: 'column',  
     },
     circle: {
         marginLeft: 100,       

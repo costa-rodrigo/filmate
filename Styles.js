@@ -5,7 +5,6 @@ export default StyleSheet.create({
   screen: {
     backgroundColor: '#0A0A0A',
     flex: 1,
-    
   },
   header: {
     backgroundColor: '#121212',
@@ -29,9 +28,17 @@ export default StyleSheet.create({
       color: 'white',
       fontFamily: 'Nunito-Bold',
       marginTop: 20,
+      marginBottom: 20,
       marginLeft: 'auto',
       marginRight: 'auto',
       width: 343,
+  },
+  centered_title: {
+    fontSize: 18,
+    fontFamily: 'Nunito-Bold',
+    color: 'white',
+    textAlign: 'center'
+
   },
   title: {
       fontSize: 18,
@@ -44,7 +51,6 @@ export default StyleSheet.create({
       fontSize: 12,
       lineHeight: 17,
       color: 'white',
-      // marginRight: 5,
       fontFamily: 'Nunito-Regular',
   },
   paragraph_medium: {

@@ -10,7 +10,6 @@ const GenreMoodNavigator = () => {
     <Tab.Navigator
       tabBarOptions={{
         labelStyle: { color: 'white', fontFamily: 'Nunito-Bold', fontSize: 16 },
-        // tabStyle: { width: 100 },
         style: { backgroundColor: '#121212' },
         indicatorStyle: { backgroundColor: '#f03349'}
       }}>
@@ -19,6 +18,5 @@ const GenreMoodNavigator = () => {
     </Tab.Navigator> 
     )
   }
-
 
 export default GenreMoodNavigator;

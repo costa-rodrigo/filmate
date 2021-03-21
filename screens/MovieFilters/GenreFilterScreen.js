@@ -67,15 +67,12 @@ populateSelectedGenres = () => {
 
 handleSubmit(genreId, posters, allData) {
   if (!genreId) {
-    Alert.alert("please select a genre")
+    Alert.alert("Please select a genre.")
   } else {
       // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
     this.setState({genreId})
-    // this.populateSelectedGenres()
-    // console.log("id from handleSubmit: ", genreId)
-    // console.log("posters:", posters.uri)
     const { navigate } = this.props.navigation;
     this.props.navigation.navigate('ShowMovies', { genreId: genreId, posters: posters, allData: allData})
   })
@@ -85,12 +82,8 @@ handleSubmit(genreId, posters, allData) {
 genrePressed = (genre) => {
   let genrePressed = true;
   this.setState({genrePressed})
-
   let genreId = [genre[1]];
-  // console.log('genre id:',genreId)
-
   this.setState({ genreId })
-  // console.log("genreid", genreId)
 
   // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
@@ -102,7 +95,6 @@ genrePressed = (genre) => {
 render() {
 
   const posters = this.state.moviePosters.map((poster, index) => {
-    // console.log(poster)
     return (
       <Image key={poster} source={{uri: poster}} alt='movie poster'
       style={{  maxWidth: 400, height: '85%', borderRadius: 25 }}
@@ -113,9 +105,8 @@ render() {
   const genres = this.state.genreArray.map((genre, index) => {
     console.log(genre[1])
     return (
-      <View>
+      <View key={genre[1]}>
         <TouchableOpacity
-            key={genre[1]}
             style={this.state.genreId.includes(genre[1])
               ? {
                 borderRadius: 20,

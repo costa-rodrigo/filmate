@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -15,11 +15,11 @@ const LoginScreen = (props) => {
     const handleSubmit = () => {
         setErrorText('');
         if (!userUsername) {
-            alert('Please provide a username!');
+            Alert.alert("Something's not right.", "Please make sure the text fields are filled properly.")
             return;
         }
         if (!userPassword) {
-            alert('Please provide a password!');
+            Alert.alert("Something's not right.", "Please make sure the text fields are filled properly.")
             return;
         }
 
@@ -36,13 +36,13 @@ const LoginScreen = (props) => {
                 AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                          console.log(store)
+                        //   console.log(store)
                         // console.log("async", { [store[i][0]]: store[i][1] });
                         return true;
                       });
                     });
                   });
-                console.log("token:", token)
+                // console.log("token:", token)
                 axios.get('http://192.168.0.20:3000/login'), {
                     name: userUsername,
                     password: userPassword
@@ -51,28 +51,12 @@ const LoginScreen = (props) => {
                         Authorization: 'Bearer ' + token
                     }
                 }
-               console.log(response)
-
                 props.navigation.replace('Onboarding', {userUsername, userUsername})
-
-            } else if (response.status === undefined) {
-                console.log("undefined")
-            }    
+            }
         })
-        // .catch((error) => {
-        //     // if (response.status == undefined) {
-        //     //     Alert.alert('Incorrect username or password!')
-        //     // }
-        //     // else {
-        //     //     console.log('help')
-        //     // }
-        //     console.error(error)
-        //     // console.log("Please check your username and password -  CATCH.")
-          
-        //     // console.log(response.status)
-        //     // console.log(error)
-        //     // handle returned errors here
-        // })
+        .catch((error) => {
+            Alert.alert("Something's not right.", "Please make sure the text fields are filled properly.")
+        })
     }
 
     return (
@@ -100,13 +84,11 @@ const LoginScreen = (props) => {
                     secureTextEntry={true}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    returnKeyType="go"
                     />
              </View>
             <TouchableOpacity onPress={() => { props.navigation.navigate('ForgotPassword')}}>
                 <Text style={{color: '#f03349', marginLeft: '10%', fontSize: 14, fontFamily: 'Nunito-Regular'}}>Forgot Password?</Text>
             </TouchableOpacity>
-            <MainButton title="home page" onPress={() => { props.navigation.navigate('GroupScreen')}}/>
             <MainButton title="Sign In" onPress={handleSubmit} />
             <View style={styles.flexContainer}>
                 <Text style={style.paragraph_small}>Don't have an account?</Text>

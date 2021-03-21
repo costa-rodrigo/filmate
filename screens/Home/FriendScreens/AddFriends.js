@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
+import { View, Text, TextInput, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import MainButton from '../../../components/MainButton';
 import axios from 'axios';
@@ -23,11 +23,8 @@ const AddFriends = props => {
                     let storage = await AsyncStorage.getAllKeys((err, keys) => {
                         AsyncStorage.multiGet(keys, (error, stores) => {
                           stores.map((result, i, store) => {
-                            //   console.log(store)
-                            // console.log("async", { [store[i][0]]: store[i][1] });
                             let token = "Bearer " + store[0][1];
                             setToken(token)
-                            console.log("token from handlesubmit", token)
                             setFriendEmail(friendEmail)
                             resolve(storage)
                             handleToken(token)
@@ -45,7 +42,6 @@ const AddFriends = props => {
        }
  
        const handleToken  = async (token) => {
-        console.log(token)
         await axios.post('http://192.168.0.20:3000/friends', {
             email: friendEmail
         }, {
@@ -54,13 +50,10 @@ const AddFriends = props => {
             }
         })
         .then((response) => {
-            console.log(".then", friendEmail)
-            console.log(response.data)
-            navigate('FriendsInvited')
+            navigate('FriendsInvited') 
         })
         .catch((error) => {
-            console.log("catch error")
-
+           console.log(error)
         })
        }
 
@@ -73,8 +66,8 @@ const AddFriends = props => {
                     fontSize: 12,
                     marginLeft: 'auto',
                     marginRight: 'auto',
-                    width: 343,
-                    marginTop: 30}}>
+                    width: 343
+                    }}>
                 Email address
             </Text>
             <TextInput 
@@ -101,14 +94,5 @@ const AddFriends = props => {
        
     )
 }
-
-const styles = StyleSheet.create({
-    description: {
-        textAlign: 'center',
-        marginBottom: 40
-    }
-
-
-});
 
 export default AddFriends;

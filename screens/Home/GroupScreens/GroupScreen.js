@@ -35,11 +35,10 @@ class GroupScreen extends React.Component {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                        //   console.log("store", store)
                         let token = "Bearer " + store[0][1];
                         // setToken(token)
                         this.setState({ token })
-                        console.log("token from groupScreen", token)
+                        // console.log("token from groupScreen", token)
                         resolve(storage)
                         this.handleToken(token)
                       });
@@ -58,24 +57,19 @@ class GroupScreen extends React.Component {
             }
         })
         .then((res) => {
-            console.log(res.data)
             const groups = res.data
             if (groups.length !== 0 ) {
                 this.setState({ noGroups: false })
             } else {
                 this.setState({ noGroups: true })
             }
-            // console.log("friends", groups) 
-            // console.log(this.state.noGroups)
     
             let allGroups = [];
             for (let i = 0; i < groups.length; i++) {
                 let group = groups[i].group_id;
-                // console.log(friend)
                 allGroups.push(group)
             }
             this.setState({ GroupsArray: allGroups })
-            // console.log(this.state.GroupsArray)
         })
         .catch((error) => {
             console.error(error)
@@ -111,55 +105,32 @@ class GroupScreen extends React.Component {
                 <View>
                     {noGroups === false
                     ? (
-                        // <View style={{marginBottom: 50}}>
-                        //     <UsersGroups props={this.props}/>
-                        //     <MainButton title="New Group" 
-                        //         onPress={() => {
-                        //         this.props.navigation.navigate('NewGroupFilter')}}/>
-                        // </View>
-                            <View style={{height: '87%'}}>
-                                <UsersGroups props={this.props}/>
-                                <View>
-                                    <MainButton  title="New Group" onPress={() => {
-                                        this.props.navigation.navigate('NewGroupFilter')}} />
-                                </View>
-                                </View>
-                        
-                        
+                        <View style={{height: '87%'}}>
+                            <UsersGroups props={this.props}/>
+                            <View>
+                                <MainButton  title="New Group" onPress={() => {
+                                    this.props.navigation.navigate('NewGroupFilter')}} />
+                            </View>
+                        </View>
                     )
                     : (
                         <View style={styles.newGroup}>
-                        <NoGroupsImage />
-                        <Text style={style.semi_bold_medium}>You don’t have any groups.</Text>
-                        <Text style={style.semi_bold_medium}>Create groups by inviting friends.</Text>
-                        <GreyButton title="New group" onPress={() => {
-                                this.props.navigation.navigate('NewGroupFilter')
-                            }} />
+                            <NoGroupsImage />
+                            <Text style={style.semi_bold_medium}>You don’t have any groups.</Text>
+                            <Text style={style.semi_bold_medium}>Create groups by inviting friends.</Text>
+                            <GreyButton title="New group" onPress={() => {
+                                    this.props.navigation.navigate('NewGroupFilter')
+                                }} />
                         </View>
                     )
                 }
-
-                {/* <Button title="start session" onPress={() => {
-                    this.props.navigation.replace('navigation')
-                }}/> */}
                 </View>
             </View>
         )
-
     }
-    
 }
 
 const styles = StyleSheet.create({
-    title: {
-        textAlign: 'center',
-        fontSize: 25,
-        color: 'white'
-    },
-    description: {
-        textAlign: 'center',
-        color: 'white'
-    },
     groupOptions: {
         color: 'white', 
         textAlign: 'center', 

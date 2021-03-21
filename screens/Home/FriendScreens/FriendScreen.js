@@ -28,22 +28,16 @@ class FriendScreen extends React.Component {
           change: 0
       }
       this.handleToken = this.handleToken.bind(this);
-    //   this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     }
     componentDidMount() {
-        // this.setState({});
-        console.log(this.state.noFriends)
-        // console.log("get token")
         return new Promise ( async (resolve, reject) => {
             try {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                          console.log("store", store)
                         let token = "Bearer " + store[0][1];
-                        // setToken(token)
                         this.setState({ token })
-                        console.log("token from handlesubmit", token)
+                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                       });
@@ -68,7 +62,6 @@ class FriendScreen extends React.Component {
             } else {
                 this.setState({ noFriends: true })
             }
-            // console.log("friends", friends) 
     
             let allFriends = [];
             for (let i = 0; i < friends.length; i++) {
@@ -109,23 +102,22 @@ class FriendScreen extends React.Component {
                 <View>
                     {noFriends === false
                     ? (
-                        // fix this here! button is not in the right spot
                         <View style={{height: '90%'}}>
                             <UsersFriends />
                             <View>
-                                <MainButton  title="Add Friends" onPress={() => {
+                                <MainButton title="Add Friends" onPress={() => {
                                 this.props.navigation.navigate('AddFriends')}} />
                             </View>
                         </View>
                     ) 
                     : (
                         <View style={styles.newFriends}>
-                        <NoFriendsImage />
-                        <Text style={style.semi_bold_medium}>You don’t have any groups.</Text>
-                        <Text style={style.semi_bold_medium}>Create groups by inviting friends.</Text>
-                        <GreyButton title="Add Friends" onPress={() => {
-                                this.props.navigation.navigate('AddFriends')
-                            }} />
+                            <NoFriendsImage />
+                            <Text style={style.semi_bold_medium}>You don’t have any groups.</Text>
+                            <Text style={style.semi_bold_medium}>Create groups by inviting friends.</Text>
+                            <GreyButton title="Add Friends" onPress={() => {
+                                    this.props.navigation.navigate('AddFriends')
+                                }} />
                         </View>
                     )
                 }
@@ -136,12 +128,6 @@ class FriendScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    title: {
-        color: 'white',
-    },
-    description: {
-        color: 'white'
-    },
     user_info: {
         flexDirection: 'row',
         alignItems: 'center'

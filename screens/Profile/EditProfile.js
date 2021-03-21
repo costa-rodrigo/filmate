@@ -1,33 +1,32 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button, Image } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import InputBox from '../../components/InputBox';
+import MainButton from '../../components/MainButton';
 import style from '../../Styles';
 
 const EditProfile = props => {
-    // const [userPassword, setUserPassword] = useState('');
-    // const [userPasswordConfirm, setUserPasswordConfirm] = useState('');
     return (
-
         <View style={style.screen}>
-            {/* <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} /> */}
             <View>
-            {/* <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} /> */}
                 <Text style={styles.text}>Change profile picture</Text>
             </View>
+            <Text>Name and surname</Text>
+            <InputBox title="Username"/>
+            <Text>Email</Text>
+            <InputBox title="Username"/>
+            <Text>Current password</Text>
+            <InputBox title="**************"/>
+            <Text>New password</Text>
+            <InputBox title="Type new password"/>
+            <MainButton title="Make changes"/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
-        margin: 30,
-        marginLeft: 'auto',
-        marginRight: 'auto'
-    },
     text: {
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'white'
     }
 });
 
