@@ -1,48 +1,43 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, ScrollView, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-// import NoFriends from '../FriendScreens/NoFriends';
-// import MainButton from '../../../components/MainButton';
 import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
-import ProfileImage from '../../../svgs/icons/ProfileImage';
-// import GroupTabButton from '../GroupTabButton';
 import PinkButton from '../../../components/PinkButton';
-import MainButton from '../../../components/MainButton';
+import style from '../../../Styles';
 
 class UsersGroups extends React.Component {
     constructor(props) {
       super(props);
       this.state={
           token: '',
-        //   addedFriends: [],
           GroupsArray: [], 
           noGroups: true, 
-        //   selectedFriends: [],
+          groupIdArray: [],
+          group_id: '',
+          group_members: [],
+          final_members: []
       }
       this.handleToken = this.handleToken.bind(this);
-    //   this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+    //   this.handleMembers = this.handleMembers.bind(this);
     }
 
     componentDidMount() {
-        console.log("PROPS", this.props.props.navigation.navigate)
         return new Promise ( async (resolve, reject) => {
             try {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                          console.log("store", store)
+                        //   console.log("store", store)
                         let token = "Bearer " + store[0][1];
-                        // setToken(token)
                         this.setState({ token })
-                        console.log("token from handlesubmit", token)
+                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
-                      });
+                     });
                     });
                   });
-
             } catch(error) {
                 reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
             }
@@ -57,7 +52,6 @@ class UsersGroups extends React.Component {
             }
         })
         .then((res) => {
-            console.log("then")
             console.log(res.data)
             const groups = res.data
             if (groups.length !== 0 ) {
@@ -66,106 +60,193 @@ class UsersGroups extends React.Component {
                 this.setState({ noGroups: true })
             }
             console.log("friends", groups) 
-            console.log(this.state.noGroups)
     
             let allGroups = [];
+            let allGroupIds = [];
             for (let i = 0; i < groups.length; i++) {
-                let group = groups[i].group_id;
-                // console.log(friend)
+                let group = groups[i].group.name;
+                let group_id = groups[i].group_id;
+                allGroupIds.push(group_id)
+                this.setState({groupIdArray: allGroupIds})
+                
+
+                // console.log("GROUP ID", groups[0].group_id)
+                // this.setState({group_id: groups[0].group_id})
+                // console.log("group_id", this.state.group_id)
                 allGroups.push(group)
+
+                const PromiseArr = [];
+                for (let i = 0; i < groups.length; i++) {
+                    PromiseArr.push(
+                        axios.post('http://192.168.0.20:3000/group', {
+                            group_id: groups[i].group_id
+                        })
+                        .then(result => 
+                            new Promise(resolve => resolve(result.data)))
+                    );
+                }
+
+                Promise.all(PromiseArr).then(res => {
+                    console.log("res", res)
+                    this.setState({group_members: res})
+                    console.log("res[2]", res[0])
+                    console.log("res[1]", res[1])
+
+                    // FIX THIS - ONLY WORKS WITH 2 GROUPS******
+                    // let allMembers = []
+                    // for (let i = 0; i < groups.length; i++) {
+                    //     for (let j = 0; j < groups.length; j++) {
+                    //     let members = res;
+                    //     console.log("members", members[i][j].user.name)
+                    //     allMembers.push(members[i][j].user.name)
+                    //     console.log("allMembers", allMembers)
+                    //     this.setState({group_members: allMembers})
+                    
+                    //     }
+                    // }
+                })
             }
+            console.log("allGroupIds", allGroupIds)
             this.setState({ GroupsArray: allGroups })
             console.log(this.state.GroupsArray)
+            // this.handleMembers()
         })
         .catch((error) => {
             console.error(error)
         })
        }
 
+    //    handleMembers  = async () => {
+    //     await axios.post('http://192.168.0.20:3000/group', {
+    //         group_id: this.state.group_id
+    //     })
+    //     .then((res) => {
+    //         console.log("MEMBERS", res.data)
+    //         let members = res.data;
+    //         let allMembers = []
+    //         for (let i = 0; i < members.length; i++) {
+    //             let member = members[i].user.name
+    //             allMembers.push(member);
+    //             this.setState({group_members: allMembers})
+    //             console.log("group members", this.state.group_members);
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.error(error)
+    //     })
+    // }
+
     render() {
         const { navigation } = this.props.props;
+        const groupMembers = this.state.group_members;
+        // const final_members = this.state.final_members;
+        const usersMembers = this.state.final_members.map((member, index) => {
+            return (
+                <Text style={{color: 'white'}}>{member}</Text>
+            )
+        })
+
         const usersGroups = this.state.GroupsArray.map((group, index) => {
             return (
-               
-                     <View
-                        key={index}
-                        style={styles.friendContainer}
-                        >
+                     <View key={index} style={styles.friendContainer}>
                         <View style={styles.fullGrid}>
-
-                       
-                        <View style={styles.friendGrid}>
-                            {/* <ProfileImage /> */}
-                            <Text style={styles.friendText}>{group}</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity 
-                                    onPress={() => this.RBSheet.open()} 
-                                    style={styles.editButton}>
+                            {/* <View style={styles.friendGrid}> */}
+                                <Text style={style.h3_heading}>{group}</Text>
+                                {/* <Text style={{color: 'white'}}>{groupMembers[0]}</Text>
+                                <Text style={{color: 'white'}}>{groupMembers[1]}</Text> */}
+                            {/* <Text>{[usersMembers]}</Text> */}
+              
+                            <View>
+                                <TouchableOpacity onPress={() => this.RBSheet.open()} style={styles.editButton}>
                                     <OptionsButton />
-                            </TouchableOpacity>
-                        </View>
+                                </TouchableOpacity>
+                            </View>
                         </View>    
                         <PinkButton title="SWIPE" onPress={() => {
                             navigation.navigate('navigation')
-                         }}/>
+                        }}/>
                     </View>
-              
             )
         })
+
+
+        // const usersGroups = this.state.GroupsArray.map((group, index) => {
+        //     return (
+        //              <View key={index} style={styles.friendContainer}>
+        //                 <View style={styles.fullGrid}>
+        //                     {/* <View style={styles.friendGrid}> */}
+        //                         <Text style={style.h3_heading}>{group}</Text>
+        //                         {/* <Text style={{color: 'white'}}>{groupMembers[0]}</Text>
+        //                         <Text style={{color: 'white'}}>{groupMembers[1]}</Text> */}
+        //                     {/* </View> */}
+        //                     {/* {
+        //                         this.state.final_members.map((member) => {
+        //                             return (
+        //                                 <Text style={{color: 'white'}}>{member}</Text>
+        //                             )
+                                   
+        //                         })
+        //                     } */}
+        //                     {/* {groupMembers} */}
+                            
+        //                     <View>
+        //                         <TouchableOpacity onPress={() => this.RBSheet.open()} style={styles.editButton}>
+        //                             <OptionsButton />
+        //                         </TouchableOpacity>
+        //                     </View>
+        //                 </View>    
+        //                 <PinkButton title="SWIPE" onPress={() => {
+        //                     navigation.navigate('navigation')
+        //                 }}/>
+        //             </View>
+        //     )
+        // })
+
+
         
         return (
             <ScrollView style={styles.scrollScreen}>
                     {[usersGroups]}
-                    {/* <MainButton title="New Group"/> */}
+                    {usersMembers}
+                    
 
                     <View style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "white",
-                    marginTop: 150
-                }}>
-                <RBSheet
-                    ref={ref => {
-                        this.RBSheet = ref;
-                    }}
-                    closeOnDragDown={true}
-                    closeOnPressMask={false}
-                    customStyles={{
-                        wrapper: {
-                            backgroundColor: "transparent"
-                        },
-                        container: {
-                            backgroundColor: '#242424'
-                        },
-                        draggableIcon: {
-                            backgroundColor: "white"
-                        }
-                    }}
-                 >
-                    {/* <YourOwnComponent /> */}
-                    <Text style={styles.groupOptions}>Group Options</Text>
-                    <Text>Match History</Text>
-                    <Text>Edit Group</Text>
-                    <Text>Exit Group</Text>
-                </RBSheet>
-                 </View>
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "white",
+                        marginTop: 150
+                    }}>
+                        <RBSheet
+                            ref={ref => {
+                                this.RBSheet = ref;
+                            }}
+                            closeOnDragDown={true}
+                            closeOnPressMask={false}
+                            customStyles={{
+                                wrapper: {
+                                    backgroundColor: "transparent"
+                                },
+                                container: {
+                                    backgroundColor: '#242424'
+                                },
+                                draggableIcon: {
+                                    backgroundColor: "white"
+                                }
+                            }}
+                        >
+                            <Text style={styles.groupOptions}>Group Options</Text>
+                            <Text>Match History</Text>
+                            <Text>Edit Group</Text>
+                            <Text>Exit Group</Text>
+                        </RBSheet>
+                    </View>
             </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        // flex: 1,
-        // flexDirection: 'column'
-        
-    },
-    scrollScreen: {
-        // backgroundColor: '#0A0A0A',
-
-    },
     friendContainer: {
         backgroundColor: '#1E1E1E',
         marginVertical: 10,

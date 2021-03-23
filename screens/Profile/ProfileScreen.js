@@ -1,41 +1,106 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button, Image } from 'react-native';
-import ProfileImage from '../../svgs/icons/ProfileImage';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import ProfileImageLarge from '../../svgs/icons/ProfileImageLarge';
+import AsyncStorage from '@react-native-community/async-storage';
 import EditIcon from '../../svgs/icons/EditIcon';
+import Request from '../../svgs/icons/Request';
 import style from '../../Styles';
+import axios from 'axios';
+
+class ProfileScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            token: '',
+            userName: '',
+            userEmail: ''
+        }
+        
+        // this.handleToken = this.handleToken.bind(this);
+      }
+      componentDidMount() {
+          return new Promise ( async (resolve, reject) => {
+              try {
+                  let storage = await AsyncStorage.getAllKeys((err, keys) => {
+                      AsyncStorage.multiGet(keys, (error, stores) => {
+                        stores.map((result, i, store) => {
+                          let token = "Bearer " + store[0][1];
+                          this.setState({ token })
+                          // console.log("token from handlesubmit", token)
+                          resolve(storage)
+                        //   this.handleToken(token)
+                          this.handleUsername(token)
+                        });
+                      });
+                    });
+              } catch(error) {
+                  reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
+              }
+          });
+      }
+
+      handleUsername  = async (token) => {
+        await axios.get('http://192.168.0.20:3000/user',  {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        .then((res) => {
+            let username = res.data.name;
+            let email = res.data.email;
+            this.setState({userName: username})
+            this.setState({userEmail: email})
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
 
 
-const ProfileScreen = (props) => {
-   
+    render() {
+        const { navigation } = this.props;
         return (
-
             <View style={style.screen}>
-                {/* <RegisterMessage logoLink={RegisterData[2].logoLink} title={RegisterData[2].title} description={RegisterData[2].description} /> */}
                 <View>
-                    <View>
-                        <ProfileImage />
-                        
-                    </View>
-                   
-                {/* <Image style={styles.image} source={require('../Onboarding/images/moodImage.jpg')} /> */}
-                    
-                        <Text style={style.centered_title}>Username</Text>
-                        <Text style={{fontSize: 12, color: '#d2d5d5', fontFamily: 'Nunito-Regular', textAlign: 'center'}}>useremail@gmail.com</Text>
-                    
-                    <Button title="Edit profile" onPress={() => {
-                        props.navigation.navigate('EditProfile')
-                    }} />
-                    <View>
-                        <EditIcon />
-                        <Text style={{color: 'white'}}>Edit Profile</Text>
+                    <View style={{backgroundColor: '#121212'}}>
+                        <View style={{marginLeft: 'auto', marginRight: 'auto', marginVertical: 20}}>
+                            <ProfileImageLarge />
+                        </View>                    
+                            <Text style={style.centered_title}>{this.state.userName}</Text>
+                            <Text style={{fontSize: 12, color: '#d2d5d5', fontFamily: 'Nunito-Regular', textAlign: 'center', marginBottom: 20}}>{this.state.userEmail}</Text>
+
                     </View>
 
-                    <Text style={{color: 'white'}}>Requests</Text>
+                    <View style={{marginTop: 40}}>
+                        <TouchableOpacity 
+                            style={styles.grid}
+                            onPress={() => {
+                                navigation.navigate('EditProfile')
+                            }}>
+                            <View style={styles.icon}>
+                                <EditIcon />
+                            </View>
+                            
+                            <Text style={style.semi_bold_medium}>Edit Profile</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <TouchableOpacity style={styles.grid}>
+                            <View style={styles.icon}>
+                                <Request />
+                            </View>
+                            <Text style={style.semi_bold_medium}>Requests</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={{marginLeft: '25%', position: 'absolute', bottom: 25}}>
+                    <Image source={require('../../assets/movieDatabase.png')} />
                 </View>
             </View>
- 
         )
-    }
+    } 
+}
+
 
 
 const styles = StyleSheet.create({
@@ -43,8 +108,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     image: {
-        width: 150,
-        height: 150,
+        width: 100,
+        height: 100,
         borderRadius: 75,
         margin: 30,
         marginLeft: 'auto',
@@ -52,6 +117,13 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center'
+    },
+    grid: {
+        flexDirection: 'row',
+        marginVertical: 15
+    },
+    icon: {
+        marginHorizontal: 30
     }
 });
 

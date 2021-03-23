@@ -25,7 +25,8 @@ class FriendScreen extends React.Component {
           friendsArray: [], 
           noFriends: true, 
           selectedFriends: [],
-          change: 0
+          change: 0,
+          userName: ''
       }
       this.handleToken = this.handleToken.bind(this);
     }
@@ -40,6 +41,7 @@ class FriendScreen extends React.Component {
                         // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
+                        this.handleUsername(token)
                       });
                     });
                   });
@@ -75,6 +77,21 @@ class FriendScreen extends React.Component {
         })
        }
 
+       handleUsername  = async (token) => {
+        await axios.get('http://192.168.0.20:3000/user',  {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        .then((res) => {
+            let username = res.data.name;
+            this.setState({userName: username})
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
+
     render() {
         const noFriends = this.state.noFriends;
         return (
@@ -84,7 +101,7 @@ class FriendScreen extends React.Component {
                     <View style={styles.user_info}>
                             <ProfileImage />
                             <View style={{marginLeft: 8}}>
-                                <Text style={style.title}>Username 👋</Text>
+                                <Text style={style.title}>{this.state.userName} 👋</Text>
                                 <TouchableOpacity onPress={() => {
                                     this.props.navigation.navigate('ProfileScreen')
                                 }}>

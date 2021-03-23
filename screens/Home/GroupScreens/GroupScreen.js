@@ -17,17 +17,16 @@ class GroupScreen extends React.Component {
       super(props);
       this.state={
           token: '',
-          addedFriends: [],
-          GroupsArray: [], 
-        //   noFriends: true, 
+        //   addedFriends: [],
+        //   GroupsArray: [], 
+          noFriends: true, 
           noGroups: true,
-          selectedFriends: [],
-          change: 0
+        //   selectedFriends: [],
+        //   change: 0,
+          userName: ''
       }
       this.handleToken = this.handleToken.bind(this);
     }
-// function GroupScreen({ route, navigation, props }) {
-    // const refRBSheet = useRef();
 
     componentDidMount() {
         return new Promise ( async (resolve, reject) => {
@@ -41,6 +40,7 @@ class GroupScreen extends React.Component {
                         // console.log("token from groupScreen", token)
                         resolve(storage)
                         this.handleToken(token)
+                        this.handleUsername(token)
                       });
                     });
                   });
@@ -69,13 +69,26 @@ class GroupScreen extends React.Component {
                 let group = groups[i].group_id;
                 allGroups.push(group)
             }
-            this.setState({ GroupsArray: allGroups })
         })
         .catch((error) => {
             console.error(error)
         })
        }
 
+       handleUsername  = async (token) => {
+        await axios.get('http://192.168.0.20:3000/user',  {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        .then((res) => {
+            let username = res.data.name;
+            this.setState({userName: username})
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
 
     render() {
         const noGroups = this.state.noGroups;
@@ -86,7 +99,7 @@ class GroupScreen extends React.Component {
                         <View style={styles.user_info}>
                             <ProfileImage />
                             <View style={{marginLeft: 8}}>
-                                <Text style={style.title}>Username 👋</Text>
+                                <Text style={style.title}>{this.state.userName} 👋</Text>
                                 <TouchableOpacity onPress={() => {
                                     this.props.navigation.navigate('ProfileScreen')
                                 }}>
@@ -101,7 +114,6 @@ class GroupScreen extends React.Component {
                
                     <SearchBar placeholder="Search groups"/>
                 </View>
-                {/* <UsersGroups /> */}
                 <View>
                     {noGroups === false
                     ? (

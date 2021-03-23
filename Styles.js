@@ -74,6 +74,16 @@ export default StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto'
   },
+  bold_small_grey: {
+    fontFamily: 'Nunito-Bold',
+    fontSize: 12,
+    color: '#434A55',
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    width: 343,
+    marginLeft: 20
+
+  },
   bold_med_small: {
     fontFamily: 'Nunito-Bold',
     fontSize: 13,
@@ -83,8 +93,7 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-SemiBold',
     fontSize: 16,
     color: '#8A8C90',
-    textAlign: 'center'
-
+    textAlign: 'center',
   },
   input: {
     backgroundColor: '#1E1E1E',

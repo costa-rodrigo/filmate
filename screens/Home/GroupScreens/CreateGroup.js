@@ -24,7 +24,6 @@ export default class CreateGroup extends React.Component {
         
       }
       const { navigate } = props.navigation;
-    //   this.getToken = this.getToken.bind(this);
       this.handleToken = this.handleToken.bind(this);
       this.friendPressed = this.friendPressed.bind(this);
     }
@@ -37,11 +36,10 @@ export default class CreateGroup extends React.Component {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
                         //   console.log(store)
-                        // let token = "Bearer " + store[0][1];
                         let token = "Bearer " + store[0][1];
                         // setToken(token)
                         this.setState({ token })
-                        console.log("token from handlesubmit", token)
+                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                         
@@ -58,29 +56,12 @@ export default class CreateGroup extends React.Component {
     }
 
     handleToken  = async (token) => {
-        // console.log("handle token")
-        //    console.log("handletoken")
-        //    console.log(token)
         await axios.get('http://192.168.0.20:3000/friends',  {
             headers: {
                 'Authorization': `${token}`
             }
         })
         .then((res) => {
-            // this.setState({ noFriends: false })
-            // const friends = res.data
-            // console.log(friends) 
-            // console.log(this.state.noFriends)
-    
-            // let allFriends = [];
-            // for (let i = 0; i < friends.length; i++) {
-            //     let friend = friends[i].friend_name;
-            //     // console.log(friend)
-            //     allFriends.push(friend)
-            // }
-            // this.setState({ friendsArray: allFriends })
-            // console.log(this.state.friendsArray)
-
             const friends = res.data
             this.setState({currentFriends: friends})
             console.log("NEW", this.state.currentFriends)
@@ -90,12 +71,13 @@ export default class CreateGroup extends React.Component {
     
             let allFriends = [];
             for (let i = 0; i < friends.length; i++) {
-                let friend = friends[i].friend_name;
+                // let friend = friends[i].friend_name;
+                let friend = [friends[i].friend_name, friends[i].friend_email]
                 // console.log(friend)
                 allFriends.push(friend)
             }
             this.setState({ friendsArray: allFriends })
-            console.log(this.state.friendsArray)
+            console.log("FRIEND ARRAY", this.state.friendsArray)
         })
         .catch((error) => {
             console.error(error)
@@ -119,21 +101,25 @@ export default class CreateGroup extends React.Component {
                 
             } else {
                 this.state.addedFriends.push(friend)
+                let user_email = this.state.addedFriends[0][1]
+                console.log("ADDED FRIENDS", user_email)
             }
             this.setState({ addedFriends: this.state.addedFriends })
-            console.log(this.state.addedFriends)
+            console.log("ADDED FRIENDS STATE", this.state.addedFriends)
        }
 
        handleSubmit = async () => {
-           console.log(this.state.currentFriends[0].friend_email);
+        //    console.log("create group", this.state.currentFriends[0].friend_email);
            
            console.log(this.state.groupName)
+           console.log(this.state.addedFriends[0][1])
            await axios.post('http://192.168.0.20:3000/groups-update', {
-               email: this.state.currentFriends[0].friend_email,
-               groupName: this.state.groupName
+                groupName: this.state.groupName,   
+                email: this.state.addedFriends[0][1]
            })
            .then((response) => {
-            console.log("currentFriends", this.state.currentFriends[0].friend_email)
+            //    ADD CONDITIONING***
+            // console.log("RESPONSE", response)
             console.log("addedFriends", this.state.addedFriends)
             console.log(".then", this.state.groupName)
             this.props.navigation.navigate('GroupCreated')
@@ -180,7 +166,7 @@ export default class CreateGroup extends React.Component {
                         <View style={styles.friendGrid}>
                             <ProfileImage />
                             <View style={{marginLeft: 15}}>
-                                <Text style={style.bold_med_small}>{friend}</Text>
+                                <Text style={style.bold_med_small}>{friend[0]}</Text>
                             </View>
                         </View>
                         {
