@@ -5,6 +5,7 @@ import axios from 'axios';
 import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
 import PinkButton from '../../../components/PinkButton';
+import Arrow from '../../../svgs/icons/Arrow';
 import style from '../../../Styles';
 
 class UsersGroups extends React.Component {
@@ -151,58 +152,24 @@ class UsersGroups extends React.Component {
                      <View key={index} style={styles.friendContainer}>
                         <View style={styles.fullGrid}>
                             {/* <View style={styles.friendGrid}> */}
+                            <View style={{marginLeft: 40}}>
                                 <Text style={style.h3_heading}>{group}</Text>
-                                {/* <Text style={{color: 'white'}}>{groupMembers[0]}</Text>
-                                <Text style={{color: 'white'}}>{groupMembers[1]}</Text> */}
-                            {/* <Text>{[usersMembers]}</Text> */}
-              
-                            <View>
+
+                            </View>
                                 <TouchableOpacity onPress={() => this.RBSheet.open()} style={styles.editButton}>
                                     <OptionsButton />
                                 </TouchableOpacity>
-                            </View>
-                        </View>    
-                        <PinkButton title="SWIPE" onPress={() => {
-                            navigation.navigate('navigation')
-                        }}/>
+                        
+                        </View>  
+                        <View style={{marginLeft: '71%', marginTop: '10%'}}>
+                            <PinkButton title="SWIPE" onPress={() => {
+                                navigation.navigate('navigation')
+                            }}/>
+                        </View> 
+
                     </View>
             )
         })
-
-
-        // const usersGroups = this.state.GroupsArray.map((group, index) => {
-        //     return (
-        //              <View key={index} style={styles.friendContainer}>
-        //                 <View style={styles.fullGrid}>
-        //                     {/* <View style={styles.friendGrid}> */}
-        //                         <Text style={style.h3_heading}>{group}</Text>
-        //                         {/* <Text style={{color: 'white'}}>{groupMembers[0]}</Text>
-        //                         <Text style={{color: 'white'}}>{groupMembers[1]}</Text> */}
-        //                     {/* </View> */}
-        //                     {/* {
-        //                         this.state.final_members.map((member) => {
-        //                             return (
-        //                                 <Text style={{color: 'white'}}>{member}</Text>
-        //                             )
-                                   
-        //                         })
-        //                     } */}
-        //                     {/* {groupMembers} */}
-                            
-        //                     <View>
-        //                         <TouchableOpacity onPress={() => this.RBSheet.open()} style={styles.editButton}>
-        //                             <OptionsButton />
-        //                         </TouchableOpacity>
-        //                     </View>
-        //                 </View>    
-        //                 <PinkButton title="SWIPE" onPress={() => {
-        //                     navigation.navigate('navigation')
-        //                 }}/>
-        //             </View>
-        //     )
-        // })
-
-
         
         return (
             <ScrollView style={styles.scrollScreen}>
@@ -235,10 +202,30 @@ class UsersGroups extends React.Component {
                                 }
                             }}
                         >
-                            <Text style={styles.groupOptions}>Group Options</Text>
-                            <Text>Match History</Text>
-                            <Text>Edit Group</Text>
-                            <Text>Exit Group</Text>
+                            <Text style={style.centered_title}>Group Options</Text>
+                            <View style={styles.drawer_grid}>
+                                <TouchableOpacity onPress={() => {
+                                    navigation.navigate('MatchHistory')}}>
+                                    <Text style={style.paragraph_med_left}>Match History</Text>
+                                </TouchableOpacity>
+                                <View style={styles.arrow}>
+                                    <Arrow />
+                                </View>
+                                
+                            </View>
+                           <View style={styles.drawer_grid}>
+                                <Text style={style.paragraph_med_left}>Edit Group</Text>
+                            <View style={styles.arrow}>
+                                <Arrow />
+                            </View>
+                           </View>
+                            <View style={styles.drawer_grid}>
+                                <Text style={style.paragraph_med_left}>Exit Group</Text>
+                                {/* <Arrow/> */}
+                            <View style={styles.arrow}>
+                                <Arrow />
+                            </View>
+                            </View>
                         </RBSheet>
                     </View>
             </ScrollView>
@@ -272,7 +259,7 @@ const styles = StyleSheet.create({
     },
     fullGrid: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-around'
     },
     options: {
         textAlign: 'center',
@@ -285,7 +272,20 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         marginTop: 15,
         marginBottom: 10,
+        marginRight: 40
+    },
+    drawer_grid: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignContent: 'center',
+        marginLeft: 20,
         marginRight: 20
+    },
+    arrow: {
+        marginTop: 20,
+        
+
     }
 });
 

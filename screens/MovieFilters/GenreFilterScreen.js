@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Button, Dimensions, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { Text, View, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import MainButton from '../../components/MainButton';
 import { Alert } from 'react-native';
@@ -19,13 +19,11 @@ export default class GenreFilterScreen extends React.Component {
       genreId: '',
       allData: ''
     };
-
     this.populateSelectedGenres = this.populateSelectedGenres.bind(this);
   }
   
   componentDidMount() {
     axios.get(`http://192.168.0.20:8080/genres`)
-    // axios.get(`http://localhost:8080/genres`)
     .then(res => {
       const genres = res.data
       this.setState({ genres })
@@ -41,10 +39,8 @@ export default class GenreFilterScreen extends React.Component {
   }
 
 populateSelectedGenres = () => {
-  // axios.get(`http://localhost:8080/movies`)
   axios.get(`http://192.168.0.20:8080/movies`)
   .then(res => {
-    // console.log(res.data)
     let movies = res.data
 
     let moviePosters = [];
@@ -69,7 +65,6 @@ handleSubmit(genreId, posters, allData) {
   if (!genreId) {
     Alert.alert("Please select a genre.")
   } else {
-      // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
     this.setState({genreId})
@@ -85,7 +80,6 @@ genrePressed = (genre) => {
   let genreId = [genre[1]];
   this.setState({ genreId })
 
-  // axios.post(`http://localhost:8080/movies`, genreId)
   axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
     this.populateSelectedGenres()
@@ -94,7 +88,7 @@ genrePressed = (genre) => {
 
 render() {
 
-  const posters = this.state.moviePosters.map((poster, index) => {
+  const posters = this.state.moviePosters.map((poster) => {
     return (
       <Image key={poster} source={{uri: poster}} alt='movie poster'
       style={{  maxWidth: 400, height: '85%', borderRadius: 25 }}
@@ -102,8 +96,7 @@ render() {
     )
   })
 
-  const genres = this.state.genreArray.map((genre, index) => {
-    console.log(genre[1])
+  const genres = this.state.genreArray.map((genre) => {
     return (
       <View key={genre[1]}>
         <TouchableOpacity
@@ -135,8 +128,8 @@ render() {
   
   return (
     <View style={style.screen}>
-      <ScrollView>
-        <View style={styles.genre}>
+      <ScrollView style={{marginTop: 20}}>
+        <View>
           <Text>{genres}</Text>
         </View>
        
@@ -148,20 +141,3 @@ render() {
   );
 }
 }
-
-const styles = StyleSheet.create({
-  genre: {
-    width: '100%',
-    marginTop: 20
-  },
-  filterButton: {
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    margin: 5
-  },
-  buttonText: {
-    color: 'white'
-  }
-});

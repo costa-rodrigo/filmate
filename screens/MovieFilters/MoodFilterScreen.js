@@ -149,10 +149,5 @@ const styles = StyleSheet.create({
     svg: {
       paddingTop: 10,
       paddingLeft: 60
-    },
-    // buttonText: {
-    //   textAlign: 'left',
-    //   marginTop: 20,
-    //   color: 'white'
-    // }
+    }
 });

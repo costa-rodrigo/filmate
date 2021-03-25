@@ -15,8 +15,6 @@ class ProfileScreen extends React.Component {
             userName: '',
             userEmail: ''
         }
-        
-        // this.handleToken = this.handleToken.bind(this);
       }
       componentDidMount() {
           return new Promise ( async (resolve, reject) => {
@@ -26,9 +24,7 @@ class ProfileScreen extends React.Component {
                         stores.map((result, i, store) => {
                           let token = "Bearer " + store[0][1];
                           this.setState({ token })
-                          // console.log("token from handlesubmit", token)
                           resolve(storage)
-                        //   this.handleToken(token)
                           this.handleUsername(token)
                         });
                       });
@@ -56,7 +52,6 @@ class ProfileScreen extends React.Component {
         })
     }
 
-
     render() {
         const { navigation } = this.props;
         return (
@@ -80,7 +75,6 @@ class ProfileScreen extends React.Component {
                             <View style={styles.icon}>
                                 <EditIcon />
                             </View>
-                            
                             <Text style={style.semi_bold_medium}>Edit Profile</Text>
                         </TouchableOpacity>
                     </View>
@@ -104,20 +98,6 @@ class ProfileScreen extends React.Component {
 
 
 const styles = StyleSheet.create({
-    profile: {
-        justifyContent: 'center'
-    },
-    image: {
-        width: 100,
-        height: 100,
-        borderRadius: 75,
-        margin: 30,
-        marginLeft: 'auto',
-        marginRight: 'auto'
-    },
-    text: {
-        textAlign: 'center'
-    },
     grid: {
         flexDirection: 'row',
         marginVertical: 15

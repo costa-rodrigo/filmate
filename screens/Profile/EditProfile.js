@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import InputBox from '../../components/InputBox';
 import MainButton from '../../components/MainButton';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -15,7 +15,6 @@ class EditProfile extends React.Component {
             userName: '',
             userEmail: ''
         }
-        
       }
       componentDidMount() {
           return new Promise ( async (resolve, reject) => {
@@ -25,9 +24,7 @@ class EditProfile extends React.Component {
                         stores.map((result, i, store) => {
                           let token = "Bearer " + store[0][1];
                           this.setState({ token })
-                          // console.log("token from handlesubmit", token)
                           resolve(storage)
-                        //   this.handleToken(token)
                           this.handleUsername(token)
                         });
                       });
@@ -57,35 +54,27 @@ class EditProfile extends React.Component {
 render() {
 
     return (
-        <ScrollView style={style.screen}>
-            <View style={{marginLeft: 'auto', marginRight: 'auto', marginVertical: 20}}>
-                <ProfileImageLarge />
-            </View>  
-            <View>
-                <Text style={{fontFamily: 'Nunito-Bold', fontSize: 12,color: '#434A55', textAlign: 'center', marginBottom: 10}}>Change profile picture</Text>
-            </View>
-            <Text style={style.bold_small_grey}>Name and surname</Text>
-            <InputBox title={this.state.userName}/>
-            <Text style={style.bold_small_grey}>Email</Text>
-            <InputBox title={this.state.userEmail}/>
-            <Text style={style.bold_small_grey}>Current password</Text>
-            <InputBox title="**************"/>
-            <Text style={style.bold_small_grey}>New password</Text>
-            <InputBox title="Type new password"/>
+        <View style={style.screen}>
+             <ScrollView>
+                <View style={{marginLeft: 'auto', marginRight: 'auto', marginVertical: 20}}>
+                    <ProfileImageLarge />
+                </View>  
+                <View>
+                    <Text style={{fontFamily: 'Nunito-Bold', fontSize: 12,color: '#434A55', textAlign: 'center', marginBottom: 10}}>Change profile picture</Text>
+                </View>
+                <Text style={style.bold_small_grey}>Name and surname</Text>
+                <InputBox title={this.state.userName}/>
+                <Text style={style.bold_small_grey}>Email</Text>
+                <InputBox title={this.state.userEmail}/>
+                <Text style={style.bold_small_grey}>Current password</Text>
+                <InputBox title="**************"/>
+                <Text style={style.bold_small_grey}>New password</Text>
+                <InputBox title="Type new password"/>
+            </ScrollView>
             <MainButton title="Make changes"/>
-        </ScrollView>
+        </View> 
     )
-
+}   
 }
-// const EditProfile = props => {
-   
-}
-
-const styles = StyleSheet.create({
-    text: {
-        textAlign: 'center',
-        color: 'white'
-    }
-});
 
 export default EditProfile;

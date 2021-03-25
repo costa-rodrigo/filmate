@@ -5,11 +5,11 @@ import ThumbsDown from '../../svgs/swipe/ThumbsDown';
 import PinkButton from '../../components/PinkButton';
 import style from '../../Styles';
 import modal from '../../Modal';
-// import { LogBox } from 'react-native';
+import { LogBox } from 'react-native';
 
-// LogBox.ignoreWarnings([
-//     'Non-serializable values were found in the navigation state',
-//   ]);
+LogBox.ignoreLogs([
+ 'Non-serializable values were found in the navigation state',
+]);
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -71,7 +71,7 @@ export default class ShowMovies extends React.Component {
     }
 
     UNSAFE_componentWillMount() {
-        console.log("elephant", this.state.allData.allData)
+        // console.log("elephant", this.state.allData.allData)
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -132,6 +132,7 @@ export default class ShowMovies extends React.Component {
                 else if (index == this.state.currentIndex) {
                     return (
                         <Animated.View 
+                            key={poster}
                             {...this.PanResponder.panHandlers}
                             style={[this.rotateAndTranslate, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
                            <View>{poster}</View>
@@ -160,8 +161,9 @@ export default class ShowMovies extends React.Component {
                 }
                 else {
                     return (
-                        <Animated.View 
-                        style={[ { opacity: this.nextCardOpacity, transform: [{scale: this.nextCardScale}], height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
+                        <Animated.View
+                            key={index}
+                            style={[ { opacity: this.nextCardOpacity, transform: [{scale: this.nextCardScale}], height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
                         <View>{poster}</View>
                         </Animated.View>
                     )
@@ -178,7 +180,7 @@ export default class ShowMovies extends React.Component {
                 } 
                 else if (index == this.state.currentIndex) {
                     return (
-                        <View style={{position: 'absolute', bottom: '10%'}}>
+                        <View key={details} style={{position: 'absolute', bottom: '10%'}}>
                                 <View style={modal.centeredView}>
                                 <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginTop: 0, fontFamily: 'Nunito-Bold', fontSize: 20}}>{details[0]}</Text>
                                         <Text style={{ color: '#737475', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20, fontFamily: 'Nunito-Regular', fontSize: 16}}>⭐ IMDb {details[2]}/10</Text>
@@ -197,27 +199,10 @@ export default class ShowMovies extends React.Component {
                                             <Text style={style.h1_heading}>{details[0]}</Text>
                                             <Text style={style.bold_medium}>({details[3]})</Text>
                                             <Text style={style.paragraph_medium}>{details[1]}</Text>
-                                            
-{/*                                             
-                                            <Pressable
-                                                style={[styles.button, styles.buttonClose]}
-                                                onPress={() => this.setModalVisible(!modalVisible)}
-                                            > */}
-                                                {/* <Text style={styles.textStyle}>Done</Text> */}
-                                                <PinkButton title="Done" onPress={() => this.setModalVisible(!modalVisible)}/>
-                                            {/* </Pressable> */}
-                                            </View>
+                                            <PinkButton title="Done" onPress={() => this.setModalVisible(!modalVisible)}/>
                                         </View>
-                                        </Modal>
-
-                                    {/* <View style={{flexDirection: 'row'}}>
-                                        <View style={{marginRight: 5}}>
-                                            <ThumbsDown/>   
                                         </View>
-                                        <View style={{marginLeft: 5}}>
-                                            <Heart />
-                                        </View>
-                                    </View> */}
+                                    </Modal>
                                     <Pressable
                                             style={[modal.button, modal.buttonOpen]}
                                             onPress={() => this.setModalVisible(true)}
@@ -230,7 +215,7 @@ export default class ShowMovies extends React.Component {
                 }
                 else {
                     return (
-                        <View style={ { position: 'absolute', }}></View>
+                        <View key={index} style={ { position: 'absolute', }}></View>
                     )
                 }
             }).reverse()     

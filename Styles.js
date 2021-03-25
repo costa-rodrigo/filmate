@@ -40,12 +40,22 @@ export default StyleSheet.create({
     textAlign: 'center'
 
   },
+  left_title: {
+    fontSize: 17,
+    fontFamily: 'Nunito-Bold',
+    color: 'white',
+  },
   title: {
       fontSize: 18,
       lineHeight: 24,
       color: 'white',
       fontFamily: 'Nunito-ExtraBold',
 
+  },
+  caption: {
+    fontSize: 10,
+    color: 'white',
+    fontFamily: 'Nunito-Regular',
   },
   paragraph_small: {
       fontSize: 12,
@@ -59,6 +69,13 @@ export default StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     color: 'white',
     textAlign: 'center'
+  },
+  paragraph_med_left: {
+    fontSize: 16,
+    lineHeight: 22,
+    fontFamily: 'Nunito-Regular',
+    color: 'white',
+    marginTop: 20
   },
   bold_medium: {
     fontFamily: 'Nunito-Bold',

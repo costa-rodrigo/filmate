@@ -35,9 +35,7 @@ class GroupScreen extends React.Component {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
                         let token = "Bearer " + store[0][1];
-                        // setToken(token)
                         this.setState({ token })
-                        // console.log("token from groupScreen", token)
                         resolve(storage)
                         this.handleToken(token)
                         this.handleUsername(token)
