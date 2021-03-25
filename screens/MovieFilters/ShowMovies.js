@@ -137,24 +137,10 @@ export default class ShowMovies extends React.Component {
                             style={[this.rotateAndTranslate, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
                            <View>{poster}</View>
                             <Animated.View style={{opacity: this.likeOpacity ,transform: [{rotate: '-30deg'}], position: 'absolute', top: 50, left: 40, zIndex: 1000}}>
-                                {/* <Text 
-                                    style={{borderWidth: 1, 
-                                    borderColor: 'green',
-                                    color: 'green',
-                                    fontSize: 32,
-                                    fontWeight: '800',
-                                    padding: 10}}>LIKE</Text> */}
-                                    <Heart />
+                                <Heart />
                             </Animated.View>
                             <Animated.View style={{opacity: this.dislikeOpacity, transform: [{rotate: '30deg'}], position: 'absolute', top: 50, right: 40, zIndex: 1000}}>
-                                {/* <Text 
-                                    style={{borderWidth: 1, 
-                                    borderColor: 'red',
-                                    color: 'red',
-                                    fontSize: 32,
-                                    fontWeight: '800',
-                                    padding: 10}}>NOPE</Text> */}
-                                    <ThumbsDown />
+                                <ThumbsDown />
                             </Animated.View>
                         </Animated.View>
                     )

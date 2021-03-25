@@ -24,14 +24,12 @@ const LoginScreen = (props) => {
         }
 
         axios.post('http://192.168.0.20:3000/login', {
-        // axios.post('http://localhost:3000/login', {
             name: userUsername,
             password: userPassword,
         })
         .then((response) => {
             const token = response.data.token;
             if(response.status === 200) {
-                // AsyncStorage.removeItem("username");
                 AsyncStorage.setItem("id_token", token);
                 AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {

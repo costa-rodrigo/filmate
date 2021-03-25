@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import MainButton from '../../../components/MainButton';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
@@ -23,11 +23,8 @@ const GroupName = props => {
                     let storage = await AsyncStorage.getAllKeys((err, keys) => {
                         AsyncStorage.multiGet(keys, (error, stores) => {
                           stores.map((result, i, store) => {
-                            //   console.log(store)
-                            console.log("async", { [store[i][0]]: store[i][1] });
                             let token = "Bearer " + store[0][1];
                             setToken(token)
-                            console.log("token from handlesubmit", token)
                             setGroupName(groupName)
                             resolve(storage)
                             handleToken(token)
@@ -38,11 +35,10 @@ const GroupName = props => {
 
                 } catch(error) {
                     reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
-
                 }
             });
         }
-       }
+    }
  
        const handleToken  = async (token) => {
         await axios.post('http://192.168.0.20:3000/groups', {
@@ -53,7 +49,6 @@ const GroupName = props => {
             }
         })
         .then((response) => {
-            console.log(".then", groupName)
             navigate('CreateGroup', {groupName: groupName})
         })
         .catch((error) => {
@@ -74,7 +69,6 @@ const GroupName = props => {
                     value={groupName}
                     autoCapitalize="none"
                     autoCorrect={false}
-                    // returnKeyType="next"
              />
              <MainButton title="Next" onPress={handleSubmit}/>
      </View>
@@ -92,7 +86,6 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
         width: 343,
     }
-
 });
 
 export default GroupName;

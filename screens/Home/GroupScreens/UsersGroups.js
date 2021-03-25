@@ -284,8 +284,6 @@ const styles = StyleSheet.create({
     },
     arrow: {
         marginTop: 20,
-        
-
     }
 });
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Alert } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import MainButton from '../../../components/MainButton';
 import axios from 'axios';
@@ -35,11 +35,10 @@ const AddFriends = props => {
 
                 } catch(error) {
                     reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
-
                 }
             });
         }
-       }
+    }
  
        const handleToken  = async (token) => {
         await axios.post('http://192.168.0.20:3000/friends', {
@@ -87,11 +86,8 @@ const AddFriends = props => {
                     autoCapitalize="none"
                     autoCorrect={false}
              />
-
             <MainButton title="Invite Friend" onPress={handleSubmit}/>
-
         </View>
-       
     )
 }
 

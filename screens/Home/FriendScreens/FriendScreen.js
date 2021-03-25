@@ -1,21 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, ScrollView, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-// import NoFriends from '../FriendScreens/NoFriends';
 import MainButton from '../../../components/MainButton';
-import RBSheet from "react-native-raw-bottom-sheet";
-import OptionsButton from '../../../svgs/icons/OptionsButton';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
 import GroupTabButton from '../GroupTabButton';
 import UsersFriends from './UsersFriends';
-import { Alert } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
 import style from '../../../Styles';
 import NoFriendsImage from '../../../svgs/screens/NoFriendsImage';
 import GreyButton from '../../../components/GreyButton';
-// checkbox article:
-// https://reactnativemaster.com/multiple-select-checkbox-in-react-native/
+
 class FriendScreen extends React.Component {
     constructor(props) {
       super(props);
@@ -38,7 +33,6 @@ class FriendScreen extends React.Component {
                       stores.map((result, i, store) => {
                         let token = "Bearer " + store[0][1];
                         this.setState({ token })
-                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                         this.handleUsername(token)
@@ -64,7 +58,6 @@ class FriendScreen extends React.Component {
             } else {
                 this.setState({ noFriends: true })
             }
-    
             let allFriends = [];
             for (let i = 0; i < friends.length; i++) {
                 let friend = friends[i].friend_name;

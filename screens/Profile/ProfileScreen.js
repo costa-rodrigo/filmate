@@ -95,8 +95,6 @@ class ProfileScreen extends React.Component {
     } 
 }
 
-
-
 const styles = StyleSheet.create({
     grid: {
         flexDirection: 'row',

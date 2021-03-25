@@ -3,13 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import SearchBar from '../../../components/SearchBar';
-// import FriendScreen from '../FriendScreens/FriendScreen';
 import MainButton from '../../../components/MainButton';
 import Checkmark from '../../../svgs/icons/Checkmark';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
 import BlackCircle from '../../../svgs/icons/BlackCircle';
-import { ActionSheetIOS } from 'react-native';
 import style from '../../../Styles';
+
 export default class CreateGroup extends React.Component {
     constructor(props) {
       super(props);
@@ -29,17 +28,13 @@ export default class CreateGroup extends React.Component {
     }
 
     componentDidMount() {
-        // console.log("groupName in CreateGroup", this.state.groupName);
         return new Promise ( async (resolve, reject) => {
             try {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                        //   console.log(store)
                         let token = "Bearer " + store[0][1];
-                        // setToken(token)
                         this.setState({ token })
-                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                         
@@ -73,7 +68,6 @@ export default class CreateGroup extends React.Component {
             for (let i = 0; i < friends.length; i++) {
                 // let friend = friends[i].friend_name;
                 let friend = [friends[i].friend_name, friends[i].friend_email]
-                // console.log(friend)
                 allFriends.push(friend)
             }
             this.setState({ friendsArray: allFriends })
@@ -109,8 +103,6 @@ export default class CreateGroup extends React.Component {
        }
 
        handleSubmit = async () => {
-        //    console.log("create group", this.state.currentFriends[0].friend_email);
-           
            console.log(this.state.groupName)
            console.log(this.state.addedFriends[0][1])
            await axios.post('http://192.168.0.20:3000/groups-update', {
@@ -118,15 +110,10 @@ export default class CreateGroup extends React.Component {
                 email: this.state.addedFriends[0][1]
            })
            .then((response) => {
-            //    ADD CONDITIONING***
-            // console.log("RESPONSE", response)
-            console.log("addedFriends", this.state.addedFriends)
-            console.log(".then", this.state.groupName)
             this.props.navigation.navigate('GroupCreated')
             })
             .catch((error) => {
                 console.error(error);
-                console.log("catch error")
             })
        }
 

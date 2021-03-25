@@ -1,14 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, ScrollView, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-// import NoFriends from '../FriendScreens/NoFriends';
-// import MainButton from '../../../components/MainButton';
 import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
 import ProfileImage from '../../../svgs/icons/ProfileImage';
 import style from '../../../Styles';
-// import GroupTabButton from '../GroupTabButton';
+
 class UsersFriends extends React.Component {
     constructor(props) {
       super(props);
@@ -27,11 +25,8 @@ class UsersFriends extends React.Component {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                          console.log("store", store)
                         let token = "Bearer " + store[0][1];
-                        // setToken(token)
                         this.setState({ token })
-                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                       });
@@ -58,8 +53,7 @@ class UsersFriends extends React.Component {
             } else {
                 this.setState({ noFriends: true })
             }
-            console.log("friends", friends) 
-            // console.log(this.state.noFriends)
+            // console.log("friends", friends) 
     
             let allFriends = [];
             for (let i = 0; i < friends.length; i++) {
@@ -81,10 +75,7 @@ class UsersFriends extends React.Component {
                 this.state.addedFriends.pop(friend)
             } else {
                 this.state.addedFriends.push(friend)
-                // this.setState({ backgroundColor: 'pink'})
             }
-            // add else if - more than 6 in an arry - display message that says too many participants
-            // this.setState({ addedFriends })
             console.log(this.state.addedFriends)
        }
 
@@ -124,49 +115,34 @@ class UsersFriends extends React.Component {
         return (
             <ScrollView style={styles.scrollScreen}>
                     {[usersFriends]}
-                
-            {/* <View>
-                <MainButton title="Add Friends now" onPress={() => {
-                        this.props.navigation.navigate('AddFriends')}} />
-            </View> */}
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <RBSheet
-                    ref={ref => {
-                        this.RBSheet = ref;
-                    }}
-                    closeOnDragDown={true}
-                    customStyles={{
-                        wrapper: {
-                        backgroundColor: "transparent"
-                        },
-                        container: {
-                            backgroundColor: '#242424'
-                        },
-                        draggableIcon: {
-                        backgroundColor: "white"
-                        }
-                    }}
-                    >
-                    <Text style={styles.options}>Friend Options</Text>
-                    <Text style={{color: 'white'}}>Remove friend</Text>
-                </RBSheet>
-            </View>
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                    <RBSheet
+                        ref={ref => {
+                            this.RBSheet = ref;
+                        }}
+                        closeOnDragDown={true}
+                        customStyles={{
+                            wrapper: {
+                            backgroundColor: "transparent"
+                            },
+                            container: {
+                                backgroundColor: '#242424'
+                            },
+                            draggableIcon: {
+                            backgroundColor: "white"
+                            }
+                        }}
+                        >
+                        <Text style={style.centered_title}>Friend Options</Text>
+                        <Text style={style.paragraph_med_left}>Remove friend</Text>
+                    </RBSheet>
+                </View>
             </ScrollView>
-         
         )
     }
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        // flex: 1,
-        // flexDirection: 'column'
-        
-    },
-    scrollScreen: {
-        // backgroundColor: '#0A0A0A',
-
-    },
     friendContainer: {
         backgroundColor: '#1E1E1E',
         marginVertical: 10,
@@ -193,11 +169,6 @@ const styles = StyleSheet.create({
     fullGrid: {
         flexDirection: 'row',
         justifyContent: 'space-between'
-    },
-    options: {
-        textAlign: 'center',
-        color: 'white',
-        marginTop: 10
     },
     editButton: {
         width: 30, 

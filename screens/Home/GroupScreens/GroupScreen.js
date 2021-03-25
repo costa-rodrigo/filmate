@@ -17,12 +17,8 @@ class GroupScreen extends React.Component {
       super(props);
       this.state={
           token: '',
-        //   addedFriends: [],
-        //   GroupsArray: [], 
           noFriends: true, 
           noGroups: true,
-        //   selectedFriends: [],
-        //   change: 0,
           userName: ''
       }
       this.handleToken = this.handleToken.bind(this);
