@@ -7,6 +7,7 @@ import DateNightDark from '../../svgs/moods/DateNightDark';
 import Adrenaline from '../../svgs/moods/Adrenaline';
 import AdrenalineDark from '../../svgs/moods/AdrenalineDark';
 import Artsy from '../../svgs/moods/Artsy';
+import ArtsyDark from '../../svgs/moods/ArtsyDark';
 import HighTech from '../../svgs/moods/HighTech';
 import HighTechDark from '../../svgs/moods/HighTechDark';
 import Inspiring from '../../svgs/moods/Inspiring';
@@ -27,8 +28,7 @@ export default class MoodFilter extends React.Component {
             ['Happy', 'happy', <Happy />, <HappyDark />], 
             ['Date Night', 'dateNight', <DateNight />, <DateNightDark />], 
             ['Adrenaline Rush', 'adrenalineRush', <Adrenaline />, <AdrenalineDark />], 
-            ['Artsy', 'artsy', <Artsy />, <Artsy />], 
-            // NEED ARTSY DARK
+            ['Artsy', 'artsy', <Artsy />, <ArtsyDark />], 
             ['Hi Tech', 'hiTech', <HighTech />, <HighTechDark />], 
             ['Inspiring', 'inspiring', <Inspiring />, <InspiringDark />], 
             ['For The Kids', 'forTheKids', <Kids />, <KidsDark />], 
@@ -95,7 +95,6 @@ export default class MoodFilter extends React.Component {
                   height: 128,
                   borderRadius: 20,
                   paddingHorizontal: 30,
-                  // paddingVertical: 60,
                   margin: 5,
                   backgroundColor: '#f03349'
                 }
@@ -104,15 +103,12 @@ export default class MoodFilter extends React.Component {
                   height: 128,
                   borderRadius: 20,
                   paddingHorizontal: 30,
-                  // paddingVertical: 60,
                   margin: 5,
                   backgroundColor: '#242424'
                 }
               }
                 onPress={() => this.moodPressed(mood)}>
                 <View>
-                {/* <Text style={styles.buttonText}>{mood[0]}</Text> */}
-
                   {
                     this.state.moodName.includes(mood[1])
                     ? (
@@ -122,8 +118,9 @@ export default class MoodFilter extends React.Component {
                       <View style={styles.svg}>{mood[2]}</View>
                     )
                   }
-                <Text style={style.bold_medium}>{mood[0]}</Text>
-
+                  <View style={{marginTop: 10}}>
+                    <Text style={style.bold_medium}>{mood[0]}</Text>
+                  </View>
                 </View>
             </TouchableOpacity>
           </View>
@@ -135,12 +132,9 @@ export default class MoodFilter extends React.Component {
     return (
     <View style={style.screen}>
        <ScrollView>
-       <View>
-        <Text style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 20}}>{moods}</Text>
-       </View>
-
-            {/* <Text>Chosen Mood: {moodName}</Text> */}
-           
+        <View>
+          <Text style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 20}}>{moods}</Text>
+        </View>           
      </ScrollView>
      <MainButton 
             title="Next"
@@ -152,16 +146,13 @@ export default class MoodFilter extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    text:{
-        color:'black',
-    },
     svg: {
       paddingTop: 10,
       paddingLeft: 60
     },
-    buttonText: {
-      textAlign: 'left',
-      marginTop: 20,
-      color: 'white'
-    }
+    // buttonText: {
+    //   textAlign: 'left',
+    //   marginTop: 20,
+    //   color: 'white'
+    // }
 });
