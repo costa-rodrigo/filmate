@@ -6,6 +6,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import OptionsButton from '../../../svgs/icons/OptionsButton';
 import PinkButton from '../../../components/PinkButton';
 import Arrow from '../../../svgs/icons/Arrow';
+import ProfileImage from '../../../svgs/icons/ProfileImage';
 import style from '../../../Styles';
 
 class UsersGroups extends React.Component {
@@ -43,7 +44,6 @@ class UsersGroups extends React.Component {
                 reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
             }
         });
-
     }
 
     handleToken  = async (token) => {
@@ -89,9 +89,13 @@ class UsersGroups extends React.Component {
 
                 Promise.all(PromiseArr).then(res => {
                     console.log("res", res)
-                    this.setState({group_members: res})
-                    console.log("res[2]", res[0])
-                    console.log("res[1]", res[1])
+                    this.setState({group_members: [res[0][0].user.name, res[0][1].user.name]})
+                    // console.log(this.state.group_members[0][0].user)
+                    // console.log(this.state.group_members[0][1].user)
+                    console.log(this.state.group_members)
+                    
+                    // console.log("res[2]", res[0])
+                    // console.log("res[1]", res[1])
 
                     // FIX THIS - ONLY WORKS WITH 2 GROUPS******
                     // let allMembers = []
@@ -107,7 +111,8 @@ class UsersGroups extends React.Component {
                     // }
                 })
             }
-            console.log("allGroupIds", allGroupIds)
+            console.log("allGroupIds", allGroupIds[0])
+            console.log(this.state.groupIdArray[0])
             this.setState({ GroupsArray: allGroups })
             console.log(this.state.GroupsArray)
             // this.handleMembers()
@@ -146,27 +151,31 @@ class UsersGroups extends React.Component {
                 <Text style={{color: 'white'}}>{member}</Text>
             )
         })
-
+        
         const usersGroups = this.state.GroupsArray.map((group, index) => {
             return (
                      <View key={index} style={styles.friendContainer}>
                         <View style={styles.fullGrid}>
                             {/* <View style={styles.friendGrid}> */}
                             <View style={{marginLeft: 40}}>
+                                <View style={{flexDirection: 'row', marginTop: 10, position: 'relative'}}>
+                                    <ProfileImage />
+                                    <View style={{position: 'absolute', marginLeft: 40}}>
+                                        <ProfileImage />
+                                    </View>
+                                </View>
                                 <Text style={style.h3_heading}>{group}</Text>
-
+                                <Text style={style.paragraph_small}>{groupMembers[0]}, {groupMembers[1]}</Text>
                             </View>
                                 <TouchableOpacity onPress={() => this.RBSheet.open()} style={styles.editButton}>
                                     <OptionsButton />
                                 </TouchableOpacity>
-                        
                         </View>  
-                        <View style={{marginLeft: '71%', marginTop: '10%'}}>
+                        <View style={{position: 'absolute', marginLeft: '71%', marginTop: '30%'}}>
                             <PinkButton title="SWIPE" onPress={() => {
                                 navigation.navigate('navigation')
                             }}/>
                         </View> 
-
                     </View>
             )
         })
@@ -174,8 +183,7 @@ class UsersGroups extends React.Component {
         return (
             <ScrollView style={styles.scrollScreen}>
                     {[usersGroups]}
-                    {usersMembers}
-                    
+                    {/* {usersMembers} */}
 
                     <View style={{
                         flex: 1,

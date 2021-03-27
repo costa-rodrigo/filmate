@@ -68,7 +68,9 @@ export default StyleSheet.create({
     lineHeight: 22,
     fontFamily: 'Nunito-Regular',
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginLeft: 15,
+    marginRight: 15
   },
   paragraph_med_left: {
     fontSize: 16,

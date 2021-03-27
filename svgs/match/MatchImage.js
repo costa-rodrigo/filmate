@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Svg, { Rect, G, Path } from 'react-native-svg';
+import Svg, { Rect, G, Path, Line } from 'react-native-svg';
 
 export default function MatchImage() {
     return (

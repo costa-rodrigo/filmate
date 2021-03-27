@@ -1,4 +1,6 @@
 import React from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 import { Text, View, Dimensions, Alert, Animated, PanResponder, Modal, Pressable } from 'react-native';
 import Heart from '../../svgs/swipe/Heart';
 import ThumbsDown from '../../svgs/swipe/ThumbsDown';
@@ -26,9 +28,14 @@ export default class ShowMovies extends React.Component {
             resultsArray: [],
             liked: true,
             disliked: false,
-            modalVisible: false
+            modalVisible: false,
+            group_id: '',
+            currentMoviePoster: '',
+            token: ''
         };
-
+        this.handleToken = this.handleToken.bind(this);
+        this.handleVote = this.handleVote.bind(this);
+        // console.log("POSTERSPARAMS", this.state.posters[0].key)
         // translations for swiping left and right (based on screen width)
         this.rotate = this.position.x.interpolate({
             // takes half of the screen width to the right and half to the left
@@ -70,6 +77,86 @@ export default class ShowMovies extends React.Component {
         this.setState({ modalVisible: visible });
     }
 
+    componentDidMount() {
+        return new Promise ( async (resolve, reject) => {
+            try {
+                let storage = await AsyncStorage.getAllKeys((err, keys) => {
+                    AsyncStorage.multiGet(keys, (error, stores) => {
+                      stores.map((result, i, store) => {
+                          console.log("store", store)
+                        let token = "Bearer " + store[0][1];
+                        this.setState({ token: token })
+                        console.log("token from handlesubmit", token)
+                        resolve(storage)
+                        this.handleToken(token)
+                        // this.handleVote(token)
+                     });
+                    });
+                  });
+            } catch(error) {
+                reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
+            }
+        });
+    }
+
+    handleToken  = async (token) => {
+        await axios.get('http://192.168.0.20:3000/groups',  {
+            headers: {
+                'Authorization': `${token}`
+            }
+        })
+        .then((res) => {
+            console.log("RESDATE", res.data[0].group_id)
+            console.log("ALLGROUPDATA", res.data)
+            // currently only accepting one group (eg. getting the id at index 0 NEED TO FIX)
+            const group = res.data[0].group_id
+            this.setState({group_id: group});
+            console.log(this.state.group_id)
+            this.handleSwipeStart()
+            // this.handleVote(token)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+       }
+
+       handleSwipeStart() {
+           console.log("handleSwipeStart");
+           axios.post('http://192.168.0.20:3000/swap', {
+               group_id: this.state.group_id
+           })
+           .then((res) => {
+               console.log(res)
+               console.log("then!")
+
+           })
+           .catch((error) => {
+               console.error(error)
+           })
+
+       }
+
+       handleVote = async () => {
+           const headers = {
+               'Authorization': this.state.token
+           }
+        //    console.log("handleVote", headers)
+           await axios.post('http://192.168.0.20:3000/vote', {
+            group_id: this.state.group_id,
+            votes: this.state.resultsArray,
+           }, 
+           {
+            headers: headers
+           })
+           .then((res) => {
+                this.props.navigation.replace('IfMatch')
+            //    console.log("handleVoteData", res)
+           })
+           .catch((error) => {
+               console.error(error)
+           })
+       }
+
     UNSAFE_componentWillMount() {
         // console.log("elephant", this.state.allData.allData)
         this.PanResponder = PanResponder.create({
@@ -88,10 +175,14 @@ export default class ShowMovies extends React.Component {
                         // once the card is off the screen - update the index
                         this.setState({currentIndex: this.state.currentIndex+1}, () => {
                             this.position.setValue({x: 0, y: 0})
+                            console.log("poster at current index", this.state.posters[this.state.currentIndex - 1])
+                            this.setState({currentMoviePoster: this.state.posters[this.state.currentIndex - 1]})
                         })
 
                         // this.setState({ newPoster: this.state.newPoster })
-                        this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
+                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
+                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.currentMoviePoster] })
+                        this.setState({ resultsArray: [...this.state.resultsArray, this.state.posters[this.state.currentIndex - 1].key] })
                         console.log("Results ", this.state.resultsArray)
                     })
                 }
@@ -106,8 +197,8 @@ export default class ShowMovies extends React.Component {
                             this.position.setValue({x: 0, y: 0})
                         })
                         
-                        this.setState({ resultsArray: [...this.state.resultsArray, this.state.disliked]})
-                        console.log("results ", this.state.resultsArray)
+                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.disliked]})
+                        // console.log("results ", this.state.resultsArray)
                     })
                 }
                 // if the user has not swiped enough - snaps image back to its original position
@@ -124,12 +215,18 @@ export default class ShowMovies extends React.Component {
 
     renderPosters = () => {
         const { posters } = this.state;
-            
         return posters.map((poster, index) => {
                 if (index < this.state.currentIndex) {
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
+                    console.log(this.state.currentIndex)
+
+                    // console.log("SINGLE POSTER", poster.key)
+                    if (this.state.currentIndex >= 19) {
+                        console.log("no more movies")
+                        this.handleVote()
+                    }
                     return (
                         <Animated.View 
                             key={poster}
@@ -161,10 +258,12 @@ export default class ShowMovies extends React.Component {
         const { modalVisible } = this.state;      
         const { allData } = this.state;
             return allData.allData.map((details, index) => {
+                // console.log(allData)
                 if (index < this.state.currentIndex) {
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
+                    // console.log(allData[0])
                     return (
                         <View key={details} style={{position: 'absolute', bottom: '10%'}}>
                                 <View style={modal.centeredView}>

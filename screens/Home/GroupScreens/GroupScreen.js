@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import AsyncStorage from '@react-native-community/async-storage';
-import { View, Text, StyleSheet, Button, ScrollView, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
-import RBSheet from "react-native-raw-bottom-sheet";
+// import RBSheet from "react-native-raw-bottom-sheet";
 import NoGroupsImage from '../../../svgs//screens/NoGroupsImage';
 import GreyButton from '../../../components/GreyButton';
 import FriendTabButton from '../FriendTabButton';

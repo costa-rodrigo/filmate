@@ -21,6 +21,7 @@ import GenreMoodNavigator from './navigation/GenreMoodNavigator';
 import FriendScreen from './screens/Home/FriendScreens/FriendScreen';
 import GroupScreen from './screens/Home/GroupScreens/GroupScreen';
 import MatchHistory from './screens/Matching/MatchHistory';
+import IfMatch from './screens/Matching/IfMatch';
 
 const Stack = createStackNavigator();
 export default class App extends React.Component {
@@ -80,7 +81,7 @@ export default class App extends React.Component {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
           <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
-          <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
+          <Stack.Screen name="ShowMovies" component={ShowMovies} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null, headerStyle: {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
           <Stack.Screen name="GroupCreated" component={GroupCreated} options={{ headerTitle: '', headerBackTitle: 'Back', headerStyle: {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }}/> 
@@ -96,7 +97,9 @@ export default class App extends React.Component {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} /> 
           <Stack.Screen name="GroupScreen" component={GroupScreen} options={{ headerTitle: '', headerBackTitle: 'Back', headerLeft: null, headerStyle: {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} />
-          <Stack.Screen name="MatchHistory" component={MatchHistory} options={{ headerTitle: '', headerBackTitle: 'Match history', headerStyle: {
+          <Stack.Screen name="MatchHistory" component={MatchHistory} options={{ headerTitle: '', headerBackTitle: 'Match history', headerLeft: null, headerStyle: {
+            backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} />
+          <Stack.Screen name="IfMatch" component={IfMatch} options={{ headerTitle: '', headerBackTitle: '', headerStyle: {
             backgroundColor: '#121212', shadowRadius: 0, shadowOffset: { height: 0 } } }} />
         </Stack.Navigator>
       </NavigationContainer>
