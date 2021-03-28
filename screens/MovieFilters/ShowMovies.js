@@ -26,8 +26,8 @@ export default class ShowMovies extends React.Component {
             allData: this.props.route.params.allData,
             currentIndex: 0,
             resultsArray: [],
-            liked: true,
-            disliked: false,
+            // liked: true,
+            // disliked: false,
             modalVisible: false,
             group_id: '',
             currentMoviePoster: '',
@@ -36,7 +36,6 @@ export default class ShowMovies extends React.Component {
         };
         this.handleToken = this.handleToken.bind(this);
         this.handleVote = this.handleVote.bind(this);
-        // console.log("POSTERSPARAMS", this.state.posters[0].key)
         // translations for swiping left and right (based on screen width)
         this.rotate = this.position.x.interpolate({
             // takes half of the screen width to the right and half to the left
@@ -59,7 +58,6 @@ export default class ShowMovies extends React.Component {
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
             outputRange: [1,0,0],
             extrapolate: 'clamp'
-
         })
         this.nextCardOpacity = this.position.x.interpolate({
             inputRange: [-SCREEN_WIDTH/2, 0, SCREEN_WIDTH/2],
@@ -84,13 +82,12 @@ export default class ShowMovies extends React.Component {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                          console.log("store", store)
+                        //   console.log("store", store)
                         let token = "Bearer " + store[0][1];
                         this.setState({ token: token })
-                        console.log("token from handlesubmit", token)
+                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
-                        // this.handleVote(token)
                      });
                     });
                   });
@@ -107,14 +104,12 @@ export default class ShowMovies extends React.Component {
             }
         })
         .then((res) => {
-            console.log("RESDATE", res.data[0].group_id)
-            console.log("ALLGROUPDATA", res.data)
-            // currently only accepting one group (eg. getting the id at index 0 NEED TO FIX)
+            // console.log("RESDATE", res.data[0].group_id)
+            // console.log("ALLGROUPDATA", res.data)
             const group = res.data[0].group_id
             this.setState({group_id: group});
-            console.log(this.state.group_id)
+            // console.log(this.state.group_id)
             this.handleSwipeStart()
-            // this.handleVote(token)
         })
         .catch((error) => {
             console.error(error)
@@ -122,26 +117,21 @@ export default class ShowMovies extends React.Component {
        }
 
        handleSwipeStart() {
-           console.log("handleSwipeStart");
            axios.post('http://192.168.0.20:3000/swap', {
                group_id: this.state.group_id
            })
            .then((res) => {
-               console.log(res)
-               console.log("then!")
-
+               console.log("swiping session started.")
            })
            .catch((error) => {
                console.error(error)
            })
-
        }
 
        handleVote = async () => {
            const headers = {
                'Authorization': this.state.token
            }
-        //    console.log("handleVote", headers)
            await axios.post('http://192.168.0.20:3000/vote', {
             group_id: this.state.group_id,
             votes: this.state.resultsArray,
@@ -151,7 +141,6 @@ export default class ShowMovies extends React.Component {
            })
            .then((res) => {
                 this.props.navigation.replace('IfMatch')
-            //    console.log("handleVoteData", res)
            })
            .catch((error) => {
                console.error(error)
@@ -159,7 +148,7 @@ export default class ShowMovies extends React.Component {
        }
 
     UNSAFE_componentWillMount() {
-        console.log("elephant", this.state.allData.allData[0][4])
+        // console.log("elephant", this.state.allData.allData[0][4])
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -176,18 +165,13 @@ export default class ShowMovies extends React.Component {
                         // once the card is off the screen - update the index
                         this.setState({currentIndex: this.state.currentIndex+1}, () => {
                             this.position.setValue({x: 0, y: 0})
-                            console.log("poster at current index", this.state.posters[this.state.currentIndex - 1])
+                            // console.log("poster at current index", this.state.posters[this.state.currentIndex - 1])
                             this.setState({currentMoviePoster: this.state.posters[this.state.currentIndex - 1]})
                             this.setState({currentMovieId: this.state.allData.allData[this.state.currentIndex - 1][4]})
-                            console.log(this.state.currentMovieId);
+                            // console.log(this.state.currentMovieId);
                         })
-
-                        // this.setState({ newPoster: this.state.newPoster })
-                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
-                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.currentMoviePoster] })
-                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.posters[this.state.currentIndex - 1].key] })
                         this.setState({resultsArray: [...this.state.resultsArray, this.state.allData.allData[this.state.currentIndex -1][4]]})
-                        console.log("Results ", this.state.resultsArray)
+                        // console.log("Results ", this.state.resultsArray)
                     })
                 }
                 // if swipe to the left (DISLIKE!) if its less that -120deg
@@ -200,9 +184,6 @@ export default class ShowMovies extends React.Component {
                         this.setState({currentIndex: this.state.currentIndex+1}, () => {
                             this.position.setValue({x: 0, y: 0})
                         })
-                        
-                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.disliked]})
-                        // console.log("results ", this.state.resultsArray)
                     })
                 }
                 // if the user has not swiped enough - snaps image back to its original position
@@ -216,7 +197,6 @@ export default class ShowMovies extends React.Component {
             }  
         })
     }
-
     renderPosters = () => {
         const { posters } = this.state;
         return posters.map((poster, index) => {
@@ -225,8 +205,6 @@ export default class ShowMovies extends React.Component {
                 } 
                 else if (index == this.state.currentIndex) {
                     console.log(this.state.currentIndex)
-
-                    // console.log("SINGLE POSTER", poster.key)
                     if (this.state.currentIndex >= 19) {
                         console.log("no more movies")
                         this.handleVote()
@@ -237,7 +215,7 @@ export default class ShowMovies extends React.Component {
                             {...this.PanResponder.panHandlers}
                             style={[this.rotateAndTranslate, {height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
                            <View>{poster}</View>
-                            <Animated.View style={{opacity: this.likeOpacity ,transform: [{rotate: '-30deg'}], position: 'absolute', top: 50, left: 40, zIndex: 1000}}>
+                           <Animated.View style={{opacity: this.likeOpacity ,transform: [{rotate: '-30deg'}], position: 'absolute', top: 50, left: 40, zIndex: 1000}}>
                                 <Heart />
                             </Animated.View>
                             <Animated.View style={{opacity: this.dislikeOpacity, transform: [{rotate: '30deg'}], position: 'absolute', top: 50, right: 40, zIndex: 1000}}>
@@ -251,7 +229,7 @@ export default class ShowMovies extends React.Component {
                         <Animated.View
                             key={index}
                             style={[ { opacity: this.nextCardOpacity, transform: [{scale: this.nextCardScale}], height: SCREEN_HEIGHT - 120, width: SCREEN_WIDTH, padding: 15, position: 'absolute'}]}>
-                        <View>{poster}</View>
+                            <View>{poster}</View>
                         </Animated.View>
                     )
                 }
@@ -262,7 +240,6 @@ export default class ShowMovies extends React.Component {
         const { modalVisible } = this.state;      
         const { allData } = this.state;
             return allData.allData.map((details, index) => {
-                // console.log(allData)
                 if (index < this.state.currentIndex) {
                     return null
                 } 
@@ -271,9 +248,8 @@ export default class ShowMovies extends React.Component {
                     return (
                         <View key={details} style={{position: 'absolute', bottom: '10%'}}>
                                 <View style={modal.centeredView}>
-                                <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginTop: 0, fontFamily: 'Nunito-Bold', fontSize: 20}}>{details[0]}</Text>
-                                        <Text style={{ color: '#737475', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20, fontFamily: 'Nunito-Regular', fontSize: 16}}>⭐ IMDb {details[2]}/10</Text>
-                                  
+                                    <Text style={{ color: 'white', width: SCREEN_WIDTH, textAlign: 'center', marginTop: 0, fontFamily: 'Nunito-Bold', fontSize: 20}}>{details[0]}</Text>
+                                    <Text style={{ color: '#737475', width: SCREEN_WIDTH, textAlign: 'center', marginBottom: 20, fontFamily: 'Nunito-Regular', fontSize: 16}}>⭐ IMDb {details[2]}/10</Text>
                                     <Modal
                                         animationType="slide"
                                         transparent={true}
@@ -281,24 +257,21 @@ export default class ShowMovies extends React.Component {
                                         onRequestClose={() => {
                                             Alert.alert("Modal has been closed.");
                                             this.setModalVisible(!modalVisible);
-                                        }}
-                                    >
+                                            }}>
                                         <View style={modal.centeredView}>
                                             <View style={modal.modalView}>
-                                            <Text style={style.h1_heading}>{details[0]}</Text>
-                                            <Text style={style.bold_medium}>({details[3]})</Text>
-                                            <Text style={style.paragraph_medium}>{details[1]}</Text>
-                                            <Text style={style.paragraph_medium}>{details[4]}</Text>
-                                            <PinkButton title="Done" onPress={() => this.setModalVisible(!modalVisible)}/>
-                                        </View>
+                                                <Text style={style.h1_heading}>{details[0]}</Text>
+                                                <Text style={style.bold_medium}>({details[3]})</Text>
+                                                <Text style={style.paragraph_medium}>{details[1]}</Text>
+                                                <PinkButton title="Done" onPress={() => this.setModalVisible(!modalVisible)}/>
+                                            </View>
                                         </View>
                                     </Modal>
                                     <Pressable
-                                            style={[modal.button, modal.buttonOpen]}
-                                            onPress={() => this.setModalVisible(true)}
-                                            >
-                                            <Text style={modal.textStyle}>Show Details</Text>
-                                        </Pressable>
+                                        style={[modal.button, modal.buttonOpen]}
+                                        onPress={() => this.setModalVisible(true)}>
+                                        <Text style={modal.textStyle}>Show Details</Text>
+                                    </Pressable>
                                 </View>
                             </View>   
                     )

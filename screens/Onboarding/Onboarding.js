@@ -22,18 +22,16 @@ const Done = ({ isLight, ...props }) => {
         textStyle={{ color: color(isLight) }}
         {...props}
         onPress={() => {
-            navigation.replace('GroupScreen')}}
-      />
+            navigation.replace('GroupScreen')}} />
     )
-
-    };
+};
 
 const CustomButtons = () => (
   <Onboarding
     showSkip={false}
     bottomBarHighlight={false}
     DoneButtonComponent={Done}
-    imageContainerStyles={{paddingBottom: 10}}
+    imageContainerStyles={{position: 'absolute', top: '20%'}}
 
     pages={[
       {
@@ -41,7 +39,7 @@ const CustomButtons = () => (
         image: <Onboarding1 />,
         title: 'Create Groups',
         subtitle: 'Invite friends and add them to your movie night groups.',
-        titleStyles: { fontFamily: 'Nunito-ExtraBold', color: 'white', fontSize: 28},
+        titleStyles: { fontFamily: 'Nunito-ExtraBold', color: 'white', fontSize: 28, marginTop: '40%'},
         subTitleStyles: { fontFamily: 'Nunito-Regular', fontSize: 18, color: 'white', marginHorizontal: 20} 
       },
       {
@@ -49,7 +47,7 @@ const CustomButtons = () => (
         image: <Onboarding2 />,
         title: 'Endless picks',
         subtitle: 'Select from over 1000+ movies available in our library.',
-        titleStyles: { fontFamily: 'Nunito-ExtraBold', color: 'white', fontSize: 28},
+        titleStyles: { fontFamily: 'Nunito-ExtraBold', color: 'white', fontSize: 28, marginTop: '40%'},
         subTitleStyles: { fontFamily: 'Nunito-Regular', fontSize: 18, color: 'white', marginHorizontal: 20} 
       },
       {
@@ -57,7 +55,7 @@ const CustomButtons = () => (
         image: <Onboarding3 />,
         title: 'Swipe & match',
         subtitle: "Celebrating your movie picks in a fun, non-compromising way!",
-        titleStyles: { fontFamily: 'Nunito-ExtraBold', color: 'white', fontSize: 28},
+        titleStyles: { fontFamily: 'Nunito-ExtraBold', color: 'white', fontSize: 28, marginTop: '40%'},
         subTitleStyles: { fontFamily: 'Nunito-Regular', fontSize: 18, color: 'white', marginHorizontal: 20} 
       },
     ]}

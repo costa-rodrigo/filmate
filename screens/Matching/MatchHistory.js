@@ -114,8 +114,8 @@ export default class MatchHistory extends React.Component {
   handleMovieInfo() {
     console.log("movie match", this.state.movieMatch[0])
     console.log("handleMovieInfo")
-    // axios.post('https://filmate.ca:8080/api/matchHistory', {
-    axios.post('http://192.168.0.20:8080/matchHistory', {
+    axios.post(`https://filmate.ca/matchHistory`, {
+    // axios.post('http://192.168.0.20:8080/matchHistory', {
       movieId: this.state.movieMatch[0]
   })
   .then((res) => {
@@ -133,7 +133,7 @@ export default class MatchHistory extends React.Component {
   }
 
   render() {
-    let movieMatch = this.state.movieMatch;
+    // let movieMatch = this.state.movieMatch;
     let responseStatus = this.state.responseStatus;
     let poster = this.state.poster;
     let title = this.state.title;

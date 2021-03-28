@@ -61,11 +61,9 @@ class ProfileScreen extends React.Component {
                         <View style={{marginLeft: 'auto', marginRight: 'auto', marginVertical: 20}}>
                             <ProfileImageLarge />
                         </View>                    
-                            <Text style={style.centered_title}>{this.state.userName}</Text>
-                            <Text style={{fontSize: 12, color: '#d2d5d5', fontFamily: 'Nunito-Regular', textAlign: 'center', marginBottom: 20}}>{this.state.userEmail}</Text>
-
+                        <Text style={style.centered_title}>{this.state.userName}</Text>
+                        <Text style={{fontSize: 12, color: '#d2d5d5', fontFamily: 'Nunito-Regular', textAlign: 'center', marginBottom: 20}}>{this.state.userEmail}</Text>
                     </View>
-
                     <View style={{marginTop: 40}}>
                         <TouchableOpacity 
                             style={styles.grid}
