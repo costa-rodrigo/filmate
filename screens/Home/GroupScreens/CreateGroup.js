@@ -170,7 +170,6 @@ export default class CreateGroup extends React.Component {
                             )
                         }
                     </View>
-                    
                 </TouchableOpacity>
             )
         })

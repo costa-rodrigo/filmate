@@ -69,11 +69,6 @@ class UsersGroups extends React.Component {
                 let group_id = groups[i].group_id;
                 allGroupIds.push(group_id)
                 this.setState({groupIdArray: allGroupIds})
-                
-
-                // console.log("GROUP ID", groups[0].group_id)
-                // this.setState({group_id: groups[0].group_id})
-                // console.log("group_id", this.state.group_id)
                 allGroups.push(group)
 
                 const PromiseArr = [];
@@ -89,58 +84,20 @@ class UsersGroups extends React.Component {
 
                 Promise.all(PromiseArr).then(res => {
                     console.log("res", res)
+                    // creating group_members array
                     this.setState({group_members: [res[0][0].user.name, res[0][1].user.name]})
-                    // console.log(this.state.group_members[0][0].user)
-                    // console.log(this.state.group_members[0][1].user)
                     console.log(this.state.group_members)
-                    
-                    // console.log("res[2]", res[0])
-                    // console.log("res[1]", res[1])
-
-                    // FIX THIS - ONLY WORKS WITH 2 GROUPS******
-                    // let allMembers = []
-                    // for (let i = 0; i < groups.length; i++) {
-                    //     for (let j = 0; j < groups.length; j++) {
-                    //     let members = res;
-                    //     console.log("members", members[i][j].user.name)
-                    //     allMembers.push(members[i][j].user.name)
-                    //     console.log("allMembers", allMembers)
-                    //     this.setState({group_members: allMembers})
-                    
-                    //     }
-                    // }
                 })
             }
             console.log("allGroupIds", allGroupIds[0])
             console.log(this.state.groupIdArray[0])
             this.setState({ GroupsArray: allGroups })
             console.log(this.state.GroupsArray)
-            // this.handleMembers()
         })
         .catch((error) => {
             console.error(error)
         })
        }
-
-    //    handleMembers  = async () => {
-    //     await axios.post('http://192.168.0.20:3000/group', {
-    //         group_id: this.state.group_id
-    //     })
-    //     .then((res) => {
-    //         console.log("MEMBERS", res.data)
-    //         let members = res.data;
-    //         let allMembers = []
-    //         for (let i = 0; i < members.length; i++) {
-    //             let member = members[i].user.name
-    //             allMembers.push(member);
-    //             this.setState({group_members: allMembers})
-    //             console.log("group members", this.state.group_members);
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.error(error)
-    //     })
-    // }
 
     render() {
         const { navigation } = this.props.props;
@@ -197,7 +154,7 @@ class UsersGroups extends React.Component {
                                 this.RBSheet = ref;
                             }}
                             closeOnDragDown={true}
-                            closeOnPressMask={false}
+                            closeOnPressMask={true}
                             customStyles={{
                                 wrapper: {
                                     backgroundColor: "transparent"
@@ -288,7 +245,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
         marginLeft: 20,
-        marginRight: 20
+        marginRight: 20,
+        height: 60
+        // marginTop: 10
     },
     arrow: {
         marginTop: 20,

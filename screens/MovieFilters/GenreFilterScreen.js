@@ -42,6 +42,7 @@ populateSelectedGenres = () => {
   axios.get(`http://192.168.0.20:8080/movies`)
   .then(res => {
     let movies = res.data
+    console.log(res.data)
     // console.log(movies)
 
     let moviePosters = [];
@@ -55,7 +56,7 @@ populateSelectedGenres = () => {
     }
 
     for (let i = 0; i < movies.length; i++) {
-      let data = [movies[i].title, movies[i].overview, movies[i].vote_average, movies[i].release_date]
+      let data = [movies[i].title, movies[i].overview, movies[i].vote_average, movies[i].release_date, movies[i].id]
       allData.push(data)    
       this.setState({ allData })
     }

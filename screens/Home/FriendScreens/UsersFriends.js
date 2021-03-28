@@ -53,12 +53,10 @@ class UsersFriends extends React.Component {
             } else {
                 this.setState({ noFriends: true })
             }
-            // console.log("friends", friends) 
     
             let allFriends = [];
             for (let i = 0; i < friends.length; i++) {
                 let friend = friends[i].friend_name;
-                // console.log(friend)
                 allFriends.push(friend)
             }
             this.setState({ friendsArray: allFriends })
@@ -76,42 +74,37 @@ class UsersFriends extends React.Component {
             } else {
                 this.state.addedFriends.push(friend)
             }
-            console.log(this.state.addedFriends)
+            // console.log(this.state.addedFriends)
        }
 
     render() {
         const usersFriends = this.state.friendsArray.map((friend, index) => {
             return (
-               
                      <View
                         key={index}
                         style={styles.friendContainer}
                         onPress={() => this.friendPressed(friend) && this.setState({ buttonPressed: !this.state.buttonPressed })}
                         >
                         <View style={styles.fullGrid}>
-
-                       
-                        <View style={styles.friendGrid}>
-                            <ProfileImage />
-                            <View style={{marginLeft: 15}}>
-                                <Text style={style.bold_med_small}>{friend}</Text>
+                            <View style={styles.friendGrid}>
+                                <ProfileImage />
+                                <View style={{marginLeft: 15}}>
+                                    <Text style={style.bold_med_small}>{friend}</Text>
+                                </View>
                             </View>
-                        </View>
-                        <View>
-                        <TouchableOpacity 
-                                onPress={() => this.RBSheet.open()} 
-                                style={styles.editButton}>
-                                <OptionsButton />
-                            </TouchableOpacity>
-                        </View>
+                            <View>
+                            <TouchableOpacity 
+                                    onPress={() => this.RBSheet.open()} 
+                                    style={styles.editButton}>
+                                    <OptionsButton />
+                                </TouchableOpacity>
+                            </View>
                         </View>    
                     </View>
-              
             )
         })
 
         const noFriends = this.state.noFriends;
-        
         return (
             <ScrollView style={styles.scrollScreen}>
                     {[usersFriends]}
@@ -134,7 +127,9 @@ class UsersFriends extends React.Component {
                         }}
                         >
                         <Text style={style.centered_title}>Friend Options</Text>
-                        <Text style={style.paragraph_med_left}>Remove friend</Text>
+                        <View style={{marginLeft: 20}}>
+                            <Text style={style.paragraph_med_left}>Remove friend</Text>
+                        </View>
                     </RBSheet>
                 </View>
             </ScrollView>

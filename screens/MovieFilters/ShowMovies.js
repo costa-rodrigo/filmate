@@ -31,7 +31,8 @@ export default class ShowMovies extends React.Component {
             modalVisible: false,
             group_id: '',
             currentMoviePoster: '',
-            token: ''
+            token: '',
+            currentMovieId: ''
         };
         this.handleToken = this.handleToken.bind(this);
         this.handleVote = this.handleVote.bind(this);
@@ -158,7 +159,7 @@ export default class ShowMovies extends React.Component {
        }
 
     UNSAFE_componentWillMount() {
-        // console.log("elephant", this.state.allData.allData)
+        console.log("elephant", this.state.allData.allData[0][4])
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -177,12 +178,15 @@ export default class ShowMovies extends React.Component {
                             this.position.setValue({x: 0, y: 0})
                             console.log("poster at current index", this.state.posters[this.state.currentIndex - 1])
                             this.setState({currentMoviePoster: this.state.posters[this.state.currentIndex - 1]})
+                            this.setState({currentMovieId: this.state.allData.allData[this.state.currentIndex - 1][4]})
+                            console.log(this.state.currentMovieId);
                         })
 
                         // this.setState({ newPoster: this.state.newPoster })
                         // this.setState({ resultsArray: [...this.state.resultsArray, this.state.liked] })
                         // this.setState({ resultsArray: [...this.state.resultsArray, this.state.currentMoviePoster] })
-                        this.setState({ resultsArray: [...this.state.resultsArray, this.state.posters[this.state.currentIndex - 1].key] })
+                        // this.setState({ resultsArray: [...this.state.resultsArray, this.state.posters[this.state.currentIndex - 1].key] })
+                        this.setState({resultsArray: [...this.state.resultsArray, this.state.allData.allData[this.state.currentIndex -1][4]]})
                         console.log("Results ", this.state.resultsArray)
                     })
                 }
@@ -263,7 +267,7 @@ export default class ShowMovies extends React.Component {
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
-                    // console.log(allData[0])
+                    console.log("allData", this.state.currentIndex)
                     return (
                         <View key={details} style={{position: 'absolute', bottom: '10%'}}>
                                 <View style={modal.centeredView}>
@@ -284,6 +288,7 @@ export default class ShowMovies extends React.Component {
                                             <Text style={style.h1_heading}>{details[0]}</Text>
                                             <Text style={style.bold_medium}>({details[3]})</Text>
                                             <Text style={style.paragraph_medium}>{details[1]}</Text>
+                                            <Text style={style.paragraph_medium}>{details[4]}</Text>
                                             <PinkButton title="Done" onPress={() => this.setModalVisible(!modalVisible)}/>
                                         </View>
                                         </View>

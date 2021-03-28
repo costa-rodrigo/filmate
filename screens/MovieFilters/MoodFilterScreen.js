@@ -61,7 +61,7 @@ export default class MoodFilter extends React.Component {
           }
       
           for (let i = 0; i < movies.length; i++) {
-            let data = [movies[i].title, movies[i].overview, movies[i].vote_average, movies[i].release_date]
+            let data = [movies[i].title, movies[i].overview, movies[i].vote_average, movies[i].release_date, movies[i].id]
             allData.push(data)    
             this.setState({ allData })
           }
