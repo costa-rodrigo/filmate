@@ -42,7 +42,6 @@ const GroupName = props => {
  
        const handleToken  = async (token) => {
         await axios.post('https://filmate.ca/groups/', {
-        // await axios.post('http://192.168.0.20:3000/groups', {
             groupName: groupName
         }, {
             headers: {
@@ -54,14 +53,12 @@ const GroupName = props => {
         })
         .catch((error) => {
             console.log("catch error")
-
         })
        }
 
     return (
      <View style={style.screen}>
          <Text style={style.h3_heading}>What's the name of this group?</Text>
-
              <TextInput style={styles.input}
                     onChangeText={(GroupName) => 
                         setGroupName(GroupName)}

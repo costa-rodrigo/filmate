@@ -10,17 +10,10 @@ export default class IfMatch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // moviePosters: [],
-      // genres: [],
-      // genreArray: [],
-      // genrePressed: false,
-      // genreId: '',
-      // allData: ''
       token: '',
       group_id: ''
     };
     const { navigate } = props.navigation;
-    // this.populateSelectedGenres = this.populateSelectedGenres.bind(this);
   }
 
   componentDidMount() {
@@ -29,13 +22,10 @@ export default class IfMatch extends React.Component {
             let storage = await AsyncStorage.getAllKeys((err, keys) => {
                 AsyncStorage.multiGet(keys, (error, stores) => {
                   stores.map((result, i, store) => {
-                      console.log("store", store)
                     let token = "Bearer " + store[0][1];
                     this.setState({ token: token })
-                    console.log("token from handlesubmit", token)
                     resolve(storage)
                     this.handleToken(token)
-                    // this.handleVote(token)
                  });
                 });
               });
@@ -47,42 +37,18 @@ export default class IfMatch extends React.Component {
 
   handleToken = async (token) => {
     await axios.get('https://filmate.ca/groups/', {
-    // await axios.get('http://192.168.0.20:3000/groups',  {
         headers: {
             'Authorization': `${token}`
         }
     })
     .then((res) => {
-        // console.log("GROUPINFO", res)
-        // console.log("SITTIGHT", res.data[0].group_id)
-        // currently only accepting one group (eg. getting the id at index 0 NEED TO FIX)
         const group = res.data[0].group_id
         this.setState({group_id: group});
-        console.log(this.state.group_id)
-        // this.handleMatch()
-        // this.handleVote(token)
     })
     .catch((error) => {
         console.error(error)
     })
   }
-
-  // handleMatch() {
-  //     //  check for a movie match
-  //       // console.log("handleSwipeStart");
-  //       axios.post('http://192.168.0.20:3000/match', {
-  //           group_id: this.state.group_id
-  //       })
-  //       .then((res) => {
-  //           console.log(res)
-  //           console.log("/match endpoint")
-  
-  //       })
-  //       .catch((error) => {
-  //           console.error(error)
-  //       })
-  //   }
-// }
 
   render(){
     return (
@@ -95,7 +61,6 @@ export default class IfMatch extends React.Component {
                  }} />
       </View>
      );
-    
   }
 }
     

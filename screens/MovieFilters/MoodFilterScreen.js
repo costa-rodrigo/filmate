@@ -48,7 +48,6 @@ export default class MoodFilter extends React.Component {
         this.setState({ moodName })
         
         axios.post(`https://filmate.ca/mood/`, moodName)
-        // axios.post(`http://192.168.0.20:8080/mood`, moodName)
         .then(res => {
           let movies = res.data
           let moviePosters = [];

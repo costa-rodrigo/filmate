@@ -1,8 +1,7 @@
 import React from "react";
 import AsyncStorage from '@react-native-community/async-storage';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import SearchBar from '../../../components/SearchBar';
-// import RBSheet from "react-native-raw-bottom-sheet";
 import NoGroupsImage from '../../../svgs//screens/NoGroupsImage';
 import GreyButton from '../../../components/GreyButton';
 import FriendTabButton from '../FriendTabButton';
@@ -46,7 +45,6 @@ class GroupScreen extends React.Component {
 
     handleToken  = async (token) => {
         await axios.get('https://filmate.ca/groups/', {
-        // await axios.get('http://192.168.0.20:3000/groups',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -72,7 +70,6 @@ class GroupScreen extends React.Component {
 
        handleUsername  = async (token) => {
         await axios.get('https://filmate.ca/user/', {
-        // await axios.get('http://192.168.0.20:3000/user',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -93,7 +90,8 @@ class GroupScreen extends React.Component {
                 <View style={style.header}>
                     <View style={styles.user_grid}>
                         <View style={styles.user_info}>
-                            <ProfileImage />
+                        <Image style={{width: 54, height: 54, borderRadius: 50}} source={require('../../../assets/kristen.png')} />
+                            {/* <ProfileImage /> */}
                             <View style={{marginLeft: 8}}>
                                 <Text style={style.title}>{this.state.userName} 👋</Text>
                                 <TouchableOpacity onPress={() => {
@@ -107,7 +105,6 @@ class GroupScreen extends React.Component {
                                 this.props.navigation.navigate('FriendScreen')
                             }} />
                     </View>
-               
                     <SearchBar placeholder="Search groups"/>
                 </View>
                 <View>

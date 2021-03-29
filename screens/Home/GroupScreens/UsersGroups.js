@@ -22,7 +22,6 @@ class UsersGroups extends React.Component {
           final_members: []
       }
       this.handleToken = this.handleToken.bind(this);
-    //   this.handleMembers = this.handleMembers.bind(this);
     }
 
     componentDidMount() {
@@ -31,10 +30,8 @@ class UsersGroups extends React.Component {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                        //   console.log("store", store)
                         let token = "Bearer " + store[0][1];
                         this.setState({ token })
-                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                      });
@@ -48,20 +45,17 @@ class UsersGroups extends React.Component {
 
     handleToken  = async (token) => {
         await axios.get('https://filmate.ca/groups/', {
-        // await axios.get('http://192.168.0.20:3000/groups',  {
             headers: {
                 'Authorization': `${token}`
             }
         })
         .then((res) => {
-            console.log(res.data)
             const groups = res.data
             if (groups.length !== 0 ) {
                 this.setState({ noGroups: false })
             } else {
                 this.setState({ noGroups: true })
             }
-            console.log("friends", groups) 
     
             let allGroups = [];
             let allGroupIds = [];
@@ -76,7 +70,6 @@ class UsersGroups extends React.Component {
                 for (let i = 0; i < groups.length; i++) {
                     PromiseArr.push(
                         axios.post('https://filmate.ca/group/', {
-                        // axios.post('http://192.168.0.20:3000/group', {
                             group_id: groups[i].group_id
                         })
                         .then(result => 
@@ -91,10 +84,7 @@ class UsersGroups extends React.Component {
                     console.log(this.state.group_members)
                 })
             }
-            console.log("allGroupIds", allGroupIds[0])
-            console.log(this.state.groupIdArray[0])
             this.setState({ GroupsArray: allGroups })
-            console.log(this.state.GroupsArray)
         })
         .catch((error) => {
             console.error(error)
@@ -104,7 +94,6 @@ class UsersGroups extends React.Component {
     render() {
         const { navigation } = this.props.props;
         const groupMembers = this.state.group_members;
-        // const final_members = this.state.final_members;
         const usersMembers = this.state.final_members.map((member, index) => {
             return (
                 <Text style={{color: 'white'}}>{member}</Text>
@@ -115,7 +104,6 @@ class UsersGroups extends React.Component {
             return (
                      <View key={index} style={styles.friendContainer}>
                         <View style={styles.fullGrid}>
-                            {/* <View style={styles.friendGrid}> */}
                             <View style={{marginLeft: 40}}>
                                 <View style={{flexDirection: 'row', marginTop: 10, position: 'relative'}}>
                                     <ProfileImage />
@@ -142,8 +130,6 @@ class UsersGroups extends React.Component {
         return (
             <ScrollView style={styles.scrollScreen}>
                     {[usersGroups]}
-                    {/* {usersMembers} */}
-
                     <View style={{
                         flex: 1,
                         justifyContent: "center",
@@ -188,7 +174,6 @@ class UsersGroups extends React.Component {
                            </View>
                             <View style={styles.drawer_grid}>
                                 <Text style={style.paragraph_med_left}>Exit Group</Text>
-                                {/* <Arrow/> */}
                             <View style={styles.arrow}>
                                 <Arrow />
                             </View>
@@ -249,7 +234,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
         height: 60
-        // marginTop: 10
     },
     arrow: {
         marginTop: 20,

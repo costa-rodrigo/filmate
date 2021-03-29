@@ -37,8 +37,6 @@ export default class CreateGroup extends React.Component {
                         this.setState({ token })
                         resolve(storage)
                         this.handleToken(token)
-                        
-                        // return token;
                       });
                     });
                   });
@@ -47,12 +45,10 @@ export default class CreateGroup extends React.Component {
                 reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
             }
         });
-
     }
 
     handleToken  = async (token) => {
         await axios.get('https://filmate.ca/friends/', {
-        // await axios.get('http://192.168.0.20:3000/friends',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -60,19 +56,13 @@ export default class CreateGroup extends React.Component {
         .then((res) => {
             const friends = res.data
             this.setState({currentFriends: friends})
-            console.log("NEW", this.state.currentFriends)
-
-            console.log(friends) 
-            console.log(this.state.noFriends)
     
             let allFriends = [];
             for (let i = 0; i < friends.length; i++) {
-                // let friend = friends[i].friend_name;
                 let friend = [friends[i].friend_name, friends[i].friend_email]
                 allFriends.push(friend)
             }
             this.setState({ friendsArray: allFriends })
-            console.log("FRIEND ARRAY", this.state.friendsArray)
         })
         .catch((error) => {
             console.error(error)
@@ -97,17 +87,12 @@ export default class CreateGroup extends React.Component {
             } else {
                 this.state.addedFriends.push(friend)
                 let user_email = this.state.addedFriends[0][1]
-                console.log("ADDED FRIENDS", user_email)
             }
             this.setState({ addedFriends: this.state.addedFriends })
-            console.log("ADDED FRIENDS STATE", this.state.addedFriends)
        }
 
        handleSubmit = async () => {
-           console.log(this.state.groupName)
-           console.log(this.state.addedFriends[0][1])
            await axios.post('https://filmate.ca/groups-update/', {
-        //    await axios.post('http://192.168.0.20:3000/groups-update', {
                 groupName: this.state.groupName,   
                 email: this.state.addedFriends[0][1]
            })

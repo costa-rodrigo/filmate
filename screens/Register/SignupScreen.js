@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, Button, Text, StyleSheet, TextInput, StatusBar, Modal, Pressable, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, StatusBar, Modal, TouchableOpacity } from 'react-native';
 import MainButton from '../../components/MainButton';
 import axios from 'axios';
 import FilmateLogo from '../../svgs/logo/FilmateLogo';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 import PinkButton from '../../components/PinkButton';
 import style from '../../Styles';
 import modal from '../../Modal';
@@ -13,7 +12,6 @@ const SignupScreen = props => {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [errorText, setErrorText] = useState('');
-    // const [isRegistrationSuccessful, setIsRegistrationSuccessful] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
 
     const handleSubmit = () => {
@@ -32,27 +30,13 @@ const SignupScreen = props => {
         }
         
         axios.post('https://filmate.ca/register', {
-        // axios.post('http://localhost:3000/register', {
             name: userName,
             email: userEmail,
             password: userPassword
         })
         .then((response) => {
-            // console.log(response)
-            // NEED to add an if statement here - eg. if message = success - let us know registration was successful. 
-            // within IF set registration to success
-            // setIsRegistrationSuccessful(true);
             setModalVisible(true);
             console.log("Registration successful, login now!")
-            // need to do something similar to below
-            // if (response.status === 'success') {
-      //       setIsRegistraionSuccess(true);
-      //         console.log(
-      //           'Registration Successful. Please Login to proceed'
-      //         );
-      //       } else {
-      //         setErrortext(response.msg);
-      //       }
         })
         .catch((error) => {
             console.error(error)
@@ -129,8 +113,6 @@ const SignupScreen = props => {
                     onPress={() =>
                     props.navigation.navigate('Login')}
                   />
-                    {/* <Text style={styles.textStyle}>Ok</Text> */}
-                  {/* </Pressable> */}
                 </View>
               </View>
             </Modal>

@@ -13,7 +13,6 @@ const IfNoMatch = props => {
          <NoMatchImage />
          <Text style={style.h1_heading}>No match!</Text>
          <Text style={style.paragraph_medium}>Don't feel bad for your diverse taste. Give another round a try!</Text>
-         {/* <GreyButton title="Swipe again"/> */}
         <MainButton title="Swipe again" onPress={() => {
                     navigation.navigate('GroupScreen')
                 }} />

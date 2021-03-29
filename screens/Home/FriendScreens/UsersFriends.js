@@ -37,12 +37,10 @@ class UsersFriends extends React.Component {
                 reject(new Error('Error getting storage from AsyncStorage: ' + error.message))
             }
         });
-
     }
 
     handleToken  = async (token) => {
         await axios.get('https://filmate.ca/friends/', {
-        // await axios.get('http://192.168.0.20:3000/friends',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -75,7 +73,6 @@ class UsersFriends extends React.Component {
             } else {
                 this.state.addedFriends.push(friend)
             }
-            // console.log(this.state.addedFriends)
        }
 
     render() {

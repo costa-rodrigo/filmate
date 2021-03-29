@@ -24,7 +24,6 @@ const LoginScreen = (props) => {
         }
 
         axios.post('https://filmate.ca/login/', {
-        // axios.post('http://192.168.0.20:3000/login', {
             name: userUsername,
             password: userPassword,
         })
@@ -35,14 +34,11 @@ const LoginScreen = (props) => {
                 AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                        //   console.log(store)
-                        // console.log("async", { [store[i][0]]: store[i][1] });
                         return true;
                       });
                     });
                   });
-                // console.log("token:", token)
-                // axios.post('https://filmate.ca/login/', {
+
                 axios.get('https://filmate.ca/login/'), {
                     name: userUsername,
                     password: userPassword

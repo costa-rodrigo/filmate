@@ -26,8 +26,6 @@ export default class ShowMovies extends React.Component {
             allData: this.props.route.params.allData,
             currentIndex: 0,
             resultsArray: [],
-            // liked: true,
-            // disliked: false,
             modalVisible: false,
             group_id: '',
             currentMoviePoster: '',
@@ -36,6 +34,7 @@ export default class ShowMovies extends React.Component {
         };
         this.handleToken = this.handleToken.bind(this);
         this.handleVote = this.handleVote.bind(this);
+
         // translations for swiping left and right (based on screen width)
         this.rotate = this.position.x.interpolate({
             // takes half of the screen width to the right and half to the left
@@ -82,10 +81,8 @@ export default class ShowMovies extends React.Component {
                 let storage = await AsyncStorage.getAllKeys((err, keys) => {
                     AsyncStorage.multiGet(keys, (error, stores) => {
                       stores.map((result, i, store) => {
-                        //   console.log("store", store)
                         let token = "Bearer " + store[0][1];
                         this.setState({ token: token })
-                        // console.log("token from handlesubmit", token)
                         resolve(storage)
                         this.handleToken(token)
                      });
@@ -99,17 +96,13 @@ export default class ShowMovies extends React.Component {
 
     handleToken  = async (token) => {
         await axios.get('https://filmate.ca/groups/', {
-        // await axios.get('http://192.168.0.20:3000/groups',  {
             headers: {
                 'Authorization': `${token}`
             }
         })
         .then((res) => {
-            // console.log("RESDATE", res.data[0].group_id)
-            // console.log("ALLGROUPDATA", res.data)
             const group = res.data[0].group_id
             this.setState({group_id: group});
-            // console.log(this.state.group_id)
             this.handleSwipeStart()
         })
         .catch((error) => {
@@ -119,7 +112,6 @@ export default class ShowMovies extends React.Component {
 
        handleSwipeStart() {
            axios.post('https://filmate.ca/swap/', {
-        //    axios.post('http://192.168.0.20:3000/swap', {
                group_id: this.state.group_id
            })
            .then((res) => {
@@ -135,7 +127,6 @@ export default class ShowMovies extends React.Component {
                'Authorization': this.state.token
            }
            await axios.post('https://filmate.ca/vote/', {
-        //    await axios.post('http://192.168.0.20:3000/vote', {
             group_id: this.state.group_id,
             votes: this.state.resultsArray,
            }, 
@@ -151,7 +142,6 @@ export default class ShowMovies extends React.Component {
        }
 
     UNSAFE_componentWillMount() {
-        // console.log("elephant", this.state.allData.allData[0][4])
         this.PanResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => true,
             onPanResponderMove: (evt, gestureState) => {
@@ -174,7 +164,6 @@ export default class ShowMovies extends React.Component {
                             // console.log(this.state.currentMovieId);
                         })
                         this.setState({resultsArray: [...this.state.resultsArray, this.state.allData.allData[this.state.currentIndex -1][4]]})
-                        // console.log("Results ", this.state.resultsArray)
                     })
                 }
                 // if swipe to the left (DISLIKE!) if its less that -120deg
@@ -207,7 +196,6 @@ export default class ShowMovies extends React.Component {
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
-                    // console.log(this.state.currentIndex)
                     if (this.state.currentIndex >= 19) {
                         this.handleVote()
                     }
@@ -246,7 +234,6 @@ export default class ShowMovies extends React.Component {
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
-                    // console.log("allData", this.state.currentIndex)
                     return (
                         <View key={details} style={{position: 'absolute', bottom: '10%'}}>
                                 <View style={modal.centeredView}>

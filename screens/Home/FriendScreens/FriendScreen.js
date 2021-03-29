@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import MainButton from '../../../components/MainButton';
@@ -19,8 +19,6 @@ class FriendScreen extends React.Component {
           addedFriends: [],
           friendsArray: [], 
           noFriends: true, 
-          selectedFriends: [],
-          change: 0,
           userName: ''
       }
       this.handleToken = this.handleToken.bind(this);
@@ -47,7 +45,6 @@ class FriendScreen extends React.Component {
 
     handleToken  = async (token) => {
         await axios.get('https://filmate.ca/friends/', {
-        // await axios.get('http://192.168.0.20:3000/friends',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -73,7 +70,6 @@ class FriendScreen extends React.Component {
 
        handleUsername  = async (token) => {
         await axios.get('https://filmate.ca/user/', {
-        // await axios.get('http://192.168.0.20:3000/user',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -94,7 +90,8 @@ class FriendScreen extends React.Component {
                 <View style={style.header}>
                     <View style={styles.user_grid}>             
                     <View style={styles.user_info}>
-                            <ProfileImage />
+                        <Image style={{width: 54, height: 54, borderRadius: 50}} source={require('../../../assets/kristen.png')} />
+                            {/* <ProfileImage /> */}
                             <View style={{marginLeft: 8}}>
                                 <Text style={style.title}>{this.state.userName} 👋</Text>
                                 <TouchableOpacity onPress={() => {
@@ -131,8 +128,7 @@ class FriendScreen extends React.Component {
                                     this.props.navigation.navigate('AddFriends')
                                 }} />
                         </View>
-                    )
-                }
+                    )}
                 </View>
             </View>
         )
