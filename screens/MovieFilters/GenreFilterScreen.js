@@ -41,7 +41,6 @@ populateSelectedGenres = () => {
   axios.get('https://filmate.ca/movies/')
   .then(res => {
     let movies = res.data
-    console.log("populateGenres", res.data)
 
     let moviePosters = [];
     let allData = [];
@@ -81,7 +80,6 @@ genrePressed = (genre) => {
   this.setState({ genreId })
   axios.post('https://filmate.ca/movies/', genreId)
   .then(res => {
-    console.log("genrePressed", res)
     this.populateSelectedGenres()
   })
 }

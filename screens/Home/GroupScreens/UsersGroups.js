@@ -78,10 +78,8 @@ class UsersGroups extends React.Component {
                 }
 
                 Promise.all(PromiseArr).then(res => {
-                    console.log("res", res)
                     // creating group_members array
                     this.setState({group_members: [res[0][0].user.name, res[0][1].user.name]})
-                    console.log(this.state.group_members)
                 })
             }
             this.setState({ GroupsArray: allGroups })
