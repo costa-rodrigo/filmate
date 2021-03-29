@@ -23,7 +23,8 @@ const LoginScreen = (props) => {
             return;
         }
 
-        axios.post('http://192.168.0.20:3000/login', {
+        axios.post('https://filmate.ca/login/', {
+        // axios.post('http://192.168.0.20:3000/login', {
             name: userUsername,
             password: userPassword,
         })
@@ -41,7 +42,8 @@ const LoginScreen = (props) => {
                     });
                   });
                 // console.log("token:", token)
-                axios.get('http://192.168.0.20:3000/login'), {
+                // axios.post('https://filmate.ca/login/', {
+                axios.get('https://filmate.ca/login/'), {
                     name: userUsername,
                     password: userPassword
                 }, {
@@ -70,6 +72,7 @@ const LoginScreen = (props) => {
                     value={userUsername}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    keyboardAppearance='dark'
                     />
                     
                 <TextInput 
@@ -82,6 +85,7 @@ const LoginScreen = (props) => {
                     secureTextEntry={true}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    keyboardAppearance='dark'
                     />
              </View>
             <TouchableOpacity onPress={() => { props.navigation.navigate('ForgotPassword')}}>

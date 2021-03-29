@@ -46,7 +46,8 @@ class FriendScreen extends React.Component {
     }
 
     handleToken  = async (token) => {
-        await axios.get('http://192.168.0.20:3000/friends',  {
+        await axios.get('https://filmate.ca/friends/', {
+        // await axios.get('http://192.168.0.20:3000/friends',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -71,7 +72,8 @@ class FriendScreen extends React.Component {
        }
 
        handleUsername  = async (token) => {
-        await axios.get('http://192.168.0.20:3000/user',  {
+        await axios.get('https://filmate.ca/user/', {
+        // await axios.get('http://192.168.0.20:3000/user',  {
             headers: {
                 'Authorization': `${token}`
             }

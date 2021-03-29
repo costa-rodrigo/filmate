@@ -31,7 +31,7 @@ const SignupScreen = props => {
             return;
         }
         
-        axios.post('http://192.168.0.20:3000/register', {
+        axios.post('https://filmate.ca/register', {
         // axios.post('http://localhost:3000/register', {
             name: userName,
             email: userEmail,
@@ -79,6 +79,7 @@ const SignupScreen = props => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
+                    keyboardAppearance='dark'
                 />
                 <TextInput 
                     style={style.input} 
@@ -91,6 +92,7 @@ const SignupScreen = props => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="next"
+                    keyboardAppearance='dark'
                 />    
                 <TextInput 
                     style={style.input}
@@ -103,6 +105,7 @@ const SignupScreen = props => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     returnKeyType="go"
+                    keyboardAppearance='dark'
                 />
 
             </View>

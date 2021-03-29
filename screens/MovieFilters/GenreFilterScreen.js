@@ -24,7 +24,8 @@ export default class GenreFilterScreen extends React.Component {
   
   componentDidMount() {
     // axios.get(`http://192.168.0.20:8080/genres`)
-    axios.get(`https://filmate.ca/genres/`)
+    axios.get('https://filmate.ca/genres/')
+    // axios.get(`https://filmate.ca/genres/`)
     .then(res => {
       const genres = res.data
       this.setState({ genres })
@@ -39,11 +40,12 @@ export default class GenreFilterScreen extends React.Component {
   }
 
 populateSelectedGenres = () => {
-  axios.get(`https://filmate.ca/movies/`)
+  axios.get('https://filmate.ca/movies/')
+  // axios.get(`https://filmate.ca/movies/`)
   // axios.get(`http://192.168.0.20:8080/movies`)
   .then(res => {
     let movies = res.data
-    console.log(res.data)
+    console.log("populateGenres", res.data)
     // console.log(movies)
 
     let moviePosters = [];
@@ -65,10 +67,12 @@ populateSelectedGenres = () => {
 }
 
 handleSubmit(genreId, posters, allData) {
+  // console.log("genreId", genreId);
   if (!genreId) {
     Alert.alert("Please select a genre.")
   } else {
-  axios.post(`https://filmate.ca/movies/`, genreId)
+  axios.post('https://filmate.ca/movies/', genreId)
+  // axios.post(`https://filmate.ca/movies/`, genreId)
   // axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
     this.setState({genreId})
@@ -83,9 +87,11 @@ genrePressed = (genre) => {
   this.setState({genrePressed})
   let genreId = [genre[1]];
   this.setState({ genreId })
-  axios.post(`https://filmate.ca/movies/`, genreId)
+  axios.post('https://filmate.ca/movies/', genreId)
+  // axios.post(`https://filmate.ca/movies/`, genreId)
   // axios.post(`http://192.168.0.20:8080/movies`, genreId)
   .then(res => {
+    console.log("genrePressed", res)
     this.populateSelectedGenres()
   })
 }

@@ -45,7 +45,8 @@ class GroupScreen extends React.Component {
     }
 
     handleToken  = async (token) => {
-        await axios.get('http://192.168.0.20:3000/groups',  {
+        await axios.get('https://filmate.ca/groups/', {
+        // await axios.get('http://192.168.0.20:3000/groups',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -70,7 +71,8 @@ class GroupScreen extends React.Component {
        }
 
        handleUsername  = async (token) => {
-        await axios.get('http://192.168.0.20:3000/user',  {
+        await axios.get('https://filmate.ca/user/', {
+        // await axios.get('http://192.168.0.20:3000/user',  {
             headers: {
                 'Authorization': `${token}`
             }

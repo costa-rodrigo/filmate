@@ -98,7 +98,8 @@ export default class ShowMovies extends React.Component {
     }
 
     handleToken  = async (token) => {
-        await axios.get('http://192.168.0.20:3000/groups',  {
+        await axios.get('https://filmate.ca/groups/', {
+        // await axios.get('http://192.168.0.20:3000/groups',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -117,7 +118,8 @@ export default class ShowMovies extends React.Component {
        }
 
        handleSwipeStart() {
-           axios.post('http://192.168.0.20:3000/swap', {
+           axios.post('https://filmate.ca/swap/', {
+        //    axios.post('http://192.168.0.20:3000/swap', {
                group_id: this.state.group_id
            })
            .then((res) => {
@@ -132,7 +134,8 @@ export default class ShowMovies extends React.Component {
            const headers = {
                'Authorization': this.state.token
            }
-           await axios.post('http://192.168.0.20:3000/vote', {
+           await axios.post('https://filmate.ca/vote/', {
+        //    await axios.post('http://192.168.0.20:3000/vote', {
             group_id: this.state.group_id,
             votes: this.state.resultsArray,
            }, 
@@ -204,9 +207,8 @@ export default class ShowMovies extends React.Component {
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
-                    console.log(this.state.currentIndex)
+                    // console.log(this.state.currentIndex)
                     if (this.state.currentIndex >= 19) {
-                        console.log("no more movies")
                         this.handleVote()
                     }
                     return (
@@ -244,7 +246,7 @@ export default class ShowMovies extends React.Component {
                     return null
                 } 
                 else if (index == this.state.currentIndex) {
-                    console.log("allData", this.state.currentIndex)
+                    // console.log("allData", this.state.currentIndex)
                     return (
                         <View key={details} style={{position: 'absolute', bottom: '10%'}}>
                                 <View style={modal.centeredView}>

@@ -41,7 +41,9 @@ const AddFriends = props => {
     }
  
        const handleToken  = async (token) => {
-        await axios.post('http://192.168.0.20:3000/friends', {
+        
+        await axios.post('https://filmate.ca/friends/', {
+        // await axios.post('http://192.168.0.20:3000/friends', {
             email: friendEmail
         }, {
             headers: {
@@ -85,6 +87,7 @@ const AddFriends = props => {
                     value={friendEmail}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    keyboardAppearance='dark'
              />
             <MainButton title="Invite Friend" onPress={handleSubmit}/>
         </View>

@@ -46,7 +46,8 @@ export default class IfMatch extends React.Component {
 }
 
   handleToken = async (token) => {
-    await axios.get('http://192.168.0.20:3000/groups',  {
+    await axios.get('https://filmate.ca/groups/', {
+    // await axios.get('http://192.168.0.20:3000/groups',  {
         headers: {
             'Authorization': `${token}`
         }

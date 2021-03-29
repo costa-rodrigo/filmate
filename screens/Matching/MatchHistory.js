@@ -48,7 +48,8 @@ export default class MatchHistory extends React.Component {
 }
 
   handleToken = async (token) => {
-    await axios.get('http://192.168.0.20:3000/groups',  {
+    await axios.get('https://filmate.ca/groups/', {
+    // await axios.get('http://192.168.0.20:3000/groups',  {
         headers: {
             'Authorization': `${token}`
         }
@@ -70,7 +71,8 @@ export default class MatchHistory extends React.Component {
   handleMatch = async () => {
     console.log("group_id", this.state.group_id)
       //  check for a movie match
-        await axios.post('http://192.168.0.20:3000/match', {
+        await axios.post('https://filmate.ca/match/', {
+        // await axios.post('http://192.168.0.20:3000/match', {
             group_id: this.state.group_id
         })
         .then((res) => {
@@ -114,7 +116,8 @@ export default class MatchHistory extends React.Component {
   handleMovieInfo() {
     console.log("movie match", this.state.movieMatch[0])
     console.log("handleMovieInfo")
-    axios.post(`https://filmate.ca/matchHistory`, {
+    axios.post('https://filmate.ca/matchHistory/', {
+    // axios.post(`https://filmate.ca/matchHistory`, {
     // axios.post('http://192.168.0.20:8080/matchHistory', {
       movieId: this.state.movieMatch[0]
   })

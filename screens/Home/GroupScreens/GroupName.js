@@ -41,7 +41,8 @@ const GroupName = props => {
     }
  
        const handleToken  = async (token) => {
-        await axios.post('http://192.168.0.20:3000/groups', {
+        await axios.post('https://filmate.ca/groups/', {
+        // await axios.post('http://192.168.0.20:3000/groups', {
             groupName: groupName
         }, {
             headers: {
@@ -69,6 +70,7 @@ const GroupName = props => {
                     value={groupName}
                     autoCapitalize="none"
                     autoCorrect={false}
+                    keyboardAppearance='dark'
              />
              <MainButton title="Next" onPress={handleSubmit}/>
      </View>

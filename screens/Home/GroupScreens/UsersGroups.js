@@ -47,7 +47,8 @@ class UsersGroups extends React.Component {
     }
 
     handleToken  = async (token) => {
-        await axios.get('http://192.168.0.20:3000/groups',  {
+        await axios.get('https://filmate.ca/groups/', {
+        // await axios.get('http://192.168.0.20:3000/groups',  {
             headers: {
                 'Authorization': `${token}`
             }
@@ -74,7 +75,8 @@ class UsersGroups extends React.Component {
                 const PromiseArr = [];
                 for (let i = 0; i < groups.length; i++) {
                     PromiseArr.push(
-                        axios.post('http://192.168.0.20:3000/group', {
+                        axios.post('https://filmate.ca/group/', {
+                        // axios.post('http://192.168.0.20:3000/group', {
                             group_id: groups[i].group_id
                         })
                         .then(result => 

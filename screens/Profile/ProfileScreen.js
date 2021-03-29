@@ -36,7 +36,8 @@ class ProfileScreen extends React.Component {
       }
 
       handleUsername  = async (token) => {
-        await axios.get('http://192.168.0.20:3000/user',  {
+        await axios.get('https://filmate.ca/user/', {
+        // await axios.get('http://192.168.0.20:3000/user',  {
             headers: {
                 'Authorization': `${token}`
             }
