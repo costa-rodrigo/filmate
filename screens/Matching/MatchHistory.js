@@ -72,6 +72,7 @@ export default class MatchHistory extends React.Component {
         .then((res) => {
             this.setState({responseStatus: res.status})
             let matches = res.data;
+            // console.log(res.data)
             let matchesArray = matches.split(', ');
             this.setState({movieMatch: matchesArray})
             this.handleMovieInfo()
