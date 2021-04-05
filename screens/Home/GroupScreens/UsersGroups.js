@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import RBSheet from "react-native-raw-bottom-sheet";
@@ -104,8 +104,9 @@ class UsersGroups extends React.Component {
                         <View style={styles.fullGrid}>
                             <View style={{marginLeft: 40}}>
                                 <View style={{flexDirection: 'row', marginTop: 10, position: 'relative'}}>
-                                    <ProfileImage />
-                                    <View style={{position: 'absolute', marginLeft: 40}}>
+                                    {/* <ProfileImage /> */}
+                                    <Image style={{width: 48, height: 48, borderRadius: 50}} source={require('../../../assets/kristen.png')} />
+                                    <View style={{position: 'absolute', marginLeft: 35}}>
                                         <ProfileImage />
                                     </View>
                                 </View>
